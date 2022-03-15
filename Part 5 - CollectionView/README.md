@@ -1,6 +1,6 @@
 ## Adding Pull-to-Refresh
 
-The Xamarin.Forms `ListView` has native support for pull-to-refresh, however a `RefreshView` was been added in Xamarin.Forms 4.3 that enables developers to add pull-to-refresh to other controls such as ScrollView & CollectionView. 
+The .NET MAUI `ListView` has native support for pull-to-refresh, however a `RefreshView` enables developers to add pull-to-refresh to other controls such as ScrollView & CollectionView. 
 
 Let's add the new `RefreshView` to add pull-to-refresh to our `CollectionView`.
 
@@ -31,6 +31,7 @@ to:
     </CollectionView>
 </RefreshView>
 ```
+
 Notice that we moved the `Grid.ColumnSpan="2"` to the `RefreshView` since it is the new parent view in the `Grid`.
 
 This will enable pull-to-refresh on iOS, Android, and Windows (on touch screen):

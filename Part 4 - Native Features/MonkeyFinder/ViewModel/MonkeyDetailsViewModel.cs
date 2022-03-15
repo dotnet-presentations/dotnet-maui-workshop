@@ -1,14 +1,10 @@
-﻿using MonkeyFinder.Services;
+﻿namespace MonkeyFinder.ViewModel;
 
-namespace MonkeyFinder.ViewModel;
-
-[QueryProperty("Monkey", "Monkey")]
+[QueryProperty(nameof(Monkey), "Monkey")]
 public partial class MonkeyDetailsViewModel : BaseViewModel
 {
-    MonkeyService monkeyService;
-    public MonkeyDetailsViewModel(MonkeyService monkeyService)
+    public MonkeyDetailsViewModel()
     {
-        this.monkeyService = monkeyService;
     }
 
     [ObservableProperty]
