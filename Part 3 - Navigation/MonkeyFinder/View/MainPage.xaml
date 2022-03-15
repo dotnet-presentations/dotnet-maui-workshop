@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    x:DataType="viewmodel:MonkeysViewModel">
+    x:DataType="viewmodel:MonkeysViewModel"
+    Title="{Binding Title}">
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"

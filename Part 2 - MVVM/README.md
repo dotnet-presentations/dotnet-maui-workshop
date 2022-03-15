@@ -117,278 +117,371 @@ public class MonkeysViewModel : INotifyPropertyChanged
 }
 ```
 
-### Create MonkeysViewModel for Main Page
+
+### Simplifying MVVM with .NET Community Toolkit
+
+Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The .NET Community Toolkit seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. The `CommunityToolkit.Mvvm` library has been added to the project and we can start using it right away.
+
+Delete all contents in `BaseViewModel.cs` and replace it with the following:
+
+```csharp
+namespace MonkeyFinder.ViewModel;
+
+public partial class BaseViewModel : ObservableObject
+{
+    [ObservableProperty]
+    [AlsoNotifyChangeFor(nameof(IsNotBusy))]
+    bool isBusy;
+
+    [ObservableProperty]
+    string title;
+
+    public bool IsNotBusy => !IsBusy;
+}
+```
+
+Here, we can see that our code has been greatly simplified with an `ObservableObject` base class that implements `INotifyPropertyChanged` and also attributes to expose our properties.
+
+Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[AlsoNotifyChangeFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
+
+
+Here is what our `IsBusy` looks like:
+
+```csharp
+[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.0.0.0")]
+[global::System.Diagnostics.DebuggerNonUserCode]
+[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+public bool IsBusy
+{
+    get => isBusy;
+    set
+    {
+        if (!global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(isBusy, value))
+        {
+            OnPropertyChanging(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy);
+            isBusy = value;
+            OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy);
+            OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNotBusy);
+        }
+    }
+}
+```
+
+This code may look a bit scary, but since it is auto-generated it adds additional attributes to avoid conflicts. It is also highly optimized with caching as well.
+
+The same library will also help us handle click events aka `Commands` in the future.
+
+
+### Create a Monkey Service
+
+We are ready to create a method that will retrieve the monkey data from the internet. We will first implement this with a simple HTTP request using HttpClient! We will do this inside of our `MonkeyService.cs` file that is located in the `Services` folder.
+
+1. Inside of the `MonkeyService.cs`, let's add a new method to get all Monkeys:
+
+    ```csharp
+    List<Monkey> monkeyList = new ();
+    public async Task<List<Monkey>> GetMonkeys()
+    {
+        return monkeyList;
+    }
+    ```
+
+    Right now, the method simply creates a new list of Monkeys and returns it. We can now fill in the method use `HttpClient` to pull down a json file, parse it, cache it, and return it.
+
+1. Let's get access to an `HttpClient` by injecting it into the contructor for the `MonkeyService`.
+
+    ```csharp
+     HttpClient httpClient;
+    public MonkeyService(HttpClient httpclient)
+    {
+        this.httpClient = httpclient;
+    }
+    ```
+
+    .NET MAUI includes dependency injection similar to ASP.NET Core. We will register this service and dependencies soon.
+
+1. Let's check to see if we have any monkeys in the list and return it if so by filling in the `GetMonkeys` method:
+
+    ```csharp
+    if (monkeyList?.Count > 0)
+        return monkeyList;
+    ```
+
+1. We can use the `HttpClient` to make a web request and parse it using the built in `System.Text.Json` deserialization.
+
+    ```csharp
+    var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
+
+    if (response.IsSuccessStatusCode)
+    {
+        monkeyList = await response.Content.ReadFromJsonAsync<List<Monkey>>();
+    }
+    ```
+
+1. Add the following using directive at the top of the file to access teh `ReadFromJsonAsync` extension method:
+
+    ```csharp
+    using System.Net.Http.Json;
+    ```
+
+#### No Internet? No Problem!
+
+If you have internet issues in your current setup don't worry as we have embedded a list of monkeys into the project. Instead of using `HttpClient`, you can read the file and return it:
+
+```csharp
+using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
+using var reader = new StreamReader(stream);
+var contents = await reader.ReadToEndAsync();
+monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
+```
+
+
+### Call MonkeyService from ViewModel
+
+We now can update our `MonkeysViewModel` to call our new monkey service and expose the list of monkeys to our user interface. 
 
 We will use an `ObservableCollection<Monkey>` that will be cleared and then loaded with **Monkey** objects. We use an `ObservableCollection` because it has built-in support to raise `CollectionChanged` events when we Add or Remove items from the collection. This means we don't call `OnPropertyChanged` when updating the collection.
 
-1. In `MonkeysViewModel.cs` declare an auto-property which we will initialize to an empty collection. Also, we can set our Title to `Monkey Finder`.
+1. In `MonkeysViewModel.cs` declare a property which we will initialize to an empty collection. Also, we can set our Title to `Monkey Finder`.
 
-```csharp
-public class MonkeysViewModel : BaseViewModel
-{
-    //...
-    public ObservableCollection<Monkey> Monkeys { get; }
-    public MonkeysViewModel()
+    ```csharp
+    public partial class MonkeysViewModel : BaseViewModel
+    {
+        public ObservableCollection<Monkey> Monkeys { get; } = new();
+        public MonkeysViewModel()
+        {
+            Title = "Monkey Finder";
+        }
+    }
+    ```
+
+1. We also need access to our `MonkeyService`, which we will inject throught he constructor:
+
+    ```csharp
+    public ObservableCollection<Monkey> Monkeys { get; } = new();
+    MonkeyService monkeyService;
+    public MonkeysViewModel(MonkeyService monkeyService)
     {
         Title = "Monkey Finder";
-        Monkeys = new ObservableCollection<Monkey>();
+        this.monkeyService = monkeyService;
     }
-    //...
-}
-```
-
-### Create GetMonkeysAsync Method
-
-We are ready to create a method named `GetMonkeysAsync` which will retrieve the monkey data from the internet. We will first implement this with a simple HTTP request using HttpClient!
+    ```
 
 1. In `MonkeysViewModel.cs`, create a method named `GetMonkeysAsync` that returns `async Task`:
 
-```csharp
-public class MonkeysViewModel : BaseViewModel
-{
-    //...
+    ```csharp
+    public class MonkeysViewModel : BaseViewModel
+    {
+        //...
+        async Task GetMonkeysAsync()
+        {
+        }
+        //...
+    }
+    ```
+
+1. In `GetMonkeysAsync`, first ensure `IsBusy` is false. If it is true, `return`
+
+    ```csharp
     async Task GetMonkeysAsync()
     {
+        if (IsBusy)
+            return;
     }
-    //...
-}
-```
+    ```
 
-2. In `GetMonkeysAsync`, first ensure `IsBusy` is false. If it is true, `return`
-
-```csharp
-async Task GetMonkeysAsync()
-{
-    if (IsBusy)
-        return;
-}
-```
-
-3. In `GetMonkeysAsync`, add some scaffolding for try/catch/finally blocks
+1. In `GetMonkeysAsync`, add some scaffolding for try/catch/finally blocks
     - Notice, that we toggle *IsBusy* to true and then false when we start to call to the server and when we finish.
 
-```csharp
-async Task GetMonkeysAsync()
-{
-    if (IsBusy)
-        return;
-
-    try
+    ```csharp
+    async Task GetMonkeysAsync()
     {
-        IsBusy = true;
+        if (IsBusy)
+            return;
+
+        try
+        {
+            IsBusy = true;
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+        finally
+        {
+           IsBusy = false;
+        }
 
     }
-    catch (Exception ex)
+    ```
+
+1. In the `try` block of `GetMonkeysAsync`, we can get the monkeys from our `MonkeyService`.
+
+    ```csharp
+    async Task GetMonkeysAsync()
     {
+        //...
+        try
+        {
+            IsBusy = true;
+
+            var monkeys = await monkeyService.GetMonkeys();
+        }
+        //... 
+    }
+    ```
+
+1. Inside of the `using`, clear the `Monkeys` property and then add the new monkey data:
+
+    ```csharp
+    async Task GetMonkeysAsync()
+    {
+        //...
+        try
+        {
+            IsBusy = true;
+
+            var monkeys = await monkeyService.GetMonkeys();
+
+            Monkeys.Clear();
+            foreach (var monkey in monkeys)
+                Monkeys.Add(monkey);
+        }
+        //...
+    }
+    ```
+
+1. In `GetMonkeysAsync`, add this code to the `catch` block to display a popup if the data retrieval fails:
+
+    ```csharp
+    async Task GetMonkeysAsync()
+    {
+        //...
+        catch(Exception ex)
+        {
+            Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
+            await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+        }
+        //...
+    }
+    ```
+
+1. Ensure the completed code looks like this:
+
+    ```csharp
+    async Task GetMonkeysAsync()
+    {
+        if (IsBusy)
+            return;
+
+        try
+        {
+            IsBusy = true;
+            var monkeys = await monkeyService.GetMonkeys();
+
+            Monkeys.Clear();
+            foreach(var monkey in monkeys)
+                Monkeys.Add(monkey);
+
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
+            await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
 
     }
-    finally
-    {
-       IsBusy = false;
-    }
+    ```
 
-}
-```
+1.  Finally, let's expose this method via an `ICommand` that we can data bind to. Normally, we would have to create a backing field such as:
 
-4. In the `try` block of `GetMonkeysAsync`, we can get the monkeys from our Data Service.
-
-```csharp
-async Task GetMonkeysAsync()
-{
-    ...
-    try
-    {
-        IsBusy = true;
-
-        var client = new HttpClient();
-        var json = await client.GetStringAsync("https://montemagno.com/monkeys.json");
-        var monkeys =  JsonConvert.DeserializeObject<List<Monkey>>(json);
-    }
-    ... 
-}
-```
-
-6. Inside of the `using`, clear the `Monkeys` property and then add the new monkey data:
-
-```csharp
-async Task GetMonkeysAsync()
-{
-    //...
-    try
-    {
-        IsBusy = true;
-
-        var client = new HttpClient();
-        var json = await client.GetStringAsync("https://montemagno.com/monkeys.json");
-        var monkeys =  JsonConvert.DeserializeObject<List<Monkey>>(json);
-
-        Monkeys.Clear();
-        foreach (var monkey in monkeys)
-            Monkeys.Add(monkey);
-    }
-    //...
-}
-```
-
-7. In `GetMonkeysAsync`, add this code to the `catch` block to display a popup if the data retrieval fails:
-
-```csharp
-async Task GetMonkeysAsync()
-{
-    //...
-    catch(Exception ex)
-    {
-        Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-        await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
-    }
-    //...
-}
-```
-
-8. Ensure the completed code looks like this:
-
-```csharp
-async Task GetMonkeysAsync()
-{
-    if (IsBusy)
-        return;
-
-    try
-    {
-        IsBusy = true;
-
-        var client = new HttpClient();
-        var json = await client.GetStringAsync("https://montemagno.com/monkeys.json");
-        var monkeys =  JsonConvert.DeserializeObject<List<Monkey>>(json);
-
-        Monkeys.Clear();
-        foreach (var monkey in monkeys)
-            Monkeys.Add(monkey);
-    }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-        await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
-    }
-    finally
-    {
-        IsBusy = false;
-    }
-}
-```
-
-Our main method for getting data is now complete!
-
-
-### Internet issues?
-
-If you are having interent issues, don't worry as we can load an embedded resource with all the monkey data. Instead of the HttpClient call use the following code:
-
-```csharp
-// If having internet issues, read from disk
-string json = null;
-var a = System.Reflection.Assembly.GetExecutingAssembly();
-using (var resFilestream = a.GetManifestResourceStream("MonkeyFinder.monkeydata.json"))
-{
-  using (var reader = new System.IO.StreamReader(resFilestream))
-      json = await reader.ReadToEndAsync();
-}
-
-// if internet is working
-//var client = new HttpClient();
-//var json = await client.GetStringAsync("https://montemagno.com/monkeys.json");
-
-var monkeys = JsonConvert.DeserializeObject<List<Monkey>>(json);
- ```
-
-#### Create GetMonkeys Command
-
-Instead of invoking this method directly, we will expose it with a `Command`. A `Command` has an interface that knows what method to invoke and has an optional way of describing if the Command is enabled.
-
-1. In `MonkeysViewModel.cs`, create a new Command called `GetMonkeysCommand`:
-
-```csharp
-public class MonkeysViewModel : BaseViewModel
-{
-    //...
+    ```csharp
     public Command GetMonkeysCommand { get; }
-    //...
-}
-```
-
-2. Inside of the `MonkeysViewModel` constructor, create the `GetMonkeysCommand` and pass in the method we created:
-
-```csharp
-public class MonkeysViewModel : BaseViewModel
-{
-    //...
     public MonkeysViewModel()
     {
         //...
         GetMonkeysCommand = new Command(async () => await GetMonkeysAsync());
     }
-    //...
-}
-```
+    ```
+
+    However, with the .NET Community Toolkit we simply can add the `[ICommand]` attribute to our method:
+
+    ```csharp
+     [ICommand]
+    async Task GetMonkeysAsync()
+    {
+        //..
+    }
+    ```
+
+    This will automatically create all of the code we need:
+
+    ```csharp
+    partial class MonkeysViewModel
+    {
+        /// <summary>The backing field for <see cref="GetMonkeysCommand"/>.</summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ICommandGenerator", "8.0.0.0")]
+        private global::CommunityToolkit.Mvvm.Input.AsyncRelayCommand? getMonkeysCommand;
+        /// <summary>Gets an <see cref="global::CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="GetMonkeysAsync"/>.</summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ICommandGenerator", "8.0.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCode]
+        [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        public global::CommunityToolkit.Mvvm.Input.IAsyncRelayCommand GetMonkeysCommand => getMonkeysCommand ??= new global::CommunityToolkit.Mvvm.Input.AsyncRelayCommand(new global::System.Func<global::System.Threading.Tasks.Task>(GetMonkeysAsync));
+    }
+    ```
+
+    MAGIC!
+
+Our main method for getting data is now complete!
+
 
 ## Build The Monkeys User Interface
-It is now time to build the Xamarin.Forms user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
+It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
 
 ![](../Art/FinalUI.PNG)
 
-1. In `MainPage.xaml`, add a `BindingContext` between the `ContentPage` tags, which will enable us to get binding intellisense:
+1. In `MainPage.xaml`, add a `x:DataType` at the top of the `ContentPage` tag, which will enable us to get binding intellisense:
 
-```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
-    x:Class="MonkeyFinder.View.MainPage"
-    x:DataType="viewmodel:MonkeysViewModel"
-    Title="Monkeys">
+    ```xml
+    <ContentPage
+        x:Class="MonkeyFinder.View.MainPage"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:model="clr-namespace:MonkeyFinder.Model"
+        xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+        x:DataType="viewmodel:MonkeysViewModel">
 
-    <!-- Add this -->
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
+    </ContentPage>
+    ```
 
-</ContentPage>
-```
+    This is called a compiled binding. We are specifying that we will be binding directly to the `MonkeysViewModel`. This will do error checking and has performance enhancements.
 
-In the code behind for the project we will create a new BindingContext:
+1. In the code behind for the project we will inject our `MonkeysViewModel` into our MainPage:
 
-```csharp
-public MainPage()
-{
-    InitializeComponent();
-
-    // Add This
-    BindingContext = new MonkeysViewModel();
-}
-```
+    ```csharp
+    public MainPage(MonkeysViewModel viewModel)
+	{
+		InitializeComponent();
+		BindingContext = viewModel;
+	}
+    ```
 
 2. We can create our first binding on the `ContentPage` by adding the `Title` Property:
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
-    Title="{Binding Title}"> <!-- Update this -->
-
-    <ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </ContentPage.BindingContext>
+    Title="{Binding Title}">
 
 </ContentPage>
 ```
@@ -396,21 +489,14 @@ public MainPage()
 2. In the `MainPage.xaml`, we can add a `Grid` between the `ContentPage` tags with 2 rows and 2 columns. We will also set the `RowSpacing` and `ColumnSpacing` to
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
     Title="{Binding Title}">
-
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
 
     <!-- Add this -->
     <Grid
@@ -425,21 +511,14 @@ public MainPage()
 3. In the `MainPage.xaml`, we can add a `CollectionView` between the `Grid` tags that spans 2 Columns. We will also set the `ItemsSource` which will bind to our `Monkeys` ObservableCollection and additionally set a few properties for optimizing the list.
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
     Title="{Binding Title}">
-
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
 
     <!-- Add this -->
     <Grid
@@ -459,21 +538,14 @@ public MainPage()
 4. In the `MainPage.xaml`, we can add a `ItemTemplate` to our `CollectionView` that will represent what each item in the list displays:
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
     Title="{Binding Title}">
-
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
 
    <Grid
         ColumnDefinitions="*,*"
@@ -489,7 +561,9 @@ public MainPage()
                     <Grid Padding="10,5">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
-                                <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                <Image Aspect="AspectFill" Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
                                 <StackLayout
                                     Grid.Column="1"
                                     Padding="10"
@@ -510,24 +584,16 @@ public MainPage()
 5. In the `MainPage.xaml`, we can add a `Button` under our `CollectionView` that will enable us to click it and get the monkeys from the server:
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
     Title="{Binding Title}">
 
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
-
-
-    <Grid
+   <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
@@ -541,7 +607,9 @@ public MainPage()
                     <Grid Padding="10,5">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
-                                <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                <Image Aspect="AspectFill" Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
                                 <StackLayout
                                     Grid.Column="1"
                                     Padding="10"
@@ -555,6 +623,7 @@ public MainPage()
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
         <!-- Add this -->
         <Button Text="Search" 
                 Command="{Binding GetMonkeysCommand}"
@@ -571,21 +640,14 @@ public MainPage()
 6. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the Search button.
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
-    xmlns:model="clr-namespace:MonkeyFinder.Model"
+<ContentPage
     x:Class="MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MonkeyFinder.Model"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
-             Title="{Binding Title}">
-
-    <d:ContentPage.BindingContext>
-        <viewmodel:MonkeysViewModel/>
-    </d:ContentPage.BindingContext>
+    Title="{Binding Title}">
 
    <Grid
         ColumnDefinitions="*,*"
@@ -601,7 +663,9 @@ public MainPage()
                     <Grid Padding="10,5">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
-                                <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                <Image Aspect="AspectFill" Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
                                 <StackLayout
                                     Grid.Column="1"
                                     Padding="10"
@@ -624,7 +688,6 @@ public MainPage()
                 Style="{StaticResource ButtonOutline}"
                 Margin="8"/>
 
-
         <!-- Add this -->
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
@@ -636,8 +699,20 @@ public MainPage()
 </ContentPage>
 ```
 
+### Register Services
+
+Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file and find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
+
+```csharp
+builder.Services.AddHttpClient<MonkeyService>();
+builder.Services.AddSingleton<MonkeyService>();
+builder.Services.AddSingleton<MonkeysViewModel>();
+```
+
+We are registering `HttpClient` for our `MonkeyService`. Also, we are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
+
 ### Run the App
 
-1. In Visual Studio, set the iOS, Android, or Windows project as the startup project 
+1. In Visual Studio, set the iOS, Android, macOS, or Windows project as the startup project 
 
 2. In Visual Studio, click "Start Debugging"
