@@ -12,6 +12,9 @@ public partial class MonkeysViewModel : BaseViewModel
         this.monkeyService = monkeyService;
     }
 
+    [ObservableProperty]
+    bool isRefreshing;
+
     [ICommand]
     async Task GetMonkeysAsync()
     {
@@ -36,6 +39,7 @@ public partial class MonkeysViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
+            IsRefreshing = false;
         }
 
     }

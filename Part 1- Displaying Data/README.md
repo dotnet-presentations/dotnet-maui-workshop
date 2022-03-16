@@ -293,11 +293,11 @@ Add the following into the MainPage.xaml's `ContentPage`:
         <x:Array Type="{x:Type model:Monkey}">
             <model:Monkey
                 Name="Baboon"
-                Image="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
                 Location="Africa and Asia" />
             <model:Monkey
                 Name="Capuchin Monkey"
-                Image="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
                 Location="Central and South America" />
             <model:Monkey
                 Name="Red-shanked douc"

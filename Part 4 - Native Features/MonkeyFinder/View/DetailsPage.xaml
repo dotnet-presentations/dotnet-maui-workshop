@@ -12,34 +12,23 @@
                 <BoxView
                     Grid.ColumnSpan="3"
                     BackgroundColor="{StaticResource Primary}"
-                    HeightRequest="100"
+                    HeightRequest="160"
                     HorizontalOptions="FillAndExpand" />
-                <VerticalStackLayout
+                <Frame
                     Grid.RowSpan="2"
                     Grid.Column="1"
-                    Margin="50,25,0,0"
-                    HorizontalOptions="Center">
+                    Margin="0,80,0,0"
+                    HorizontalOptions="Center" 
+                    Padding="0"
+                    CornerRadius="80">
                     <Image
                         Aspect="AspectFill"
-                        HeightRequest="200"
+                        HeightRequest="160"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         Source="{Binding Monkey.Image}"
-                        WidthRequest="200">
-                        <Image.Clip>
-                            <EllipseGeometry
-                                Center="200,200"
-                                RadiusX="200"
-                                RadiusY="200" />
-                        </Image.Clip>
-                        <Image.Shadow>
-                            <Shadow
-                                Brush="{StaticResource PrimaryDark}"
-                                Opacity="0.3"
-                                Offset="10,10" />
-                        </Image.Shadow>
-                    </Image>
-                </VerticalStackLayout>
+                        WidthRequest="160"/>
+                </Frame>
             </Grid>
             <VerticalStackLayout Margin="0,-50,0,0" Padding="10" Spacing="10">
                 <Label Text="{Binding Monkey.Details}" />

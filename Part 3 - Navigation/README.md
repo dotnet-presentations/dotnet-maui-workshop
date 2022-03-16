@@ -171,40 +171,29 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     </ScrollView>
     ```
 
-1. We can now fill in our `Grid` with the following code to place a box as the backgroudn color of yellow, and then our monkey image with a shadow and cut out in the shape of a circle:
+1. We can now fill in our `Grid` with the following code to place a box as the background color of yellow, and then our monkey image cut out in the shape of a circle:
 
     ```xml
     <BoxView
         Grid.ColumnSpan="3"
         BackgroundColor="{StaticResource Primary}"
-        HeightRequest="100"
+        HeightRequest="160"
         HorizontalOptions="FillAndExpand" />
-    <VerticalStackLayout
+    <Frame
         Grid.RowSpan="2"
         Grid.Column="1"
-        Margin="50,25,0,0"
-        HorizontalOptions="Center">
+        Margin="0,80,0,0"
+        HorizontalOptions="Center" 
+        Padding="0"
+        CornerRadius="80">
         <Image
             Aspect="AspectFill"
-            HeightRequest="200"
+            HeightRequest="160"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Source="{Binding Monkey.Image}"
-            WidthRequest="200">
-            <Image.Clip>
-                <EllipseGeometry
-                    Center="200,200"
-                    RadiusX="200"
-                    RadiusY="200" />
-            </Image.Clip>
-            <Image.Shadow>
-                <Shadow
-                    Brush="{StaticResource PrimaryDark}"
-                    Opacity="0.3"
-                    Offset="10,10" />
-            </Image.Shadow>
-        </Image>
-    </VerticalStackLayout>
+            WidthRequest="160"/>
+    </Frame>
     ```
 
 1. Finally, under the `Grid`, but inside of the `VerticalStackLayout` we will add details about the monkey.

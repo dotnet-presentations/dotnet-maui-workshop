@@ -22,7 +22,7 @@ to:
 <RefreshView
     Grid.ColumnSpan="2"
     Command="{Binding GetMonkeysCommand}"
-    IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+    IsRefreshing="{Binding IsRefreshing}">
     <CollectionView
         ItemsSource="{Binding Monkeys}"
         SelectionChanged="CollectionView_SelectionChanged"
@@ -34,7 +34,26 @@ to:
 
 Notice that we moved the `Grid.ColumnSpan="2"` to the `RefreshView` since it is the new parent view in the `Grid`.
 
-This will enable pull-to-refresh on iOS, Android, and Windows (on touch screen):
+Since the user can initiatie a refresh, we will want to create a new variable in our code behind to bind to stop refreshing when we are done.
+
+1. Open `MonkeysViewModel.cs` and add a new property:
+
+    ```csharp
+    [ObservableProperty]
+    bool isRefreshing;
+    ```
+
+1. In the `finally` of the `GetMonkeysAsync` set `IsRefreshing` to `false`:
+
+    ```csharp
+    finally
+    {
+        IsBusy = false;
+        IsRefreshing = false;
+    }
+    ```
+
+This will enable pull-to-refresh on iOS, Android, macOS, and Windows (on touch screen):
 
 ![Android emulator with pull to refresh enabled](../Art/PullToRefresh.PNG)
 

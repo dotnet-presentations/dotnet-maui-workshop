@@ -17,7 +17,7 @@
         <RefreshView
             Grid.ColumnSpan="2"
             Command="{Binding GetMonkeysCommand}"
-            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+            IsRefreshing="{Binding IsRefreshing}">
             <CollectionView
                 ItemsSource="{Binding Monkeys}"
                 SelectionChanged="CollectionView_SelectionChanged"

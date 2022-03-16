@@ -53,8 +53,8 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <key>NSLocationWhenInUseUsageDescription</key>
-	  <string>Need to find monkeys!</string>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location"/>
   </Capabilities>
 
 </Package>

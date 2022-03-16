@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MonkeyFinder.DetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+    Title="{Binding Monkey.Name}"
+    x:DataType="viewmodel:MonkeyDetailsViewModel">
+    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="100, Auto">
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource Primary}"
+                    HeightRequest="160"
+                    HorizontalOptions="FillAndExpand" />
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0,80,0,0"
+                    HorizontalOptions="Center" 
+                    Padding="0"
+                    CornerRadius="80">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="160"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="{Binding Monkey.Image}"
+                        WidthRequest="160"/>
+                </Frame>
+            </Grid>
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <!-- Add this -->
+                <Button Text="Show on Map" 
+                        Command="{Binding OpenMapCommand}"
+                        HorizontalOptions="Center" 
+                        WidthRequest="200" 
+                        Margin="8"
+                        Style="{StaticResource ButtonOutline}"/>
+                
+                <Label Text="{Binding Monkey.Details}" />
+                <Label FontSize="Micro" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+                <Label FontSize="Micro" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

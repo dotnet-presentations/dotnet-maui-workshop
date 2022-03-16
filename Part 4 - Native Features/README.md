@@ -6,6 +6,32 @@ In Part 4, we will use .NET MAUI Essentials to find the closest monkey to us and
 
 We can add more functionality to this page using the GPS of the device since each monkey has a latitude and longitude associated with it.
 
+1. First, let's get access to the `IGeolocator` found inside of .NET MAUI Essentials. Let's inject `IGeolocator` into our `MonkeysViewModel` constructor:
+
+    ```csharp
+    IGeolocation geolocation;
+    public MonkeysViewModel(MonkeyService monkeyService, IGeolocation geolocation)
+    {
+        Title = "Monkey Finder";
+        this.monkeyService = monkeyService;
+        this.geolocation = geolocation;
+    }
+    ```
+
+1. Register the `GeolocationImplementation` in our `MauiProgram.cs`.
+
+1. Add using directive:
+    ```csharp
+    using Microsoft.Maui.Essentials.Implementations;
+    ```
+
+1. While we are here let's add both `IGeolocation` and `IMap`, add the code:
+
+    ```csharp
+    builder.Services.AddSingleton<IGeolocation, GeolocationImplementation>();
+    builder.Services.AddSingleton<IMap, MapImplementation>();
+    ```
+
 1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestAsync`:
 
     ```csharp
@@ -28,10 +54,10 @@ We can add more functionality to this page using the GPS of the device since eac
         try
         {
             // Get cached location, else get real location.
-            var location = await Geolocation.GetLastKnownLocationAsync();
+            var location = await geolocation.GetLastKnownLocationAsync();
             if (location == null)
             {
-                location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                location = await geolocation.GetLocationAsync(new GeolocationRequest
                 {
                     DesiredAccuracy = GeolocationAccuracy.Medium,
                     Timeout = TimeSpan.FromSeconds(30)
@@ -83,6 +109,16 @@ This project is pre-configured with all required permissions and features needed
 
 .NET MAUI Essentials provides over 60 native features from a single API and opening the default map application is built in!
 
+1. Inject `IMap` into our `MonkeyDetailsViewModel`:
+
+    ```csharp
+    IMap map;
+    public MonkeyDetailsViewModel(IMap map)
+    {
+        this.map = map;
+    }
+    ```
+
 1. Open the `MonkeyDetailsViewModel.cs` file and add a method called `OpenMap` that calls into the `Map` API passing it the monkey's location:
 
     ```csharp
@@ -91,7 +127,11 @@ This project is pre-configured with all required permissions and features needed
     {
         try
         {
-            await Map.OpenAsync(Monkey.Latitude, Monkey.Longitude);
+            await map.OpenMapsAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            {
+                Name = Monkey.Name,
+                NavigationMode = NavigationMode.None
+            });
         }
         catch (Exception ex)
         {
