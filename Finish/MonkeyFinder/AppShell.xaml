@@ -3,10 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MonkeyFinder.AppShell"
              xmlns:view="clr-namespace:MonkeyFinder.View"
-             Title="Monkeys"
-             FlyoutBackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},
-                                                    Light={StaticResource LightBackground}}"
-             Shell.FlyoutBehavior="Disabled">
+             Title="Monkeys">
 
 
 
@@ -32,7 +29,6 @@
 
 
     <ShellContent
-        Shell.NavBarIsVisible="true"
         Title="Monkeys"
         ContentTemplate="{DataTemplate view:MainPage}"
         Route="MainPage" />
