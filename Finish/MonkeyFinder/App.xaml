@@ -25,7 +25,7 @@
 
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="BarBackground" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
                 <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
             </Style>
 
