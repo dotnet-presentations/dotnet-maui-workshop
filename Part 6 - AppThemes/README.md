@@ -20,7 +20,6 @@ It can be reference later by any UI element or by a shared style that can be reu
     <Setter Property="BorderWidth" Value="2" />
     <Setter Property="HeightRequest" Value="40" />
     <Setter Property="CornerRadius" Value="20" />
-    <Setter Property="Visual" Value="Material" />
 </Style>
 ```
 
