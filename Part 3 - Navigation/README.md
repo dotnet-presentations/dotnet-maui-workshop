@@ -143,9 +143,9 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
     ```xml
     <ContentPage
-        x:Class="MonkeyFinder.DetailsPage"
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="MonkeyFinder.DetailsPage"
         xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
         x:DataType="viewmodel:MonkeyDetailsViewModel"
         Title="{Binding Monkey.Name}">
