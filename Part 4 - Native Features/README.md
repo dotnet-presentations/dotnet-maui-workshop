@@ -1,4 +1,4 @@
-## Accessing Native Features
+## Accessing Platform Features
 
 In Part 4, we will use .NET MAUI Essentials to find the closest monkey to us and also open a map with the Monkeys location.
 
