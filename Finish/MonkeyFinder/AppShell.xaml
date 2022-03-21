@@ -25,7 +25,7 @@
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
-
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" />
         </ResourceDictionary>
     </Shell.Resources>
 
