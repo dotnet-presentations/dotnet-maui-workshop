@@ -39,7 +39,7 @@ jobs:
         dotnet workload install maui
       
     - name: Build Step 1
-      run: dotnet build "Part 1 - Display Data/MonkeyFinder/MonkeyFinder.csproj"
+      run: dotnet build "Part 1 - Displaying Data/MonkeyFinder/MonkeyFinder.csproj"
 
     - name: Build Step 2
       run: dotnet build "Part 2 - MVVM/MonkeyFinder/MonkeyFinder.csproj"
