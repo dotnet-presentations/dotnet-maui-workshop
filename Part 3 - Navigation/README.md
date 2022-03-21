@@ -176,7 +176,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     ```xml
     <BoxView
         Grid.ColumnSpan="3"
-        BackgroundColor="{StaticResource Primary}"
+        Background="{StaticResource Primary}"
         HeightRequest="160"
         HorizontalOptions="FillAndExpand" />
     <Frame

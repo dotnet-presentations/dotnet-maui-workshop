@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MonkeyFinder.AppShell"
              xmlns:view="clr-namespace:MonkeyFinder.View"
-             Title="Monkeys">
+             Title="Monkeys"
+             FlyoutBehavior="Disabled">
 
 
 
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
-                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
-                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
+                <Setter Property="Shell.Background" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />

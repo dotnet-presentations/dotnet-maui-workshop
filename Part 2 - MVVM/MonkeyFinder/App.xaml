@@ -13,10 +13,16 @@
             <Color x:Key="DarkBackground">Black</Color>
 
             <Style TargetType="Page" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor"
+                <Setter Property="Background"
                         Value="{StaticResource LightBackground}" />
             </Style>
 
+			<Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+				<Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+				<Setter Property="BarBackground" Value="{StaticResource Primary}" />
+				<Setter Property="BarTextColor" Value="White" />
+			</Style>
+			
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="OpenSansRegular" />
                 <Setter Property="TextColor" Value="#1F1F1F" />
@@ -27,7 +33,7 @@
             </Style>
 
             <Style x:Key="ButtonOutline" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                <Setter Property="Background" Value="{StaticResource LightBackground}"/>
                 <Setter Property="TextColor" Value="{StaticResource Primary}"/>
                 <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
                 <Setter Property="BorderWidth" Value="2"/>
@@ -40,7 +46,7 @@
                 <Setter Property="IsClippedToBounds" Value="True"/>
                 <Setter Property="InputTransparent" Value="True"/>
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                <Setter Property="Background" Value="{StaticResource LightBackground}"/>
                 <Setter Property="CornerRadius" Value="10"/>
             </Style>
         </ResourceDictionary>

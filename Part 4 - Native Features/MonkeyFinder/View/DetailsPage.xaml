@@ -11,7 +11,7 @@
             <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="100, Auto">
                 <BoxView
                     Grid.ColumnSpan="3"
-                    BackgroundColor="{StaticResource Primary}"
+                    Background="{StaticResource Primary}"
                     HeightRequest="160"
                     HorizontalOptions="FillAndExpand" />
                 <Frame

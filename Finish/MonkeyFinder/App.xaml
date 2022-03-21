@@ -20,13 +20,13 @@
             <Color x:Key="LabelTextDark">White</Color>
 
             <Style ApplyToDerivedTypes="True" TargetType="Page">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
             </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="BarBackground" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="White" />
             </Style>
 
             <Style TargetType="Label">
@@ -36,11 +36,11 @@
 
             <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
                 <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
             </Style>
 
             <Style x:Key="ButtonOutline" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
                 <Setter Property="TextColor" Value="{StaticResource Primary}" />
                 <Setter Property="BorderColor" Value="{StaticResource Primary}" />
                 <Setter Property="BorderWidth" Value="2" />
@@ -53,7 +53,7 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="InputTransparent" Value="True" />
                 <Setter Property="Padding" Value="0" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
         </ResourceDictionary>

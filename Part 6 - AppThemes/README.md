@@ -14,7 +14,7 @@ It can be reference later by any UI element or by a shared style that can be reu
 
 ```xml
 <Style x:Key="ButtonOutline" TargetType="Button">
-    <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}" />
+    <Setter Property="Background" Value="{StaticResource LightBackground}" />
     <Setter Property="TextColor" Value="{StaticResource Primary}" />
     <Setter Property="BorderColor" Value="{StaticResource Primary}" />
     <Setter Property="BorderWidth" Value="2" />
@@ -87,7 +87,7 @@ Now, let's add in light/dark theme support throughout out entire application.
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
-        <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}" />
+        <Setter Property="Background" Value="{StaticResource LightBackground}" />
     </Style>
     ```
 
@@ -95,7 +95,7 @@ Now, let's add in light/dark theme support throughout out entire application.
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     </Style>
     ```
 
@@ -106,38 +106,38 @@ Now, let's add in light/dark theme support throughout out entire application.
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
     ```
 
-1. Add the `BackgroundColor on our `RefreshView`
+1. Add the `Background on our `RefreshView`
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
         <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
         <!--Add this-->
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     </Style>
     ```
 
-1. Update the `BackgroundColor` on the `ButtonOutline`
+1. Update the `Background` on the `ButtonOutline`
 
     ```xml
-    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+    <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     ```
 
-1. Update the `BackgroundColor` on the `CardView`
+1. Update the `Background` on the `CardView`
 
     ```xml
-    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
+    <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
     ```
 
-1. Let's also ensure that we set the root element's `BackgroundColor` on each of the page. (In the future this will not be required). Open `MainPage.xaml` and add the following to the `Grid`:
+1. Let's also ensure that we set the root element's `Background` on each of the page. (In the future this will not be required). Open `MainPage.xaml` and add the following to the `Grid`:
 
     ```xml
-    BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+    Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
     ```
 
 1. Open `DeatilsPage.xml` and add the following to the `ScrollView`:
 
     ```xml
-    BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+    Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
     ```
 
 
