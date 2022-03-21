@@ -134,7 +134,7 @@ Now, let's add in light/dark theme support throughout out entire application.
     Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
     ```
 
-1. Open `DeatilsPage.xml` and add the following to the `ScrollView`:
+1. Open `DetailsPage.xml` and add the following to the `ScrollView`:
 
     ```xml
     Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"

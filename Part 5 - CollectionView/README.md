@@ -103,9 +103,25 @@ Let's use the `GridItemsLayout` and change the span to 3
 
 We can change the `Orientation` to `Horizontal` and now our CollectionView will scroll left to right!
 
+```xml
+<CollectionView.ItemsLayout>
+    <GridItemsLayout Orientation="Horizontal" Span="5" />
+</CollectionView.ItemsLayout>
+```
+
 ![List of monkeys scrolling left to right](../Art/GridItemsLayoutHorizontal.png)
 
+Let's go back to our original single column `CollectionView`:
+
+```xml
+<CollectionView.ItemsLayout>
+    <LinearItemsLayout Orientation="Vertical" />
+</CollectionView.ItemsLayout>
+```
+
 ## EmptyView
+
+> Note: This feature is still in development and  may not work properly on some systems. Pleast test on Windows for now or skip this section.
 
 There are many neat features to `CollectionView` including grouping, header, footers, and the ability to set a view that is displayed when there are no items.
 

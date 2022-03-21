@@ -143,9 +143,9 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
     ```xml
     <ContentPage
-        x:Class="MonkeyFinder.DetailsPage"
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="MonkeyFinder.DetailsPage"
         xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
         x:DataType="viewmodel:MonkeyDetailsViewModel"
         Title="{Binding Monkey.Name}">
@@ -159,7 +159,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     ```xml
     <ScrollView>
         <VerticalStackLayout>
-            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="100, Auto">
+            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160, Auto">
 
                 <!-- Background and Image of Monkey -->
            
@@ -199,7 +199,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 1. Finally, under the `Grid`, but inside of the `VerticalStackLayout` we will add details about the monkey.
 
 ```xml
-<VerticalStackLayout Margin="0,-50,0,0" Padding="10" Spacing="10">
+<VerticalStackLayout Padding="10" Spacing="10">
     <Label Text="{Binding Monkey.Details}" />
     <Label FontSize="Micro" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
     <Label FontSize="Micro" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
