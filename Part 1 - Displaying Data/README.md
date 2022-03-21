@@ -52,13 +52,13 @@ public class Monkey
 
 We can display hard coded data of any data type in a `CollectionView` in our `MainPage.xaml`. This will allow us to build out our user interface by setting the `ItemTemplate` with some simple images and labels. 
 
-We first need to add a new name space at the top of the `MainPage.xaml`:
+We first need to add a new namespace at the top of the `MainPage.xaml`:
 
 ```xml
 xmlns:model="clr-namespace:MonkeyFinder.Model"
 ```
 
-This will allow us to reference teh Monkey class above for data binding purposes.
+This will allow us to reference the Monkey class above for data binding purposes.
 
 Add the following into the MainPage.xaml's `ContentPage`:
 
