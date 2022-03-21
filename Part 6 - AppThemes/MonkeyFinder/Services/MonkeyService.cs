@@ -5,9 +5,9 @@ namespace MonkeyFinder.Services;
 public class MonkeyService
 {
     HttpClient httpClient;
-    public MonkeyService(HttpClient httpclient)
+    public MonkeyService()
     {
-        this.httpClient = httpclient;
+        this.httpClient = new HttpClient();
     }
 
     List<Monkey> monkeyList;
