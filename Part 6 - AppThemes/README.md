@@ -100,7 +100,7 @@ Now, let's add in light/dark theme support throughout out entire application.
     ```
 
 
-1. Update the `Label`'s `TextColor` value:
+1. Update the `BaseLabel`'s `TextColor` value:
 
     ```xml
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />

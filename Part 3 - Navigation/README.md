@@ -200,9 +200,9 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
 ```xml
 <VerticalStackLayout Padding="10" Spacing="10">
-    <Label Text="{Binding Monkey.Details}" />
-    <Label FontSize="Micro" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
-    <Label FontSize="Micro" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
+    <Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
+    <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+    <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
 </VerticalStackLayout>
 ```
 

@@ -573,8 +573,8 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     Grid.Column="1"
                                     Padding="10"
                                     VerticalOptions="Center">
-                                    <Label FontSize="Large" Text="{Binding Name}" />
-                                    <Label FontSize="Medium" Text="{Binding Location}" />
+                                    <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -618,8 +618,8 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     Grid.Column="1"
                                     Padding="10"
                                     VerticalOptions="Center">
-                                    <Label FontSize="Large" Text="{Binding Name}" />
-                                    <Label FontSize="Medium" Text="{Binding Location}" />
+                                    <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -673,8 +673,8 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     Grid.Column="1"
                                     Padding="10"
                                     VerticalOptions="Center">
-                                    <Label FontSize="Large" Text="{Binding Name}" />
-                                    <Label FontSize="Medium" Text="{Binding Location}" />
+                                    <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </StackLayout>
                             </Grid>
                         </Frame>

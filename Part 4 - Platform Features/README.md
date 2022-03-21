@@ -155,7 +155,7 @@ Above the monkey's name, let's add a button that calls the `OpenMapCommand`.
         Margin="8"
         Style="{StaticResource ButtonOutline}"/>
                 
-<Label Text="{Binding Monkey.Details}" />
+<Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
 ```
 
 Run the application, navigate to a monkey, and then press Show on Map to launch the map app on the specific platform.

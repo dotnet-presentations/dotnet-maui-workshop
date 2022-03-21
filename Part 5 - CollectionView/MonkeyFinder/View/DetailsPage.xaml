@@ -38,9 +38,9 @@
                         Margin="8"
                         Style="{StaticResource ButtonOutline}"/>
                 
-                <Label Text="{Binding Monkey.Details}" />
-                <Label FontSize="Micro" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
-                <Label FontSize="Micro" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
+                <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+                <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
