@@ -23,8 +23,8 @@ I have also put together an abstract of what you can expect for the day long wor
 * Single Page List of Data
 * MVVM & Data Binding
 * Navigation
-* Implementing Native Features
-* The many ways to display data
+* Implementing Platform Features
+* The many ways to display data in a CollectionView
 * Theming the app
 
 
