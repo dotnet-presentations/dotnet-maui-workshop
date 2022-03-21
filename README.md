@@ -1,10 +1,10 @@
 # .NET MAUI - Workshop
 
-Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_id=friends-mauiworkshop-jamont) application that will display a list of Monkeys from around the world. We will start by building the business logic backend that pulls down json-ecoded data from a RESTful endpoint. We will then leverage [.NET MAUI Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=friends-mauiworkshop-jamont) to find the closest monkey to us and also show the monkey on a map. We will also see how to display data in many different ways and then finally fully theme the application.
+Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_id=friends-mauiworkshop-jamont) application that will display a list of Monkeys from around the world. We will start by building the business logic backend that pulls down json-encoded data from a RESTful endpoint. We will then leverage [.NET MAUI Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=friends-mauiworkshop-jamont) to find the closest monkey to us and also show the monkey on a map. We will also see how to display data in many different ways and then finally fully theme the application.
 
 
 ## Setup Guide
-Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC (Recommended) or Mac and all you will need to do is install Visual Studio  2022 or Visual Studio for Mac 2022 with the .NET MAUI workload.
+Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC (Recommended) or Mac and all you will need to do is install Visual Studio 2022 or Visual Studio for Mac 2022 with the .NET MAUI workload.
 
 Follow our simple [setup guide](https://docs.microsoft.com/dotnet/maui/get-started/installation?WT.mc_id=friends-mauiworkshop-jamont) to ensure you have Visual Studio 2022 and .NET MAUI setup and ready to deploy.
 
