@@ -254,6 +254,12 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
         }
     }
     ```
+    
+1. We will want to access our new `MonkeyService`. So let's add the following using directive to the top of the file:
+
+    ```csharp
+    using MonkeyFinder.Services;
+    ```
 
 1. We also need access to our `MonkeyService`, which we will inject throught he constructor:
 
@@ -449,9 +455,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
     ```xml
     <ContentPage
-        x:Class="MonkeyFinder.View.MainPage"
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        x:Class="MonkeyFinder.View.MainPage"
         xmlns:model="clr-namespace:MonkeyFinder.Model"
         xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
         x:DataType="viewmodel:MonkeysViewModel">
@@ -465,19 +471,19 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
     ```csharp
     public MainPage(MonkeysViewModel viewModel)
-	{
-		InitializeComponent();
-		BindingContext = viewModel;
-	}
+    {
+	InitializeComponent();
+	BindingContext = viewModel;
+    }
     ```
 
 2. We can create our first binding on the `ContentPage` by adding the `Title` Property:
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -490,9 +496,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -512,9 +518,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -539,9 +545,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -552,10 +558,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0">
-        <CollectionView
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Monkeys}"
-            SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding Monkeys}"
+                         SelectionMode="Single"
+                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10,5">
@@ -585,9 +590,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -598,10 +603,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0">
-        <CollectionView
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Monkeys}"
-            SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding Monkeys}"
+                         SelectionMode="Single"
+                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10,5">
@@ -641,9 +645,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ```xml
 <ContentPage
-    x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MonkeyFinder.View.MainPage"
     xmlns:model="clr-namespace:MonkeyFinder.Model"
     xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
     x:DataType="viewmodel:MonkeysViewModel"
@@ -654,10 +658,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0">
-        <CollectionView
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Monkeys}"
-            SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding Monkeys}"
+                         SelectionMode="Single"
+                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10,5">
@@ -701,13 +704,20 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ### Register Services
 
-Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file and find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
+Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file. 
 
-```csharp
-builder.Services.AddHttpClient<MonkeyService>();
-builder.Services.AddSingleton<MonkeyService>();
-builder.Services.AddSingleton<MonkeysViewModel>();
-```
+1. Add the following using directive to access our `MonkeyService`:
+
+	```csharp
+	using MonkeyFinder.Services;
+	```
+
+1. Find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
+	```csharp
+	builder.Services.AddHttpClient<MonkeyService>();
+	builder.Services.AddSingleton<MonkeyService>();
+	builder.Services.AddSingleton<MonkeysViewModel>();
+	```
 
 We are registering `HttpClient` for our `MonkeyService`. Also, we are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
 
@@ -715,4 +725,4 @@ We are registering `HttpClient` for our `MonkeyService`. Also, we are registerin
 
 1. In Visual Studio, set the iOS, Android, macOS, or Windows project as the startup project 
 
-2. In Visual Studio, click "Start Debugging"
+2. In Visual Studio, click "Start Debugging". When the application starts you will see a **Search** button that when pressed will load monkey data from the internet!
