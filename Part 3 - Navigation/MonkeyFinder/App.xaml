@@ -17,6 +17,12 @@
                         Value="{StaticResource LightBackground}" />
             </Style>
 
+			<Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+				<Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+				<Setter Property="BarBackground" Value="{StaticResource Primary}" />
+				<Setter Property="BarTextColor" Value="White" />
+			</Style>
+
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="OpenSansRegular" />
                 <Setter Property="TextColor" Value="#1F1F1F" />
