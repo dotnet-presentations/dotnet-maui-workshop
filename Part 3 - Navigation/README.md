@@ -156,7 +156,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
 1. At the core is a `ScrollView`, `VerticalStackLayout`, and `Grid` to layout all of the controls nicely on the screen:
 
-    ``xml
+    ```xml
     <ScrollView>
         <VerticalStackLayout>
             <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="100, Auto">
