@@ -1,0 +1,44 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+    paths:
+    - '**.cs'
+    - '**.csproj'
+    - '**.xaml'
+
+env:
+  DOTNET_VERSION: '6.0.x' # The .NET SDK version to use
+
+jobs:
+  build:
+
+    name: Build All Projects
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+      
+    - name: Build Step 1
+      run: dotnet build "Part 1 - Display Data/MonkeyFinder/MonkeyFinder.csproj"
+
+    - name: Build Step 2
+      run: dotnet build "Part 2 - MVVM/MonkeyFinder/MonkeyFinder.csproj"
+
+    - name: Build Step 3
+      run: dotnet build "Part 3 - Navigation/MonkeyFinder/MonkeyFinder.csproj"
+   
+    - name: Build Step 4
+      run: dotnet build "Part 4 - Native Features/MonkeyFinder/MonkeyFinder.csproj"
+
+    - name: Build Step 5
+      run: dotnet build "Part 5 - CollectionView/MonkeyFinder/MonkeyFinder.csproj"
+
+    - name: Build Step 6
+      run: dotnet build "Part 6 - AppThemes/MonkeyFinder/MonkeyFinder.csproj"
