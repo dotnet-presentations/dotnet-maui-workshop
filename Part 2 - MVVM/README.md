@@ -95,7 +95,7 @@ Notice that we call `OnPropertyChanged` when the value changes. The Xamarin.Form
 We can also create the inverse of `IsBusy` by creating another property called `IsNotBusy` that returns the opposite of `IsBusy` and then raising the event of `OnPropertyChanged` when we set `IsBusy`
 
 ```csharp
-public class MonkeysViewModel : INotifyPropertyChanged
+public class BaseViewModel : INotifyPropertyChanged
 {
     //...
     public bool IsBusy
