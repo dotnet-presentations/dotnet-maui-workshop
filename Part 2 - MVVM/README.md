@@ -338,7 +338,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. Inside of the `using`, clear the `Monkeys` property and then add the new monkey data:
+1. Still inside of the `try` block, clear the `Monkeys` property and then add the new monkey data:
 
     ```csharp
     async Task GetMonkeysAsync()
