@@ -31,9 +31,4 @@ public class MonkeyService
 
         return monkeyList;
     }
-
-    public async Task<Monkey> GetMonkey(string name)
-    {
-        return null;
-    }
 }
