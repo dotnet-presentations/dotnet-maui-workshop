@@ -100,14 +100,14 @@ Re-run the app to see geolocation in action after you load monkeys!
 
 This project is pre-configured with all required permissions and features needed for Geolocation. You can read the documentation to find out more about setup, but here is a quick overview.
 
-1. .NET MAUI Essentials is pre-configured in all .NET MAUI applications including handlign permissions.
+1. .NET MAUI Essentials is pre-configured in all .NET MAUI applications including handling permissions.
 1. Android manifest information was pre-configured in **MonkeyFinder -> Platforms -> Android -> AssemblyInfo.cs**
 1. iOS/macOS manifest information was configured in the **info.plist** file for each platform
 1. Windows manifest information was configured in the **Package.appxmanifest**
 
 ### Opening Maps
 
-.NET MAUI Essentials provides over 60 native features from a single API and opening the default map application is built in!
+.NET MAUI Essentials provides over 60 platform features from a single API and opening the default map application is built in!
 
 1. Inject `IMap` into our `MonkeyDetailsViewModel`:
 
@@ -163,7 +163,7 @@ Run the application, navigate to a monkey, and then press Show on Map to launch 
 
 ## iOS Safe Area Layouts
 
-In addition to accessing cross-platform native APIs, .NET MAUI also includes platform specific native integrations. If you have been running the Monkey Finder app on an iOS device with a notch, you may have noticed that the buttons on the bottom overlap the bar on the bottom of the device. iOS has the concept of Safe Areas and you must progmatically set this. However, thanks to platform specifics, you can set them directly in the XAML.
+In addition to accessing cross-platform device APIs, .NET MAUI also includes platform specific integrations. If you have been running the Monkey Finder app on an iOS device with a notch, you may have noticed that the buttons on the bottom overlap the bar on the bottom of the device. iOS has the concept of Safe Areas and you must progmatically set this. However, thanks to platform specifics, you can set them directly in the XAML.
 
 1. Open `MainPage.xaml` and add a new namespace for iOS specifics:
 

@@ -10,7 +10,7 @@ Open the `App.xaml` file and notice that there are several `Color` entries and `
 <Color x:Key="LightBackground">#FAF9F8</Color>
 ```
 
-It can be reference later by any UI element or by a shared style that can be reused. For example our `ButtonOutline` style applies to the `Button` control and gives it a rounded corner, sets colors for the text, border, and background:
+It can be referenced later by any UI element or by a shared style that can be reused. For example our `ButtonOutline` style applies to the `Button` control and gives it a rounded corner, sets colors for the text, border, and background:
 
 ```xml
 <Style x:Key="ButtonOutline" TargetType="Button">
@@ -70,7 +70,7 @@ If we leave of the `x:Key`, then it will apply automatically to every Label in o
 
 ## Update Resources
 
-Now, let's add in light/dark theme support throughout out entire application.
+Now, let's add in light/dark theme support throughout our entire application.
 
 
 1. Let's add some new colors we will use into our `ResourceDictionary`:
@@ -146,5 +146,5 @@ Now, let's run the app and change the theme:
 ![Changing themes](../Art/Themes.gif)
 
 
-You did it! Congratulations! You built your first .NET MAUI application, loaded data from the internet, implemented navigation, added native features, and themed the app!
+You did it! Congratulations! You built your first .NET MAUI application, loaded data from the internet, implemented navigation, added platform features, and themed the app!
 

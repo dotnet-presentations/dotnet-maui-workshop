@@ -90,12 +90,12 @@ public class BaseViewModel : INotifyPropertyChanged
 }
 ```
 
-Notice that we call `OnPropertyChanged` when the value changes. The Xamarin.Forms binding infrastructure will subscribe to our **PropertyChanged** event so the UI will be notified of the change.
+Notice that we call `OnPropertyChanged` when the value changes. The .NET MAUI binding infrastructure will subscribe to our **PropertyChanged** event so the UI will be notified of the change.
 
 We can also create the inverse of `IsBusy` by creating another property called `IsNotBusy` that returns the opposite of `IsBusy` and then raising the event of `OnPropertyChanged` when we set `IsBusy`
 
 ```csharp
-public class MonkeysViewModel : INotifyPropertyChanged
+public class BaseViewModel : INotifyPropertyChanged
 {
     //...
     public bool IsBusy
@@ -338,7 +338,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. Inside of the `using`, clear the `Monkeys` property and then add the new monkey data:
+1. Still inside of the `try` block, clear the `Monkeys` property and then add the new monkey data:
 
     ```csharp
     async Task GetMonkeysAsync()
