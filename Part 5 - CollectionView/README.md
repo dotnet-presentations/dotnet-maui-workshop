@@ -1,6 +1,6 @@
 ## Adding Pull-to-Refresh
 
-The .NET MAUI `ListView` has native support for pull-to-refresh, however a `RefreshView` enables developers to add pull-to-refresh to other controls such as ScrollView & CollectionView. 
+The .NET MAUI `ListView` has built in support for pull-to-refresh, however a `RefreshView` enables developers to add pull-to-refresh to other controls such as `ScrollView` & `CollectionView`. 
 
 Let's add the new `RefreshView` to add pull-to-refresh to our `CollectionView`.
 
@@ -34,7 +34,7 @@ to:
 
 Notice that we moved the `Grid.ColumnSpan="2"` to the `RefreshView` since it is the new parent view in the `Grid`.
 
-Since the user can initiatie a refresh, we will want to create a new variable in our code behind to bind to stop refreshing when we are done.
+Since the user can initiate a refresh, we will want to create a new variable in our code behind to bind to stop refreshing when we are done.
 
 1. Open `MonkeysViewModel.cs` and add a new property:
 
@@ -59,7 +59,7 @@ This will enable pull-to-refresh on iOS, Android, macOS, and Windows (on touch s
 
 ## Layout
 
-CollectionView will automatically layout items in a vertical stack layout. There are several built in `ItemsLayout` that can be used. Let's explore.
+`CollectionView` will automatically layout items in a vertical stack layout. There are several built in `ItemsLayout` that can be used. Let's explore.
 
 ### LinearItemsLayout 
 
@@ -121,7 +121,7 @@ Let's go back to our original single column `CollectionView`:
 
 ## EmptyView
 
-> Note: This feature is still in development and  may not work properly on some systems. Pleast test on Windows for now or skip this section.
+> Note: This feature is still in development and  may not work properly on some systems. Please test on Windows for now or skip this section.
 
 There are many neat features to `CollectionView` including grouping, header, footers, and the ability to set a view that is displayed when there are no items.
 
