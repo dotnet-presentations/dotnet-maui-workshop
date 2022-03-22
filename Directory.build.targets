@@ -2,7 +2,6 @@
 	<ItemGroup>
 		<PackageReference Include="System.Text.Json" Version="6.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview1" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">

@@ -19,7 +19,6 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IGeolocation, GeolocationImplementation>();
 		builder.Services.AddSingleton<IMap, MapImplementation>();
 
-		builder.Services.AddHttpClient<MonkeyService>();
 		builder.Services.AddSingleton<MonkeyService>();
 		builder.Services.AddSingleton<MonkeysViewModel>();
 		builder.Services.AddSingleton<MainPage>();

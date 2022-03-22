@@ -188,13 +188,13 @@ We are ready to create a method that will retrieve the monkey data from the inte
 
     Right now, the method simply creates a new list of Monkeys and returns it. We can now fill in the method use `HttpClient` to pull down a json file, parse it, cache it, and return it.
 
-1. Let's get access to an `HttpClient` by injecting it into the contructor for the `MonkeyService`.
+1. Let's get access to an `HttpClient` by added into the contructor for the `MonkeyService`.
 
     ```csharp
      HttpClient httpClient;
-    public MonkeyService(HttpClient httpclient)
+    public MonkeyService()
     {
-        this.httpClient = httpclient;
+        this.httpClient = new HttpClient();
     }
     ```
 
@@ -714,12 +714,11 @@ Before we can run the app, we must register all of our dependencies. Open the `M
 
 1. Find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
 	```csharp
-	builder.Services.AddHttpClient<MonkeyService>();
 	builder.Services.AddSingleton<MonkeyService>();
 	builder.Services.AddSingleton<MonkeysViewModel>();
 	```
 
-We are registering `HttpClient` for our `MonkeyService`. Also, we are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
+We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
 
 ### Run the App
 
