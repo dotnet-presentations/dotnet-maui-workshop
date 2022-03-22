@@ -2,7 +2,7 @@
 
 In Part 3 we will add simple navigation to push a new page onto the stack to display details about the monkey.
 
-We will use the build in Shell navigation of .NET MAUI. This powerfull navigation system is based on URIs. You can pass additional information while navigating query paramater such as a string, or a full object.
+We will use the built-in Shell navigation of .NET MAUI. This powerful navigation system is based on URIs. You can pass additional information while navigating query paramater such as a string, or a full object.
 
 For example, let's say we wanted to navigate to a details page and pass in an identifier. 
 
@@ -29,7 +29,7 @@ When we navigate, the name "james" would be passed along automatically. We can a
 
 ```csharp
 var person = new Person { Name="James" };
-await Shell.Current.GoToAsync("DetailsPage", new Dictionary<string, object)
+await Shell.Current.GoToAsync("DetailsPage", new Dictionary<string, object>
 {
     { "person", person }
 });
@@ -139,7 +139,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 ![](../Art/Details.PNG)
 
 
-1. Let's first start by definig our DataType by defining the viewmodel namespace and also setting the title:
+1. Let's first start by defining our DataType by defining the view model namespace and also setting the title:
 
     ```xml
     <ContentPage
@@ -218,14 +218,14 @@ Now that we have our details page in place we need to register it for routing. T
 
     This will register the details page with the route of "DetailsPage", which we used earlier.
 
-1. Open `MauiProgram.cs` and add  both the view model and the page as `Transient` so a new page and viewmodel is created each time it is navigated to:
+1. Open `MauiProgram.cs` and add  both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
 
     ```csharp
     builder.Services.AddTransient<MonkeyDetailsViewModel>();
     builder.Services.AddTransient<DetailsPage>();
     ```
 
-1. Finally, we must inject the viewmodel into our `DetailsPage`. Open the code behind for the page in `DetailsPage.xaml.cs` and change the constructor to the following:
+1. Finally, we must inject the view model into our `DetailsPage`. Open the code behind for the page in `DetailsPage.xaml.cs` and change the constructor to the following:
 
     ```csharp
 	public DetailsPage(MonkeyDetailsViewModel viewModel)
