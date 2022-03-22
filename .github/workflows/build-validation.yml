@@ -48,7 +48,7 @@ jobs:
       run: dotnet build "Part 3 - Navigation/MonkeyFinder/MonkeyFinder.csproj"
    
     - name: Build Step 4
-      run: dotnet build "Part 4 - Native Features/MonkeyFinder/MonkeyFinder.csproj"
+      run: dotnet build "Part 4 - Platform Features/MonkeyFinder/MonkeyFinder.csproj"
 
     - name: Build Step 5
       run: dotnet build "Part 5 - CollectionView/MonkeyFinder/MonkeyFinder.csproj"
