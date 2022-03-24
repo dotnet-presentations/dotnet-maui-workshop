@@ -67,7 +67,7 @@
             Command="{Binding GetMonkeysCommand}"
             IsEnabled="{Binding IsNotBusy}"
             Style="{StaticResource ButtonOutline}"
-            Text="Search" />
+            Text="Get Monkeys" />
 
         <!--  Add this  -->
         <Button

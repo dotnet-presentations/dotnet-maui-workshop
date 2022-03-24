@@ -38,7 +38,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Search" 
+        <Button Text="Get Monkeys" 
                 Command="{Binding GetMonkeysCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="1"
