@@ -59,8 +59,6 @@
             <Style x:Key="CardView" TargetType="Frame">
                 <Setter Property="BorderColor" Value="#DDDDDD" />
                 <Setter Property="HasShadow" Value="True" />
-                <Setter Property="IsClippedToBounds" Value="True" />
-                <Setter Property="InputTransparent" Value="True" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Background" Value="{StaticResource LightBackground}" />
                 <Setter Property="CornerRadius" Value="10" />
