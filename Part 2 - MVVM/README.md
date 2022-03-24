@@ -171,6 +171,8 @@ This code may look a bit scary, but since it is auto-generated it adds additiona
 
 The same library will also help us handle click events aka `Commands` in the future.
 
+> Note that we changed this class to a `partial` class so the generated code can be shared in the class.
+
 
 ### Create a Monkey Service
 
