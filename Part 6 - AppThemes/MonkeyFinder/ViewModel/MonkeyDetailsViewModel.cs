@@ -17,7 +17,11 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
     {
         try
         {
-            await map.OpenAsync(Monkey.Latitude, Monkey.Longitude);
+            await map.OpenMapsAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            {
+                Name = Monkey.Name,
+                NavigationMode = NavigationMode.None
+            });
         }
         catch (Exception ex)
         {
