@@ -6,10 +6,12 @@ public partial class MonkeysViewModel : BaseViewModel
 {
     public ObservableCollection<Monkey> Monkeys { get; } = new();
     MonkeyService monkeyService;
-    public MonkeysViewModel(MonkeyService monkeyService)
+    IGeolocation geolocation;
+    public MonkeysViewModel(MonkeyService monkeyService, IGeolocation geolocation)
     {
         Title = "Monkey Finder";
         this.monkeyService = monkeyService;
+        this.geolocation = geolocation;
     }
 
     [ObservableProperty]
@@ -53,10 +55,10 @@ public partial class MonkeysViewModel : BaseViewModel
         try
         {
             // Get cached location, else get real location.
-            var location = await Geolocation.GetLastKnownLocationAsync();
+            var location = await geolocation.GetLastKnownLocationAsync();
             if (location == null)
             {
-                location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                location = await geolocation.GetLocationAsync(new GeolocationRequest
                 {
                     DesiredAccuracy = GeolocationAccuracy.Medium,
                     Timeout = TimeSpan.FromSeconds(30)
