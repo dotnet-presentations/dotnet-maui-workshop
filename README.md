@@ -19,13 +19,13 @@ Beyond that you will be good to go for the workshop!
 
 I have also put together an abstract of what you can expect for the day long workshop:
 
-* 30 Min Session - Introduction to .NET MAUI Session & Setup Help
-* Single Page List of Data
-* MVVM & Data Binding
-* Navigation
-* Implementing Platform Features
-* The many ways to display data in a CollectionView
-* Theming the app
+* Part 0 - 30 Min Session - Introduction to .NET MAUI Session & Setup Help
+* Part 1 - Single Page List of Data
+* Part 2 - MVVM & Data Binding
+* Part 3 - Navigation
+* Part 4 - Implementing Platform Features
+* Part 5 - CollectionView & Beyond
+* Part 6 - Theming the app
 
 
 To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
