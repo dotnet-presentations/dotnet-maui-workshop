@@ -236,3 +236,5 @@ Now that we have our details page in place we need to register it for routing. T
     ```
 
 1. Run the application on the desired platform and tap on a monkey to navigate!
+
+Platform features are the next topic for us to explore.  Navigate to [Part 4](../Part%204%20-%20Platform%20Features/README.md) to begin the next module.

@@ -178,3 +178,5 @@ In addition to accessing cross-platform device APIs, .NET MAUI also includes pla
     ```
 
 Re-run the application on an iOS simulator or device and notice the buttons have automatically been shifted up.
+
+Let's move forward to the next module and learn about the Collection View in [Part 5](../Part%205%20-%20CollectionView/README.md)
