@@ -122,3 +122,5 @@ Ensure that you have your machine setup to deploy and debug to the different pla
 Running the app will result in a list of three monkeys:
 
 ![App running on Android showing 3 monkeys](../Art/CodedMonkeys.png)
+
+Let's continue and learn about using the MVVM pattern with data binding in [Part 2](../Part%202%20-%20MVVM/README.md)

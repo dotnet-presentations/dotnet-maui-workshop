@@ -147,3 +147,5 @@ Let's add an image centered in the `EmptyView`:
 
 
 ![Emulator without any items in it showing an image in the middle](../Art/EmptyView.png)
+
+In our next module, we'll learn about Application Themes.  Head over to [Part 6](../Part%206%20-%20Application%20Themes/README.md)

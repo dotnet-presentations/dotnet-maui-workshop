@@ -237,4 +237,4 @@ Alternatively, it can be consumed by referencing its alias:
 ```
 
 
-Now that you have a basic understanding of the .NET MAUI project, let's start building an app! Head over to Part 1.
+Now that you have a basic understanding of the .NET MAUI project, let's start building an app! Head over to [Part 1](../Part%201%20-%20Displaying%20Data/README.md).
