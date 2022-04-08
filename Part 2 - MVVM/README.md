@@ -631,7 +631,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         </CollectionView>
 
         <!-- Add this -->
-        <Button Text="Get Monkeys" 
+        <Button Text="Search" 
                 Command="{Binding GetMonkeysCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="1"
@@ -685,7 +685,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Get Monkeys" 
+        <Button Text="Search" 
                 Command="{Binding GetMonkeysCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="1"
