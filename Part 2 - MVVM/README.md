@@ -643,7 +643,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 ```
 
 
-6. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the Search button.
+6. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the `Get Monkeys` button.
 
 ```xml
 <ContentPage
@@ -726,6 +726,6 @@ We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. Thi
 
 1. In Visual Studio, set the iOS, Android, macOS, or Windows project as the startup project 
 
-2. In Visual Studio, click "Start Debugging". When the application starts you will see a **Search** button that when pressed will load monkey data from the internet!
+2. In Visual Studio, click "Start Debugging". When the application starts you will see a **Get Monkeys** button that when pressed will load monkey data from the internet!
 
 Let's continue our journey and learn about Navigation in [Part 3](../Part%203%20-%20Navigation/README.md)
