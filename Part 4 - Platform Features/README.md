@@ -18,18 +18,14 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
-1. Register the `GeolocationImplementation` in our `MauiProgram.cs`.
+1. Register the `Geolocation.Default` in our `MauiProgram.cs`.
 
-1. Add using directive:
-    ```csharp
-    using Microsoft.Maui.Essentials.Implementations;
-    ```
 
 1. While we are here let's add both `IGeolocation` and `IMap`, add the code:
 
     ```csharp
-    builder.Services.AddSingleton<IGeolocation, GeolocationImplementation>();
-    builder.Services.AddSingleton<IMap, MapImplementation>();
+    builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
+    builder.Services.AddSingleton<IMap>(Map.Default);
     ```
 
 1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestAsync`:
@@ -127,7 +123,7 @@ This project is pre-configured with all required permissions and features needed
     {
         try
         {
-            await map.OpenMapsAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            await map.OpenAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
             {
                 Name = Monkey.Name,
                 NavigationMode = NavigationMode.None

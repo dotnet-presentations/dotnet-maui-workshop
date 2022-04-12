@@ -17,7 +17,7 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
     {
         try
         {
-            await map.OpenMapsAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            await map.OpenAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
             {
                 Name = Monkey.Name,
                 NavigationMode = NavigationMode.None
