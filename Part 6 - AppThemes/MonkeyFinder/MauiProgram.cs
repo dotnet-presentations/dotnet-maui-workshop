@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Essentials.Implementations;
-using MonkeyFinder.Services;
+﻿using MonkeyFinder.Services;
 using MonkeyFinder.View;
 
 namespace MonkeyFinder;
@@ -16,8 +15,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
 
-		builder.Services.AddSingleton<IGeolocation, GeolocationImplementation>();
-		builder.Services.AddSingleton<IMap, MapImplementation>();
+		builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
+		builder.Services.AddSingleton<IMap>(Map.Default);
 		
 		builder.Services.AddSingleton<MonkeyService>();
 		builder.Services.AddSingleton<MonkeysViewModel>();
