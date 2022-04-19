@@ -18,21 +18,21 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
-1. Register the `Geolocation.Default` in our `MauiProgram.cs`.
+1. Register the `Geolocation.Current` in our `MauiProgram.cs`.
 
 
 1. While we are here let's add both `IGeolocation` and `IMap`, add the code:
 
     ```csharp
-    builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
-    builder.Services.AddSingleton<IMap>(Map.Default);
+    builder.Services.AddSingleton<IGeolocation>(Geolocation.Current);
+    builder.Services.AddSingleton<IMap>(Map.Current);
     ```
 
-1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestAsync`:
+1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestMonkey`:
 
     ```csharp
     [ICommand]
-    async Task GetClosestAsync()
+    async Task GetClosestMonkey()
     {
 
     }
