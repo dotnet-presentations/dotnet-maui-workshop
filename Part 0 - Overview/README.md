@@ -1,6 +1,6 @@
 ## Part 0 - Overview
 
-Let's start by getting a basic overview of .NET MAUI and how projects ar structured
+Let's start by getting a basic overview of .NET MAUI and how projects are structured.
 
 ### Open Solution in Visual Studio
 
