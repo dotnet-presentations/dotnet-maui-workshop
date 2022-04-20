@@ -18,10 +18,20 @@ jobs:
     name: Build All Projects
     runs-on: windows-latest
 
+    strategy:
+      matrix:
+        project:
+        - Part 1 - Displaying Data
+        - Part 2 - MVVM
+        - Part 3 - Navigation
+        - Part 4 - Platform Features
+        - Part 5 - CollectionView
+        - Part 6 - AppThemes
+        
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v2
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
         
@@ -38,20 +48,5 @@ jobs:
         dotnet workload install maccatalyst
         dotnet workload install maui
       
-    - name: Build Step 1
-      run: dotnet build "Part 1 - Displaying Data/MonkeyFinder/MonkeyFinder.csproj"
-
-    - name: Build Step 2
-      run: dotnet build "Part 2 - MVVM/MonkeyFinder/MonkeyFinder.csproj"
-
-    - name: Build Step 3
-      run: dotnet build "Part 3 - Navigation/MonkeyFinder/MonkeyFinder.csproj"
-   
-    - name: Build Step 4
-      run: dotnet build "Part 4 - Platform Features/MonkeyFinder/MonkeyFinder.csproj"
-
-    - name: Build Step 5
-      run: dotnet build "Part 5 - CollectionView/MonkeyFinder/MonkeyFinder.csproj"
-
-    - name: Build Step 6
-      run: dotnet build "Part 6 - AppThemes/MonkeyFinder/MonkeyFinder.csproj"
+    - name: Build ${{ matrix.project }}
+      run: dotnet build "${{ matrix.project }}/MonkeyFinder/MonkeyFinder.csproj"
