@@ -87,7 +87,7 @@ Now, let's add in light/dark theme support throughout our entire application.
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
-        <Setter Property="Background" Value="{StaticResource LightBackground}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}" />
     </Style>
     ```
 
@@ -95,7 +95,7 @@ Now, let's add in light/dark theme support throughout our entire application.
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     </Style>
     ```
 

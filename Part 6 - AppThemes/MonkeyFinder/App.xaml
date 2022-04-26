@@ -14,12 +14,12 @@
             <Color x:Key="DarkBackground">Black</Color>
 
             <Style ApplyToDerivedTypes="True" TargetType="Page">
-                <Setter Property="Background" Value="{StaticResource LightBackground}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}" />
             </Style>
 
 			<Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
-				<Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-				<Setter Property="BarBackground" Value="{StaticResource Primary}" />
+				<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+				<Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
 				<Setter Property="BarTextColor" Value="White" />
 			</Style>
 
