@@ -58,44 +58,82 @@ Now, let's add a click handler to the collection view and pass the monkey to the
 
 Now, let's add navigation to a second page that displays monkey details!
 
-1. In `MainPage.xaml` we can add an `SelectionChanged` event to the `CollectionView`:
+1. In `MainPage.xaml` we can add an `TapGestureRecognizer` event to the `Frame` of our monkey inside of the `CollectionView.ItemTemplate`:
 
     Before:
 
     ```xml
-    <CollectionView
-        Grid.ColumnSpan="2"
-        ItemsSource="{Binding Monkeys}"
-        SelectionMode="Single">
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="model:Monkey">
+            <Grid Padding="10,5">
+                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                    <Grid Padding="0" ColumnDefinitions="125,*">
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="125"
+                            Source="{Binding Image}"
+                            WidthRequest="125" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Padding="10"
+                            VerticalOptions="Center">
+                            <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                            <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
     ```
 
     After:
     ```xml
-    <CollectionView
-        Grid.ColumnSpan="2"
-        ItemsSource="{Binding Monkeys}"
-        SelectionChanged="CollectionView_SelectionChanged"
-        SelectionMode="Single">
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="model:Monkey">
+            <Grid Padding="10,5">
+                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                    <!-- Add the Gesture Recognizer-->
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Grid Padding="0" ColumnDefinitions="125,*">
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="125"
+                            Source="{Binding Image}"
+                            WidthRequest="125" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Padding="10"
+                            VerticalOptions="Center">
+                            <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                            <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
     ```
 
 
-1. In `MainPage.xaml.cs`, create a method called `CollectionView_SelectionChanged`:
+1. In `MainPage.xaml.cs`, create a method called `TapGestureRecognizer_Tapped`:
 
 
     ```csharp
-    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
-        var monkey = e.CurrentSelection.FirstOrDefault() as Monkey;
-        if (monkey == null)
-            return;
+		var monkey = ((VisualElement)sender).BindingContext as Monkey;        
+        
+		if (monkey == null)
+			return;
 
-        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+		await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
 		{
 			{"Monkey", monkey }
 		});
-
-        ((CollectionView)sender).SelectedItem = null;
-    }
+	}
     ```
 
     - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 
@@ -183,6 +221,8 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
         Grid.RowSpan="2"
         Grid.Column="1"
         Margin="0,80,0,0"
+        HeightRequest="160"
+        WidthRequest="160"
         HorizontalOptions="Center" 
         Padding="0"
         CornerRadius="80">

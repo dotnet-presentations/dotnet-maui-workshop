@@ -535,7 +535,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         RowDefinitions="*,Auto"
         RowSpacing="0">
          <CollectionView ItemsSource="{Binding Monkeys}"
-                         SelectionMode="Single"
+                         SelectionMode="None"
                          Grid.ColumnSpan="2">
 
         </CollectionView>
@@ -561,7 +561,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         RowDefinitions="*,Auto"
         RowSpacing="0">
         <CollectionView ItemsSource="{Binding Monkeys}"
-                         SelectionMode="Single"
+                         SelectionMode="None"
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
@@ -606,7 +606,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         RowDefinitions="*,Auto"
         RowSpacing="0">
         <CollectionView ItemsSource="{Binding Monkeys}"
-                         SelectionMode="Single"
+                         SelectionMode="None"
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
@@ -661,7 +661,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
         RowDefinitions="*,Auto"
         RowSpacing="0">
         <CollectionView ItemsSource="{Binding Monkeys}"
-                         SelectionMode="Single"
+                         SelectionMode="None"
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">

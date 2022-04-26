@@ -8,7 +8,7 @@
     Title="{Binding Monkey.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="100, Auto">
+            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160, Auto">
                 <BoxView
                     Grid.ColumnSpan="3"
                     Background="{StaticResource Primary}"
@@ -18,6 +18,8 @@
                     Grid.RowSpan="2"
                     Grid.Column="1"
                     Margin="0,80,0,0"
+                    HeightRequest="160"
+                    WidthRequest="160"
                     HorizontalOptions="Center" 
                     Padding="0"
                     CornerRadius="80">

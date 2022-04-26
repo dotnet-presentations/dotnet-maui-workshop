@@ -15,7 +15,7 @@
         <CollectionView
             Grid.ColumnSpan="2"
             ItemsSource="{Binding Monkeys}"
-            SelectionMode="Single">
+            SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10,5">

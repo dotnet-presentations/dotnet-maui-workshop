@@ -17,12 +17,14 @@
         <CollectionView
             Grid.ColumnSpan="2"
             ItemsSource="{Binding Monkeys}"
-            SelectionChanged="CollectionView_SelectionChanged"
-            SelectionMode="Single">
+            SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10,5">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Frame.GestureRecognizers>
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"

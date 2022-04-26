@@ -8,9 +8,10 @@ public partial class MainPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-	private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		var monkey = e.CurrentSelection.FirstOrDefault() as Monkey;
+    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    {
+		var monkey = ((VisualElement)sender).BindingContext as Monkey;        
+        
 		if (monkey == null)
 			return;
 
@@ -18,8 +19,6 @@ public partial class MainPage : ContentPage
 		{
 			{"Monkey", monkey }
 		});
-
-		((CollectionView)sender).SelectedItem = null;
 	}
 }
 

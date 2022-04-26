@@ -20,8 +20,7 @@
             IsRefreshing="{Binding IsRefreshing}">
             <CollectionView
                 ItemsSource="{Binding Monkeys}"
-                SelectionChanged="CollectionView_SelectionChanged"
-                SelectionMode="Single">
+                SelectionMode="None">
                 <!--<CollectionView.EmptyView>
                     <StackLayout Padding="100">
                         <Image
@@ -37,6 +36,9 @@
                     <DataTemplate x:DataType="model:Monkey">
                         <Grid Padding="10,5">
                             <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
                                 <Grid Padding="0" ColumnDefinitions="125,*">
                                     <Image
                                         Aspect="AspectFill"

@@ -10,8 +10,7 @@ Update the `CollectionView` logic by wrapping it with a `RefreshView` from:
 <CollectionView
     Grid.ColumnSpan="2"
     ItemsSource="{Binding Monkeys}"
-    SelectionChanged="CollectionView_SelectionChanged"
-    SelectionMode="Single">
+    SelectionMode="None">
     <!-- Template -->
 </CollectionView>
 ```
@@ -25,8 +24,7 @@ to:
     IsRefreshing="{Binding IsRefreshing}">
     <CollectionView
         ItemsSource="{Binding Monkeys}"
-        SelectionChanged="CollectionView_SelectionChanged"
-        SelectionMode="Single">
+        SelectionMode="None">
         <!-- Template -->
     </CollectionView>
 </RefreshView>
@@ -70,8 +68,7 @@ To access additional properties on the `LinearItemsLayout` we will need to set a
 ```xml
 <CollectionView
     ItemsSource="{Binding Monkeys}"
-    SelectionChanged="CollectionView_SelectionChanged"
-    SelectionMode="Single">
+    SelectionMode="None">
     <!-- Add ItemsLayout -->
     <CollectionView.ItemsLayout>
         <LinearItemsLayout Orientation="Vertical" />
@@ -89,8 +86,7 @@ Let's use the `GridItemsLayout` and change the span to 3
 ```xml
 <CollectionView
     ItemsSource="{Binding Monkeys}"
-    SelectionChanged="CollectionView_SelectionChanged"
-    SelectionMode="Single">
+    SelectionMode="None">
     <!-- Change ItemsLayout to GridItemsLayout-->
     <CollectionView.ItemsLayout>
         <GridItemsLayout Orientation="Vertical" Span="3" />
@@ -130,8 +126,7 @@ Let's add an image centered in the `EmptyView`:
 ```xml
 <CollectionView
     ItemsSource="{Binding Monkeys}"
-    SelectionChanged="CollectionView_SelectionChanged"
-    SelectionMode="Single">
+    SelectionMode="None">
     <!-- Add EmptyView -->
     <CollectionView.EmptyView>
         <StackLayout Padding="100">
