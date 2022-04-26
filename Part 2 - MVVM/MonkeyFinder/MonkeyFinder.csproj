@@ -14,7 +14,7 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.monkeyfinder</ApplicationId>
-		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">ECD44DAE-B03E-4D8B-B427-71865961E696</ApplicationId>
+		<ApplicationIdGuid>ECD44DAE-B03E-4D8B-B427-71865961E696</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
