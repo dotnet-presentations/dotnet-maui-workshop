@@ -28,7 +28,9 @@ public partial class MonkeysViewModel : BaseViewModel
             IsBusy = true;
             var monkeys = await monkeyService.GetMonkeys();
 
-            Monkeys.Clear();
+            if(Monkeys.Count != 0)
+                Monkeys.Clear();
+                
             foreach(var monkey in monkeys)
                 Monkeys.Add(monkey);
 

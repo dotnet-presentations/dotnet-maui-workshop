@@ -65,7 +65,7 @@ Now, let's add navigation to a second page that displays monkey details!
     ```xml
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
-            <Grid Padding="10,5">
+            <Grid Padding="10">
                 <Frame HeightRequest="125" Style="{StaticResource CardView}">
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
@@ -91,7 +91,7 @@ Now, let's add navigation to a second page that displays monkey details!
     ```xml
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
-            <Grid Padding="10,5">
+            <Grid Padding="10">
                 <Frame HeightRequest="125" Style="{StaticResource CardView}">
                     <!-- Add the Gesture Recognizer-->
                     <Frame.GestureRecognizers>

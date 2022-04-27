@@ -34,7 +34,7 @@
                 </CollectionView.ItemsLayout>-->
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Monkey">
-                        <Grid Padding="10,5">
+                        <Grid Padding="10">
                             <Frame HeightRequest="125" Style="{StaticResource CardView}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>

@@ -352,7 +352,9 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
 
             var monkeys = await monkeyService.GetMonkeys();
 
-            Monkeys.Clear();
+            if(Monkeys.Count != 0)
+                Monkeys.Clear();
+
             foreach (var monkey in monkeys)
                 Monkeys.Add(monkey);
         }
@@ -388,7 +390,9 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
             IsBusy = true;
             var monkeys = await monkeyService.GetMonkeys();
 
-            Monkeys.Clear();
+            if(Monkeys.Count != 0)
+                Monkeys.Clear();
+
             foreach(var monkey in monkeys)
                 Monkeys.Add(monkey);
 
@@ -565,7 +569,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
-                    <Grid Padding="10,5">
+                    <Grid Padding="10">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
@@ -610,7 +614,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
-                    <Grid Padding="10,5">
+                    <Grid Padding="10">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
@@ -665,7 +669,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                          Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
-                    <Grid Padding="10,5">
+                    <Grid Padding="10">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
