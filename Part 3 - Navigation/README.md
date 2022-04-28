@@ -225,6 +225,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
         WidthRequest="160"
         HorizontalOptions="Center" 
         Padding="0"
+        IsClippedToBounds="True"
         CornerRadius="80">
         <Image
             Aspect="AspectFill"
