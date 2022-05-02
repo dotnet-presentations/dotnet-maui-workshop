@@ -2,7 +2,7 @@
 
 In Part 3 we will add simple navigation to push a new page onto the stack to display details about the monkey.
 
-We will use the built-in Shell navigation of .NET MAUI. This powerful navigation system is based on URIs. You can pass additional information while navigating query paramater such as a string, or a full object.
+We will use the built-in Shell navigation of .NET MAUI. This powerful navigation system is based on URIs. You can pass additional information while navigating query parameter such as a string, or a full object.
 
 For example, let's say we wanted to navigate to a details page and pass in an identifier. 
 
@@ -10,7 +10,7 @@ For example, let's say we wanted to navigate to a details page and pass in an id
 await Shell.Current.GoToAsync("DetailsPage?name=james");
 ```
 
-Then in our details page or view model we sould define this property:
+Then in our details page or view model we should define this property:
 
 ```csharp
 [QueryProperty(nameof(Name), "name")]
@@ -249,7 +249,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
 ## Registering Routing
 
-Now that we have our details page in place we need to register it for routing. This is done in both the Shell routing system and with the .NET MAUI dependency service.
+Now that we have our details page in place, we need to register it for routing. This is done in both the Shell routing system and with the .NET MAUI dependency service.
 
 1. Open `AppShell.xaml.cs` code behind and add the following code into the constructor under the `InitializeComponent();` invoke:
 
@@ -259,7 +259,7 @@ Now that we have our details page in place we need to register it for routing. T
 
     This will register the details page with the route of "DetailsPage", which we used earlier.
 
-1. Open `MauiProgram.cs` and add  both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
+1. Open `MauiProgram.cs` and add both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
 
     ```csharp
     builder.Services.AddTransient<MonkeyDetailsViewModel>();
