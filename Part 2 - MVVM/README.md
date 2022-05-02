@@ -176,7 +176,7 @@ The same library will also help us handle click events aka `Commands` in the fut
 
 ### Create a Monkey Service
 
-We are ready to create a method that will retrieve the monkey data from the internet. We will first implement this with a simple HTTP request using HttpClient! We will do this inside of our `MonkeyService.cs` file that is located in the `Services` folder.
+We are ready to create a method that will retrieve the monkey data from the internet. We will first implement this with a simple HTTP request using HttpClient. We will do this inside of our `MonkeyService.cs` file that is located in the `Services` folder.
 
 1. Inside of the `MonkeyService.cs`, let's add a new method to get all Monkeys:
 
@@ -220,7 +220,7 @@ We are ready to create a method that will retrieve the monkey data from the inte
     }
     ```
 
-1. Add the following using directive at the top of the file to access teh `ReadFromJsonAsync` extension method:
+1. Add the following using directive at the top of the file to access the `ReadFromJsonAsync` extension method:
 
     ```csharp
     using System.Net.Http.Json;
