@@ -470,6 +470,16 @@ Before we can run the app, we must register all of our dependencies. Open the `M
 We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
 
 
+1. In the code behind for the project we will inject our `MonkeysViewModel` into our MainPage:
+
+    ```csharp
+    public MainPage(MonkeysViewModel viewModel)
+    {
+	InitializeComponent();
+	BindingContext = viewModel;
+    }
+    ```
+
 ## Build The Monkeys User Interface
 It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
 
@@ -491,17 +501,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
     This is called a compiled binding. We are specifying that we will be binding directly to the `MonkeysViewModel`. This will do error checking and has performance enhancements.
 
-1. In the code behind for the project we will inject our `MonkeysViewModel` into our MainPage:
-
-    ```csharp
-    public MainPage(MonkeysViewModel viewModel)
-    {
-	InitializeComponent();
-	BindingContext = viewModel;
-    }
-    ```
-
-2. We can create our first binding on the `ContentPage` by adding the `Title` Property:
+1. We can create our first binding on the `ContentPage` by adding the `Title` Property:
 
 ```xml
 <ContentPage
@@ -516,7 +516,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-2. In the `MainPage.xaml`, we can add a `Grid` between the `ContentPage` tags with 2 rows and 2 columns. We will also set the `RowSpacing` and `ColumnSpacing` to
+1. In the `MainPage.xaml`, we can add a `Grid` between the `ContentPage` tags with 2 rows and 2 columns. We will also set the `RowSpacing` and `ColumnSpacing` to
 
 ```xml
 <ContentPage
@@ -538,7 +538,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-3. In the `MainPage.xaml`, we can add a `CollectionView` between the `Grid` tags that spans 2 Columns. We will also set the `ItemsSource` which will bind to our `Monkeys` ObservableCollection and additionally set a few properties for optimizing the list.
+1. In the `MainPage.xaml`, we can add a `CollectionView` between the `Grid` tags that spans 2 Columns. We will also set the `ItemsSource` which will bind to our `Monkeys` ObservableCollection and additionally set a few properties for optimizing the list.
 
 ```xml
 <ContentPage
@@ -565,7 +565,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-4. In the `MainPage.xaml`, we can add a `ItemTemplate` to our `CollectionView` that will represent what each item in the list displays:
+1. In the `MainPage.xaml`, we can add a `ItemTemplate` to our `CollectionView` that will represent what each item in the list displays:
 
 ```xml
 <ContentPage
@@ -610,7 +610,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-5. In the `MainPage.xaml`, we can add a `Button` under our `CollectionView` that will enable us to click it and get the monkeys from the server:
+1. In the `MainPage.xaml`, we can add a `Button` under our `CollectionView` that will enable us to click it and get the monkeys from the server:
 
 ```xml
 <ContentPage
@@ -665,7 +665,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 ```
 
 
-6. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the `Get Monkeys` button.
+1. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the `Get Monkeys` button.
 
 ```xml
 <ContentPage
@@ -725,24 +725,6 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
     </Grid>
 </ContentPage>
 ```
-
-### Register Services
-
-Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file. 
-
-1. Add the following using directive to access our `MonkeyService`:
-
-	```csharp
-	using MonkeyFinder.Services;
-	```
-
-1. Find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
-	```csharp
-	builder.Services.AddSingleton<MonkeyService>();
-	builder.Services.AddSingleton<MonkeysViewModel>();
-	```
-
-We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
 
 ### Run the App
 
