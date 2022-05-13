@@ -169,6 +169,36 @@ Now, let's add navigation to a second page that displays monkey details!
         Monkey monkey;
     }
     ```
+    
+    
+## Registering Routing
+
+Now that we have our details page in place, we need to register it for routing. This is done in both the Shell routing system and with the .NET MAUI dependency service.
+
+1. Open `AppShell.xaml.cs` code behind and add the following code into the constructor under the `InitializeComponent();` invoke:
+
+    ```csharp
+    Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
+    ```
+
+    This will register the details page with the route of "DetailsPage", which we used earlier.
+
+1. Open `MauiProgram.cs` and add both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
+
+    ```csharp
+    builder.Services.AddTransient<MonkeyDetailsViewModel>();
+    builder.Services.AddTransient<DetailsPage>();
+    ```
+
+1. Finally, we must inject the view model into our `DetailsPage`. Open the code behind for the page in `DetailsPage.xaml.cs` and change the constructor to the following:
+
+    ```csharp
+	public DetailsPage(MonkeyDetailsViewModel viewModel)
+	{
+		InitializeComponent();
+		BindingContext = viewModel;
+	}
+    ```
 
 ### Create DetailsPage.xaml UI
 
@@ -247,34 +277,6 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 </VerticalStackLayout>
 ```
 
-## Registering Routing
-
-Now that we have our details page in place, we need to register it for routing. This is done in both the Shell routing system and with the .NET MAUI dependency service.
-
-1. Open `AppShell.xaml.cs` code behind and add the following code into the constructor under the `InitializeComponent();` invoke:
-
-    ```csharp
-    Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
-    ```
-
-    This will register the details page with the route of "DetailsPage", which we used earlier.
-
-1. Open `MauiProgram.cs` and add both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
-
-    ```csharp
-    builder.Services.AddTransient<MonkeyDetailsViewModel>();
-    builder.Services.AddTransient<DetailsPage>();
-    ```
-
-1. Finally, we must inject the view model into our `DetailsPage`. Open the code behind for the page in `DetailsPage.xaml.cs` and change the constructor to the following:
-
-    ```csharp
-	public DetailsPage(MonkeyDetailsViewModel viewModel)
-	{
-		InitializeComponent();
-		BindingContext = viewModel;
-	}
-    ```
 
 1. Run the application on the desired platform and tap on a monkey to navigate!
 
