@@ -33,7 +33,7 @@
                         WidthRequest="160"/>
                 </Frame>
             </Grid>
-            <VerticalStackLayout Margin="0,-50,0,0" Padding="10" Spacing="10">
+            <VerticalStackLayout Padding="10" Spacing="10">
                 <!-- Add this -->
                 <Button Text="Show on Map" 
                         Command="{Binding OpenMapCommand}"
