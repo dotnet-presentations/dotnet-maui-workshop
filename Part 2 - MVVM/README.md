@@ -451,6 +451,24 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
 
 Our main method for getting data is now complete!
 
+### Register Services
+
+Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file. 
+
+1. Add the following using directive to access our `MonkeyService`:
+
+	```csharp
+	using MonkeyFinder.Services;
+	```
+
+1. Find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
+	```csharp
+	builder.Services.AddSingleton<MonkeyService>();
+	builder.Services.AddSingleton<MonkeysViewModel>();
+	```
+
+We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
+
 
 ## Build The Monkeys User Interface
 It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
