@@ -66,8 +66,8 @@ Child folders of the _Resources_ folder can be designated for each resource type
     <!-- Fonts -->
     <MauiFont Include="Resources\Fonts\*" />
 
-    <!-- Assets -->
-    <MauiAsset Include="Resources\Assets\*" />
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 </ItemGroup>
 ```
 
