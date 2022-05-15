@@ -106,7 +106,7 @@ Now, let's add in light/dark theme support throughout our entire application.
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
     ```
 
-1. Add the `Background on our `RefreshView`
+1. Add the `Background` on our `RefreshView`
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
