@@ -371,7 +371,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
         catch(Exception ex)
         {
             Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-            await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
         }
         //...
     }
@@ -400,7 +400,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-            await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
         }
         finally
         {
@@ -593,13 +593,12 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
                                        HeightRequest="125"/>
-                                <StackLayout
+                                <VerticalStackLayout
                                     Grid.Column="1"
-                                    Padding="10"
-                                    VerticalOptions="Center">
+                                    Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>
@@ -638,10 +637,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
                                        HeightRequest="125"/>
-                                <StackLayout
+                                <VerticalStackLayout
                                     Grid.Column="1"
-                                    Padding="10"
-                                    VerticalOptions="Center">
+                                    Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </StackLayout>
@@ -693,13 +691,12 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
                                        HeightRequest="125"/>
-                                <StackLayout
+                                <VerticalStackLayout
                                     Grid.Column="1"
-                                    Padding="10"
-                                    VerticalOptions="Center">
+                                    Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>

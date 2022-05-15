@@ -24,13 +24,12 @@
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
                                        HeightRequest="125"/>
-                                <StackLayout
+                                <VerticalStackLayout
                                     Grid.Column="1"
-                                    Padding="10"
-                                    VerticalOptions="Center">
+                                    Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>

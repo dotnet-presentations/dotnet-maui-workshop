@@ -58,6 +58,25 @@ Now, let's add a click handler to the collection view and pass the monkey to the
 
 Now, let's add navigation to a second page that displays monkey details!
 
+1. In `MonkeysViewModel.cs`, create a method `async Task GoToDetailsAsync(Monkey monkey)` exposed as an `[ICommand]`:
+
+
+    ```csharp
+    [ICommand]
+    async Task GoToDetails(Monkey monkey)
+    {
+        if (monkey == null)
+			return;
+
+		await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+		{
+			{"Monkey", monkey }
+		});
+	}
+    ```
+
+    - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 
+
 1. In `MainPage.xaml` we can add an `TapGestureRecognizer` event to the `Frame` of our monkey inside of the `CollectionView.ItemTemplate`:
 
     Before:
@@ -73,13 +92,12 @@ Now, let's add navigation to a second page that displays monkey details!
                             HeightRequest="125"
                             Source="{Binding Image}"
                             WidthRequest="125" />
-                        <StackLayout
+                        <VerticalStackLayout
                             Grid.Column="1"
-                            Padding="10"
-                            VerticalOptions="Center">
+                            Padding="10">
                             <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </Grid>
                 </Frame>
             </Grid>
@@ -95,7 +113,9 @@ Now, let's add navigation to a second page that displays monkey details!
                 <Frame HeightRequest="125" Style="{StaticResource CardView}">
                     <!-- Add the Gesture Recognizer-->
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"
+                                CommandParameter="{Binding .}"/>
                     </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
@@ -103,13 +123,12 @@ Now, let's add navigation to a second page that displays monkey details!
                             HeightRequest="125"
                             Source="{Binding Image}"
                             WidthRequest="125" />
-                        <StackLayout
+                        <VerticalStackLayout
                             Grid.Column="1"
-                            Padding="10"
-                            VerticalOptions="Center">
+                            Padding="10">
                             <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </Grid>
                 </Frame>
             </Grid>
@@ -117,26 +136,8 @@ Now, let's add navigation to a second page that displays monkey details!
     </CollectionView.ItemTemplate>
     ```
 
+    This uses a `RelativeSource` binding, which means that it isn't binding to the `Monkey` anymore in the `DataTemplate`, but instead it is looking up the hierarchy specifically for an `AncestorType` of `MonkeysViewModel`. This allows for more advanced scenarios like this.
 
-1. In `MainPage.xaml.cs`, create a method called `TapGestureRecognizer_Tapped`:
-
-
-    ```csharp
-    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-    {
-		var monkey = ((VisualElement)sender).BindingContext as Monkey;        
-        
-		if (monkey == null)
-			return;
-
-		await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
-		{
-			{"Monkey", monkey }
-		});
-	}
-    ```
-
-    - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 
 
 ### ViewModel for Details
 

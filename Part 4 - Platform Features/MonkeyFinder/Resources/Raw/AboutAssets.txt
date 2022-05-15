@@ -3,7 +3,7 @@ this directory (and child directories) and given a Build Action of "MauiAsset":
 
 	<MauiAsset Include="AboutAssets.txt" />
 
-These files will be deployed with you package and will be accessible using Essentials:
+These files will be deployed with you package and will be accessible using .NET MAUI:
 
 	async Task LoadMauiAsset()
 	{

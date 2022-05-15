@@ -1,32 +1,66 @@
 ## Accessing Platform Features
 
-In Part 4, we will use .NET MAUI Essentials to find the closest monkey to us and also open a map with the Monkeys location.
+In Part 4, we will use .NET MAUI to find the closest monkey to us and also open a map with the Monkeys location.
 
-### Find Closest Monkey!
+### Check for internet
 
-We can add more functionality to this page using the GPS of the device since each monkey has a latitude and longitude associated with it.
+We can easily check to see if our user is connected to the internet with the built in `IConnectivity` of .NET MAUI
 
-1. First, let's get access to the `IGeolocator` found inside of .NET MAUI Essentials. Let's inject `IGeolocator` into our `MonkeysViewModel` constructor:
+1. First, let's get access to the `IConnectivity` found inside of .NET MAUI. Let's inject `IConnectivity` into our `MonkeysViewModel` constructor:
 
     ```csharp
-    IGeolocation geolocation;
-    public MonkeysViewModel(MonkeyService monkeyService, IGeolocation geolocation)
+    IConnectivity connectivity;
+    public MonkeysViewModel(MonkeyService monkeyService, IConnectivity connectivity)
     {
         Title = "Monkey Finder";
         this.monkeyService = monkeyService;
-        this.geolocation = geolocation;
+        this.connectivity = connectivity;
     }
     ```
 
-1. Register the `Geolocation.Current` in our `MauiProgram.cs`.
+1. Register the `Connectivity.Current` in our `MauiProgram.cs`.
 
 
 1. While we are here let's add both `IGeolocation` and `IMap`, add the code:
 
     ```csharp
+    builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
     builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
     builder.Services.AddSingleton<IMap>(Map.Default);
     ```
+
+1. Now, let's check for internet inside of the `GetMonkeysAsync` method and display an alert if offline.
+
+    ```csharp
+    if (connectivity.NetworkAccess != NetworkAccess.Internet)
+    {
+        await Shell.Current.DisplayAlert("No connectivity!",
+            $"Please check internet and try again.", "OK");
+        return;
+    }
+    ```
+
+    Run the app on your emulator and toggle on and off airplane mode to check your implementation.
+
+
+### Find Closest Monkey!
+
+We can add more functionality to this page using the GPS of the device since each monkey has a latitude and longitude associated with it.
+
+1. First, let's get access to the `IGeolocator` found inside of .NET MAUI. Let's inject `IGeolocator` into our `MonkeysViewModel` constructor:
+
+    ```csharp
+    IConnectivity connectivity;
+    IGeolocation geolocation;
+    public MonkeysViewModel(MonkeyService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
+    {
+        Title = "Monkey Finder";
+        this.monkeyService = monkeyService;
+        this.connectivity = connectivity;
+        this.geolocation = geolocation;
+    }
+    ```
+
 
 1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestMonkey`:
 
@@ -38,7 +72,7 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
-1. We can then fill it in by using .NET MAUI Essentials to query for our location and helpers that find the closest monkey to us:
+1. We can then fill it in by using .NET MAUI  to query for our location and helpers that find the closest monkey to us:
 
     ```csharp
     [ICommand]
@@ -65,14 +99,14 @@ We can add more functionality to this page using the GPS of the device since eac
                 new Location(m.Latitude, m.Longitude), DistanceUnits.Miles))
                 .FirstOrDefault();
 
-            await Application.Current.MainPage.DisplayAlert("", first.Name + " " +
+            await Shell.Current.DisplayAlert("", first.Name + " " +
                 first.Location, "OK");
 
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to query location: {ex.Message}");
-            await Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
         }
     }
     ```
@@ -96,14 +130,14 @@ Re-run the app to see geolocation in action after you load monkeys!
 
 This project is pre-configured with all required permissions and features needed for Geolocation. You can read the documentation to find out more about setup, but here is a quick overview.
 
-1. .NET MAUI Essentials is pre-configured in all .NET MAUI applications including handling permissions.
+1. .NET MAUI is pre-configured in all .NET MAUI applications including handling permissions.
 1. Android manifest information was pre-configured in **MonkeyFinder -> Platforms -> Android -> AssemblyInfo.cs**
 1. iOS/macOS manifest information was configured in the **info.plist** file for each platform
 1. Windows manifest information was configured in the **Package.appxmanifest**
 
 ### Opening Maps
 
-.NET MAUI Essentials provides over 60 platform features from a single API and opening the default map application is built in!
+.NET MAUI provides over 60 platform features from a single API and opening the default map application is built in!
 
 1. Inject `IMap` into our `MonkeyDetailsViewModel`:
 
@@ -132,7 +166,7 @@ This project is pre-configured with all required permissions and features needed
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to launch maps: {ex.Message}");
-            await Application.Current.MainPage.DisplayAlert("Error, no Maps app!", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error, no Maps app!", ex.Message, "OK");
         }
     }
 

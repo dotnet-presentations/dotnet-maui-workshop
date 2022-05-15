@@ -104,6 +104,25 @@ Add the following into the MainPage.xaml's `ContentPage`:
 
 
 
+If we wanted to display the  two strings vertically on top of each other, we could wrap two `Label` controls inside of a `VerticalStackLayout` and assign font sizes to stand out:
+
+
+```xml
+ <HorizontalStackLayout Padding="10">
+    <Image
+        Aspect="AspectFill"
+        HeightRequest="100"
+        Source="{Binding Image}"
+        WidthRequest="100" />
+    <VerticalStackLayout VerticalOptions="Center">
+        <Label Text="{Binding Name}" FontSize="24"/>
+        <Label Text="{Binding Location}" FontSize="18"/>
+    </VerticalStackLayout>
+</HorizontalStackLayout>
+```
+
+
+
 ### Run the App
 
 Ensure that you have your machine setup to deploy and debug to the different platforms:
