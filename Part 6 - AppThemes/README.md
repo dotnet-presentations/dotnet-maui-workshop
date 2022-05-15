@@ -60,7 +60,7 @@ We now have the option of creating a re-usable style that we reference by name o
        Style="{StaticResource DefaultLabel}"/>
 ```
 
-If we leave of the `x:Key`, then it will apply automatically to every Label in our app.
+If we leave out the `x:Key`, then it will apply automatically to every `Label` in our app.
 
 ```xml
 <Style TargetType="Label" x:Key="DefaultLabel">
