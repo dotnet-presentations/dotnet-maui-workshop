@@ -66,13 +66,13 @@ Now, let's add navigation to a second page that displays monkey details!
     async Task GoToDetails(Monkey monkey)
     {
         if (monkey == null)
-			return;
+	    return;
 
-		await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
-		{
-			{"Monkey", monkey }
-		});
-	}
+        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+        {
+            {"Monkey", monkey }
+        });
+    }
     ```
 
     - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 

@@ -56,6 +56,18 @@ public partial class MonkeysViewModel : BaseViewModel
         }
 
     }
+    
+    [ICommand]
+    async Task GoToDetails(Monkey monkey)
+    {
+        if (monkey == null)
+        return;
+
+        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+        {
+            {"Monkey", monkey }
+        });
+    }
 
     [ICommand]
     async Task GetClosestMonkey()
