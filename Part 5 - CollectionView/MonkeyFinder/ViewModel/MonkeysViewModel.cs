@@ -15,6 +15,18 @@ public partial class MonkeysViewModel : BaseViewModel
         this.connectivity = connectivity;
         this.geolocation = geolocation;
     }
+    
+    [ICommand]
+    async Task GoToDetails(Monkey monkey)
+    {
+        if (monkey == null)
+        return;
+
+        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+        {
+            {"Monkey", monkey }
+        });
+    }
 
     [ICommand]
     async Task GetMonkeysAsync()
