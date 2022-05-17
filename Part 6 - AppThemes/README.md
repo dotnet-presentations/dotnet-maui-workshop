@@ -128,19 +128,6 @@ Now, let's add in light/dark theme support throughout our entire application.
     <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
     ```
 
-1. Let's also ensure that we set the root element's `Background` on each of the page. (In the future this will not be required). Open `MainPage.xaml` and add the following to the `Grid`:
-
-    ```xml
-    Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-    ```
-
-1. Open `DetailsPage.xaml` and add the following to the `ScrollView`:
-
-    ```xml
-    Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-    ```
-
-
 Now, let's run the app and change the theme:
 
 ![Changing themes](../Art/Themes.gif)
