@@ -55,6 +55,8 @@ This will enable pull-to-refresh on iOS, Android, macOS, and Windows (on touch s
 
 ![Android emulator with pull to refresh enabled](../Art/PullToRefresh.PNG)
 
+> Important Note: If you are on iOS there currently is a bug which makes the UI look incorrect. It is recommended to remove the RefreshView when testing on iOS for the rest of the workshop.
+
 ## Layout
 
 `CollectionView` will automatically layout items in a vertical stack layout. There are several built in `ItemsLayout` that can be used. Let's explore.
@@ -117,7 +119,7 @@ Let's go back to our original single column `CollectionView`:
 
 ## EmptyView
 
-> Note: This feature is still in development and  may not work properly on some systems. Please test on Windows for now or skip this section.
+> Important Note: There is currently an issue on Android in which the EmptyView will not go away. It is recommended to remove it when testing on Android at this time.
 
 There are many neat features to `CollectionView` including grouping, header, footers, and the ability to set a view that is displayed when there are no items.
 
