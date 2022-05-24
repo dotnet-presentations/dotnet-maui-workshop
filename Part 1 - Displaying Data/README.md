@@ -88,7 +88,7 @@ Add the following into the MainPage.xaml's `ContentPage`:
                     HeightRequest="100"
                     Source="{Binding Image}"
                     WidthRequest="100" />
-                <Label VerticalOptions="Center">
+                <Label VerticalOptions="Center" TextColor="Gray">
                     <Label.Text>
                         <MultiBinding StringFormat="{}{0} | {1}">
                             <Binding Path="Name" />
@@ -115,8 +115,8 @@ If we wanted to display the  two strings vertically on top of each other, we cou
         Source="{Binding Image}"
         WidthRequest="100" />
     <VerticalStackLayout VerticalOptions="Center">
-        <Label Text="{Binding Name}" FontSize="24"/>
-        <Label Text="{Binding Location}" FontSize="18"/>
+        <Label Text="{Binding Name}" FontSize="24" TextColor="Gray"/>
+        <Label Text="{Binding Location}" FontSize="18" TextColor="Gray"/>
     </VerticalStackLayout>
 </HorizontalStackLayout>
 ```
