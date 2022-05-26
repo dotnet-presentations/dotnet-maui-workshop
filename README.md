@@ -6,8 +6,6 @@ Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_i
 ## Setup Guide
 Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC (Recommended) or Mac and all you will need to do is install Visual Studio 2022 or Visual Studio for Mac 2022 with the .NET MAUI workload.
 
-Follow our simple [setup guide](https://docs.microsoft.com/dotnet/maui/get-started/installation?WT.mc_id=friends-mauiworkshop-jamont) to ensure you have Visual Studio 2022 and .NET MAUI setup and ready to deploy.
-
 Before the conference I recommend going through the quick 10 minute [.NET MAUI Tutorial](https://docs.microsoft.com/dotnet/maui/get-started/first-app?WT.mc_id=friends-mauiworkshop-jamont) that will guide you through installation and also ensuring everything is configured correct.
 
 If you are new to mobile development, we recommend deploying to a physical Android device which can be setup in just a few steps. If you don't have a device, don't worry as you can setup an [Android emulator with hardware acceleration](https://docs.microsoft.com/xamarin/android/get-started/installation/android-emulator?WT.mc_id=friends-mauiworkshop-jamont). If you don't have time to set this up ahead of time, don't worry as we are here to help during the workshop.
