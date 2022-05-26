@@ -25,8 +25,8 @@ We can easily check to see if our user is connected to the internet with the bui
 
     ```csharp
     builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
-    builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
-    builder.Services.AddSingleton<IMap>(Map.Default);
+    builder.Services.AddSingleton<IGeolocation>(Geolocation.Current);
+    builder.Services.AddSingleton<IMap>(Map.Current);
     ```
 
 1. Now, let's check for internet inside of the `GetMonkeysAsync` method and display an alert if offline.
@@ -95,9 +95,8 @@ We can add more functionality to this page using the GPS of the device since eac
             }
 
             // Find closest monkey to us
-            var first = Monkeys.OrderBy(m => location.CalculateDistance(
-                new Location(m.Latitude, m.Longitude), DistanceUnits.Miles))
-                .FirstOrDefault();
+            var first = Monkeys.MinBy(m => location.CalculateDistance(
+                new Location(m.Latitude, m.Longitude), DistanceUnits.Miles));
 
             await Shell.Current.DisplayAlert("", first.Name + " " +
                 first.Location, "OK");
@@ -157,7 +156,7 @@ This project is pre-configured with all required permissions and features needed
     {
         try
         {
-            await map.OpenAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            await map.OpenMapsAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
             {
                 Name = Monkey.Name,
                 NavigationMode = NavigationMode.None
@@ -169,7 +168,6 @@ This project is pre-configured with all required permissions and features needed
             await Shell.Current.DisplayAlert("Error, no Maps app!", ex.Message, "OK");
         }
     }
-
     ```
 
 ### Update DetailsPage.xaml UI
