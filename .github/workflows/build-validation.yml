@@ -2,6 +2,11 @@ name: build
 
 on:
   push:
+    branches: [ main ]
+    paths:
+    - '**.cs'
+    - '**.csproj'
+    - '**.xaml'
   pull_request:
     branches: [ main ]
     paths:
