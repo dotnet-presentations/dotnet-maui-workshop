@@ -63,7 +63,7 @@ We now have the option of creating a re-usable style that we reference by name o
 If we leave out the `x:Key`, then it will apply automatically to every `Label` in our app.
 
 ```xml
-<Style TargetType="Label" x:Key="DefaultLabel">
+<Style TargetType="Label">
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
 </Style>
 ```
