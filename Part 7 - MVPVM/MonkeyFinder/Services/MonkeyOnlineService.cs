@@ -1,0 +1,44 @@
+﻿#pragma warning disable CA1416
+
+using System.Net.Http.Json;
+using Adventures.Common.Interfaces;
+using Adventures.Common.Model;
+
+namespace MonkeyFinder.Services;
+
+public class MonkeyOnlineService : IDataService
+{
+    HttpClient httpClient;
+
+    List<ListItem> monkeyList;
+
+    public string Mode { get; set; } = "ONLINE";
+
+    public MonkeyOnlineService()
+    {
+        this.httpClient = new HttpClient();
+    }
+
+    public async Task<List<ListItem>> GetMonkeys()
+    {
+        if (monkeyList?.Count > 0)
+            return monkeyList;
+
+        // Online
+        var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
+        if (response.IsSuccessStatusCode)
+        {
+            monkeyList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
+        }
+        return monkeyList;
+    }
+
+    public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
+    {
+        var retValue = new ServiceResult
+        {
+            Data = await GetMonkeys()
+        };
+        return (T)retValue;
+    }
+}
