@@ -6,8 +6,13 @@
     xmlns:local="clr-namespace:MonkeyFinder">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#FFC107</Color>
-            <Color x:Key="PrimaryDark">#FFA000</Color>
+            <Style TargetType="Button">
+                <Setter Property="Command" Value="{Binding ButtonClickHandlerCommand}"/>
+                <Setter Property="CommandParameter" Value="{Binding Source={RelativeSource Self}}"/>
+            </Style>
+
+            <Color x:Key="Primary">brown</Color>
+            <Color x:Key="PrimaryDark">black</Color>
             <Color x:Key="Accent">#00BCD4</Color>
 
             <Color x:Key="LightBackground">#FAF9F8</Color>
