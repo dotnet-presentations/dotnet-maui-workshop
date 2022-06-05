@@ -1,15 +1,9 @@
-﻿#pragma warning disable CA1416
-
-using Adventures.Common.Interfaces;
-
-namespace MonkeyFinder;
+﻿namespace MonkeyFinder;
 
 public partial class App : Application
 {
-	public App(IPresenter presenter)
+	public App()
 	{
-		presenter.Initialize(this);
-
 		InitializeComponent();
 
 		MainPage = new AppShell();

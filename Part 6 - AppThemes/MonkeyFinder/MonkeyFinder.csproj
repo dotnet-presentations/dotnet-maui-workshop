@@ -40,16 +40,4 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
-	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Presenters\" />
-	  <None Remove="Commands\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Presenters\" />
-	  <Folder Include="Commands\" />
-	</ItemGroup>
 </Project>

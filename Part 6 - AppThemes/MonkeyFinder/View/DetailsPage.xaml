@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MonkeyFinder.View.DetailsPage"
+    x:Class="MonkeyFinder.DetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewmodel="clr-namespace:Adventures.ViewModel;assembly=Adventures.Common"
-    Title="{Binding ListItem.Name}"
-    x:DataType="viewmodel:DetailsViewModel">
+    xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+    Title="{Binding Monkey.Name}"
+    x:DataType="viewmodel:MonkeyDetailsViewModel">
     <ScrollView>
         <VerticalStackLayout>
          <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160, Auto">
@@ -29,28 +29,22 @@
                         HeightRequest="160"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        Source="{Binding ListItem.Image}"
+                        Source="{Binding Monkey.Image}"
                         WidthRequest="160"/>
                 </Frame>
             </Grid>
             <VerticalStackLayout Padding="10" Spacing="10">
                 <!-- Add this -->
                 <Button Text="Show on Map" 
+                        Command="{Binding OpenMapCommand}"
                         HorizontalOptions="Center" 
                         WidthRequest="200" 
                         Margin="8"
                         Style="{StaticResource ButtonOutline}"/>
                 
-                <Label Style="{StaticResource MediumLabel}"
-                       Text="{Binding ListItem.Details}" />
-
-                <Label Style="{StaticResource MicroLabel}"
-                       Text="{Binding ListItem.Location, StringFormat='Location: {0}'}" />
-
-                <Label Style="{StaticResource MicroLabel}"
-                       IsVisible="{Binding IsPopulationVisible}"
-                       Text="{Binding ListItem.Population, StringFormat='Population: {0}'}" />
-
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
+                <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+                <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

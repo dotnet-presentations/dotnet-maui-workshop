@@ -1,10 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MonkeyFinder.AppShell"
              xmlns:view="clr-namespace:MonkeyFinder.View"
              Title="Monkeys"
              FlyoutBehavior="Disabled">
+
+
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -19,11 +21,11 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
                 <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
             </Style>
-            <Style BasedOn="{StaticResource BaseStyle}"
-                   TargetType="ShellItem"
-                   ApplyToDerivedTypes="True" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" ApplyToDerivedTypes="True" />
         </ResourceDictionary>
     </Shell.Resources>
+
+
 
     <ShellContent
         Shell.NavBarIsVisible="true"

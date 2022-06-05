@@ -1,12 +1,8 @@
-﻿#pragma warning disable CA1416
-
-using Adventures.Common.Interfaces;
-
-namespace MonkeyFinder.View;
+﻿namespace MonkeyFinder.View;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage(IListViewModel viewModel)
+	public MainPage(MonkeysViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
