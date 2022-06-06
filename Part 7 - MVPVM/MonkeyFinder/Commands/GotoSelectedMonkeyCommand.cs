@@ -7,10 +7,10 @@ using MonkeyFinder.View;
 
 namespace MonkeyFinder.Commands
 {
-    public class GotoToSelectedMonkeyCommand : CommandBase
+    public class GotoSelectedMonkeyCommand : CommandBase
 	{
 
-        public GotoToSelectedMonkeyCommand() {
+        public GotoSelectedMonkeyCommand() {
             MatchDataType = nameof(ListItem);
         }
 

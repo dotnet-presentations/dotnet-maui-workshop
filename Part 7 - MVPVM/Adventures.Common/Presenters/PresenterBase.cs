@@ -7,6 +7,8 @@ namespace Adventures.Common.Presenters
 {
 	public class PresenterBase : IPresenter
     {
+        public IMvpViewModel ViewModel { get; set; }
+
         protected IServiceProvider _serviceProvider;
 
         public PresenterBase(IServiceProvider serviceProvider)

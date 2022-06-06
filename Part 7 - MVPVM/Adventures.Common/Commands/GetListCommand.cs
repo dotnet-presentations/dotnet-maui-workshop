@@ -36,8 +36,8 @@ namespace MonkeyFinder.Commands
                 if (vm.ListItems.Count != 0)
                     vm.ListItems.Clear();
 
-                foreach (var monkey in serviceResult.GetData<List<ListItem>>())
-                    vm.ListItems.Add(monkey);
+                foreach (var item in serviceResult.GetData<List<ListItem>>())
+                    vm.ListItems.Add(item);
 
             }
             catch (Exception ex)

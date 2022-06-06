@@ -6,10 +6,12 @@ namespace MonkeyFinder.View;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage(IListViewModel viewModel)
+	public MainPage(IPresenter presenter)
 	{
-		InitializeComponent();
-		BindingContext = viewModel;
+		presenter.Initialize(this);
+
+        InitializeComponent();
+		BindingContext = presenter.ViewModel;
 	}
 }
 

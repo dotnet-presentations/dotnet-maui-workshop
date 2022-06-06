@@ -6,10 +6,8 @@ namespace MonkeyFinder;
 
 public partial class App : Application
 {
-	public App(IPresenter presenter)
+	public App()
 	{
-		presenter.Initialize(this);
-
 		InitializeComponent();
 
 		MainPage = new AppShell();

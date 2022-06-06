@@ -28,11 +28,13 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IMap>(Map.Default);
 
 		builder.Services.AddSingleton<IPresenter, MonkeyPresenter>();
+		builder.Services.AddSingleton<InventoryPresenter>();
 
-		builder.Services.AddSingleton<IListViewModel,ListViewModel>();
-		builder.Services.AddSingleton<IDetailViewModel,DetailsViewModel>();
+		builder.Services.AddTransient<IListViewModel,ListViewModel>();
+		builder.Services.AddTransient<IDetailViewModel,DetailsViewModel>();
 
-		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<InventoryPage>();
 		builder.Services.AddTransient<DetailsPage>();
 
 		// Shared commands
@@ -41,8 +43,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IMvpCommand, ShowonMapCommand>();
 
 		// Specific to Monkey finder
-		builder.Services.AddSingleton<IMvpCommand, GotoToSelectedMonkeyCommand>();
+		builder.Services.AddSingleton<IMvpCommand, GotoSelectedMonkeyCommand>();
+		builder.Services.AddSingleton<IMvpCommand, GotoInventoryCommand>();
 		builder.Services.AddSingleton<IMvpCommand, GetMonkeyListCommand>();
+		builder.Services.AddSingleton<IMvpCommand, GetInventoryListCommand>();
 
 		builder.Services.AddSingleton<IDataService>(provider =>
 		{

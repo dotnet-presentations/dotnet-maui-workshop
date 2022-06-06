@@ -5,7 +5,7 @@ using Adventures.Common.Interfaces;
 
 namespace MonkeyFinder.Presenters
 {
-    public class MonkeyPresenter : PresenterBase
+    public class InventoryPresenter : PresenterBase
 	{
         IDataService _dataService;
 
@@ -13,7 +13,7 @@ namespace MonkeyFinder.Presenters
         IListViewModel _listVm;
         IDetailViewModel _detailVm;
 
-        public MonkeyPresenter(IDataService dataService, IServiceProvider provider, IListViewModel listVm, IDetailViewModel child)
+        public InventoryPresenter(IDataService dataService, IServiceProvider provider, IListViewModel listVm, IDetailViewModel child)
             : base(provider)
         {
             // Retrieve data service so we can get mode (online or offline)
@@ -29,13 +29,14 @@ namespace MonkeyFinder.Presenters
             // Configure the view models this presenter will handle
 
             _listVm.GetDataButtonText = AppConstants.GetListButtonText;
+            _listVm.GetInventoryButtonText = AppConstants.GetInventoryButtonText;
             _listVm.Title = "Monkey Locator";
             _listVm.Mode = _dataService.Mode;
             _listVm.Presenter = this;
 
-            ViewModel = _listVm;
+            ViewModel = _listVm; // Used by page
 
-            _detailVm.IsPopulationVisible = true;
+            _detailVm.IsPopulationVisible = false;
             _detailVm.Presenter = this;
         }
     }

@@ -30,6 +30,9 @@ public partial class ListViewModel : BaseViewModel, IListViewModel
     [ObservableProperty]
     string getDataButtonText;
 
+    [ObservableProperty]
+    string getInventoryButtonText;
+
     public ListViewModel()
     {
     }

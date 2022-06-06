@@ -19,6 +19,8 @@ namespace Adventures.Common.Interfaces
 		bool IsNotBusy { get; }
 
 		string GetDataButtonText { get; set; }
+
+		string GetInventoryButtonText { get; set; }
 	}
 }
 
