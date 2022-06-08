@@ -47,10 +47,12 @@
 	<ItemGroup>
 	  <None Remove="Presenters\" />
 	  <None Remove="Commands\" />
+	  <None Remove="Interfaes\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Presenters\" />
 	  <Folder Include="Commands\" />
+	  <Folder Include="Interfaes\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\MainPage %28copy%29.xaml">

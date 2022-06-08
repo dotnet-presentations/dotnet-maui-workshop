@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Name": "couch",
+    "Location": "Rooms are us",
+    "Details": "Living Room L Shaped Couches - Free Delivery Available - In-Stock & Ready To Go",
+    "Image": "https://i.ebayimg.com/images/i/160681699168-0-1/s-l1000.jpg",
+    "Population": 10000,
+    "Latitude": -8.783195,
+    "Longitude": 34.508523
+  },
+  {
+    "Name": "chair",
+    "Location": "Sitting Room LLC",
+    "Details": "Viv Swivel Chair, Poly, Chenille Tweed, Silver, Concealed Supports",
+    "Image": "https://assets.weimgs.com/weimgs/rk/images/wcm/products/202217/0559/img88z.jpg",
+    "Population": 23000,
+    "Latitude": 12.769013,
+    "Longitude": -85.602364
+  },
+  {
+    "Name": "table",
+    "Location": "Tables to go",
+    "Details": "Malfa 31.5 Outdoor Round Coffee Table, Light Grey",
+    "Image": "https://assets.weimgs.com/weimgs/rk/images/wcm/products/202217/0432/img43z.jpg",
+    "Population": 12000,
+    "Latitude": 1.957709,
+    "Longitude": 37.297204
+  }
+]

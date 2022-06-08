@@ -7,7 +7,9 @@ namespace MonkeyFinder.ViewModel;
 
 public partial class BaseViewModel : ObservableObject, IMvpViewModel
 {
-    public IPresenter Presenter { get; set; }
+    public IMvpPresenter Presenter { get; set; }
+
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     public BaseViewModel() { }
 

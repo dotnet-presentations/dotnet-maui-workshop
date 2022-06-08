@@ -5,7 +5,7 @@ using Adventures.Common.Interfaces;
 
 namespace Adventures.Common.Presenters
 {
-	public class PresenterBase : IPresenter
+	public class PresenterBase : IMvpPresenter
     {
         public IMvpViewModel ViewModel { get; set; }
 

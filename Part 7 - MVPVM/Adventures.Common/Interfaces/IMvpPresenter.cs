@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Adventures.Common.Interfaces
 {
-	public interface IPresenter
+	public interface IMvpPresenter
 	{
 		IMvpViewModel ViewModel { get; set; }
 

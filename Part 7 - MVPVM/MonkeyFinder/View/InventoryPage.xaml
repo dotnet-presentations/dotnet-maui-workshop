@@ -21,12 +21,12 @@
             <CollectionView
                 ItemsSource="{Binding ListItems}"
                 SelectionMode="None">
-                <CollectionView.EmptyView>
-                    <StackLayout Padding="100">
+                <!--<CollectionView.EmptyView>
+                    <StackLayout>
                         <Image Source="nodata.png" />
                     </StackLayout>
                 </CollectionView.EmptyView>
-                <!--<CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
                     <GridItemsLayout  Orientation="Horizontal" Span="3"/>
                 </CollectionView.ItemsLayout>-->
                 <CollectionView.ItemTemplate>

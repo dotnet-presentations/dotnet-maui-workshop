@@ -1,10 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Commands;
-using Adventures.Common.Events;
-using Adventures.Common.Model;
-using MonkeyFinder.View;
-
 namespace MonkeyFinder.Commands
 {
     public class GotoSelectedMonkeyCommand : CommandBase

@@ -4,9 +4,8 @@ using Adventures.Commands;
 using Adventures.Common;
 using Adventures.Common.Interfaces;
 using Adventures.ViewModel;
-using MonkeyFinder.Commands;
+using MonkeyFinder.Interfaes;
 using MonkeyFinder.Presenters;
-using MonkeyFinder.Services;
 using MonkeyFinder.View;
 
 namespace MonkeyFinder;
@@ -27,36 +26,34 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
 		builder.Services.AddSingleton<IMap>(Map.Default);
 
-		builder.Services.AddSingleton<IPresenter, MonkeyPresenter>();
-		builder.Services.AddSingleton<InventoryPresenter>();
-
-		builder.Services.AddTransient<IListViewModel,ListViewModel>();
-		builder.Services.AddTransient<IDetailViewModel,DetailsViewModel>();
-
-		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddTransient<InventoryPage>();
-		builder.Services.AddTransient<DetailsPage>();
-
 		// Shared commands
 		builder.Services.AddSingleton<IMvpCommand, MessageCommand>();
 		builder.Services.AddSingleton<IMvpCommand, ClosestItemCommand>();
 		builder.Services.AddSingleton<IMvpCommand, ShowonMapCommand>();
 
-		// Specific to Monkey finder
-		builder.Services.AddSingleton<IMvpCommand, GotoSelectedMonkeyCommand>();
-		builder.Services.AddSingleton<IMvpCommand, GotoInventoryCommand>();
-		builder.Services.AddSingleton<IMvpCommand, GetMonkeyListCommand>();
-		builder.Services.AddSingleton<IMvpCommand, GetInventoryListCommand>();
+		// Views
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<InventoryPage>();
+		builder.Services.AddTransient<DetailsPage>(); // Shared 
 
-		builder.Services.AddSingleton<IDataService>(provider =>
+		// ViewModels
+		builder.Services.AddTransient<IListViewModel, ListViewModel>(); // Shared 
+		builder.Services.AddTransient<IDetailViewModel>( provider =>    // Shared 
 		{
-			IConnectivity connectivity = provider
-				.GetServices<IConnectivity>().FirstOrDefault();
+			var state = Shell.Current.CurrentState.Location.OriginalString;
+			var isNotInventory = !state.ToLower().Contains("inventory");
+			return new DetailsViewModel
+			{
+				IsPopulationVisible = isNotInventory,
+				Presenter = isNotInventory
+					? provider.GetService<IMonkeyPresenter>()
+					: provider.GetService<IInventoryPresenter>()
+            };
+        });
 
-			return connectivity.NetworkAccess != NetworkAccess.Internet
-			  ? new MonkeyOfflineService()
-			  : new MonkeyOnlineService();
-		});
+		// Encapsulated services
+		MonkeyPresenter.InitServices(builder);
+		InventoryPresenter.InitServices(builder);
 
 		var serviceBuilder =  builder.Build();
 

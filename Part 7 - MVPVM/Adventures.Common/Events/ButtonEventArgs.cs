@@ -5,7 +5,7 @@ namespace Adventures.Common.Events
 {
 	public class ButtonEventArgs : EventArgs
 	{
-		public IPresenter Presenter { get;set; }
+		public IMvpPresenter Presenter { get;set; }
 
 		public IMvpViewModel ViewModel;
 

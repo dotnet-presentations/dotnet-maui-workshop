@@ -10,7 +10,8 @@ namespace Adventures.ViewModel;
 [QueryProperty(nameof(ListItem), "ListItem")]
 public partial class DetailsViewModel : BaseViewModel, IDetailViewModel
 {
-    public DetailsViewModel() { }
+    public DetailsViewModel() {
+    }
 
     [ObservableProperty]
     ListItem listItem;

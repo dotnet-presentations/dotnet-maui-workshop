@@ -1,19 +1,21 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Presenters;
 using Adventures.Common.Interfaces;
+using Adventures.Common.Presenters;
+using MonkeyFinder.Commands;
+using MonkeyFinder.Interfaes;
+using MonkeyFinder.Services;
 
 namespace MonkeyFinder.Presenters
 {
-    public class MonkeyPresenter : PresenterBase
+    public class MonkeyPresenter : PresenterBase, IMonkeyPresenter
 	{
         IDataService _dataService;
 
         // Handled view models
         IListViewModel _listVm;
-        IDetailViewModel _detailVm;
 
-        public MonkeyPresenter(IDataService dataService, IServiceProvider provider, IListViewModel listVm, IDetailViewModel child)
+        public MonkeyPresenter(IMonkeyDataService dataService, IServiceProvider provider, IListViewModel listVm)
             : base(provider)
         {
             // Retrieve data service so we can get mode (online or offline)
@@ -21,7 +23,6 @@ namespace MonkeyFinder.Presenters
 
             // Resolve view models so they can be configured
             _listVm = listVm;
-            _detailVm = child;
         }
 
         public override void Initialize(object sender = null, EventArgs e = null)
@@ -34,9 +35,23 @@ namespace MonkeyFinder.Presenters
             _listVm.Presenter = this;
 
             ViewModel = _listVm;
+        }
 
-            _detailVm.IsPopulationVisible = true;
-            _detailVm.Presenter = this;
+        public static void InitServices(MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<IMonkeyPresenter, MonkeyPresenter>();
+            builder.Services.AddSingleton<IMvpCommand, GotoSelectedMonkeyCommand>();
+            builder.Services.AddSingleton<IMvpCommand, GetMonkeyListCommand>();
+
+            builder.Services.AddSingleton<IMonkeyDataService>(provider =>
+            {
+                IConnectivity connectivity = provider
+                    .GetServices<IConnectivity>().FirstOrDefault();
+
+                return connectivity.NetworkAccess != NetworkAccess.Internet
+                  ? new MonkeyOfflineService()
+                  : new MonkeyOnlineService();
+            });
         }
     }
 }

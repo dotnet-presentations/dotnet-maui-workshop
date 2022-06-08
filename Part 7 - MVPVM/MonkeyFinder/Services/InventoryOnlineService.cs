@@ -6,7 +6,7 @@ using MonkeyFinder.Interfaes;
 
 namespace MonkeyFinder.Services;
 
-public class MonkeyOnlineService : IMonkeyDataService
+public class InventoryOnlineService : IInventoryDataService
 {
     HttpClient httpClient;
 
@@ -14,13 +14,16 @@ public class MonkeyOnlineService : IMonkeyDataService
 
     public string Mode { get; set; } = "ONLINE";
 
-    public MonkeyOnlineService()
+    public InventoryOnlineService()
     {
         this.httpClient = new HttpClient();
     }
 
-    public async Task<List<ListItem>> GetMonkeys()
+    public async Task<List<ListItem>> GetInventory()
     {
+        return await new InventoryOfflineService().GetInventory();
+
+/*
         if (monkeyList?.Count > 0)
             return monkeyList;
 
@@ -31,14 +34,16 @@ public class MonkeyOnlineService : IMonkeyDataService
             monkeyList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
         }
         return monkeyList;
+*/
     }
 
     public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
     {
         var retValue = new ServiceResult
         {
-            Data = await GetMonkeys()
+            Data = await GetInventory()
         };
+        
         return (T)retValue;
     }
 }
