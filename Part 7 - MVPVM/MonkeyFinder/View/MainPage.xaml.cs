@@ -1,17 +1,12 @@
 ﻿#pragma warning disable CA1416
 
-using MonkeyFinder.Interfaes;
-
 namespace MonkeyFinder.View;
 
-public partial class MainPage : ContentPage
+public partial class MainPage : ContentPageBase
 {
-	public MainPage(IMonkeyPresenter presenter)
+	public MainPage(IMonkeyPresenter presenter) : base(presenter)
 	{
-		presenter.Initialize(this);
-
         InitializeComponent();
-		BindingContext = presenter.ViewModel;
 	}
 }
 

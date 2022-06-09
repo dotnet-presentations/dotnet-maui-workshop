@@ -1,10 +1,7 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Interfaces;
 using Adventures.Common.Presenters;
 using MonkeyFinder.Commands;
-using MonkeyFinder.Interfaes;
-using MonkeyFinder.Services;
 
 namespace MonkeyFinder.Presenters
 {
@@ -18,17 +15,18 @@ namespace MonkeyFinder.Presenters
         public MonkeyPresenter(IMonkeyDataService dataService, IServiceProvider provider, IListViewModel listVm)
             : base(provider)
         {
-            // Retrieve data service so we can get mode (online or offline)
             _dataService = dataService;
-
-            // Resolve view models so they can be configured
             _listVm = listVm;
         }
 
         public override void Initialize(object sender = null, EventArgs e = null)
         {
-            // Configure the view models this presenter will handle
+            base.Initialize(sender, e);
 
+            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
+            Routing.RegisterRoute(nameof(InventoryPage), typeof(InventoryPage));
+
+            // Configure the view model this presenter will handle
             _listVm.GetDataButtonText = AppConstants.GetListButtonText;
             _listVm.Title = "Monkey Locator";
             _listVm.Mode = _dataService.Mode;
@@ -40,10 +38,9 @@ namespace MonkeyFinder.Presenters
         public static void InitServices(MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<IMonkeyPresenter, MonkeyPresenter>();
-            builder.Services.AddSingleton<IMvpCommand, GotoSelectedMonkeyCommand>();
-            builder.Services.AddSingleton<IMvpCommand, GetMonkeyListCommand>();
-
-            builder.Services.AddSingleton<IMonkeyDataService>(provider =>
+            builder.Services.AddTransient<IMvpCommand, GotoSelectedMonkeyCommand>();
+            builder.Services.AddTransient<IMvpCommand, GetMonkeyListCommand>();
+            builder.Services.AddTransient<IMonkeyDataService>(provider =>
             {
                 IConnectivity connectivity = provider
                     .GetServices<IConnectivity>().FirstOrDefault();

@@ -48,11 +48,15 @@
 	  <None Remove="Presenters\" />
 	  <None Remove="Commands\" />
 	  <None Remove="Interfaes\" />
+	  <None Remove="Services\Offline\" />
+	  <None Remove="Services\Online\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Presenters\" />
 	  <Folder Include="Commands\" />
 	  <Folder Include="Interfaes\" />
+	  <Folder Include="Services\Offline\" />
+	  <Folder Include="Services\Online\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\MainPage %28copy%29.xaml">

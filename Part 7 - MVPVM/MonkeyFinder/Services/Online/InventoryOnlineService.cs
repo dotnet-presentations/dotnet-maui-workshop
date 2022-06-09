@@ -1,10 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-using System.Net.Http.Json;
-using Adventures.Common.Model;
-using MonkeyFinder.Interfaes;
-
-namespace MonkeyFinder.Services;
+namespace MonkeyFinder.Services.Online;
 
 public class InventoryOnlineService : IInventoryDataService
 {

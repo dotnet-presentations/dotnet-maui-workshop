@@ -1,9 +1,6 @@
-﻿using System;
-using Adventures.Common.Interfaces;
-
-namespace MonkeyFinder.Interfaes
+﻿namespace MonkeyFinder.Interfaes
 {
-	public interface IMonkeyPresenter : IMvpPresenter
+    public interface IMonkeyPresenter : IMvpPresenter
 	{
 	}
 }

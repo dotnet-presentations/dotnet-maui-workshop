@@ -4,9 +4,7 @@ using Adventures.Commands;
 using Adventures.Common;
 using Adventures.Common.Interfaces;
 using Adventures.ViewModel;
-using MonkeyFinder.Interfaes;
 using MonkeyFinder.Presenters;
-using MonkeyFinder.View;
 
 namespace MonkeyFinder;
 

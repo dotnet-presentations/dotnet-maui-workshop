@@ -7,6 +7,8 @@ namespace Adventures.Common.Events
 	{
 		public IMvpPresenter Presenter { get;set; }
 
+		public Dictionary<string, IMvpView> Views { get; set; }
+
 		public IMvpViewModel ViewModel;
 
 		public object Sender { get; set; }

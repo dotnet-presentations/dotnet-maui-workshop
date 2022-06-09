@@ -1,10 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-
-using Adventures.Common.Model;
-using MonkeyFinder.Interfaes;
-
-namespace MonkeyFinder.Services;
+namespace MonkeyFinder.Services.Offline;
 
 public class InventoryOfflineService : IInventoryDataService
 {

@@ -7,6 +7,7 @@ namespace Adventures.Common.Presenters
 {
 	public class PresenterBase : IMvpPresenter
     {
+        public Dictionary<string, IMvpView> Views { get; set; } = new Dictionary<string, IMvpView>();
         public IMvpViewModel ViewModel { get; set; }
 
         protected IServiceProvider _serviceProvider;
@@ -16,8 +17,13 @@ namespace Adventures.Common.Presenters
             _serviceProvider = serviceProvider;
         }
 
-        public virtual void Initialize(object sender = null, EventArgs e = null) { }
-
+        public virtual void Initialize(object sender = null, EventArgs e = null)
+        {
+            var view = sender as IMvpView;
+            var name = view.GetType().Name;
+            if(!Views.ContainsKey(name))
+                Views.Add(name, view);
+        }
 
         public async Task ButtonClickHandler(object sender = null, EventArgs e = null)
         {
@@ -26,6 +32,7 @@ namespace Adventures.Common.Presenters
 
             buttonArgs.Presenter = this;
             buttonArgs.Sender = sender;
+            buttonArgs.Views = Views;
             buttonArgs.Key = button?.Text ?? sender.GetType().Name;
 
             var command = _serviceProvider.GetNamedCommand(buttonArgs.Key);

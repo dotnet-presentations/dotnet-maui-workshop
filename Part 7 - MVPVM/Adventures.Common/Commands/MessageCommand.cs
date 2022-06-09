@@ -13,9 +13,9 @@ namespace Adventures.Common
             MatchButtonText = AppConstants.Message;
 		}
 
-        public override async void Execute(object parameter)
+        public override async void OnExecute()
         {
-            var args = parameter as ButtonEventArgs;
+            var args = EventArgs as ButtonEventArgs;
             await Shell.Current.DisplayAlert("SYSTEM MESSAGE", Message, "Cancel");
 
         }

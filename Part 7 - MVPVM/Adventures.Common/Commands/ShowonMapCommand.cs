@@ -16,9 +16,9 @@ namespace Adventures.Commands
             _map = map;
         }
 
-        public override async void Execute(object parameter)
+        public override async void OnExecute()
         {
-            var args = parameter as ButtonEventArgs;
+            var args = EventArgs as ButtonEventArgs;
             var vm = args.ViewModel as DetailsViewModel;
 
             try

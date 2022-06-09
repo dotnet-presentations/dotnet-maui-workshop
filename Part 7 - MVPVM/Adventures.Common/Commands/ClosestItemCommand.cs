@@ -17,9 +17,9 @@ namespace Adventures.Commands
             _geolocation = geolocation;
         }
 
-        public override async void Execute(object parameter)
+        public override async void OnExecute()
         {
-            var args = parameter as ButtonEventArgs;
+            var args = EventArgs as ButtonEventArgs;
             var vm = args.ViewModel as ListViewModel;
 
             if (vm.IsBusy || vm.ListItems.Count == 0)

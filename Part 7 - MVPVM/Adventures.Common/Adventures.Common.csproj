@@ -27,6 +27,7 @@
 	  <None Remove="ViewModel\" />
 	  <None Remove="Results\" />
 	  <None Remove="Entities\" />
+	  <None Remove="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Commands\" />
@@ -38,5 +39,6 @@
 	  <Folder Include="ViewModel\" />
 	  <Folder Include="Results\" />
 	  <Folder Include="Entities\" />
+	  <Folder Include="Controls\" />
 	</ItemGroup>
 </Project>

@@ -4,14 +4,13 @@ namespace MonkeyFinder.Commands
 {
     public class GotoSelectedMonkeyCommand : CommandBase
 	{
-
         public GotoSelectedMonkeyCommand() {
             MatchDataType = nameof(ListItem);
         }
 
-        public override async void Execute(object parameter)
+        public override async void OnExecute()
         {
-            var args = parameter as ButtonEventArgs;
+            var args = EventArgs as ButtonEventArgs;
             var listItem = args.GetSender<ListItem>();
 
             if (listItem == null)
