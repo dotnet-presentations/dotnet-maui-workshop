@@ -1,10 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Commands;
-using Adventures.Common;
-using Adventures.Common.Interfaces;
-using Adventures.ViewModel;
-using MonkeyFinder.Presenters;
+
 
 namespace MonkeyFinder;
 

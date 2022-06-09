@@ -19,33 +19,22 @@
 
 	<ItemGroup>
 	  <None Remove="Commands\" />
-	  <None Remove="Constants\" />
-	  <None Remove="Events\" />
-	  <None Remove="Extensions\" />
-	  <None Remove="Interfaces\" />
 	  <None Remove="Presenters\" />
-	  <None Remove="ViewModel\" />
-	  <None Remove="Results\" />
-	  <None Remove="Entities\" />
-	  <None Remove="Controls\" />
-	  <None Remove="Views\" />
+	  <None Remove="Interfaces\" />
+	  <None Remove="Services\" />
+	  <None Remove="Services\Offline\" />
+	  <None Remove="Services\Online\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Commands\" />
-	  <Folder Include="Constants\" />
-	  <Folder Include="Events\" />
-	  <Folder Include="Extensions\" />
-	  <Folder Include="Interfaces\" />
 	  <Folder Include="Presenters\" />
-	  <Folder Include="ViewModel\" />
-	  <Folder Include="Results\" />
-	  <Folder Include="Entities\" />
-	  <Folder Include="Controls\" />
-	  <Folder Include="Views\" />
+	  <Folder Include="Interfaces\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Services\Offline\" />
+	  <Folder Include="Services\Online\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\DetailsPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
+	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
+	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
 	</ItemGroup>
 </Project>

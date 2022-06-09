@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Data", "Adventur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Common", "Adventures.Common\Adventures.Common.csproj", "{D9241318-7C44-4461-81DF-4673333BC06A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Inventory", "Adventures.Inventory\Adventures.Inventory.csproj", "{808EF6B2-1D93-42C1-BB4D-502E577D4998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Monkey", "Adventures.Monkey\Adventures.Monkey.csproj", "{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,14 @@ Global
 		{D9241318-7C44-4461-81DF-4673333BC06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9241318-7C44-4461-81DF-4673333BC06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9241318-7C44-4461-81DF-4673333BC06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{808EF6B2-1D93-42C1-BB4D-502E577D4998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{808EF6B2-1D93-42C1-BB4D-502E577D4998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{808EF6B2-1D93-42C1-BB4D-502E577D4998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{808EF6B2-1D93-42C1-BB4D-502E577D4998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

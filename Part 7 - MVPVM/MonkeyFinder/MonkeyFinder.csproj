@@ -43,20 +43,11 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
 	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
+	  <ProjectReference Include="..\Adventures.Inventory\Adventures.Inventory.csproj" />
+	  <ProjectReference Include="..\Adventures.Monkey\Adventures.Monkey.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Remove="Presenters\" />
-	  <None Remove="Commands\" />
-	  <None Remove="Interfaes\" />
-	  <None Remove="Services\Offline\" />
-	  <None Remove="Services\Online\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Presenters\" />
-	  <Folder Include="Commands\" />
-	  <Folder Include="Interfaes\" />
-	  <Folder Include="Services\Offline\" />
-	  <Folder Include="Services\Online\" />
+	  <MauiXaml Remove="View\InventoryPage.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\MainPage %28copy%29.xaml">
@@ -65,8 +56,8 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\Inventory.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\InventoryPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="View\InventoryPage.xaml.cs" />
 	</ItemGroup>
 </Project>

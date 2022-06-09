@@ -1,8 +1,9 @@
 ﻿#pragma warning disable CA1416
 
+using Adventures.Common.Controls;
 using Adventures.Inventory.Interfaces;
 
-namespace MonkeyFinder.View;
+namespace Adventures.Inventory.Views;
 
 public partial class InventoryPage : ContentPageBase
 {

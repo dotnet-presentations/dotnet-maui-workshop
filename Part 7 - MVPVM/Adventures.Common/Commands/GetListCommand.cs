@@ -7,7 +7,7 @@ using Adventures.Common.Model;
 using Adventures.Data.Results;
 using Adventures.ViewModel;
 
-namespace MonkeyFinder.Commands
+namespace Adventures.Common.Commands
 {
     public class GetListCommand : Adventures.Common.Commands.CommandBase
 	{

@@ -18,33 +18,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Commands\" />
-	  <None Remove="Constants\" />
-	  <None Remove="Events\" />
-	  <None Remove="Extensions\" />
-	  <None Remove="Interfaces\" />
+	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
+	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Services\" />
 	  <None Remove="Presenters\" />
-	  <None Remove="ViewModel\" />
-	  <None Remove="Results\" />
-	  <None Remove="Entities\" />
-	  <None Remove="Controls\" />
+	  <None Remove="Commands\" />
 	  <None Remove="Views\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Commands\" />
-	  <Folder Include="Constants\" />
-	  <Folder Include="Events\" />
-	  <Folder Include="Extensions\" />
-	  <Folder Include="Interfaces\" />
+	  <Folder Include="Services\" />
 	  <Folder Include="Presenters\" />
-	  <Folder Include="ViewModel\" />
-	  <Folder Include="Results\" />
-	  <Folder Include="Entities\" />
-	  <Folder Include="Controls\" />
+	  <Folder Include="Commands\" />
 	  <Folder Include="Views\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\DetailsPage.xaml">
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\InventoryPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
 	</ItemGroup>
