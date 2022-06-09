@@ -9,4 +9,5 @@ global using Adventures.Inventory;
 global using Adventures.Inventory.Commands;
 global using Adventures.Inventory.Interfaces;
 global using Adventures.Inventory.Services.Offline;
+global using Adventures.Inventory.Services.Online;
 global using Adventures.Inventory.Views;

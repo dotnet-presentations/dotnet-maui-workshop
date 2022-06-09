@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Adventures.Common.Model;
-
-namespace Adventures.Common.Interfaces
+﻿namespace Adventures.Common.Interfaces
 {
-	public interface IListViewModel : IMvpViewModel
+    public interface IListViewModel : IMvpViewModel
 	{
 		ObservableCollection<ListItem> ListItems { get; }
 

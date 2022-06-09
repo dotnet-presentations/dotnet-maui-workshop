@@ -1,11 +1,8 @@
 ﻿#pragma warning disable CA1416
 
 using System.Diagnostics;
-using Adventures.Common.Events;
-using Adventures.Common.Interfaces;
-using Adventures.Common.Model;
+using Adventures.Common.ViewModel;
 using Adventures.Data.Results;
-using Adventures.ViewModel;
 
 namespace Adventures.Common.Commands
 {

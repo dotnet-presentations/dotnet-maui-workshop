@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Monkey.Services.Online;
-
 namespace MonkeyFinder.Presenters
 {
     public class InventoryPresenter : PresenterBase, IInventoryPresenter
@@ -36,6 +34,8 @@ namespace MonkeyFinder.Presenters
             Routing.RegisterRoute(nameof(InventoryPage), typeof(InventoryPage));
 
             builder.Services.AddSingleton<IInventoryPresenter, InventoryPresenter>();
+
+            builder.Services.AddTransient<InventoryPage>();
             builder.Services.AddTransient<IMvpCommand, GotoInventoryCommand>();
             builder.Services.AddTransient<IMvpCommand, GetInventoryListCommand>();
             builder.Services.AddTransient<IInventoryDataService>(provider =>

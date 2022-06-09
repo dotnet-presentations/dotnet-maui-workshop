@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-namespace Adventures.Monkey.Services.Online;
+namespace Adventures.Inventory.Services.Online;
 
 public class InventoryOnlineService : IInventoryDataService
 {

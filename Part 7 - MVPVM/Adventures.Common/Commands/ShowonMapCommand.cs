@@ -2,8 +2,7 @@
 
 using System.Diagnostics;
 using Adventures.Common.Commands;
-using Adventures.Common.Events;
-using Adventures.ViewModel;
+using Adventures.Common.ViewModel;
 
 namespace Adventures.Commands
 {

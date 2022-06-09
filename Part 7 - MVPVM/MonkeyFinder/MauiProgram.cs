@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-
+using Adventures.Common.ViewModel;
 
 namespace MonkeyFinder;
 
@@ -27,13 +27,14 @@ public static class MauiProgram
 
 		// Views
 		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddTransient<InventoryPage>();
 		builder.Services.AddTransient<DetailsPage>(); // Shared 
 
 		// ViewModels
 		builder.Services.AddTransient<IListViewModel, ListViewModel>(); // Shared 
 		builder.Services.AddTransient<IDetailViewModel>( provider =>    // Shared 
 		{
+			// Configure view model with applicable presenter and IsPopulationVisible
+			// value.  We don't want to show it on Inventory details page
 			var state = Shell.Current.CurrentState.Location.OriginalString;
 			var isNotInventory = !state.ToLower().Contains("inventory");
 			return new DetailsViewModel

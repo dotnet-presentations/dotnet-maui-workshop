@@ -1,9 +1,6 @@
-﻿using Adventures.Common.Events;
-using Adventures.Common.Interfaces;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿#pragma warning disable CA1416
 
-namespace MonkeyFinder.ViewModel;
+namespace Adventures.Common.ViewModel;
 
 public partial class BaseViewModel : ObservableObject, IMvpViewModel
 {

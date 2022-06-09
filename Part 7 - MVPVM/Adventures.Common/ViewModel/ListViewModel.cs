@@ -1,12 +1,6 @@
 ﻿#pragma warning disable CA1416
 
-using System.Collections.ObjectModel;
-using Adventures.Common.Interfaces;
-using Adventures.Common.Model;
-using CommunityToolkit.Mvvm.ComponentModel;
-using MonkeyFinder.ViewModel;
-
-namespace Adventures.ViewModel;
+namespace Adventures.Common.ViewModel;
 
 public partial class ListViewModel : BaseViewModel, IListViewModel
 {

@@ -1,13 +1,11 @@
 ﻿global using System.Diagnostics;
-global using Adventures.Common.Controls;
-global using Adventures.Common.Interfaces;
-global using MonkeyFinder.View;
 global using Adventures.Commands;
 global using Adventures.Common;
+global using Adventures.Common.Controls;
+global using Adventures.Common.Interfaces;
 global using Adventures.Common.Views;
 global using Adventures.Inventory.Interfaces;
-global using Adventures.Inventory.Views;
 global using Adventures.Monkey.Interfaes;
 global using Adventures.Monkey.Presenters;
-global using Adventures.ViewModel;
 global using MonkeyFinder.Presenters;
+global using MonkeyFinder.View;

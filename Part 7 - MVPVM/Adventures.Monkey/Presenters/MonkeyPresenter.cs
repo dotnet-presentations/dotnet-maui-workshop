@@ -5,8 +5,6 @@ namespace Adventures.Monkey.Presenters
     public class MonkeyPresenter : PresenterBase, IMonkeyPresenter
 	{
         IDataService _dataService;
-
-        // Handled view models
         IListViewModel _listVm;
 
         public MonkeyPresenter(IMonkeyDataService dataService, IServiceProvider provider, IListViewModel listVm)
