@@ -218,6 +218,8 @@ We are ready to create a method that will retrieve the monkey data from the inte
     {
         monkeyList = await response.Content.ReadFromJsonAsync<List<Monkey>>();
     }
+    
+    return monkeyList;
     ```
 
 1. Add the following using directive at the top of the file to access the `ReadFromJsonAsync` extension method:
