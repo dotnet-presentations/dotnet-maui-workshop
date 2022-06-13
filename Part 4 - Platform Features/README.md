@@ -65,7 +65,7 @@ We can add more functionality to this page using the GPS of the device since eac
 1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestMonkey`:
 
     ```csharp
-    RelayCommand
+    [RelayCommand]
     async Task GetClosestMonkey()
     {
 
@@ -75,7 +75,7 @@ We can add more functionality to this page using the GPS of the device since eac
 1. We can then fill it in by using .NET MAUI  to query for our location and helpers that find the closest monkey to us:
 
     ```csharp
-    RelayCommand
+    [RelayCommand]
     async Task GetClosestMonkey()
     {
         if (IsBusy || Monkeys.Count == 0)
@@ -152,7 +152,7 @@ This project is pre-configured with all required permissions and features needed
 1. Open the `MonkeyDetailsViewModel.cs` file and add a method called `OpenMap` that calls into the `Map` API passing it the monkey's location:
 
     ```csharp
-    RelayCommand
+    [RelayCommand]
     async Task OpenMap()
     {
         try

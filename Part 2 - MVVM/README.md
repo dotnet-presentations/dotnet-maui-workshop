@@ -421,10 +421,10 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-    However, with the .NET Community Toolkit we simply can add the `RelayCommand` attribute to our method:
+    However, with the .NET Community Toolkit we simply can add the `[RelayCommand]` attribute to our method:
 
     ```csharp
-     RelayCommand
+     [RelayCommand]
     async Task GetMonkeysAsync()
     {
         //..
@@ -438,12 +438,12 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     {
         /// <summary>The backing field for <see cref="GetMonkeysCommand"/>.</summary>
         [global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ICommandGenerator", "8.0.0.0")]
-        private global::CommunityToolkit.Mvvm.Input.AsyncRelayCommand? getMonkeysCommand;
-        /// <summary>Gets an <see cref="global::CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="GetMonkeysAsync"/>.</summary>
+        private global::CommunityToolkit.Mvvm.Input.Async[RelayCommand]? getMonkeysCommand;
+        /// <summary>Gets an <see cref="global::CommunityToolkit.Mvvm.Input.IAsync[RelayCommand]"/> instance wrapping <see cref="GetMonkeysAsync"/>.</summary>
         [global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ICommandGenerator", "8.0.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCode]
         [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-        public global::CommunityToolkit.Mvvm.Input.IAsyncRelayCommand GetMonkeysCommand => getMonkeysCommand ??= new global::CommunityToolkit.Mvvm.Input.AsyncRelayCommand(new global::System.Func<global::System.Threading.Tasks.Task>(GetMonkeysAsync));
+        public global::CommunityToolkit.Mvvm.Input.IAsync[RelayCommand] GetMonkeysCommand => getMonkeysCommand ??= new global::CommunityToolkit.Mvvm.Input.Async[RelayCommand](new global::System.Func<global::System.Threading.Tasks.Task>(GetMonkeysAsync));
     }
     ```
 

@@ -16,7 +16,7 @@ public partial class MonkeysViewModel : BaseViewModel
         this.geolocation = geolocation;
     }
     
-    RelayCommand
+    [RelayCommand]
     async Task GoToDetails(Monkey monkey)
     {
         if (monkey == null)
@@ -28,7 +28,7 @@ public partial class MonkeysViewModel : BaseViewModel
         });
     }
 
-    RelayCommand
+    [RelayCommand]
     async Task GetMonkeysAsync()
     {
         if (IsBusy)
@@ -65,7 +65,7 @@ public partial class MonkeysViewModel : BaseViewModel
 
     }
 
-    RelayCommand
+    [RelayCommand]
     async Task GetClosestMonkey()
     {
         if (IsBusy || Monkeys.Count == 0)

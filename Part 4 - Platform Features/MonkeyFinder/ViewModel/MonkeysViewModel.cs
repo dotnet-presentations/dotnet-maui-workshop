@@ -12,7 +12,7 @@ public partial class MonkeysViewModel : BaseViewModel
         this.monkeyService = monkeyService;
     }
     
-    RelayCommand
+    [RelayCommand]
     async Task GoToDetails(Monkey monkey)
     {
         if (monkey == null)
@@ -24,7 +24,7 @@ public partial class MonkeysViewModel : BaseViewModel
         });
     }
 
-    RelayCommand
+    [RelayCommand]
     async Task GetMonkeysAsync()
     {
         if (IsBusy)
