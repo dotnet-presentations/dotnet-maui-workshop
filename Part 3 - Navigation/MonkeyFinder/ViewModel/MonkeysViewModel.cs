@@ -12,7 +12,7 @@ public partial class MonkeysViewModel : BaseViewModel
         this.monkeyService = monkeyService;
     }
 
-    [ICommand]
+    RelayCommand
     async Task GetMonkeysAsync()
     {
         if (IsBusy)
