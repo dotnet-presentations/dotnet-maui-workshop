@@ -130,7 +130,7 @@ namespace MonkeyFinder.ViewModel;
 public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
-    [AlsoNotifyChangeFor(nameof(IsNotBusy))]
+    [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     bool isBusy;
 
     [ObservableProperty]
@@ -142,7 +142,7 @@ public partial class BaseViewModel : ObservableObject
 
 Here, we can see that our code has been greatly simplified with an `ObservableObject` base class that implements `INotifyPropertyChanged` and also attributes to expose our properties.
 
-Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[AlsoNotifyChangeFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
+Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
 
 
 Here is what our `IsBusy` looks like:
@@ -423,10 +423,10 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-    However, with the .NET Community Toolkit we simply can add the `[ICommand]` attribute to our method:
+    However, with the .NET Community Toolkit we simply can add the `[RelayCommand]` attribute to our method:
 
     ```csharp
-     [ICommand]
+     [RelayCommand]
     async Task GetMonkeysAsync()
     {
         //..

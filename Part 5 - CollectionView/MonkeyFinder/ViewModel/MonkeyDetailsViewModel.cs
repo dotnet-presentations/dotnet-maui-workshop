@@ -12,7 +12,7 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
     [ObservableProperty]
     Monkey monkey;
 
-    [ICommand]
+    [RelayCommand]
     async Task OpenMap()
     {
         try

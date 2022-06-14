@@ -58,11 +58,11 @@ Now, let's add a click handler to the collection view and pass the monkey to the
 
 Now, let's add navigation to a second page that displays monkey details!
 
-1. In `MonkeysViewModel.cs`, create a method `async Task GoToDetailsAsync(Monkey monkey)` exposed as an `[ICommand]`:
+1. In `MonkeysViewModel.cs`, create a method `async Task GoToDetailsAsync(Monkey monkey)` exposed as an `[RelayCommand]`:
 
 
     ```csharp
-    [ICommand]
+    [RelayCommand]
     async Task GoToDetails(Monkey monkey)
     {
         if (monkey == null)
