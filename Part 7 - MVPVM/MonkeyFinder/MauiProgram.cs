@@ -1,5 +1,6 @@
 ﻿#pragma warning disable CA1416
 
+using Adventures.Common.Events;
 using Adventures.Common.ViewModel;
 
 namespace MonkeyFinder;
@@ -20,9 +21,11 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
 		builder.Services.AddSingleton<IMap>(Map.Default);
 
+		builder.Services.AddSingleton<IMvpEventAggregator, SimpleEventAggregator>();
+
 		// Shared commands
 		builder.Services.AddSingleton<IMvpCommand, MessageCommand>();
-		builder.Services.AddSingleton<IMvpCommand, ClosestItemCommand>();
+		builder.Services.AddSingleton<IMvpCommand, FindClosestCommand>();
 		builder.Services.AddSingleton<IMvpCommand, ShowonMapCommand>();
 
 		// Views

@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Inventory", "Adv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Monkey", "Adventures.Monkey\Adventures.Monkey.csproj", "{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventures.Tests", "Adventures.Tests\Adventures.Tests.csproj", "{A7B15FEF-38F1-4CEB-877D-4F2494387E52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{A610F322-F455-4D27-B249-B45DD67831F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9C8FF87-84A0-49DF-A3F2-69543607A942}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,11 +54,20 @@ Global
 		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B31B3F-88BA-4DFC-B8A4-E1087A5E7D16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9241318-7C44-4461-81DF-4673333BC06A} = {A610F322-F455-4D27-B249-B45DD67831F0}
+		{44F917D8-0E3E-4280-988C-445490EA3A4D} = {A610F322-F455-4D27-B249-B45DD67831F0}
+		{A7B15FEF-38F1-4CEB-877D-4F2494387E52} = {C9C8FF87-84A0-49DF-A3F2-69543607A942}
 	EndGlobalSection
 EndGlobal

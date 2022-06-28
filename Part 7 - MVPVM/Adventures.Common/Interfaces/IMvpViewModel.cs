@@ -3,7 +3,9 @@ namespace Adventures.Common.Interfaces
 {
 	public interface IMvpViewModel
 	{
-		IMvpPresenter Presenter { get; set; } 
+        Guid Id { get; set; }
+		string Mode { get; set; }
+        IMvpPresenter Presenter { get; set; } 
 	}
 }
 

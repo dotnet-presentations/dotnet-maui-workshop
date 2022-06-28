@@ -1,32 +1,55 @@
 ﻿#pragma warning disable CA1416
 
+using System.Diagnostics;
+using Adventures.Common.Extensions;
+
 namespace MonkeyFinder.Presenters
 {
     public class InventoryPresenter : PresenterBase, IInventoryPresenter
 	{
+        IMvpEventAggregator _eventAggregator;
+        IServiceProvider _provider;
         IDataService _dataService;
-
-        // Handled view models
         IListViewModel _listVm;
 
-        public InventoryPresenter(IInventoryDataService dataService, IServiceProvider provider, IListViewModel listVm)
-            : base(provider)
+        public InventoryPresenter(
+            IMvpEventAggregator eventAggregator,
+            IInventoryDataService dataService,
+            IServiceProvider provider,
+            IListViewModel listVm)  : base(provider)
         {
+            _eventAggregator = eventAggregator;
             _dataService = dataService;
+            _provider = provider;
             _listVm = listVm;
         }
 
         public override void Initialize(object sender = null, EventArgs e = null) 
         {
+            // as a singleton we only need to do this once
+            if (this.IsInitialized) return; 
+
             base.Initialize(sender, e);
 
-            _listVm.GetDataButtonText = AppConstants.GetListButtonText;
-            _listVm.GetInventoryButtonText = AppConstants.GetInventoryButtonText;
+            // Get list of available commands so we can determine button text
+            var nameFor = _provider.GetNamedCommands();
+
+            // Use magic string when type not available (proj not referenced)
+            _listVm.GetDataButtonText = nameFor["GetMonkeyListCommand"];
+            _listVm.GetDataButton2Text = nameFor[nameof(GetInventoryListCommand)];
+
             _listVm.Title = "Inventory";
             _listVm.Mode = _dataService.Mode;
-            _listVm.Presenter = this;
 
+            _listVm.Presenter = this;
             ViewModel = _listVm; // Used by page
+
+            // Update view model on connectivity changes
+            _eventAggregator.Subscribe<MessageEventArgs>(this, "Mode", (sender) =>
+            {
+                _listVm.Mode = sender.Message;
+                InvokeCommand(_listVm.GetDataButton2Text); // Button click to get Inventory list
+            });
         }
 
         public static void InitServices(MauiAppBuilder builder)
@@ -38,15 +61,15 @@ namespace MonkeyFinder.Presenters
             builder.Services.AddTransient<InventoryPage>();
             builder.Services.AddTransient<IMvpCommand, GotoInventoryCommand>();
             builder.Services.AddTransient<IMvpCommand, GetInventoryListCommand>();
+
             builder.Services.AddTransient<IInventoryDataService>(provider =>
             {
+                // The implementation of IInventoryDataService will be determined by connection status
                 IConnectivity connectivity = provider.GetServices<IConnectivity>().FirstOrDefault();
-
                 return connectivity.NetworkAccess != NetworkAccess.Internet
                   ? new InventoryOfflineService()
                   : new InventoryOnlineService();
             });
         }
-
     }
 }

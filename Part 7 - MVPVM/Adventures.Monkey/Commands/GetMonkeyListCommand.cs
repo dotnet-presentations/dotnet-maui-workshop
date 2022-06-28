@@ -9,8 +9,18 @@ namespace Adventures.Monkey.Commands
 	{
 		public GetMonkeyListCommand(IMonkeyDataService service) : base(service) 
 		{
-			MatchButtonText = AppConstants.GetListButtonText;
+			MatchButtonText = "Get Monkey Data";
 		}
-	}
+
+        public override void OnExecute()
+        {
+            var args = EventArgs as ButtonEventArgs;
+            if (args.ViewModel == null) // Change of network won't have VM
+                args.ViewModel = args.Presenter.ViewModel;
+
+            base.OnExecute();
+            Console.WriteLine($"Invoked GetMonkeyListCommand  Mode=[{((ButtonEventArgs)this.EventArgs).Presenter.ViewModel.Mode}]");
+        }
+    }
 }
 

@@ -1,5 +1,7 @@
 ﻿#pragma warning disable CA1416
 
+using System.Net.Http.Json;
+
 namespace Adventures.Inventory.Services.Online;
 
 public class InventoryOnlineService : IInventoryDataService
@@ -17,9 +19,13 @@ public class InventoryOnlineService : IInventoryDataService
 
     public async Task<List<ListItem>> GetInventory()
     {
-        return await new InventoryOfflineService().GetInventory();
+        if (isAlwayTrue()) // eliminate unreachable code warnings until we're ready to implement
+        {
+            var result =  await new InventoryOfflineService().GetInventory();
+            result[0].Name = result[0].Name.Replace("(offline)", "");
+            return result;
+        }
 
-/*
         if (monkeyList?.Count > 0)
             return monkeyList;
 
@@ -30,7 +36,7 @@ public class InventoryOnlineService : IInventoryDataService
             monkeyList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
         }
         return monkeyList;
-*/
+
     }
 
     public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
@@ -41,5 +47,9 @@ public class InventoryOnlineService : IInventoryDataService
         };
         
         return (T)retValue;
+    }
+    public bool isAlwayTrue()
+    {
+        return true;
     }
 }

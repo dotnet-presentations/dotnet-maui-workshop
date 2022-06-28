@@ -3,6 +3,8 @@
     x:Class="MonkeyFinder.App"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Adventures.Common.Model;assembly=Adventures.Common"
+    xmlns:viewmodel="clr-namespace:Adventures.Common.ViewModel;assembly=Adventures.Common"
     xmlns:local="clr-namespace:MonkeyFinder">
     <Application.Resources>
         <ResourceDictionary>

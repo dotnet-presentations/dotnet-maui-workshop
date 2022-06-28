@@ -1,9 +1,6 @@
-﻿using System;
-using Adventures.Common.Interfaces;
-
-namespace Adventures.Common.Controls
+﻿namespace Adventures.Common.Controls
 {
-	public class ContentPageBase : ContentPage, IMvpView
+    public class ContentPageBase : ContentPage, IMvpView
 	{
         public ContentPageBase() { }
 
@@ -11,6 +8,7 @@ namespace Adventures.Common.Controls
 		{
 			if (presenter == null) return;
 			presenter.Initialize(this);
+			presenter.IsInitialized = true;
 			BindingContext = presenter.ViewModel;
 		}
 	}

@@ -9,6 +9,7 @@ namespace Adventures.Common.Presenters
     {
         public Dictionary<string, IMvpView> Views { get; set; } = new Dictionary<string, IMvpView>();
         public IMvpViewModel ViewModel { get; set; }
+        public bool IsInitialized { get; set; }
 
         protected IServiceProvider _serviceProvider;
 
@@ -25,10 +26,16 @@ namespace Adventures.Common.Presenters
                 Views.Add(name, view);
         }
 
+        public async void InvokeCommand(string commandKey)
+        {
+            var args = new ButtonEventArgs();
+            await ButtonClickHandler(new Button { Text = commandKey });
+        }
+
         public async Task ButtonClickHandler(object sender = null, EventArgs e = null)
         {
             var button = sender as Button;
-            var buttonArgs = e as ButtonEventArgs;
+            var buttonArgs = (e as ButtonEventArgs) ?? new ButtonEventArgs();
 
             buttonArgs.Presenter = this;
             buttonArgs.Sender = sender;

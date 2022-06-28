@@ -73,7 +73,7 @@
             <Button
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="{Binding GetInventoryButtonText}" />
+                Text="{Binding GetDataButton2Text}" />
 
         </HorizontalStackLayout>
 

@@ -7,11 +7,11 @@ using Adventures.Common.ViewModel;
 
 namespace Adventures.Commands
 {
-    public class ClosestItemCommand : CommandBase
+    public class FindClosestCommand : CommandBase
 	{
         private IGeolocation _geolocation;
 
-        public ClosestItemCommand(IGeolocation geolocation) {
+        public FindClosestCommand(IGeolocation geolocation) {
             MatchButtonText = "Find Closest";
             _geolocation = geolocation;
         }

@@ -5,7 +5,8 @@ namespace Adventures.Inventory.Commands
     public class GotoInventoryCommand : CommandBase
 	{
         public GotoInventoryCommand() {
-            MatchDataType = AppConstants.GoToInventoryButtonText;
+            MatchButtonText = "Go to Inventory";
+            MatchDataType = "Inventory";
         }
 
         public override async void OnExecute()

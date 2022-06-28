@@ -41,10 +41,10 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
 	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
 	  <ProjectReference Include="..\Adventures.Inventory\Adventures.Inventory.csproj" />
 	  <ProjectReference Include="..\Adventures.Monkey\Adventures.Monkey.csproj" />
+	  <ProjectReference Include="..\Adventures.Caliburn.Light\Adventures.Caliburn.Light.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Remove="View\InventoryPage.xaml" />

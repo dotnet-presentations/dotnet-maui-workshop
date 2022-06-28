@@ -8,6 +8,9 @@ public partial class BaseViewModel : ObservableObject, IMvpViewModel
 
     public Guid Id { get; set; } = Guid.NewGuid();
 
+    [ObservableProperty]
+    string mode;
+
     public BaseViewModel() { }
 
     [ICommand]

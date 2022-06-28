@@ -17,7 +17,6 @@
         RowSpacing="0">
         <RefreshView
             Grid.ColumnSpan="2"
-            Command="{Binding ButtonClickHandlerCommand}"
             IsRefreshing="{Binding IsRefreshing}">
             <CollectionView
                 ItemsSource="{Binding ListItems}"
@@ -79,13 +78,13 @@
                 Margin="8"
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="Inventory" />
+                Text="{Binding GetDataButton2Text}" />
 
             <Button
                 Margin="8"
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="Find Closest" />
+                Text="{Binding GetDataButton3Text}" />
         </HorizontalStackLayout>
 
         <ActivityIndicator

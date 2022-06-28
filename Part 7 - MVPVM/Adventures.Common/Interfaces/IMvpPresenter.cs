@@ -7,6 +7,8 @@ namespace Adventures.Common.Interfaces
 
 		IMvpViewModel ViewModel { get; set; }
 
+		bool IsInitialized { get; set; }
+
 		void Initialize(object sender = null, EventArgs e = null);
 
 		Task ButtonClickHandler(object sender = null, EventArgs e = null);

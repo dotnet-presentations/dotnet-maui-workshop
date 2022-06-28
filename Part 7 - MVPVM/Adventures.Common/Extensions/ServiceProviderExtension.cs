@@ -18,7 +18,22 @@ namespace Adventures.Common.Extensions
 			}
 			return command;
         }
-	
-	}
+
+        public static Dictionary<string,string> GetNamedCommands(this IServiceProvider serviceProvider)
+        {
+			var keyList = new Dictionary<string, string>();
+            var commands = serviceProvider.GetServices<IMvpCommand>();
+			foreach(IMvpCommand command in commands)
+            {
+				var key = command.GetType().Name;
+				var value = command.MatchButtonText;
+				if (!keyList.ContainsKey(key))
+					keyList.Add(key, value);
+            }
+            return keyList;
+        }
+
+    }
+
 }
 
