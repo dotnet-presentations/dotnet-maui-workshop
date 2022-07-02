@@ -17,9 +17,11 @@
 
 		protected void OnInitializeComponent(FlexLayout flexLayout)
         {
-            var listViewModel = BindingContext as IListViewModel;
-            foreach (Button item in listViewModel.ButtonItems)
+            var ViewModel = BindingContext as IListViewModel;
+            foreach (Button item in ViewModel.ButtonItems)
                 flexLayout.Add(item);
+
+           
         }
 
         protected void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)

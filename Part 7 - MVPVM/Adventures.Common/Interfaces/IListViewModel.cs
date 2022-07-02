@@ -4,7 +4,7 @@ namespace Adventures.Common.Interfaces
 {
     public interface IListViewModel : IMvpViewModel
 	{
-		ObservableCollection<ListItem> ListItems { get; }
+        ObservableCollection<ListItem> ListItems { get; }
 
         ObservableCollection<CommandItem> CommandItems { get; set; }
 

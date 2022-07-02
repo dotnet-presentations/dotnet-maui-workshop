@@ -10,6 +10,7 @@ global using Adventures.Common.Events;
 global using Adventures.Common.Extensions;
 global using Adventures.Common.Interfaces;
 global using Adventures.Common.Model;
+global using Adventures.Common.Utils;
 global using Adventures.Common.ViewModel;
 global using Adventures.Data.Results;
 global using CommunityToolkit.Mvvm.ComponentModel;

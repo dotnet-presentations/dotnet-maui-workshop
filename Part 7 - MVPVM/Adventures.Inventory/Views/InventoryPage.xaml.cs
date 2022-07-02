@@ -11,6 +11,7 @@ public partial class InventoryPage : ContentPageBase
 	public InventoryPage(IInventoryPresenter presenter) : base(presenter)
 	{
 		InitializeComponent();
-	}
+        OnInitializeComponent(flexLayout);
+    }
 }
 

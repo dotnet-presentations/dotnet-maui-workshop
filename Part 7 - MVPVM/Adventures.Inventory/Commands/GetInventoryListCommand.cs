@@ -9,8 +9,7 @@ namespace Adventures.Inventory.Commands
 	{
 		public GetInventoryListCommand(IInventoryDataService service) : base(service) 
 		{
-			MatchButtonText = "Get Inventory Data";
-            SupportedBy = "InventoryPresenter";
+			MatchButtonText = "Get Data";
 		}
 
         public override void OnExecuted()

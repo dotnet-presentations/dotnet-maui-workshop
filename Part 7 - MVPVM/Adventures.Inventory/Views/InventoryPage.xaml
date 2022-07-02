@@ -70,10 +70,8 @@
                     Converter={StaticResource modeConverter},
                     Mode=TwoWay}"/>
 
-            <Button
-                IsEnabled="{Binding IsNotBusy}"
-                Style="{StaticResource ButtonOutline}"
-                Text="{Binding ButtonText2}" />
+            <!-- Layout buttons based on registered IMvpCommands -->
+            <FlexLayout x:Name="flexLayout" Margin="5,0"/>
 
         </HorizontalStackLayout>
 

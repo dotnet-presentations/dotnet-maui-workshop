@@ -4,7 +4,12 @@ namespace Adventures.Common.Commands
 {
     public partial class CommandBase : IMvpCommand
     {
+        public string Name { get; set; }
+
+        public const string GLOBAL = "GLOBAL";
+
         private string _matchButtonText;
+        private string _message;
 
         public event EventHandler CanExecuteChanged;
 
@@ -24,6 +29,8 @@ namespace Adventures.Common.Commands
 
         public EventArgs EventArgs { get; set; }
 
+        public string MatchDataType { get; set; }
+
         public string MatchButtonText
         {
             get {
@@ -36,13 +43,20 @@ namespace Adventures.Common.Commands
                 _matchButtonText = value;
             }
         }
-        public string MatchDataType { get; set; }
 
-        public string Message { get; set; }
+        public string Message {
+            get
+            {
+                if (_message == null)
+                    _message = MatchButtonText;
+                return _message;
+            }
+            set { _message = value; }
+        }
 
-        public string SupportedBy { get; set; }
-        
-        public CommandBase() { }
+        public CommandBase() {
+            Name = this.GetType().Name;
+        }
 
         public virtual bool CanExecute(object parameter)
         {
@@ -55,7 +69,7 @@ namespace Adventures.Common.Commands
             OnExecute();
         }
 
-        protected void OnCanExecuteChanged()
+        public void OnCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

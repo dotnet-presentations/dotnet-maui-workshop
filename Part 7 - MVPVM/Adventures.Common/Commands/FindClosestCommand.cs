@@ -8,8 +8,11 @@ namespace Adventures.Commands
 
         public FindClosestCommand(IGeolocation geolocation) {
             MatchButtonText = "Find Closest";
-            SupportedBy = "GLOBAL";
             _geolocation = geolocation;
+        }
+        public override bool CanExecute(object parameter)
+        {
+            return base.CanExecute(parameter);
         }
 
         public override async void OnExecute()
@@ -20,7 +23,7 @@ namespace Adventures.Commands
             if (vm.IsBusy || vm.ListItems.Count == 0)
             {
                 var view = args.Views.FirstOrDefault().Value as Page;
-                await view.DisplayAlert("No data found to query", "Get data and try again", "OK");
+                await MessageBox.Show("No data found to query", "Get data and try again", "OK");
                 return;
             }
 
@@ -42,14 +45,13 @@ namespace Adventures.Commands
                     new Location(m.Latitude, m.Longitude), DistanceUnits.Miles))
                     .FirstOrDefault();
 
-                await Shell.Current.DisplayAlert("", first.Name + " " +
-                    first.Location, "OK");
+                await MessageBox.Show("", first.Name + " " + first.Location, "OK");
 
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Unable to query location: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+                await MessageBox.Show("Error!", ex.Message, "OK");
             }
         }
     }

@@ -1,82 +1,62 @@
 ﻿#pragma warning disable CA1416
 
-using System.Diagnostics;
 using Adventures.Commands;
-using Adventures.Common.Extensions;
-using Adventures.Common.Utils;
 
 namespace Adventures.Monkey.Presenters
 {
     public class MonkeyPresenter : PresenterBase, IMonkeyPresenter
 	{
-        IMvpEventAggregator _eventAggregator;
-        IDataService _dataService;
-        IListViewModel _listVm;
-        IServiceProvider _provider;
-
-        ConnectivityUtil _connectivityUtil = new ConnectivityUtil();
-
         public MonkeyPresenter(
-            IMvpEventAggregator eventAggregator,
-            IMonkeyDataService dataService,
-            IServiceProvider provider,
-            IListViewModel listVm) : base(provider)
+              IServiceProvider provider
+            , IMvpEventAggregator eventAggregator
+            , IMonkeyDataService dataService
+            , IListViewModel listVm)
+            : base(provider, eventAggregator, dataService, listVm)
         {
-            _eventAggregator = eventAggregator;
-            _dataService = dataService;
-            _provider = provider;
-            _listVm = listVm;
+            Title = "Monkey Locator";
         }
 
-        // Invoked by the MainPage:ContentPageBase constructor.  The
-        // IOC constructor injector will pass in IMvpPresenter instance
-        public override void Initialize(object sender = null, EventArgs e = null)
+        protected override void SetSupportedButtons()
         {
-            base.Initialize(sender, e);
-
-            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
-
-            // Get list of available commands so we can determine button text
-            var nameFor = _provider.GetNamedCommands();
-
-            // Use magic string when type not available (proj not referenced)
-            _listVm.ButtonText1 = nameFor[nameof(GetMonkeyListCommand)];
-            _listVm.ButtonText2 = nameFor["GotoInventoryCommand"];
-            _listVm.ButtonText3 = nameFor[nameof(FindClosestCommand)];
-
-            _listVm.Title = "Monkey Locator";
-            _listVm.Mode = _dataService.Mode;
-
-            _listVm.Presenter = this; // give view model presenter reference
-            ViewModel = _listVm;      // give presenter view model reference
-
-            _connectivityUtil.ConnectivityChanged += (s, e) =>
+            SupportedButtons = new List<string>
             {
-                // Update view model and invoke the GetMonkeys command (refresh data)
-                _listVm.Mode = _provider.GetService<IMonkeyDataService>().Mode;
-                InvokeCommand(_listVm.ButtonText1);
-
-                // Update Monkey View Model with mode and publish event
-                var messageArgs = new MessageEventArgs { Message = _listVm.Mode };
-                _eventAggregator.Publish<MessageEventArgs>(messageArgs, "Mode");
+                nameof(FindClosestCommand),
+                nameof(GetMonkeyListCommand),
+                "GotoInventoryCommand"
             };
+        }
+
+        protected override void OnInternetConnectivityChanged(
+            object sender, ConnectivityEventArgs e)
+        {
+            // Get list of available commands so we can determine button text
+            var buttonCommands = Provider.GetNamedCommands();
+
+            // Update view model and invoke get monkeys command (refresh data)
+            ViewModel.Mode = Provider.GetService<IMonkeyDataService>().Mode;
+            InvokeCommand(buttonCommands[nameof(GetMonkeyListCommand)]);
+
+            // Update Monkey View Model with mode and publish event
+            var messageArgs = new MessageEventArgs { Message = ViewModel.Mode };
+            EventAggregator.Publish<MessageEventArgs>(messageArgs);
         }
 
         // Invoked by MauiProgram.CreateMauiApp()
         public static void InitServices(MauiAppBuilder builder)
         {
-            builder.Services.AddSingleton<IMonkeyPresenter, MonkeyPresenter>();
-
-            builder.Services.AddTransient<IMvpCommand, GotoSelectedMonkeyCommand>();
-            builder.Services.AddTransient<IMvpCommand, GetMonkeyListCommand>();
-            builder.Services.AddTransient<IMonkeyDataService>(provider =>
-            {
-                IConnectivity connectivity = provider.GetService<IConnectivity>();
-
-                return connectivity.NetworkAccess != NetworkAccess.Internet
-                  ? new MonkeyOfflineService()
-                  : new MonkeyOnlineService();
-            });
+            builder.Services
+                .AddSingleton<IMonkeyPresenter, MonkeyPresenter>()
+                .AddTransient<IMvpCommand, GotoSelectedMonkeyCommand>()
+                .AddTransient<IMvpCommand, GetMonkeyListCommand>()
+                .AddTransient<IMonkeyDataService>(provider =>
+                {
+                    // Each request for data service will return service based
+                    // on the connectivity status [OFFLINE/ONLINE]
+                    var connectivity = provider.GetService<IConnectivity>();
+                    return connectivity.NetworkAccess != NetworkAccess.Internet
+                      ? new MonkeyOfflineService()
+                      : new MonkeyOnlineService();
+                });
         }
     }
 }

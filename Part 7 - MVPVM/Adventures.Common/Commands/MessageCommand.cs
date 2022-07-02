@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Constants;
-
 namespace Adventures.Common
 {
     public class MessageCommand :CommandBase
@@ -14,8 +12,7 @@ namespace Adventures.Common
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;
-            await Shell.Current.DisplayAlert("SYSTEM MESSAGE", Message, "Cancel");
-
+            await MessageBox.Show("SYSTEM MESSAGE", Message, "Cancel");
         }
     }
 }

@@ -9,13 +9,14 @@ namespace Adventures.Monkey.Commands
 	{
 		public GetMonkeyListCommand(IMonkeyDataService service) : base(service) 
 		{
-			MatchButtonText = "Get Monkey Data";
-            SupportedBy = "MonkeyPresenter";
+			MatchButtonText = "Get Data";
 		}
 
         public override void OnExecuted()
         {
-            Console.WriteLine($"Invoked GetMonkeyListCommand  Mode=[{((ButtonEventArgs)this.EventArgs).Presenter.ViewModel.Mode}]");
+            var args = this.EventArgs as ButtonEventArgs;
+            Console.WriteLine($"Invoked GetMonkeyListCommand " +
+                $"Mode=[{args.Presenter.ViewModel.Mode}]");
         }
     }
 }

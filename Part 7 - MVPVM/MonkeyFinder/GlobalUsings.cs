@@ -9,3 +9,6 @@ global using Adventures.Monkey.Interfaes;
 global using Adventures.Monkey.Presenters;
 global using MonkeyFinder.Presenters;
 global using MonkeyFinder.View;
+global using Adventures.Common.Events;
+global using Adventures.Common.ViewModel;
+global using Adventures.Inventory.Views;

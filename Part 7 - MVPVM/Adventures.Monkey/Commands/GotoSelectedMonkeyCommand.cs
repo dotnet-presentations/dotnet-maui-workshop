@@ -8,7 +8,6 @@ namespace Adventures.Monkey.Commands
 	{
         public GotoSelectedMonkeyCommand() {
             MatchDataType = nameof(ListItem);
-            SupportedBy = "MonkeyPresenter";
         }
 
         public override async void OnExecute()

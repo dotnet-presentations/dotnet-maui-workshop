@@ -5,6 +5,12 @@
         // https://docs.microsoft.com/en-us/dotnet/maui/fundamentals/messagingcenter
         //
 
+        public void Publish<TSender>(TSender sender)
+            where TSender : class
+        {
+            MessagingCenter.Send<TSender>(sender,nameof(TSender));
+        }
+
         public void Publish<TSender>(TSender sender, string message)
             where TSender : class
         {
@@ -17,7 +23,14 @@
 			MessagingCenter.Send<TSender,TArgs>(sender, message, args);
 		}
 
-		public void Subscribe<TSender>(object subscriber, string  message,
+
+        public void Subscribe<TSender>(object subscriber, 
+            Action<TSender> callback) where TSender : class
+        {
+            MessagingCenter.Subscribe<TSender>(subscriber, nameof(TSender), callback);
+        }
+
+        public void Subscribe<TSender>(object subscriber, string  message,
 			Action<TSender> callback) where TSender : class
         {
 			MessagingCenter.Subscribe<TSender>(subscriber, message, callback);

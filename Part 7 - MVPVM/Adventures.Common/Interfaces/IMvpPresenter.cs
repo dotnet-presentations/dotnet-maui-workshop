@@ -4,7 +4,11 @@
 	{
 		Dictionary<string,IMvpView> Views { get; set; }
 
-		IMvpViewModel ViewModel { get; set; }
+        IServiceProvider Provider { get; set; }
+
+        List<string> SupportedButtons { get; set; }
+
+        IMvpViewModel ViewModel { get; set; }
 
 		bool IsInitialized { get; set; }
 

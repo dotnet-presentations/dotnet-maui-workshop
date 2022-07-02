@@ -1,9 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Events;
-using Adventures.Common.ViewModel;
-using Adventures.Inventory.Views;
-
 namespace MonkeyFinder;
 
 public static class MauiProgram
@@ -18,44 +14,50 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
 
-    	builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
-		builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
-		builder.Services.AddSingleton<IMap>(Map.Default);
+    	builder.Services
+			.AddSingleton<IConnectivity>(Connectivity.Current)
+			.AddSingleton<IGeolocation>(Geolocation.Default)
+			.AddSingleton<IMap>(Map.Default)
+			.AddSingleton<IMvpEventAggregator, SimpleEventAggregator>()
 
-		builder.Services.AddSingleton<IMvpEventAggregator, SimpleEventAggregator>();
+			// Shared commands
+			.AddSingleton<IMvpCommand, MessageCommand>()
+			.AddSingleton<IMvpCommand, FindClosestCommand>()
+			.AddSingleton<IMvpCommand, ShowonMapCommand>()
 
-		// Shared commands
-		builder.Services.AddSingleton<IMvpCommand, MessageCommand>();
-		builder.Services.AddSingleton<IMvpCommand, FindClosestCommand>();
-		builder.Services.AddSingleton<IMvpCommand, ShowonMapCommand>();
+			// Views
+			.AddTransient<MainPage>()
+			.AddTransient<DetailsPage>() // Shared 
 
-		// Views
-		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddTransient<DetailsPage>(); // Shared 
-
-		// ViewModels
-		builder.Services.AddTransient<IListViewModel, ListViewModel>(); // Shared 
-		builder.Services.AddTransient<IDetailViewModel>( provider =>    // Shared 
-		{
-			// Configure view model with applicable presenter and IsPopulationVisible
-			// value.  We don't want to show it on Inventory details page
-			var state = Shell.Current.CurrentState.Location.OriginalString;
-			var isNotInventory = !state.ToLower().Contains(nameof(InventoryPage));
-			return new DetailsViewModel
+			// ViewModels
+			.AddTransient<IListViewModel, ListViewModel>()	// Shared 
+			.AddTransient<IDetailViewModel>( provider =>    // Shared 
 			{
-				IsPopulationVisible = isNotInventory,
-				Presenter = isNotInventory // assign the applicable presenter
-					? provider.GetService<IMonkeyPresenter>()
-					: provider.GetService<IInventoryPresenter>()
-            };
-        });
+				// Configure view model with applicable presenter and
+				// IsPopulationVisible value.  We don't want to show 
+				// population on the inventory details page
+				var state = Shell.Current.CurrentState.Location.OriginalString;
+				var isInventoryPage = state.Contains(nameof(InventoryPage));
 
-		// Encapsulated services
-		MonkeyPresenter.InitServices(builder);
-		InventoryPresenter.InitServices(builder);
+				return new DetailsViewModel
+				{
+                    // Set presenter and IsPopulationVisible based
+                    // on the the current page  
+                    IsPopulationVisible = !isInventoryPage,
+					Presenter = isInventoryPage 
+						? provider.GetService<IInventoryPresenter>()
+						: provider.GetService<IMonkeyPresenter>()
+				};
+			});
+
+		// Reused by both MonkeyPresenter and InventoryPresenter
+        Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
+
+        // Initialize services. 
+        MonkeyPresenter.InitServices(builder);
+        InventoryPresenter.InitServices(builder);
 
 		var serviceBuilder =  builder.Build();
 		return serviceBuilder;
-
 	}
 }
