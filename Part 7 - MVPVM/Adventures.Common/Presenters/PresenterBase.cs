@@ -30,12 +30,13 @@ namespace Adventures.Common.Presenters
 
             if (commands != null)
             {
-                ViewModel.ButtonItems = new ObservableCollection<ButtonViewModel>();
+                ViewModel.ButtonItems = new ObservableCollection<Button>();
                 foreach(var command in commands)
                 {
-                    var buttonVm = new ButtonViewModel {
-                        MatchButtonText = command.MatchButtonText,
-                        Presenter = this
+                    var buttonVm = new Button {
+                        Margin = new Thickness(2,10),
+                        Text = command.MatchButtonText,
+                        Style = (Style)Application.Current.Resources["ButtonOutline"]
                     };
                     ViewModel.ButtonItems.Add(buttonVm);
                 }

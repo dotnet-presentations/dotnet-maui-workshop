@@ -8,7 +8,7 @@
 
         IMvpPresenter Presenter { get; set; }
 
-        ObservableCollection<ButtonViewModel> ButtonItems { get; set; }
+        ObservableCollection<Button> ButtonItems { get; set; }
     }
 }
 

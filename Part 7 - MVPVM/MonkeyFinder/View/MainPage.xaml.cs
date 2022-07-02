@@ -9,6 +9,7 @@ public partial class MainPage : ContentPageBase
 	public MainPage(IMonkeyPresenter presenter) : base(presenter)
 	{
         InitializeComponent();
-	}
+        OnInitializeComponent(flexLayout);
+    }
 }
 

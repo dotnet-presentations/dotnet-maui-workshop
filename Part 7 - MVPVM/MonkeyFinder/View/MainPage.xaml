@@ -59,50 +59,27 @@
             </CollectionView>
         </RefreshView>
 
-        <StackLayout
-            Grid.Row="1"
-            Grid.Column="0"
-            Orientation="Horizontal"
-            VerticalOptions="Start"
-            HorizontalOptions="Center"
-            BindableLayout.ItemsSource="{Binding ButtonItems}">
-               <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="viewmodel:ButtonViewModel">
-                    <Button
-                        Margin="5,16"
-                        Style="{StaticResource ButtonOutline}"
-                        Text="{Binding MatchButtonText}"/>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
-
          <HorizontalStackLayout
             Grid.Row="1"
-            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Margin="8">
             <Label
-                Margin="8"
-                Padding="5"
+                Margin="10"
+                Padding="10"
                 Background="red"
                 Style="{StaticResource SmallLabel}"
-                Text="{Binding Mode, Mode=TwoWay}" />
+                Text="{Binding Mode, Mode=TwoWay}" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                          NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
 
-             <Button
-                IsEnabled="{Binding IsNotBusy}"
-                Style="{StaticResource ButtonOutline}"
-                Text="{Binding ButtonText1}" />
+            <FlexLayout
+                x:Name="flexLayout"
+                Margin="5,10"
+            />
 
-             <Button
-                Margin="8"
-                IsEnabled="{Binding IsNotBusy}"
-                Style="{StaticResource ButtonOutline}"
-                Text="{Binding ButtonText2}" />
-
-            <Button
-                Margin="8"
-                IsEnabled="{Binding IsNotBusy}"
-                Style="{StaticResource ButtonOutline}"
-                Text="{Binding ButtonText3}" />
         </HorizontalStackLayout>
 
         <ActivityIndicator

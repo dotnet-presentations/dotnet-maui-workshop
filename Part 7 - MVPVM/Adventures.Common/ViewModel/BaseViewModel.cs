@@ -4,7 +4,7 @@ namespace Adventures.Common.ViewModel;
 
 public partial class BaseViewModel : ObservableObject, IMvpViewModel
 {
-    public ObservableCollection<ButtonViewModel> ButtonItems { get; set; }
+    public ObservableCollection<Button> ButtonItems { get; set; }
 
     public IMvpPresenter Presenter { get; set; }
 

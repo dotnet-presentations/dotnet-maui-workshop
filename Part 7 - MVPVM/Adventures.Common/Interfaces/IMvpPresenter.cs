@@ -8,7 +8,9 @@
 
 		bool IsInitialized { get; set; }
 
-		void Initialize(object sender = null, EventArgs e = null);
+		void InvokeCommand(string commandKey);
+
+        void Initialize(object sender = null, EventArgs e = null);
 
 		Task ButtonClickHandler(object sender = null, EventArgs e = null);
 	}
