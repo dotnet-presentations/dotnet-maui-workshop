@@ -132,7 +132,7 @@ namespace Adventures.Common.Presenters
             buttonArgs.Views = Views;
             buttonArgs.Key = button?.Text ?? sender.GetType().Name;
 
-            var command = Provider.GetNamedCommand(buttonArgs.Key);
+            var command = Provider.GetNamedCommand(buttonArgs);
             command.Execute(buttonArgs);
 
             await Task.Delay(1); // 1 millisecond for our async process

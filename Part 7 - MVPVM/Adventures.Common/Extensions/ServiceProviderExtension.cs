@@ -3,22 +3,39 @@ namespace Adventures.Common.Extensions
 {
     public static class ServiceProviderExtension
 	{
-		public static IMvpCommand GetNamedCommand(
-			this IServiceProvider serviceProvider, string name)
+        public static IMvpCommand GetNamedCommand(
+            this IServiceProvider serviceProvider, ButtonEventArgs e)
         {
-			var commands = serviceProvider.GetServices<IMvpCommand>();
-			var command = commands
-				.FirstOrDefault(s => s.MatchButtonText == name
-								  || s.MatchDataType == name);
-			if (command == null)
-			{
-				command = commands.FirstOrDefault(s =>
-					s.MatchButtonText == AppConstants.Message);
+            var key = e.Key;
+            var commands = serviceProvider.GetServices<IMvpCommand>();
+            IMvpCommand command = null;
 
-				command.Message = $"Could not find ButtonText='{name}' " +
+            // key could be used in multiple presenters, e.g., "Get Data"
+            // so we'll first check for the presenters supported buttons
+            // to see if the key exist. If so we'll use it
+            foreach(string buttonName in e.Presenter.SupportedButtons)
+            {
+                command = commands.FirstOrDefault(c => c.Name == buttonName);
+                if (command.MatchButtonText == key)
+                {
+                    return command;
+                }
+            }
+
+            // If not found in presenter supported buttons then we'll search
+            // all available commands for the first match and use it
+            command = commands.FirstOrDefault(s => s.MatchButtonText == key
+                                                  || s.MatchDataType == key);
+            if (command == null)
+            {
+                command = commands.FirstOrDefault(s =>
+                    s.MatchButtonText == AppConstants.Message);
+
+                command.Message = $"Could not find ButtonText='{key}' " +
                     $"in IMvpCommands IOC registrations - did you register it?";
-			}
-			return command;
+            }
+
+            return command;
         }
 
         public static Dictionary<string,string> GetNamedCommands(
