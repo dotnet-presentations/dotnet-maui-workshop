@@ -6,7 +6,8 @@ namespace Adventures.Common.Interfaces
 	{
 		public string Mode { get; set; }
 
-		Task<T> GetDataAsync<T>(object sender = null, EventArgs e = null) where T : ServiceResult;
+		Task<T> GetDataAsync<T>(object sender = null, EventArgs e = null)
+			where T : ServiceResult;
 	}
 }
 

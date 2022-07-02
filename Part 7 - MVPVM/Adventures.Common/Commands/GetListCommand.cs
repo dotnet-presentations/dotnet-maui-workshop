@@ -15,7 +15,9 @@ namespace Adventures.Common.Commands
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;
-            if (args!=null && args.ViewModel == null) // Change of network won't have VM
+
+            // Change of network won't have VM
+            if (args!=null && args.ViewModel == null) 
                 args.ViewModel = args.Presenter.ViewModel;
 
             var vm = args.ViewModel as ListViewModel;
@@ -26,14 +28,15 @@ namespace Adventures.Common.Commands
             try
             {
                 vm.IsBusy = true;
-                //vm.IsRefreshing = true;
 
-                var serviceResult = await _dataService.GetDataAsync<ServiceResult>();
+                var serviceResult = await _dataService
+                    .GetDataAsync<ServiceResult>();
 
                 if (vm.ListItems.Count != 0)
                     vm.ListItems.Clear();
 
-                foreach (var item in serviceResult.GetData<List<ListItem>>())
+                var listItems = serviceResult.GetData<List<ListItem>>();
+                foreach (var item in listItems)
                     vm.ListItems.Add(item);
 
             }
@@ -51,11 +54,7 @@ namespace Adventures.Common.Commands
             OnExecuted();
         }
 
-        public virtual void OnExecuted()
-        {
-
-        }
-
+        public virtual void OnExecuted() { }
     }
 }
 

@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-
-
 namespace Adventures.Monkey.Commands
 {
     public class GotoSelectedMonkeyCommand : CommandBase
@@ -18,7 +16,9 @@ namespace Adventures.Monkey.Commands
             if (listItem == null)
                 return;
 
-            var pageInfo = new Dictionary<string, object> { { nameof(ListItem), listItem } };
+            var pageInfo = new Dictionary<string, object> {
+                { nameof(ListItem), listItem }
+            };
             await Shell.Current.GoToAsync(nameof(DetailsPage), true, pageInfo);
         }
     }

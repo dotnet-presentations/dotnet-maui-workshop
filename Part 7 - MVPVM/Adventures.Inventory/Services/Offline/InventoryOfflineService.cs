@@ -16,15 +16,19 @@ public class InventoryOfflineService : IInventoryDataService
             return inventoryList;
 
         // Offline
-        using var stream = await FileSystem.OpenAppPackageFileAsync("inventorydata.json");
+        using var stream = await FileSystem
+            .OpenAppPackageFileAsync("inventorydata.json");
+
         using var reader = new StreamReader(stream);
         var contents = await reader.ReadToEndAsync();
         inventoryList = JsonSerializer.Deserialize<List<ListItem>>(contents);
-
+        foreach (var item in inventoryList)
+            item.Name += " (OFFLINE)";
         return inventoryList;
     }
 
-    public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
+    public async Task<T> GetDataAsync<T>(object sender, EventArgs e)
+        where T : ServiceResult
     {
         var retValue = new ServiceResult
         {

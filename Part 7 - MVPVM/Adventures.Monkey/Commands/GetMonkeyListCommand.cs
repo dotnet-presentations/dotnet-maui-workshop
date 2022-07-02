@@ -15,7 +15,7 @@ namespace Adventures.Monkey.Commands
         public override void OnExecuted()
         {
             var args = this.EventArgs as ButtonEventArgs;
-            Console.WriteLine($"Invoked GetMonkeyListCommand " +
+            Console.WriteLine($"Invoked GetMonkeyListCommand  " +
                 $"Mode=[{args.Presenter.ViewModel.Mode}]");
         }
     }

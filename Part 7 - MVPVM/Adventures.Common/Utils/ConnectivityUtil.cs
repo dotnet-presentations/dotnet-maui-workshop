@@ -4,13 +4,18 @@
     {
         public event EventHandler<ConnectivityEventArgs> ConnectivityChanged;
 
-        public ConnectivityUtil() => Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        public ConnectivityUtil() => Connectivity.ConnectivityChanged +=
+            Connectivity_ConnectivityChanged;
 
-        ~ConnectivityUtil() => Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+        ~ConnectivityUtil() => Connectivity.ConnectivityChanged -=
+            Connectivity_ConnectivityChanged;
 
-        void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        void Connectivity_ConnectivityChanged(object sender,
+            ConnectivityChangedEventArgs e)
         {
-            var args = new ConnectivityEventArgs { IsActive = true, Message="" };
+            var args = new ConnectivityEventArgs {
+                IsActive = true, Message=""
+            };
 
             if (e.NetworkAccess != NetworkAccess.Internet)
             {
@@ -21,7 +26,7 @@
             }
 
             if (e.NetworkAccess == NetworkAccess.ConstrainedInternet)
-                args.Message = "Internet access is available but is limited.  ";
+                args.Message = "Internet access is available but is limited.";
 
             // Build comma delimited list of all active connections
             var connections = string.Join(",", e.ConnectionProfiles);

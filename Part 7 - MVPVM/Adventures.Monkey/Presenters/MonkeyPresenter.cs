@@ -22,7 +22,7 @@ namespace Adventures.Monkey.Presenters
             {
                 nameof(FindClosestCommand),
                 nameof(GetMonkeyListCommand),
-                "GotoInventoryCommand"
+                "GotoInventoryCommand" // Out of scope (no reference to proj)
             };
         }
 

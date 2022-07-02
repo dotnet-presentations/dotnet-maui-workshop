@@ -21,15 +21,19 @@ public class MonkeyOnlineService : IMonkeyDataService
             return monkeyList;
 
         // Online
-        var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
+        var response = await httpClient
+            .GetAsync("https://www.montemagno.com/monkeys.json");
+
         if (response.IsSuccessStatusCode)
         {
-            monkeyList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
+            monkeyList = await response.Content
+                .ReadFromJsonAsync<List<ListItem>>();
         }
         return monkeyList;
     }
 
-    public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
+    public async Task<T> GetDataAsync<T>(object sender, EventArgs e)
+        where T : ServiceResult
     {
         var retValue = new ServiceResult
         {

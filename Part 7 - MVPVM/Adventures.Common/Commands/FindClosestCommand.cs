@@ -23,7 +23,9 @@ namespace Adventures.Commands
             if (vm.IsBusy || vm.ListItems.Count == 0)
             {
                 var view = args.Views.FirstOrDefault().Value as Page;
-                await MessageBox.Show("No data found to query", "Get data and try again", "OK");
+                await MessageBox.Show("No data found to query",
+                    "Get data and try again", "OK");
+
                 return;
             }
 
@@ -33,19 +35,22 @@ namespace Adventures.Commands
                 var location = await _geolocation.GetLastKnownLocationAsync();
                 if (location == null)
                 {
-                    location = await _geolocation.GetLocationAsync(new GeolocationRequest
-                    {
+                    location = await _geolocation
+                        .GetLocationAsync(new GeolocationRequest {
                         DesiredAccuracy = GeolocationAccuracy.Medium,
                         Timeout = TimeSpan.FromSeconds(30)
                     });
                 }
 
                 // Find closest item to us
-                var first = vm.ListItems.OrderBy(m => location.CalculateDistance(
-                    new Location(m.Latitude, m.Longitude), DistanceUnits.Miles))
+                var first = vm.ListItems.OrderBy(m =>
+                    location.CalculateDistance(
+                        new Location(m.Latitude, m.Longitude),
+                                     DistanceUnits.Miles))
                     .FirstOrDefault();
 
-                await MessageBox.Show("", first.Name + " " + first.Location, "OK");
+                await MessageBox.Show("Closest Location",
+                    first.Name + " " + first.Location, "OK");
 
             }
             catch (Exception ex)

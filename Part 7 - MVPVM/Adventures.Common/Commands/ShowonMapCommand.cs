@@ -18,16 +18,18 @@ namespace Adventures.Commands
 
             try
             {
-                await _map.OpenAsync(vm.ListItem.Latitude, vm.ListItem.Longitude, new MapLaunchOptions
-                {
-                    Name = vm.ListItem.Name,
-                    NavigationMode = NavigationMode.None
-                });
+                await _map.OpenAsync(vm.ListItem.Latitude,
+                    vm.ListItem.Longitude,
+                    new MapLaunchOptions {
+                        Name = vm.ListItem.Name,
+                        NavigationMode = NavigationMode.None
+                    });
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Unable to launch maps: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error, no Maps app!", ex.Message, "OK");
+                await Shell.Current
+                    .DisplayAlert("Error, no Maps app!", ex.Message, "OK");
             }
         }
     }

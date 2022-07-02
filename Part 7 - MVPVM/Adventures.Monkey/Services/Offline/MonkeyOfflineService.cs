@@ -16,15 +16,21 @@ public class MonkeyOfflineService : IMonkeyDataService
             return monkeyList;
 
         // Offline
-        using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
+        using var stream = await FileSystem
+            .OpenAppPackageFileAsync("monkeydata.json");
+
         using var reader = new StreamReader(stream);
         var contents = await reader.ReadToEndAsync();
         monkeyList = JsonSerializer.Deserialize<List<ListItem>>(contents);
 
+        foreach (var item in monkeyList)
+            item.Name += " (OFFLINE)";
+
         return monkeyList;
     }
 
-    public async Task<T> GetDataAsync<T>(object sender, EventArgs e) where T : ServiceResult
+    public async Task<T> GetDataAsync<T>(object sender, EventArgs e)
+        where T : ServiceResult
     {
         var retValue = new ServiceResult
         {

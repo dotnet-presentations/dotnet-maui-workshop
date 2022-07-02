@@ -7,14 +7,17 @@ namespace Adventures.Inventory.Commands
     /// </summary>
     public class GetInventoryListCommand : GetListCommand
 	{
-		public GetInventoryListCommand(IInventoryDataService service) : base(service) 
+		public GetInventoryListCommand(IInventoryDataService service)
+            : base(service) 
 		{
 			MatchButtonText = "Get Data";
 		}
 
         public override void OnExecuted()
         {
-            Console.WriteLine($"Invoked GetInventoryListCommand  Mode=[{((ButtonEventArgs)this.EventArgs).Presenter.ViewModel.Mode}]");
+            var args = this.EventArgs as ButtonEventArgs;
+            Console.WriteLine($"Invoked GetInventoryListCommand  " +
+                $"Mode=[{args.Presenter.ViewModel.Mode}]");
         }
     }
 }

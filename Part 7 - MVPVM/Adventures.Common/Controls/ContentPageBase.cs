@@ -20,11 +20,9 @@
             var ViewModel = BindingContext as IListViewModel;
             foreach (Button item in ViewModel.ButtonItems)
                 flexLayout.Add(item);
-
-           
         }
 
-        protected void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        protected void TapGestureRecognizer_Tapped(Object sender, EventArgs e)
         {
             var key = "UNDEFINED";
             var label = sender as Label;
