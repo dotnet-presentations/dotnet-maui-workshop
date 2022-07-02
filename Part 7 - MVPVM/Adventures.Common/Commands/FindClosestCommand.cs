@@ -8,6 +8,7 @@ namespace Adventures.Commands
 
         public FindClosestCommand(IGeolocation geolocation) {
             MatchButtonText = "Find Closest";
+            SupportedBy = "GLOBAL";
             _geolocation = geolocation;
         }
 

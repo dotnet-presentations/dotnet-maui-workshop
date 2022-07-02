@@ -6,6 +6,7 @@ namespace Adventures.Common.Interfaces
 		public string MatchButtonText { get; set; }
 		public string MatchDataType { get; set; }
 		public string Message { get; set; }
+		public string SupportedBy { get; set; }
 
 	}
 }

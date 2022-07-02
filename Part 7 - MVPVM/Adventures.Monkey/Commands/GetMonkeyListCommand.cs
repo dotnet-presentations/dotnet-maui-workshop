@@ -10,6 +10,7 @@ namespace Adventures.Monkey.Commands
 		public GetMonkeyListCommand(IMonkeyDataService service) : base(service) 
 		{
 			MatchButtonText = "Get Monkey Data";
+            SupportedBy = "MonkeyPresenter";
 		}
 
         public override void OnExecuted()

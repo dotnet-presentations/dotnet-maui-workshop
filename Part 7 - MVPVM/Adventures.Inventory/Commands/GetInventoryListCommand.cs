@@ -10,6 +10,7 @@ namespace Adventures.Inventory.Commands
 		public GetInventoryListCommand(IInventoryDataService service) : base(service) 
 		{
 			MatchButtonText = "Get Inventory Data";
+            SupportedBy = "InventoryPresenter";
 		}
 
         public override void OnExecuted()

@@ -33,6 +33,13 @@ namespace Adventures.Common.Presenters
                 ViewModel.ButtonItems = new ObservableCollection<Button>();
                 foreach(var command in commands)
                 {
+                    if (command.MatchDataType == "ListItem") continue;
+                    var supportedBy = command?.SupportedBy ?? "NA";
+                    var name = this.GetType().Name;
+
+                    if (!supportedBy.Contains(name))
+                        if(!supportedBy.Contains("GLOBAL")) continue;
+
                     var buttonVm = new Button {
                         Margin = new Thickness(2,10),
                         Text = command.MatchButtonText,

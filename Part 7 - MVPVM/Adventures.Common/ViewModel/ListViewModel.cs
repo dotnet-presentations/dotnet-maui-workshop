@@ -29,8 +29,5 @@ public partial class ListViewModel : BaseViewModel, IListViewModel
     [ObservableProperty]
     string buttonText3;
 
-    [ObservableProperty]
-    string matchButtonText = "Hello";
-
     public ListViewModel() { }
 }

@@ -7,6 +7,7 @@ namespace Adventures.Inventory.Commands
         public GotoInventoryCommand() {
             MatchButtonText = "Go to Inventory";
             MatchDataType = "Inventory";
+            SupportedBy = "MonkeyPresenter";
         }
 
         public override async void OnExecute()

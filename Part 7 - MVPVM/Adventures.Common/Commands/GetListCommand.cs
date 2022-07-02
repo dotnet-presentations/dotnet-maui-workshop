@@ -26,6 +26,7 @@ namespace Adventures.Common.Commands
             try
             {
                 vm.IsBusy = true;
+                //vm.IsRefreshing = true;
 
                 var serviceResult = await _dataService.GetDataAsync<ServiceResult>();
 
