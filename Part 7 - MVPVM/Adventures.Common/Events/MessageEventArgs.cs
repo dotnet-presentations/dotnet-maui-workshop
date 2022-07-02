@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Common.Events
+﻿namespace Adventures.Common.Events
 {
-	public class MessageEventArgs : EventArgs
+    public class MessageEventArgs : EventArgs
 	{
 		public string Message { get; set; }
 

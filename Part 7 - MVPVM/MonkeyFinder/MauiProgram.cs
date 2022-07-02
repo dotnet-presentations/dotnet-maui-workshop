@@ -2,6 +2,7 @@
 
 using Adventures.Common.Events;
 using Adventures.Common.ViewModel;
+using Adventures.Inventory.Views;
 
 namespace MonkeyFinder;
 
@@ -39,11 +40,11 @@ public static class MauiProgram
 			// Configure view model with applicable presenter and IsPopulationVisible
 			// value.  We don't want to show it on Inventory details page
 			var state = Shell.Current.CurrentState.Location.OriginalString;
-			var isNotInventory = !state.ToLower().Contains("inventory");
+			var isNotInventory = !state.ToLower().Contains(nameof(InventoryPage));
 			return new DetailsViewModel
 			{
 				IsPopulationVisible = isNotInventory,
-				Presenter = isNotInventory
+				Presenter = isNotInventory // assign the applicable presenter
 					? provider.GetService<IMonkeyPresenter>()
 					: provider.GetService<IInventoryPresenter>()
             };
@@ -54,7 +55,6 @@ public static class MauiProgram
 		InventoryPresenter.InitServices(builder);
 
 		var serviceBuilder =  builder.Build();
-
 		return serviceBuilder;
 
 	}

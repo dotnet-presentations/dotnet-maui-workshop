@@ -30,6 +30,7 @@
 	  <None Remove="Controls\" />
 	  <None Remove="Views\" />
 	  <None Remove="Utils\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Commands\" />
@@ -44,6 +45,7 @@
 	  <Folder Include="Controls\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Utils\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\DetailsPage.xaml">

@@ -1,12 +1,11 @@
-﻿using System;
-namespace Adventures.Common.Interfaces
+﻿namespace Adventures.Common.Interfaces
 {
-	public interface IMvpEventAggregator
+    public interface IMvpEventAggregator
 	{
-        void Send<TSender>(TSender sender, string message)
+        void Publish<TSender>(TSender sender, string message)
             where TSender : class;
 
-        void Send<TSender, TArgs>(TSender sender, string message, TArgs args)
+        void Publish<TSender, TArgs>(TSender sender, string message, TArgs args)
             where TSender : class;
 
 

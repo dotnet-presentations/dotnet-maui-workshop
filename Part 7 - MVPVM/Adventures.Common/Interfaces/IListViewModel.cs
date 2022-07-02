@@ -10,18 +10,16 @@ namespace Adventures.Common.Interfaces
 
         bool IsRefreshing { get; set; }
 
-		string Mode { get; set; }
+        bool IsBusy { get; }
 
-		string Title { get; set; }
+        bool IsNotBusy { get; }
 
-		bool IsBusy { get; set; }
+        string Title { get; set; }
 
-		bool IsNotBusy { get; }
-
-		// TODO: Collection of buttons
-		string GetDataButtonText { get; set; }
-		string GetDataButton2Text { get; set; }
-        string GetDataButton3Text { get; set; }
+        // TODO: Collection of buttons
+        string ButtonText1 { get; set; }
+		string ButtonText2 { get; set; }
+        string ButtonText3 { get; set; }
     }
 }
 

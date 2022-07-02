@@ -1,9 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using System.Diagnostics;
-using Adventures.Common.Commands;
-using Adventures.Common.ViewModel;
-
 namespace Adventures.Commands
 {
     public class ShowonMapCommand : CommandBase

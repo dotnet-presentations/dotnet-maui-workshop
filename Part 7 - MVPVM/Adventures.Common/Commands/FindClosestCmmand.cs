@@ -1,10 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-
-using System.Diagnostics;
-using Adventures.Common.Commands;
-using Adventures.Common.ViewModel;
-
 namespace Adventures.Commands
 {
     public class FindClosestCommand : CommandBase
@@ -22,7 +17,11 @@ namespace Adventures.Commands
             var vm = args.ViewModel as ListViewModel;
 
             if (vm.IsBusy || vm.ListItems.Count == 0)
+            {
+                var view = args.Views.FirstOrDefault().Value as Page;
+                await view.DisplayAlert("No data found to query", "Get data and try again", "OK");
                 return;
+            }
 
             try
             {

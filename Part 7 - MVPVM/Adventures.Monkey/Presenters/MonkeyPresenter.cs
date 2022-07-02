@@ -28,6 +28,8 @@ namespace Adventures.Monkey.Presenters
             _listVm = listVm;
         }
 
+        // Invoked by the MainPage:ContentPageBase constructor.  The
+        // IOC constructor injector will pass in IMvpPresenter instance
         public override void Initialize(object sender = null, EventArgs e = null)
         {
             base.Initialize(sender, e);
@@ -38,9 +40,9 @@ namespace Adventures.Monkey.Presenters
             var nameFor = _provider.GetNamedCommands();
 
             // Use magic string when type not available (proj not referenced)
-            _listVm.GetDataButtonText = nameFor[nameof(GetMonkeyListCommand)];
-            _listVm.GetDataButton2Text = nameFor["GotoInventoryCommand"];
-            _listVm.GetDataButton3Text = nameFor[nameof(FindClosestCommand)];
+            _listVm.ButtonText1 = nameFor[nameof(GetMonkeyListCommand)];
+            _listVm.ButtonText2 = nameFor["GotoInventoryCommand"];
+            _listVm.ButtonText3 = nameFor[nameof(FindClosestCommand)];
 
             _listVm.Title = "Monkey Locator";
             _listVm.Mode = _dataService.Mode;
@@ -52,11 +54,11 @@ namespace Adventures.Monkey.Presenters
             {
                 // Update view model and invoke the GetMonkeys command (refresh data)
                 _listVm.Mode = _provider.GetService<IMonkeyDataService>().Mode;
-                InvokeCommand(_listVm.GetDataButtonText);
+                InvokeCommand(_listVm.ButtonText1);
 
                 // Update Monkey View Model with mode and publish event
                 var messageArgs = new MessageEventArgs { Message = _listVm.Mode };
-                _eventAggregator.Send<MessageEventArgs>(messageArgs, "Mode");
+                _eventAggregator.Publish<MessageEventArgs>(messageArgs, "Mode");
             };
         }
 

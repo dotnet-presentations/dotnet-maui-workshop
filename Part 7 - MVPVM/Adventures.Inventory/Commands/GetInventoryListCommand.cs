@@ -12,13 +12,8 @@ namespace Adventures.Inventory.Commands
 			MatchButtonText = "Get Inventory Data";
 		}
 
-        public override void OnExecute()
+        public override void OnExecuted()
         {
-            var args = EventArgs as ButtonEventArgs;
-            if (args.ViewModel == null) // Change of network won't have VM
-                args.ViewModel = args.Presenter.ViewModel;
-
-            base.OnExecute();
             Console.WriteLine($"Invoked GetInventoryListCommand  Mode=[{((ButtonEventArgs)this.EventArgs).Presenter.ViewModel.Mode}]");
         }
     }

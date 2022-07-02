@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using Adventures.Common.Entities;
-
 namespace Adventures.Common.ViewModel;
 
 public partial class ListViewModel : BaseViewModel, IListViewModel
@@ -10,12 +8,11 @@ public partial class ListViewModel : BaseViewModel, IListViewModel
 
     public ObservableCollection<CommandItem> CommandItems { get; set; }
 
+    public bool IsNotBusy => !IsBusy;
+
     [ObservableProperty]
     [AlsoNotifyChangeFor(nameof(IsNotBusy))]
     bool isBusy;
-
-    public bool IsNotBusy => !IsBusy;
-
 
     [ObservableProperty]
     string title;
@@ -24,15 +21,16 @@ public partial class ListViewModel : BaseViewModel, IListViewModel
     bool isRefreshing;
 
     [ObservableProperty]
-    string getDataButtonText;
+    string buttonText1;
 
     [ObservableProperty]
-    string getDataButton2Text;
+    string buttonText2;
 
     [ObservableProperty]
-    string getDataButton3Text;
+    string buttonText3;
 
-    public ListViewModel()
-    {
-    }
+    [ObservableProperty]
+    string matchButtonText = "Hello";
+
+    public ListViewModel() { }
 }

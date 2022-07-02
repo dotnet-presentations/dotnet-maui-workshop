@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Common.Events
+﻿namespace Adventures.Common.Events
 {
-	public class ConnectivityEventArgs : EventArgs
+    public class ConnectivityEventArgs : EventArgs
 	{
 		public string Message { get; set; }
 		public bool IsActive { get; set; }

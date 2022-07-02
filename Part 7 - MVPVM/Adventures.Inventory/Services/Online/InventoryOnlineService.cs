@@ -8,7 +8,7 @@ public class InventoryOnlineService : IInventoryDataService
 {
     HttpClient httpClient;
 
-    List<ListItem> monkeyList;
+    List<ListItem> inventoryList;
 
     public string Mode { get; set; } = "ONLINE";
 
@@ -21,21 +21,23 @@ public class InventoryOnlineService : IInventoryDataService
     {
         if (isAlwayTrue()) // eliminate unreachable code warnings until we're ready to implement
         {
+            // Until we stand up an online service for inventory, we'll reuse
+            // the offline service and strip off the "(offline)" text.
             var result =  await new InventoryOfflineService().GetInventory();
             result[0].Name = result[0].Name.Replace("(offline)", "");
             return result;
         }
 
-        if (monkeyList?.Count > 0)
-            return monkeyList;
+        if (inventoryList?.Count > 0)
+            return inventoryList;
 
         // Online
         var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
         if (response.IsSuccessStatusCode)
         {
-            monkeyList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
+            inventoryList = await response.Content.ReadFromJsonAsync<List<ListItem>>();
         }
-        return monkeyList;
+        return inventoryList;
 
     }
 
@@ -48,6 +50,7 @@ public class InventoryOnlineService : IInventoryDataService
         
         return (T)retValue;
     }
+
     public bool isAlwayTrue()
     {
         return true;

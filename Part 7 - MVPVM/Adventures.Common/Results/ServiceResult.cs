@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Data.Results
+﻿namespace Adventures.Data.Results
 {
-	public class ServiceResult
+    public class ServiceResult
 	{
 		public object Data { get; set; }
 

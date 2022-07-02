@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Adventures.Common.Utils
+﻿namespace Adventures.Common.Utils
 {
     public class ConnectivityUtil
     {

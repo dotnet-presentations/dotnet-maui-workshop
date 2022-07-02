@@ -5,9 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:Adventures.Common.Model;assembly=Adventures.Common"
     xmlns:viewmodel="clr-namespace:Adventures.Common.ViewModel;assembly=Adventures.Common"
-    xmlns:local="clr-namespace:MonkeyFinder">
+    xmlns:local="clr-namespace:MonkeyFinder" xmlns:converters="clr-namespace:Adventures.Common.Converters;assembly=Adventures.Common">
     <Application.Resources>
         <ResourceDictionary>
+            <converters:ModeConverter x:Key="modeConverter"/>
             <Style TargetType="Button">
                 <Setter Property="Command" Value="{Binding ButtonClickHandlerCommand}"/>
                 <Setter Property="CommandParameter" Value="{Binding Source={RelativeSource Self}}"/>

@@ -4,6 +4,7 @@
     x:Class="MonkeyFinder.View.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:commands="clr-namespace:Adventures.Common.Commands;assembly=Adventures.Common"
     xmlns:viewmodel="clr-namespace:Adventures.Common.ViewModel;assembly=Adventures.Common"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:Adventures.Common.Model;assembly=Adventures.Common"
@@ -26,9 +27,9 @@
                         <Image Source="nodata.png" />
                     </StackLayout>
                 </CollectionView.EmptyView>
-                <!--<CollectionView.ItemsLayout>
+                <!--CollectionView.ItemsLayout>
                     <GridItemsLayout  Orientation="Horizontal" Span="3"/>
-                </CollectionView.ItemsLayout>-->
+                </CollectionView.ItemsLayout-->
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ListItem">
                         <Grid Padding="10">
@@ -58,9 +59,26 @@
             </CollectionView>
         </RefreshView>
 
-        <HorizontalStackLayout
+        <StackLayout
             Grid.Row="1"
-            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            Orientation="Horizontal"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            BindableLayout.ItemsSource="{Binding ButtonItems}">
+               <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="viewmodel:ButtonViewModel">
+                    <Button
+                        Margin="5,16"
+                        Style="{StaticResource ButtonOutline}"
+                        Text="{Binding MatchButtonText}"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+         <HorizontalStackLayout
+            Grid.Row="1"
+            Grid.Column="0"
             Margin="8">
             <Label
                 Margin="8"
@@ -69,30 +87,29 @@
                 Style="{StaticResource SmallLabel}"
                 Text="{Binding Mode, Mode=TwoWay}" />
 
-            <Button
+             <Button
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="{Binding GetDataButtonText}" />
+                Text="{Binding ButtonText1}" />
 
              <Button
                 Margin="8"
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="{Binding GetDataButton2Text}" />
+                Text="{Binding ButtonText2}" />
 
             <Button
                 Margin="8"
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="{Binding GetDataButton3Text}" />
+                Text="{Binding ButtonText3}" />
         </HorizontalStackLayout>
 
         <ActivityIndicator
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
             HorizontalOptions="FillAndExpand"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
-            VerticalOptions="CenterAndExpand" />
+            VerticalOptions="CenterAndExpand">
+        </ActivityIndicator>
     </Grid>
 </controls:ContentPageBase>

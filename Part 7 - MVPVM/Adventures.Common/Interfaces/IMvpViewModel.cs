@@ -1,11 +1,14 @@
-﻿using System;
-namespace Adventures.Common.Interfaces
+﻿namespace Adventures.Common.Interfaces
 {
-	public interface IMvpViewModel
+    public interface IMvpViewModel
 	{
         Guid Id { get; set; }
-		string Mode { get; set; }
-        IMvpPresenter Presenter { get; set; } 
-	}
+
+        string Mode { get; set; }
+
+        IMvpPresenter Presenter { get; set; }
+
+        ObservableCollection<ButtonViewModel> ButtonItems { get; set; }
+    }
 }
 

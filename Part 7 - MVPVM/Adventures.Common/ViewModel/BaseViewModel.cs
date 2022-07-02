@@ -4,6 +4,8 @@ namespace Adventures.Common.ViewModel;
 
 public partial class BaseViewModel : ObservableObject, IMvpViewModel
 {
+    public ObservableCollection<ButtonViewModel> ButtonItems { get; set; }
+
     public IMvpPresenter Presenter { get; set; }
 
     public Guid Id { get; set; } = Guid.NewGuid();

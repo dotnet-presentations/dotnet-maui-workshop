@@ -1,14 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using Adventures.Common.Interfaces;
+﻿#pragma warning disable CA1416
 
 namespace Adventures.Common.Commands
 {
-	public class CommandBase : IMvpCommand
+    public partial class CommandBase : IMvpCommand
     {
         private string _matchButtonText;
 
         public event EventHandler CanExecuteChanged;
+
+        public bool IsNotBusy
+        {
+            get
+            {
+                var buttonArgs = EventArgs as ButtonEventArgs;
+                if (buttonArgs == null
+                        || buttonArgs.ViewModel == null
+                        || buttonArgs.ViewModel is not IListViewModel)
+                    return false;
+
+                return ((IListViewModel)buttonArgs.ViewModel).IsBusy;
+            }
+        }
 
         public EventArgs EventArgs { get; set; }
 
@@ -45,7 +57,6 @@ namespace Adventures.Common.Commands
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
-
 
         public virtual void OnExecute()
         {

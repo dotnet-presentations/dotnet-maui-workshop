@@ -1,10 +1,7 @@
-﻿using System;
-using Adventures.Common.Constants;
-using Adventures.Common.Interfaces;
-
+﻿
 namespace Adventures.Common.Extensions
 {
-	public static class ServiceProviderExtension
+    public static class ServiceProviderExtension
 	{
 		public static IMvpCommand GetNamedCommand(this IServiceProvider serviceProvider, string name)
         {

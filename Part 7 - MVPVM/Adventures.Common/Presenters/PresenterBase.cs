@@ -1,14 +1,18 @@
-﻿using System;
-using Adventures.Common.Events;
-using Adventures.Common.Extensions;
-using Adventures.Common.Interfaces;
-
+﻿
 namespace Adventures.Common.Presenters
 {
-	public class PresenterBase : IMvpPresenter
+    public class PresenterBase : IMvpPresenter
     {
+        private IMvpViewModel _viewModel;
+
         public Dictionary<string, IMvpView> Views { get; set; } = new Dictionary<string, IMvpView>();
-        public IMvpViewModel ViewModel { get; set; }
+        public IMvpViewModel ViewModel {
+            get { return _viewModel; }
+            set {
+                _viewModel = value;
+                OnViewModel();
+            }
+        }
         public bool IsInitialized { get; set; }
 
         protected IServiceProvider _serviceProvider;
@@ -17,6 +21,29 @@ namespace Adventures.Common.Presenters
         {
             _serviceProvider = serviceProvider;
         }
+
+        public virtual void OnViewModel()
+        {
+            var commands = _serviceProvider
+                .GetServices<IMvpCommand>()
+                .Where(x => true);
+
+            if (commands != null)
+            {
+                ViewModel.ButtonItems = new ObservableCollection<ButtonViewModel>();
+                foreach(var command in commands)
+                {
+                    var buttonVm = new ButtonViewModel {
+                        MatchButtonText = command.MatchButtonText,
+                        Presenter = this
+                    };
+                    ViewModel.ButtonItems.Add(buttonVm);
+                }
+            }
+            OnViewModelSet();
+        }
+
+        public virtual void OnViewModelSet() { }
 
         public virtual void Initialize(object sender = null, EventArgs e = null)
         {

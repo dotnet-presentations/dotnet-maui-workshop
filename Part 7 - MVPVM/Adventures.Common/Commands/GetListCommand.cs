@@ -1,9 +1,5 @@
 ﻿#pragma warning disable CA1416
 
-using System.Diagnostics;
-using Adventures.Common.ViewModel;
-using Adventures.Data.Results;
-
 namespace Adventures.Common.Commands
 {
     public class GetListCommand : Adventures.Common.Commands.CommandBase
@@ -19,6 +15,9 @@ namespace Adventures.Common.Commands
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;
+            if (args!=null && args.ViewModel == null) // Change of network won't have VM
+                args.ViewModel = args.Presenter.ViewModel;
+
             var vm = args.ViewModel as ListViewModel;
 
             if (vm.IsBusy)
@@ -47,7 +46,15 @@ namespace Adventures.Common.Commands
                 vm.IsBusy = false;
                 vm.IsRefreshing = false;
             }
+
+            OnExecuted();
         }
+
+        public virtual void OnExecuted()
+        {
+
+        }
+
     }
 }
 

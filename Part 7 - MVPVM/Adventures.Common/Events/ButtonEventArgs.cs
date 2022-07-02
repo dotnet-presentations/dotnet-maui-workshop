@@ -1,9 +1,6 @@
-﻿using System;
-using Adventures.Common.Interfaces;
-
-namespace Adventures.Common.Events
+﻿namespace Adventures.Common.Events
 {
-	public class ButtonEventArgs : EventArgs
+    public class ButtonEventArgs : EventArgs
 	{
 		public IMvpPresenter Presenter { get;set; }
 

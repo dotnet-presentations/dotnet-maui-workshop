@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Common.Utils
+﻿namespace Adventures.Common.Utils
 {
-	public class Guard
+    public class Guard
 	{
 		public Guard()
 		{

@@ -12,13 +12,8 @@ namespace Adventures.Monkey.Commands
 			MatchButtonText = "Get Monkey Data";
 		}
 
-        public override void OnExecute()
+        public override void OnExecuted()
         {
-            var args = EventArgs as ButtonEventArgs;
-            if (args.ViewModel == null) // Change of network won't have VM
-                args.ViewModel = args.Presenter.ViewModel;
-
-            base.OnExecute();
             Console.WriteLine($"Invoked GetMonkeyListCommand  Mode=[{((ButtonEventArgs)this.EventArgs).Presenter.ViewModel.Mode}]");
         }
     }

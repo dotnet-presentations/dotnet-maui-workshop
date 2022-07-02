@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Common.Interfaces
+﻿namespace Adventures.Common.Interfaces
 {
-	public interface IMvpPresenter
+    public interface IMvpPresenter
 	{
 		Dictionary<string,IMvpView> Views { get; set; }
 

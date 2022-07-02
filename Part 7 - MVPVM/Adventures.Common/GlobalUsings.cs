@@ -1,6 +1,16 @@
 ﻿global using System.Collections.ObjectModel;
+global using System.Diagnostics;
+global using System.Globalization;
+global using System.Windows.Input;
+global using Adventures.Common.Commands;
+global using Adventures.Common.Constants;
+global using Adventures.Common.Controls;
+global using Adventures.Common.Entities;
 global using Adventures.Common.Events;
+global using Adventures.Common.Extensions;
 global using Adventures.Common.Interfaces;
 global using Adventures.Common.Model;
+global using Adventures.Common.ViewModel;
+global using Adventures.Data.Results;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;

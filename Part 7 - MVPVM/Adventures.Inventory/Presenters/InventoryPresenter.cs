@@ -12,6 +12,7 @@ namespace MonkeyFinder.Presenters
         IDataService _dataService;
         IListViewModel _listVm;
 
+        // Use constructor injection to get required class instances
         public InventoryPresenter(
             IMvpEventAggregator eventAggregator,
             IInventoryDataService dataService,
@@ -24,6 +25,8 @@ namespace MonkeyFinder.Presenters
             _listVm = listVm;
         }
 
+        // Invoked by the InventoryPage:ContentPageBase constructor.  The
+        // IOC constructor injector will pass in IMvpPresenter instance
         public override void Initialize(object sender = null, EventArgs e = null) 
         {
             // as a singleton we only need to do this once
@@ -35,8 +38,8 @@ namespace MonkeyFinder.Presenters
             var nameFor = _provider.GetNamedCommands();
 
             // Use magic string when type not available (proj not referenced)
-            _listVm.GetDataButtonText = nameFor["GetMonkeyListCommand"];
-            _listVm.GetDataButton2Text = nameFor[nameof(GetInventoryListCommand)];
+            _listVm.ButtonText1 = nameFor["GetMonkeyListCommand"];
+            _listVm.ButtonText2 = nameFor[nameof(GetInventoryListCommand)];
 
             _listVm.Title = "Inventory";
             _listVm.Mode = _dataService.Mode;
@@ -48,7 +51,7 @@ namespace MonkeyFinder.Presenters
             _eventAggregator.Subscribe<MessageEventArgs>(this, "Mode", (sender) =>
             {
                 _listVm.Mode = sender.Message;
-                InvokeCommand(_listVm.GetDataButton2Text); // Button click to get Inventory list
+                InvokeCommand(_listVm.ButtonText2); // Button click to get Inventory list
             });
         }
 

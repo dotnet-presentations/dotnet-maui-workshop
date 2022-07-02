@@ -1,7 +1,6 @@
-﻿using System;
-namespace Adventures.Common.Constants
+﻿namespace Adventures.Common.Constants
 {
-	public class AppConstants
+    public class AppConstants
 	{
 		public static string Message = "Message";
     }

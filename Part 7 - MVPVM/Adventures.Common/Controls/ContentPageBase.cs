@@ -6,11 +6,15 @@
 
 		public ContentPageBase(IMvpPresenter presenter)
 		{
-			if (presenter == null) return;
 			presenter.Initialize(this);
 			presenter.IsInitialized = true;
+
+			// Set view's view model
 			BindingContext = presenter.ViewModel;
 		}
-	}
+
+
+
+    }
 }
 

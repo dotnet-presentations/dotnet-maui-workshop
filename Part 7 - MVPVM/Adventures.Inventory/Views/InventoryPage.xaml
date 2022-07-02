@@ -63,17 +63,17 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Margin="8">
-            <Label
-                Margin="8"
-                Padding="5"
-                Background="red"
-                Style="{StaticResource SmallLabel}"
-                Text="{Binding Mode, Mode=TwoWay}" />
+
+            <Switch
+                Margin="5"
+                IsToggled="{Binding Mode,
+                    Converter={StaticResource modeConverter},
+                    Mode=TwoWay}"/>
 
             <Button
                 IsEnabled="{Binding IsNotBusy}"
                 Style="{StaticResource ButtonOutline}"
-                Text="{Binding GetDataButton2Text}" />
+                Text="{Binding ButtonText2}" />
 
         </HorizontalStackLayout>
 
