@@ -2,7 +2,8 @@
 {
     public class AppConstants
 	{
-		public static string Message = "Message";
+		public static string DefaultKey = "DefaultKey";
+        public static string NotDefined = "NotDefined";
     }
 }
 

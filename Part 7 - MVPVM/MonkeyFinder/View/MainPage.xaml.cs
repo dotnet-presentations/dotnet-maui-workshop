@@ -4,7 +4,7 @@ namespace MonkeyFinder.View;
 
 public partial class MainPage : ContentPageBase
 {
-    public List<Button> _buttons = new List<Button>();
+    public List<Button> _buttons = new();
 
 	public MainPage(IMonkeyPresenter presenter) : base(presenter)
 	{

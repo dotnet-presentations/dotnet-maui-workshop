@@ -1,4 +1,5 @@
-﻿global using System.Net.Http.Json;
+﻿global using System.Diagnostics;
+global using System.Net.Http.Json;
 global using System.Text.Json;
 global using Adventures.Common.Commands;
 global using Adventures.Common.Events;

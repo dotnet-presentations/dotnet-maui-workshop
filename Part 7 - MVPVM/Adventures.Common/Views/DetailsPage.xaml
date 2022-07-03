@@ -42,15 +42,19 @@
                         Margin="8"
                         Style="{StaticResource ButtonOutline}"/>
                 
-                <Label Style="{StaticResource MediumLabel}"
+                <Label Style="{StaticResource LargeLabel}"
                        Text="{Binding ListItem.Details}" />
 
-                <Label Style="{StaticResource MicroLabel}"
-                       Text="{Binding ListItem.Location, StringFormat='Location: {0}'}" />
+                <Label Style="{StaticResource MediumLabel}"
+                       Text="{Binding
+                                ListItem.Location,
+                                StringFormat='Location: {0}'}" />
 
-                <Label Style="{StaticResource MicroLabel}"
+                <Label Style="{StaticResource MediumLabel}"
                        IsVisible="{Binding IsPopulationVisible}"
-                       Text="{Binding ListItem.Population, StringFormat='Population: {0}'}" />
+                       Text="{Binding
+                                ListItem.Population,
+                                StringFormat='Population: {0}'}" />
 
             </VerticalStackLayout>
         </VerticalStackLayout>

@@ -2,9 +2,13 @@
 {
     public class ButtonEventArgs : EventArgs
 	{
-		public IMvpPresenter Presenter { get;set; }
+		public Guid Id { get; set; }
 
-		public Dictionary<string, IMvpView> Views { get; set; }
+        public bool IsHandledByPresenter { get; set; }
+
+        public Dictionary<string, IMvpView> Views { get; set; }
+
+		public IMvpPresenter Presenter { get;set; }
 
 		public IMvpViewModel ViewModel;
 

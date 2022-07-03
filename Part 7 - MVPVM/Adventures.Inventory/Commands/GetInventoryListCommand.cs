@@ -10,13 +10,15 @@ namespace Adventures.Inventory.Commands
 		public GetInventoryListCommand(IInventoryDataService service)
             : base(service) 
 		{
-			MatchButtonText = "Get Data";
+			ButtonText = "Get Data";
 		}
 
         public override void OnExecuted()
         {
+            // Note that through EventArgs we have access to Presenter,
+            // ViewModel, and Views (not shown below)
             var args = this.EventArgs as ButtonEventArgs;
-            Console.WriteLine($"Invoked GetInventoryListCommand  " +
+            Debug.WriteLine($"Invoked GetInventoryListCommand  " +
                 $"Mode=[{args.Presenter.ViewModel.Mode}]");
         }
     }

@@ -21,7 +21,7 @@ public static class MauiProgram
 			.AddSingleton<IMvpEventAggregator, SimpleEventAggregator>()
 
 			// Shared commands
-			.AddSingleton<IMvpCommand, MessageCommand>()
+			.AddSingleton<IMvpCommand, DefaultCommand>()
 			.AddSingleton<IMvpCommand, FindClosestCommand>()
 			.AddSingleton<IMvpCommand, ShowonMapCommand>()
 
@@ -29,7 +29,8 @@ public static class MauiProgram
 			.AddTransient<MainPage>()
 			.AddTransient<DetailsPage>() // Shared 
 
-			// ViewModels
+			// ViewModels (do not make shared view models a singleton)
+			// As they are requested a new instance will be created
 			.AddTransient<IListViewModel, ListViewModel>()	// Shared 
 			.AddTransient<IDetailViewModel>( provider =>    // Shared 
 			{
@@ -53,7 +54,7 @@ public static class MauiProgram
 		// Reused by both MonkeyPresenter and InventoryPresenter
         Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
 
-        // Initialize services. 
+        // Initialize services for each presenter
         MonkeyPresenter.InitServices(builder);
         InventoryPresenter.InitServices(builder);
 

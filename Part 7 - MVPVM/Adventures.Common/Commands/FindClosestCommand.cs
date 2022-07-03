@@ -7,14 +7,13 @@ namespace Adventures.Commands
         private IGeolocation _geolocation;
 
         public FindClosestCommand(IGeolocation geolocation) {
-            MatchButtonText = "Find Closest";
+            ButtonText = "Find Closest";
             _geolocation = geolocation;
         }
-        public override bool CanExecute(object parameter)
-        {
-            return base.CanExecute(parameter);
-        }
 
+        /// <summary>
+        /// Invoked by PresenterBase.ButtonClickHandler
+        /// </summary>
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;

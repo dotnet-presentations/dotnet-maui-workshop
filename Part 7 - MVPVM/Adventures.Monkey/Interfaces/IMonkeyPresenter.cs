@@ -1,6 +1,9 @@
 ﻿namespace Adventures.Monkey.Interfaes
 {
-    public interface IMonkeyPresenter : IMvpPresenter
+	/// <summary>
+    /// Interface for the MonkeyPresenter (MainPage)
+    /// </summary>
+	public interface IMonkeyPresenter : IMvpPresenter
 	{
 	}
 }

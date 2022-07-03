@@ -3,6 +3,18 @@ namespace Adventures.Common.Extensions
 {
     public static class ServiceProviderExtension
 	{
+        /// <summary>
+        /// Get the command associated with the ButtonEventArgs.Key
+        /// Note: If the key is used in multiple commands, e.g.,
+        /// "Get Data" the process will first check the applicable
+        /// Presenters SupportButtons, and if not found, then all
+        /// IMvpCommand registrations.  If the Key is not found in
+        /// any commands then the DefaultCommand will be used with
+        /// Command.IsHandledByPresenter=true.  
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static IMvpCommand GetNamedCommand(
             this IServiceProvider serviceProvider, ButtonEventArgs e)
         {
@@ -16,7 +28,7 @@ namespace Adventures.Common.Extensions
             foreach(string buttonName in e.Presenter.SupportedButtons)
             {
                 command = commands.FirstOrDefault(c => c.Name == buttonName);
-                if (command.MatchButtonText == key)
+                if (command.ButtonText == key)
                 {
                     return command;
                 }
@@ -24,20 +36,35 @@ namespace Adventures.Common.Extensions
 
             // If not found in presenter supported buttons then we'll search
             // all available commands for the first match and use it
-            command = commands.FirstOrDefault(s => s.MatchButtonText == key
-                                                  || s.MatchDataType == key);
-            if (command == null)
+            command = commands.FirstOrDefault(s => s.ButtonText == key
+                                                  || s.DataType == key);
+
+            if (command == null) // DefaultCommand will be used
             {
+                // Provide the presenter an opportunity to handle this
+                // command.  The DefaultCommand will check for this.
+                e.IsHandledByPresenter = true;
+
                 command = commands.FirstOrDefault(s =>
-                    s.MatchButtonText == AppConstants.Message);
+                    s.ButtonText == AppConstants.DefaultKey);
 
                 command.Message = $"Could not find ButtonText='{key}' " +
-                    $"in IMvpCommands IOC registrations - did you register it?";
+                    $"in IMvpCommands IOC registrations - did you register it? " +
+                    $"\r\n\r\n" +
+                    $"You can override OnButtonClickHandler in presenter to " +
+                    $"handle this button click OR create a command";
             }
 
             return command;
         }
 
+        /// <summary>
+        /// Retuns all commands in a dictionary using the format:
+        /// Key=CommandType and Value=command.ButtonText, e.g.,
+        /// Key=FindClosestCommand, Value="Find Closest"
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
         public static Dictionary<string,string> GetNamedCommands(
 			this IServiceProvider serviceProvider)
         {
@@ -48,7 +75,7 @@ namespace Adventures.Common.Extensions
 				foreach (IMvpCommand command in commands)
 				{
 					var key = command.GetType().Name;
-					var value = command.MatchButtonText;
+					var value = command.ButtonText;
 					if (!keyList.ContainsKey(key))
 						keyList.Add(key, value);
 				}
@@ -62,11 +89,6 @@ namespace Adventures.Common.Extensions
             }
         }
 
-		public static IServiceCollection AddButtonSupport<TCommand>(
-			this IServiceCollection serviceCollection)
-        {
-			return serviceCollection;
-        }
     }
 }
 

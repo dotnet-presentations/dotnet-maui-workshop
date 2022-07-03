@@ -7,10 +7,13 @@ namespace Adventures.Commands
         private IMap _map;
 
         public ShowonMapCommand(IMap map) {
-            MatchButtonText = "Show on Map";
+            ButtonText = "Show on Map";
             _map = map;
         }
 
+        /// <summary>
+        /// Invoked by PresenterBase.ButtonClickHandler
+        /// </summary>
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;

@@ -8,10 +8,13 @@ namespace Adventures.Common.Commands
 
 		public GetListCommand(IDataService dataService)
 		{
-            MatchButtonText = "Get List";
+            ButtonText = "Get List";
             _dataService = dataService;
 		}
 
+        /// <summary>
+        /// Invoked by PresenterBase.ButtonClickHandler
+        /// </summary>
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;
@@ -42,7 +45,7 @@ namespace Adventures.Common.Commands
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to {MatchButtonText}: {ex.Message}");
+                Debug.WriteLine($"Unable to {ButtonText}: {ex.Message}");
                 await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
             finally

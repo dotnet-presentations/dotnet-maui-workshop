@@ -5,9 +5,13 @@ namespace Adventures.Monkey.Commands
     public class GotoSelectedMonkeyCommand : CommandBase
 	{
         public GotoSelectedMonkeyCommand() {
-            MatchDataType = nameof(ListItem);
+            // We're associating with a DataType, not Key
+            DataType = nameof(ListItem);
         }
 
+        /// <summary>
+        /// Invoked by PresenterBase.ButtonClickHandler
+        /// </summary>
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;

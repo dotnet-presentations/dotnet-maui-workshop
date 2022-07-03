@@ -17,6 +17,9 @@
         void Initialize(object sender = null, EventArgs e = null);
 
 		Task ButtonClickHandler(object sender = null, EventArgs e = null);
-	}
+
+        Task OnButtonClickHandler(object sender = null, EventArgs e = null);
+
+    }
 }
 

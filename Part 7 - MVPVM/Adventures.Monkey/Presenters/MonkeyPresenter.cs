@@ -16,6 +16,9 @@ namespace Adventures.Monkey.Presenters
             Title = "Monkey Locator";
         }
 
+        /// <summary>
+        /// Set the buttons we'll be using for the MainPage
+        /// </summary>
         protected override void SetSupportedButtons()
         {
             SupportedButtons = new List<string>
@@ -26,6 +29,13 @@ namespace Adventures.Monkey.Presenters
             };
         }
 
+        /// <summary>
+        /// When the internet connectivity changes we'll need to update our
+        /// service (IMonkeyDataService below) and invoke the command associated
+        /// with the get list command (GetMonkeyListCommand)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void OnInternetConnectivityChanged(
             object sender, ConnectivityEventArgs e)
         {
@@ -41,7 +51,48 @@ namespace Adventures.Monkey.Presenters
             EventAggregator.Publish<MessageEventArgs>(messageArgs);
         }
 
-        // Invoked by MauiProgram.CreateMauiApp()
+        /// <summary>
+        /// Invoked directly by the DefaultCommand if a valid command cannot
+        /// be found by PresenterBase.ButtonClickHandler(ButtonEventArgs).  It
+        /// is expected that ButtonEventArgs.IsHandledByPresenter will be set
+        /// to false if it is not handled by the presenter so that the default
+        /// message can be displayed upon return to DefaultCommand.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public override async Task OnButtonClickHandler(
+            object sender = null, EventArgs e = null)
+        {
+            var args = e as ButtonEventArgs;
+            if (args == null) return; // Not handled here
+
+            args.IsHandledByPresenter = true; // default is handled here
+
+            switch (args.Key)
+            {
+                case "OFFLINE":
+                    args.IsHandledByPresenter = true;
+                    await MessageBox.Show("MonkeyPresenter", args.Key, ":( OK");
+                    break;
+
+                case "ONLINE":
+                    args.IsHandledByPresenter = true;
+                    await MessageBox.Show("MonkeyPresenter", args.Key, ":) OK");
+                    break;
+
+                default:
+                    args.IsHandledByPresenter = false; // Not handled here
+                    break;
+            }
+            await base.OnButtonClickHandler();
+        }
+
+
+        /// <summary>
+        /// Invoked by MauiProgram.CreateMauiApp()
+        /// </summary>
+        /// <param name="builder"></param>
         public static void InitServices(MauiAppBuilder builder)
         {
             builder.Services

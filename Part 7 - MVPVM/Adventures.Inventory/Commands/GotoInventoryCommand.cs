@@ -5,9 +5,12 @@ namespace Adventures.Inventory.Commands
     public class GotoInventoryCommand : CommandBase
 	{
         public GotoInventoryCommand() {
-            MatchButtonText = "Inventory";
+            ButtonText = "Inventory";
         }
 
+        /// <summary>
+        /// Invoked by PresenterBase.ButtonClickHandler
+        /// </summary>
         public override async void OnExecute()
         {
             var args = EventArgs as ButtonEventArgs;

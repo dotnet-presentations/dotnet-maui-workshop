@@ -1,4 +1,5 @@
-﻿global using System.Text.Json;
+﻿global using System.Diagnostics;
+global using System.Text.Json;
 global using Adventures.Common.Commands;
 global using Adventures.Common.Controls;
 global using Adventures.Common.Events;
@@ -12,4 +13,3 @@ global using Adventures.Inventory.Interfaces;
 global using Adventures.Inventory.Services.Offline;
 global using Adventures.Inventory.Services.Online;
 global using Adventures.Inventory.Views;
-
