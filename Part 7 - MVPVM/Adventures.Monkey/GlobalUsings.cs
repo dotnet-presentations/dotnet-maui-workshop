@@ -2,6 +2,7 @@
 global using System.Net.Http.Json;
 global using System.Text.Json;
 global using Adventures.Common.Commands;
+global using Adventures.Common.Constants;
 global using Adventures.Common.Events;
 global using Adventures.Common.Extensions;
 global using Adventures.Common.Interfaces;

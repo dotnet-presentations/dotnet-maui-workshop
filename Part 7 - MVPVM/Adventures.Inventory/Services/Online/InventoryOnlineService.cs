@@ -10,7 +10,7 @@ public class InventoryOnlineService : IInventoryDataService
 
     List<ListItem> inventoryList;
 
-    public string Mode { get; set; } = "ONLINE";
+    public string Mode { get; set; } = AppConstants.Online;
 
     public InventoryOnlineService()
     {
@@ -27,7 +27,7 @@ public class InventoryOnlineService : IInventoryDataService
             var result =  await new InventoryOfflineService().GetInventory();
 
             foreach(var item in result)
-                item.Name = item.Name.Replace(" (OFFLINE)", "");
+                item.Name = item.Name.Replace($" ({AppConstants.Offline})", "");
 
             return result;
         }

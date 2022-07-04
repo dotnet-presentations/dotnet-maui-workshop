@@ -8,7 +8,7 @@ public class MonkeyOnlineService : IMonkeyDataService
 
     List<ListItem> monkeyList;
 
-    public string Mode { get; set; } = "ONLINE";
+    public string Mode { get; set; } = AppConstants.Online;
 
     public MonkeyOnlineService()
     {

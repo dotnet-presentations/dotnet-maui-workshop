@@ -71,12 +71,12 @@ namespace Adventures.Monkey.Presenters
 
             switch (args.Key)
             {
-                case "OFFLINE":
+                case AppConstants.Offline:
                     args.IsHandledByPresenter = true;
                     await MessageBox.Show("MonkeyPresenter", args.Key, ":( OK");
                     break;
 
-                case "ONLINE":
+                case AppConstants.Online:
                     args.IsHandledByPresenter = true;
                     await MessageBox.Show("MonkeyPresenter", args.Key, ":) OK");
                     break;

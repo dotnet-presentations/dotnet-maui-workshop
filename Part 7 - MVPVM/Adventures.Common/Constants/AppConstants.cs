@@ -2,8 +2,10 @@
 {
     public class AppConstants
 	{
-		public static string DefaultKey = "DefaultKey";
-        public static string NotDefined = "NotDefined";
+		public const string DefaultKey = "DefaultKey";
+        public const string NotDefined = "NotDefined";
+        public const string Offline = "OFFLINE";
+        public const string Online = "ONLINE";
     }
 }
 

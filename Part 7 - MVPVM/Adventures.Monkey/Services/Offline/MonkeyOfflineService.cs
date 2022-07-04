@@ -4,7 +4,7 @@ namespace Adventures.Monkey.Services.Offline;
 
 public class MonkeyOfflineService : IMonkeyDataService
 {
-    public string Mode { get; set; } = "OFFLINE";
+    public string Mode { get; set; } = AppConstants.Offline;
 
     List<ListItem> monkeyList;
 
@@ -24,7 +24,7 @@ public class MonkeyOfflineService : IMonkeyDataService
         monkeyList = JsonSerializer.Deserialize<List<ListItem>>(contents);
 
         foreach (var item in monkeyList)
-            item.Name += " (OFFLINE)";
+            item.Name += $" ({AppConstants.Offline})";
 
         return monkeyList;
     }

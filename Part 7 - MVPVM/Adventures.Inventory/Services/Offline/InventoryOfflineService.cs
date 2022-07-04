@@ -4,7 +4,7 @@ namespace Adventures.Inventory.Services.Offline;
 
 public class InventoryOfflineService : IInventoryDataService
 {
-    public string Mode { get; set; } = "OFFLINE";
+    public string Mode { get; set; } = AppConstants.Offline;
 
     List<ListItem> inventoryList;
 
@@ -23,7 +23,7 @@ public class InventoryOfflineService : IInventoryDataService
         var contents = await reader.ReadToEndAsync();
         inventoryList = JsonSerializer.Deserialize<List<ListItem>>(contents);
         foreach (var item in inventoryList)
-            item.Name += " (OFFLINE)";
+            item.Name += $" ({AppConstants.Offline})";
         return inventoryList;
     }
 

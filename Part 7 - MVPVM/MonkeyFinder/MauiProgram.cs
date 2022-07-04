@@ -9,11 +9,9 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
+			.ConfigureFonts(fonts => {
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
-
     	builder.Services
 			.AddSingleton<IConnectivity>(Connectivity.Current)
 			.AddSingleton<IGeolocation>(Geolocation.Default)
@@ -50,7 +48,6 @@ public static class MauiProgram
 						: provider.GetService<IMonkeyPresenter>()
 				};
 			});
-
 		// Reused by both MonkeyPresenter and InventoryPresenter
         Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
 

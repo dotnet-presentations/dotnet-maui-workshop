@@ -11,7 +11,7 @@ namespace Adventures.Common.Converters
         public object Convert(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
-            var isOnline = "ONLINE" == value.ToString();
+            var isOnline = AppConstants.Online == value.ToString();
             return isOnline.ToString();
         }
 
@@ -19,7 +19,10 @@ namespace Adventures.Common.Converters
             object parameter, CultureInfo culture)
         {
             bool isOnline = bool.Parse(value.ToString());
-            return isOnline ? "ONLINE" : "OFFLINE";
+
+            return isOnline
+                ? AppConstants.Online
+                : AppConstants.Offline;
         }
     }
 }
