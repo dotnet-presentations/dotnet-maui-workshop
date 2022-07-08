@@ -21,6 +21,7 @@ For that matter, you'll find that the Monkey solution no longer holds any signif
 Without knowledge of the MvpVm pattern, and inversion of control (IOC), it could be very confusing as to how this application works; decoupled frameworks require a basic knowledge of its practices and patterns.  
 
 ![ListViewModel](../Art/MvpVm/MauiProgramR1.png)
+
 At 10k feet, the view will declare the presenter that will be used to manage it, the presenter in turn will declare the remaining components that will be used to support it.  The declarations come in the form of interfaces, implementation results from inversion of control; the framework will provide registered implementation for constructor interfaces.
 
 Above we show how the MauiProgram declares all of the shared interfaces along with their implementation, e.g., IListViewModel uses the ListViewModel as its implementation.  It is in these registrations that the magic of IOC happens.  Note on line 56 above that the CreateMauiApp() is invoking InventoryPresenter.InitServices(builder).  This static method, shown below on line 45 allows us to encapsulate the Inventory registrations within the Presenter.  
