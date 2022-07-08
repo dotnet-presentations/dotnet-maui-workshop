@@ -38,7 +38,7 @@ As you explore the MonkeyFinder solution you'll now see how significant the Main
 
 When the Inventory button is clicked the InventoryPage will be navigated to instantiating it.  It will likewise have a presenter interface (IInventoryPresenter) in its constructor.  As with MainPage, it will invoke the `OnInitializeComponent(flexLayout)` in its constructor.
 
-Note that the view's constructor invokes the base class constructor with a parameter of `presenter`, e.g.,`base(presenter)` on line 9 above.  This is where framework magic happens; the ContentPage constructor first invokes the `presenter.Initialize(this)` method and then sets the BindingContext to the view model the presenter declared.  This is how our pages, deriving from ContentPage [below] wires up our framework.
+Note that the view's constructor invokes the base class constructor with a parameter of `presenter`, e.g.,`base(presenter)` on line 9 above.  This is where framework magic happens; the ContentPage constructor first invokes the `presenter.Initialize(this)` method and then sets the BindingContext to the view model the presenter declared.  This is how our pages, deriving from ContentPage [below] wire up our framework.
 
 ![UML](../Art/MvpVm/ContentPageBase.png)
 
