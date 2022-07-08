@@ -8,7 +8,7 @@ namespace MonkeyFinder.Presenters
 	{
         // Use constructor injection to get required class instances
         public InventoryPresenter(
-            IMvpEventAggregator eventAggregator
+              IMvpEventAggregator eventAggregator
             , IInventoryDataService dataService
             , IServiceProvider provider
             , IListViewModel listVm)

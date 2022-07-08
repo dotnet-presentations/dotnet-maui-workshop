@@ -10,7 +10,6 @@ namespace Adventures.Commands
             ButtonText = "Find Closest";
             _geolocation = geolocation;
         }
-
         /// <summary>
         /// Invoked by PresenterBase.ButtonClickHandler
         /// </summary>
@@ -27,7 +26,6 @@ namespace Adventures.Commands
 
                 return;
             }
-
             try
             {
                 // Get cached location, else get real location.

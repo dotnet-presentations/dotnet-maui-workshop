@@ -31,3 +31,4 @@ public partial class ListViewModel : BaseViewModel, IListViewModel
 
     public ListViewModel() { }
 }
+

@@ -25,6 +25,9 @@ I have also put together an abstract of what you can expect for the day long wor
 * [Part 5](Part%205%20-%20CollectionView/README.md) - CollectionView & Beyond
 * [Part 6](Part%206%20-%20AppThemes/README.md) - Theming the app
 
+* [BillKrat / dotnet-maui-workshop [fork]](https://github.com/BillKrat/dotnet-maui-workshop/tree/dotnet-maui-workshop-mvpvm) 
+  * [Part 7](Part%207%20-%20MVPVM/README.md) - Model-View-Presenter, ViewModel (MvpVm) decoupled framework 
+
 
 To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
 
