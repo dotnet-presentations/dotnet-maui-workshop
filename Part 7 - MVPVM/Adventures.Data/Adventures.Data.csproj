@@ -19,8 +19,16 @@
 
 	<ItemGroup>
 	  <None Remove="Entities\" />
+	  <None Remove="Interfaces\" />
+	  <None Remove="Results\" />
+	  <None Remove="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Interfaces\" />
+	  <Folder Include="Results\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 </Project>

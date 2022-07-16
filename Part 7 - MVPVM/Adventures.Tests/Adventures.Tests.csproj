@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Adventures.Inventory\Adventures.Inventory.csproj" />
     <ProjectReference Include="..\Adventures.Monkey\Adventures.Monkey.csproj" />
     <ProjectReference Include="..\Adventures.Caliburn.Light\Adventures.Caliburn.Light.csproj" />
+    <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.Maui.Extensions" />
