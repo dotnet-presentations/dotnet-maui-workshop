@@ -47,17 +47,11 @@
 	  <ProjectReference Include="..\Adventures.Caliburn.Light\Adventures.Caliburn.Light.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Remove="View\InventoryPage.xaml" />
-	</ItemGroup>
-	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\MainPage %28copy%29.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\Inventory.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="View\InventoryPage.xaml.cs" />
 	</ItemGroup>
 </Project>
