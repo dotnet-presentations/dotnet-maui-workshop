@@ -19,7 +19,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
-	  <ProjectReference Include="..\Adventures.Caliburn.Light\Adventures.Caliburn.Light.csproj" />
 	  <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
