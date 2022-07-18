@@ -29,8 +29,8 @@ James 已经录制了4个小时的完整有关本次实验的手把手教学视�
 
 ## 更多链接和资源：
 - [.NET MAUI 官方网站](https://dot.net/maui)
-- [Microsoft Learn 上的 .NET MAUI 的学习路径](https://docs.microsoft.com/learn/paths/build-apps-with-dotnet-maui/)
-- [.NET MAUI 官方文档](https://docs.microsoft.com/dotnet/maui)
+- [Microsoft Learn 上的 .NET MAUI 的学习路径](https://aka.ms/Learn.MAUI)
+- [.NET MAUI 官方文档](https://aka.ms/Docs.MAUI)
 - [GitHub 上的 .NET MAUI 项目](https://github.com/dotnet/maui)
 - [.NET 初学者入门系列视频](https://dot.net/videos)
 
