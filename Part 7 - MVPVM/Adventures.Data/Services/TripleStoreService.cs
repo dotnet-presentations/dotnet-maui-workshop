@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using Adventures.Common.Constants;
 using Adventures.Common.Entities;
 using Adventures.Common.Model;
@@ -8,7 +7,7 @@ using Adventures.Data.Results;
 
 namespace Adventures.Data.Services
 {
-	public class TripleStoreService : ITripleStoreService
+    public class TripleStoreService : ITripleStoreService
 	{
         HttpClient httpClient;
 
@@ -19,6 +18,15 @@ namespace Adventures.Data.Services
 
         public async Task<List<Triple>> GetTripleStoreData()
         {
+        
+            var response1 = await httpClient
+                .GetAsync("https://localhost:7093/WeatherForecast");
+            if (response1.IsSuccessStatusCode)
+            {
+                var weatherList = await response1.Content
+                    .ReadFromJsonAsync<List<WeatherForecast>>();
+            }
+
             var response = await httpClient
                 .GetAsync("https://www.montemagno.com/monkeys.json");
 

@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9C8FF87-84A0-49DF-A3F2-69543607A942}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataService", "DataService\DataService.csproj", "{17A1D710-4A43-41E5-A43B-BF07EC2A07CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B15FEF-38F1-4CEB-877D-4F2494387E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17A1D710-4A43-41E5-A43B-BF07EC2A07CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A1D710-4A43-41E5-A43B-BF07EC2A07CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A1D710-4A43-41E5-A43B-BF07EC2A07CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A1D710-4A43-41E5-A43B-BF07EC2A07CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,7 @@ public class TripleStoreTests
     {
         var service = new TripleStoreService();
 
+
         var data = AsyncUtil.RunSync(() =>
             service.GetDataAsync<TripleStoreResult>());
 

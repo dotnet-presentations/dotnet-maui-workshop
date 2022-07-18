@@ -34,9 +34,4 @@
 	  <Folder Include="Commands\" />
 	  <Folder Include="Views\" />
 	</ItemGroup>
-	<ItemGroup>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\InventoryPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	</ItemGroup>
 </Project>
