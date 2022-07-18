@@ -44,7 +44,6 @@
 	  <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
 	  <ProjectReference Include="..\Adventures.Inventory\Adventures.Inventory.csproj" />
 	  <ProjectReference Include="..\Adventures.Monkey\Adventures.Monkey.csproj" />
-	  <ProjectReference Include="..\Adventures.Caliburn.Light\Adventures.Caliburn.Light.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="View\MainPage %28copy%29.xaml">
