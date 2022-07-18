@@ -1,16 +1,23 @@
-## App Themes
+## 实验六: 应用程序主题设置
 
-Up to this point, we have used a standard light theme on the application. .NET MAUI has the concept of reusable Application Resources and resources that can automatically adapt to the theme of the device. 
+到目前为止，我们已经在应用程序上使用了标准的浅色主题。 .NET MAUI 具有可重用应用程序资源的概念，以及可以自动适应设备主题的资源。
 
-## Reusable Resources
+## 可重用资源
 
-Open the `App.xaml` file and notice that there are several `Color` entries and `Styles`. These were configured ahead of time for some basic colors and styles that we used throughout the application. For example, we have defined a light color for the main background color:
+打开 `App.xaml` 文件，注意有几个 `Color` 条目和 `Styles`。 这些是为我们在整个应用程序中使用的一些基本颜色和样式提前配置的。 例如，我们为主背景色定义了一种浅色：
 
 ```xml
 <Color x:Key="LightBackground">#FAF9F8</Color>
 ```
 
-It can be referenced later by any UI element or by a shared style that can be reused. For example our `ButtonOutline` style applies to the `Button` control and gives it a rounded corner, sets colors for the text, border, and background:
+打开 `App.xaml` 文件，注意有几个 `Color` 条目和 `Styles`。 这些是为我们在整个应用程序中使用的一些基本颜色和样式提前配置的。 例如，我们为主背景色定义了一种浅色：
+
+```xml
+<Color x:Key="LightBackground">#FAF9F8</Color>
+```
+
+以后任何 UI 元素或可重用的共享样式都可以引用它。 例如，我们的 `ButtonOutline` 样式应用于 `Button` 控件并为其赋予圆角，为文本、边框和背景设置颜色：
+
 
 ```xml
 <Style x:Key="ButtonOutline" TargetType="Button">
@@ -22,32 +29,31 @@ It can be referenced later by any UI element or by a shared style that can be re
     <Setter Property="CornerRadius" Value="20" />
 </Style>
 ```
+这是在整个应用程序中共享代码的好方法。
 
-This is a great way to share code across your entire application. 
+## 主题更改 - 浅色/深色主题
 
-## Theme Changes - Light/Dark Theme
-
-What happens when you want to respond to the user changing their device to use dark mode? Well, .NET MAUI has the concept of  an `AppThemeBinding` for values. Let's take a `Label`'s `TextColor` property. We can define two new colors to use:
+当您想要响应用户将设备更改为使用黑色主题模式时会发生什么？ 好吧，.NET MAUI 具有用于值的“AppThemeBinding”的概念。 让我们使用 `Label` 的 `TextColor` 属性。 我们可以定义两种新的颜色来使用：
 
 ```xml
 <Color x:Key="LabelText">Black</Color>
 <Color x:Key="LabelTextDark">White</Color>
 ```
 
-We would want the text to be Black when the background color is light, and White when the background color is dark. Normally, we would set the color to a single color such as:
+我们希望文本在背景颜色较浅时为黑色，而在背景颜色较深时为白色。 通常，我们会将颜色设置为单一颜色，例如：
 
 ```xml
 <Label Text="Hello, world!" TextColor="{StaticResource LabelText}"/>
 ```
 
-However, this will not adjust to app theme changes. We could make it a `DynamicResource`, listen for app theme changes, and update the `LabelText` value, or we can use an `AppThemeBinding`:
+但是，这不会适应应用程序主题的变化。 我们可以将其设为 `DynamicResource`，监听应用主题的变化，并更新 `LabelText` 的值，或者我们可以使用 `AppThemeBinding`：
 
 ```xml
 <Label Text="Hello, world!" 
        TextColor="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}"/>
 ```
 
-We now have the option of creating a re-usable style that we reference by name or a style that applies to every element of a specific type:
+我们现在可以选择创建一个我们通过名称引用的可重用样式或适用于特定类型的每个元素的样式：
 
 ```xml
 <Style TargetType="Label" x:Key="DefaultLabel">
@@ -60,7 +66,7 @@ We now have the option of creating a re-usable style that we reference by name o
        Style="{StaticResource DefaultLabel}"/>
 ```
 
-If we leave out the `x:Key`, then it will apply automatically to every `Label` in our app.
+如果我们省略 `x:Key`，那么它将自动应用于我们应用程序中的每个 `Label`。
 
 ```xml
 <Style TargetType="Label">
@@ -68,12 +74,11 @@ If we leave out the `x:Key`, then it will apply automatically to every `Label` i
 </Style>
 ```
 
-## Update Resources
+## 更新资源
 
-Now, let's add in light/dark theme support throughout our entire application.
+现在，让我们在整个应用程序中添加浅色/深色主题支持。
 
-
-1. Let's add some new colors we will use into our `ResourceDictionary`:
+1. 让我们在 `ResourceDictionary` 中添加一些我们将使用的新颜色：
 
     ```xml
     <Color x:Key="CardBackground">White</Color>
@@ -83,7 +88,9 @@ Now, let's add in light/dark theme support throughout our entire application.
     <Color x:Key="LabelTextDark">White</Color>
     ```
 
-1. Let's update background colors on pages from:
+2. 让我们从以下位置更新页面的背景颜色：
+
+    从：
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
@@ -91,7 +98,7 @@ Now, let's add in light/dark theme support throughout our entire application.
     </Style>
     ```
 
-    to:
+    转变为:
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="Page">
@@ -99,14 +106,13 @@ Now, let's add in light/dark theme support throughout our entire application.
     </Style>
     ```
 
-
-1. Update the `BaseLabel`'s `TextColor` value:
+3. 更新 `BaseLabel` 的 `TextColor` 值：
 
     ```xml
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
     ```
 
-1. Add the `Background` on our `RefreshView`
+4. 在我们的 `RefreshView` 上添加`Background`
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
@@ -116,22 +122,27 @@ Now, let's add in light/dark theme support throughout our entire application.
     </Style>
     ```
 
-1. Update the `Background` on the `ButtonOutline`
+5. 更新 `ButtonOutline` 上的 `Background`
 
     ```xml
     <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     ```
 
-1. Update the `Background` on the `CardView`
+6. 更新 `CardView` 上的 `Background`
 
     ```xml
     <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
     ```
 
-Now, let's run the app and change the theme:
+现在，让我们运行应用程序并更改主题：
 
-![Changing themes](../Art/Themes.gif)
+![改变主题](../Art/Themes.gif)
 
 
-You did it! Congratulations! You built your first .NET MAUI application, loaded data from the internet, implemented navigation, added platform features, and themed the app!
+恭喜！ 您构建了属于您的第一个 .NET MAUI 应用程序、从互联网加载数据、实现了导航、添加了平台特定功能并为应用程序设置了主题！
+
+
+       
+
+
 

@@ -1,12 +1,14 @@
-## MVVM & Data Binding
-In Part 2 we will introduce full data binding with MVVM and retrieve the monkeys from an internet data source.
+## 实验二: MVVM 和数据绑定
 
-### Implementing INotifyPropertyChanged
+在实验二中，我们将介绍与 MVVM 的完整数据绑定，并从互联网数据源中检索猴子。
 
-*INotifyPropertyChanged* is important for data binding in MVVM Frameworks. This is an interface that when implemented, lets our view know about changes to the model. We will implement it once in our `BaseViewModel` so all other view models that we create can inherit from it.
+### INotifyPropertyChanged 实现
 
-1. In Visual Studio, open `ViewModel/BaseViewModel.cs`
-2. In `BaseViewModel.cs`, implement INotifyPropertyChanged by changing this
+*INotifyPropertyChanged* 对于 MVVM 框架中的数据绑定很重要。 这是一个接口，当实现时，让我们的视图知道模型的变化。 我们将在 `BaseViewModel` 中实现一次，以便我们创建的所有其他视图模型都可以继承它。
+
+1. 在 Visual Studio 中，打开 `ViewModel/BaseViewModel.cs`
+   
+2. 在 `BaseViewModel.cs` 中，通过改变这个来实现 INotifyPropertyChanged
 
 ```csharp
 public class BaseViewModel
@@ -15,7 +17,7 @@ public class BaseViewModel
 }
 ```
 
-to this
+转换为
 
 ```csharp
 public class BaseViewModel : INotifyPropertyChanged
@@ -24,30 +26,31 @@ public class BaseViewModel : INotifyPropertyChanged
 }
 ```
 
-3. In `BaseViewModel.cs`, right click on `INotifyPropertyChanged`
-4. Implement the `INotifyPropertyChanged` Interface
-   - (Visual Studio Mac) In the right-click menu, select Quick Fix -> Implement Interface
-   - (Visual Studio PC) In the right-click menu, select Quick Actions and Refactorings -> Implement Interface
-5. In `BaseViewModel.cs`, ensure this line of code now appears:
+3. 在`BaseViewModel.cs`中，右键单击`INotifyPropertyChanged`
+   
+4. 实现`INotifyPropertyChanged`接口
+    - (Visual Studio for Mac) 在右键菜单中，选择 Quick Fix -> Implement Interface
+    - (Visual Studio PC) 在右键菜单中，选择 Quick Actions and Refactorings -> Implement Interface
+  
+5. 在 `BaseViewModel.cs` 中，确保现在出现这行代码：
 
 ```csharp
 public event PropertyChangedEventHandler PropertyChanged;
 ```
 
-6. In `BaseViewModel.cs`, create a new method called `OnPropertyChanged`
-    - Note: We will call `OnPropertyChanged` whenever a property updates
+6. 在 `BaseViewModel.cs` 中，创建一个名为 `OnPropertyChanged` 的新方法
+     - 注意：每当属性更新时，我们都会调用 `OnPropertyChanged`
 
 ```csharp
 public void OnPropertyChanged([CallerMemberName] string name = null) =>
     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 ```
+### 实现 Title、IsBusy 和 IsNotBusy
 
-### Implementing Title, IsBusy, and IsNotBusy
+我们将为一些属性创建一个支持字段和访问器。 这些属性将允许我们在页面上设置标题，并让我们的视图知道我们的视图模型处于 busy 状态，因此我们不会执行重复操作（例如允许用户多次刷新数据）。 它们在 `BaseViewModel` 中，因为它们对于每个页面都是通用的。
 
-We will create a backing field and accessors for a few properties. These properties will allow us to set the title on our pages and also let our view know that our view model is busy so we don't perform duplicate operations (like allowing the user to refresh the data multiple times). They are in the `BaseViewModel` because they are common for every page.
-
-1. In `BaseViewModel.cs`, create the backing field:
-
+1. 在 `BaseViewModel.cs` 中，创建支持字段：
+   
 ```csharp
 public class BaseViewModel : INotifyPropertyChanged
 {
@@ -56,8 +59,7 @@ public class BaseViewModel : INotifyPropertyChanged
     //...
 }
 ```
-
-2. Create the properties:
+2. 创建相关属性:
 
 ```csharp
 public class BaseViewModel : INotifyPropertyChanged
@@ -90,9 +92,9 @@ public class BaseViewModel : INotifyPropertyChanged
 }
 ```
 
-Notice that we call `OnPropertyChanged` when the value changes. The .NET MAUI binding infrastructure will subscribe to our **PropertyChanged** event so the UI will be notified of the change.
+请注意，当值更改时，我们会调用 `OnPropertyChanged`。 .NET MAUI 绑定基础结构将订阅我们的 **PropertyChanged** 事件，因此 UI 将收到更改通知。
 
-We can also create the inverse of `IsBusy` by creating another property called `IsNotBusy` that returns the opposite of `IsBusy` and then raising the event of `OnPropertyChanged` when we set `IsBusy`
+我们还可以通过创建另一个名为 `IsNotBusy` 的属性来创建 `IsBusy` 的反转，该属性返回 `IsBusy` 的相反值，然后在设置 `IsBusy` 时触发 `OnPropertyChanged` 事件
 
 ```csharp
 public class BaseViewModel : INotifyPropertyChanged
@@ -117,12 +119,11 @@ public class BaseViewModel : INotifyPropertyChanged
 }
 ```
 
+### 使用 .NET Community Toolkit 简化 MVVM 模式
 
-### Simplifying MVVM with .NET Community Toolkit
+现在您已经了解了 MVVM 的工作原理，让我们看看一种简化开发的方法。 随着应用程序变得越来越复杂，将添加更多属性和事件。 这会导致添加更多样板代码。 .NET Community Toolkit 旨在通过源生成器来简化 MVVM，以自动处理我们过去必须手动编写的代码。 `CommunityToolkit.Mvvm` 库已添加到项目中，我们可以即可使用它。
 
-Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The .NET Community Toolkit seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. The `CommunityToolkit.Mvvm` library has been added to the project and we can start using it right away.
-
-Delete all contents in `BaseViewModel.cs` and replace it with the following:
+删除 `BaseViewModel.cs` 中的所有代码并添加如下代码:
 
 ```csharp
 namespace MonkeyFinder.ViewModel;
@@ -140,12 +141,11 @@ public partial class BaseViewModel : ObservableObject
 }
 ```
 
-Here, we can see that our code has been greatly simplified with an `ObservableObject` base class that implements `INotifyPropertyChanged` and also attributes to expose our properties.
+在这里，我们可以看到我们的代码已经大大简化成了一个 `ObservableObject` 基类，它实现了 `INotifyPropertyChanged` 以及绑定相关属性。
 
-Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
+请注意，isBusy 和 title 都附加了 `[ObservableProperty]` 属性。 生成的代码看起来几乎与我们手动编写的相同。 另外，isBusy 属性有 `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`，当值改变时也会通知 `IsNotBusy`。 要查看生成的代码，请转到项目，然后展开 **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** 并打开`MonkeyFinder.ViewModel。 BaseViewModel.cs`：
 
-
-Here is what our `IsBusy` looks like:
+这是我们的 `IsBusy` 属性:
 
 ```csharp
 [global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.0.0.0")]
@@ -167,18 +167,17 @@ public bool IsBusy
 }
 ```
 
-This code may look a bit scary, but since it is auto-generated it adds additional attributes to avoid conflicts. It is also highly optimized with caching as well.
+这段代码可能看起来有点吓人，但由于它是自动生成的，它添加了额外的属性以避免冲突。 它还通过缓存进行了高度优化。
 
-The same library will also help us handle click events aka `Commands` in the future.
+将来，相同的库还将帮助我们处理点击事件，即“Commands”。
 
-> Note that we changed this class to a `partial` class so the generated code can be shared in the class.
+> 请注意，我们将此类更改为“partial”类，以便生成的代码可以在该类中共享。
 
+### 创建 Monkey Service
 
-### Create a Monkey Service
+们已经准备好创建一个从互联网上检索猴子数据的方法。 我们将首先使用 HttpClient 通过一个简单的 HTTP 请求来实现这一点。 我们将在位于 `Services` 文件夹中的 `MonkeyService.cs` 文件中执行此操作。
 
-We are ready to create a method that will retrieve the monkey data from the internet. We will first implement this with a simple HTTP request using HttpClient. We will do this inside of our `MonkeyService.cs` file that is located in the `Services` folder.
-
-1. Inside of the `MonkeyService.cs`, let's add a new method to get all Monkeys:
+1. 在 `MonkeyService.cs` 中，让我们添加一个新方法来获取所有猴子：
 
     ```csharp
     List<Monkey> monkeyList = new ();
@@ -188,28 +187,9 @@ We are ready to create a method that will retrieve the monkey data from the inte
     }
     ```
 
-    Right now, the method simply creates a new list of Monkeys and returns it. We can now fill in the method use `HttpClient` to pull down a json file, parse it, cache it, and return it.
+    现在，该方法只是创建一个新的 Monkeys 列表并返回它。 我们现在可以填写方法使用 `HttpClient` 来拉取一个 json 文件(包括解析/缓存/返回)。
 
-1. Let's get access to an `HttpClient` by added into the contructor for the `MonkeyService`.
-
-    ```csharp
-     HttpClient httpClient;
-    public MonkeyService()
-    {
-        this.httpClient = new HttpClient();
-    }
-    ```
-
-    .NET MAUI includes dependency injection similar to ASP.NET Core. We will register this service and dependencies soon.
-
-1. Let's check to see if we have any monkeys in the list and return it if so by filling in the `GetMonkeys` method:
-
-    ```csharp
-    if (monkeyList?.Count > 0)
-        return monkeyList;
-    ```
-
-1. We can use the `HttpClient` to make a web request and parse it using the built in `System.Text.Json` deserialization.
+2. 让我们通过添加到`MonkeyService`的构造函数中来访问`HttpClient`。
 
     ```csharp
     var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
@@ -222,15 +202,37 @@ We are ready to create a method that will retrieve the monkey data from the inte
     return monkeyList;
     ```
 
-1. Add the following using directive at the top of the file to access the `ReadFromJsonAsync` extension method:
+    .NET MAUI 包括类似于 ASP.NET Core 的依赖注入。 我们将很快注册此服务和依赖项。
 
+3. 让我们检查一下列表中是否有猴子，如果有，则通过填写 `GetMonkeys` 方法返回：
+   
     ```csharp
+    if (monkeyList?.Count > 0)
+        return monkeyList;
+    ```
+
+4. 我们可以使用 `HttpClient` 发出 Web 请求，并使用内置的 `System.Text.Json` 反序列化对其进行解析。
+   
+    ```csharp
+    var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
+
+    if (response.IsSuccessStatusCode)
+    {
+        monkeyList = await response.Content.ReadFromJsonAsync<List<Monkey>>();
+    }
+    
+    return monkeyList;
+    ```
+
+5. 别忘记在文件顶部添加以下 using 指令以访问 `ReadFromJsonAsync` 扩展方法：
+   
+       ```csharp
     using System.Net.Http.Json;
     ```
 
-#### No Internet? No Problem!
+#### 如果没有网络
 
-If you have internet issues in your current setup don't worry as we have embedded a list of monkeys into the project. Instead of using `HttpClient`, you can read the file and return it:
+如果您在当前设置中遇到互联网访问问题，请不要担心，因为我们已将猴子列表嵌入到项目中。 您可以读取文件并返回它，而不是使用 `HttpClient`：
 
 ```csharp
 using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
@@ -239,14 +241,14 @@ var contents = await reader.ReadToEndAsync();
 monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
 ```
 
+### 从 ViewModel 调用 MonkeyService
 
-### Call MonkeyService from ViewModel
+我们现在可以更新我们的`MonkeysViewModel`来调用我们的新猴子服务并将猴子列表暴露给我们的用户界面。
 
-We now can update our `MonkeysViewModel` to call our new monkey service and expose the list of monkeys to our user interface. 
+我们将使用 `ObservableCollection<Monkey>` 将被清除然后加载 **Monkey** 对象。 我们使用 `ObservableCollection` 是因为它内置支持在我们从集合中添加或删除项目时引发 `CollectionChanged` 事件。 这意味着我们在更新集合时不会调用 `OnPropertyChanged`。
 
-We will use an `ObservableCollection<Monkey>` that will be cleared and then loaded with **Monkey** objects. We use an `ObservableCollection` because it has built-in support to raise `CollectionChanged` events when we Add or Remove items from the collection. This means we don't call `OnPropertyChanged` when updating the collection.
+1. 在`MonkeysViewModel.cs`中声明一个我们将初始化为空集合的属性。 此外，我们可以将 Title 设置为“Monkey Finder”。
 
-1. In `MonkeysViewModel.cs` declare a property which we will initialize to an empty collection. Also, we can set our Title to `Monkey Finder`.
 
     ```csharp
     public partial class MonkeysViewModel : BaseViewModel
@@ -258,15 +260,15 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
         }
     }
     ```
-    
-1. We will want to access our new `MonkeyService`. So let's add the following using directive to the top of the file:
 
+2. 我们将要访问我们新的`MonkeyService`。 因此，让我们将以下 using 指令添加到文件顶部：
+   
     ```csharp
     using MonkeyFinder.Services;
     ```
 
-1. We also need access to our `MonkeyService`, which we will inject throught he constructor:
-
+3. 我们还需要访问我们的`MonkeyService`，我们将通过构造函数注入它：
+   
     ```csharp
     public ObservableCollection<Monkey> Monkeys { get; } = new();
     MonkeyService monkeyService;
@@ -277,8 +279,8 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. In `MonkeysViewModel.cs`, create a method named `GetMonkeysAsync` that returns `async Task`:
-
+4. 在 `MonkeysViewModel.cs` 中，创建一个名为 `GetMonkeysAsync` 的方法，该方法返回 `async Task`：
+   
     ```csharp
     public class MonkeysViewModel : BaseViewModel
     {
@@ -290,8 +292,8 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. In `GetMonkeysAsync`, first ensure `IsBusy` is false. If it is true, `return`
-
+5. 在 `GetMonkeysAsync` 中，首先确保 `IsBusy` 为 false。 如果是真的，`return`
+   
     ```csharp
     async Task GetMonkeysAsync()
     {
@@ -300,8 +302,9 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. In `GetMonkeysAsync`, add some scaffolding for try/catch/finally blocks
-    - Notice, that we toggle *IsBusy* to true and then false when we start to call to the server and when we finish.
+6. 在 `GetMonkeysAsync` 中，为 try/catch/finally 块添加内容
+     - 请注意，当我们开始调用服务器和完成时，我们将 *IsBusy* 切换为 true，然后切换为 false。
+  
 
     ```csharp
     async Task GetMonkeysAsync()
@@ -326,8 +329,8 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. In the `try` block of `GetMonkeysAsync`, we can get the monkeys from our `MonkeyService`.
-
+7. 在 `GetMonkeysAsync` 的 `try` 块中，我们可以从 `MonkeyService` 中获取猴子。
+   
     ```csharp
     async Task GetMonkeysAsync()
     {
@@ -342,7 +345,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. Still inside of the `try` block, clear the `Monkeys` property and then add the new monkey data:
+8. 仍然在 `try` 块内，清除 `Monkeys` 属性，然后添加新的猴子数据：
 
     ```csharp
     async Task GetMonkeysAsync()
@@ -364,7 +367,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. In `GetMonkeysAsync`, add this code to the `catch` block to display a popup if the data retrieval fails:
+9. 在 `GetMonkeysAsync` 中，将此代码添加到 `catch` 块以在数据检索失败时显示弹出窗口：
 
     ```csharp
     async Task GetMonkeysAsync()
@@ -379,7 +382,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1. Ensure the completed code looks like this:
+10. 确保完成的代码如下所示：
 
     ```csharp
     async Task GetMonkeysAsync()
@@ -412,7 +415,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-1.  Finally, let's expose this method via an `ICommand` that we can data bind to. Normally, we would have to create a backing field such as:
+12. 最后，让我们通过可以数据绑定到的 `ICommand` 公开这个方法。 通常，我们必须创建一个支持字段，例如：
 
     ```csharp
     public Command GetMonkeysCommand { get; }
@@ -423,7 +426,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-    However, with the .NET Community Toolkit we simply can add the `[RelayCommand]` attribute to our method:
+    但是，使用 .NET Community Toolkit，我们可以简单地将 `[RelayCommand]` 属性添加到我们的方法中：
 
     ```csharp
      [RelayCommand]
@@ -433,7 +436,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-    This will automatically create all of the code we need:
+    这将自动创建我们需要的所有代码：
 
     ```csharp
     partial class MonkeysViewModel
@@ -449,30 +452,28 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     }
     ```
 
-    MAGIC!
+我们获取数据的方法终于完成了!
 
-Our main method for getting data is now complete!
+### 注册 Services
 
-### Register Services
+在我们可以运行应用程序之前，我们必须注册我们所有的依赖项。 打开“MauiProgram.cs”文件。
 
-Before we can run the app, we must register all of our dependencies. Open the `MauiProgram.cs` file. 
-
-1. Add the following using directive to access our `MonkeyService`:
+1. 添加以下 using 指令来访问我们的 `MonkeyService`：
 
 	```csharp
 	using MonkeyFinder.Services;
 	```
 
-1. Find where we are  registering our `MainPage` with `builder.Services` and add the following above it:
-	```csharp
+2. 找到我们在 `builder.Services` 中注册您的 `Main Page` 的位置，并在其上方添加以下内容：
+   
+   	```csharp
 	builder.Services.AddSingleton<MonkeyService>();
 	builder.Services.AddSingleton<MonkeysViewModel>();
 	```
 
-We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. This means they will only be created once, if we wanted a unique instance to be created each request we would register them as `Transient`.
+我们将 `MonkeyService` 和 `MonkeysViewModel` 注册为单例。 这意味着它们只会被创建一次，如果我们希望每个请求都创建一个唯一的实例，我们会将它们注册为“瞬态”。
 
-
-1. In the code behind for the project we will inject our `MonkeysViewModel` into our MainPage:
+3. 在项目后面的代码中，我们将把我们的`MonkeysViewModel`注入到我们的 MainPage 中：
 
     ```csharp
     public MainPage(MonkeysViewModel viewModel)
@@ -482,12 +483,16 @@ We are registering the `MonkeyService` and `MonkeysViewModel` as singletons. Thi
     }
     ```
 
-## Build The Monkeys User Interface
+
+## 创建用户界面 
+
 It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
+
+现在是时候在 `View/MainPage.xaml` 中构建 .NET MAUI 用户界面了。 我们的最终结果是构建一个如下所示的页面：
 
 ![](../Art/FinalUI.PNG)
 
-1. In `MainPage.xaml`, add a `x:DataType` at the top of the `ContentPage` tag, which will enable us to get binding intellisense:
+1. 在 `MainPage.xaml` 中，在 `ContentPage` 标记的顶部添加一个 `x:DataType`，这将使我们能够获得绑定智能感知：
 
     ```xml
     <ContentPage
@@ -501,9 +506,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
     </ContentPage>
     ```
 
-    This is called a compiled binding. We are specifying that we will be binding directly to the `MonkeysViewModel`. This will do error checking and has performance enhancements.
+    这称为编译绑定。 我们指定我们将直接绑定到`MonkeysViewModel`。 这将进行错误检查并增强性能。
 
-1. We can create our first binding on the `ContentPage` by adding the `Title` Property:
+2. 我们可以通过添加 `Title` 属性在 `ContentPage` 上创建我们的第一个绑定：
 
 ```xml
 <ContentPage
@@ -518,7 +523,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-1. In the `MainPage.xaml`, we can add a `Grid` between the `ContentPage` tags with 2 rows and 2 columns. We will also set the `RowSpacing` and `ColumnSpacing` to
+3. 在 `MainPage.xaml` 中，我们可以在 `ContentPage` 标记之间添加一个 2 行 2 列的 `Grid`。 我们还将设置 `RowSpacing` 和 `ColumnSpacing` 
 
 ```xml
 <ContentPage
@@ -540,7 +545,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-1. In the `MainPage.xaml`, we can add a `CollectionView` between the `Grid` tags that spans 2 Columns. We will also set the `ItemsSource` which will bind to our `Monkeys` ObservableCollection and additionally set a few properties for optimizing the list.
+4. 在 `MainPage.xaml` 中，我们可以在 `Grid` 标记之间添加一个 `CollectionView`，跨越 2 列。 我们还将设置 `ItemsSource`，它将绑定到我们的 `Monkeys` ObservableCollection，并另外设置一些属性来优化列表。
 
 ```xml
 <ContentPage
@@ -567,8 +572,8 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-1. In the `MainPage.xaml`, we can add a `ItemTemplate` to our `CollectionView` that will represent what each item in the list displays:
-
+5. 在 `MainPage.xaml` 中，我们可以向 `CollectionView` 添加一个 `ItemTemplate` 来表示列表中每个项目显示的内容：
+   
 ```xml
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -611,7 +616,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-1. In the `MainPage.xaml`, we can add a `Button` under our `CollectionView` that will enable us to click it and get the monkeys from the server:
+6. 在 `MainPage.xaml` 中，我们可以在 `CollectionView` 下添加一个 `Button`，这将使我们能够单击它并从服务器获取猴子：
 
 ```xml
 <ContentPage
@@ -664,8 +669,9 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
+7. 最后，在 `MainPage.xaml` 中，我们可以在最底部的所有控件或 `Grid` 上方添加一个 `ActivityIndicator`，当我们按下 `Get Monkeys` 按钮时，它将显示正在发生的事情的指示。
 
-1. Finally, In the `MainPage.xaml`, we can add a `ActivityIndicator` above all of our controls at the very bottom or `Grid` that will show an indication that something is happening when we press the `Get Monkeys` button.
+
 
 ```xml
 <ContentPage
@@ -725,10 +731,10 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 </ContentPage>
 ```
 
-### Run the App
+### 运行应用程序
 
-1. In Visual Studio, set the iOS, Android, macOS, or Windows project as the startup project 
+1、在Visual Studio中，将 iOS、Android、macOS 或 Windows项目 设置为启动项目
 
-2. In Visual Studio, click "Start Debugging". When the application starts you will see a **Get Monkeys** button that when pressed will load monkey data from the internet!
+2. 在 Visual Studio 中，单击“开始调试”。 当应用程序启动时，您将看到一个 **Get Monkeys** 按钮，按下该按钮将从互联网中加载猴子数据！
 
-Let's continue our journey and learn about Navigation in [Part 3](../Part%203%20-%20Navigation/README.md)
+让我们继续我们的动手实验旅程，在 [实验三: 添加导航页面](../Part%203%20-%20Navigation/README.md) 中了解 Navigation

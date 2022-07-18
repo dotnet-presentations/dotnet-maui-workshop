@@ -1,39 +1,37 @@
+## 实验一: 显示数据
 
-## Displaying Data
+在实验准备部分，各位小伙伴对 .NET MAUI 项目的组成有了初步的了解，现在让我们开始进入编码，看看如何在列表中显示数据列表。
 
-In Part 0 you got a basic understanding of what makes up a .NET MAUI project, now let's start coding and see how to display a list of data in a list.
+### 在 Visual Studio 中打开解决方案
 
-### Open Solution in Visual Studio
+1. 打开**Part 1 - Displaying Data/MonkeyFinder.sln**
 
-1. Open **Part 1 - Displaying Data/MonkeyFinder.sln**
+此 MonkeyFinder 包含 1 个项目：
 
-This MonkeyFinder contains 1 project:
+* MonkeyFinder 项目 - 基于 .NET MAUI 针对 Android、iOS、macOS 和 Windows 的跨平台应用开发的主要项目。 它包括应用程序开发所需要的所有部分（ Models 、 Views 、ViewModels 和 Services ）。
 
-* MonkeyFinder - The main .NET MAUI project that targets Android, iOS, macOS, and Windows. It includes all scaffolding for the app including Models, Views, ViewModels, and Services.
+![MonkeyFinder 解决方案的具体架构](../Art/Solution.PNG)
 
-![Solution for the monkey finder app with multipel folders](../Art/Solution.PNG)
+**MonkeyFinder 项目**也包括了我们将在动手实验期间使用的空白代码文件和 XAML 页面文件。 实验过程中，我们都通过该项目去添加和修改相关代码。
 
-The **MonkeyFinder** project also has blank code files and XAML pages that we will use during the workshop. All of the code that we modify will be in this project for the workshop.
+### 还原 NuGet 包
 
-### NuGet Restore
+实验中所有项目都已设置好所需的 NuGet 包，因此在动手实验室期间无需安装其他包。 我们必须做的第一件事是通过网络中恢复所有 NuGet 包。
 
-All projects have the required NuGet packages already installed, so there will be no need to install additional packages during the Hands on Lab. The first thing that we must do is restore all of the NuGet packages from the internet.
+1. **右键单击** **Solution** 并选择 **Restore NuGet packages...**
 
-1. **Right-click** on the **Solution** and select **Restore NuGet packages...**
+![还原 NuGets](../Art/RestoreNuGets.PNG)
 
-![Restore NuGets](../Art/RestoreNuGets.PNG)
+### 创建 Model
 
+我们将下载有关猴子的详细信息，并且需要一个类来表示它。
 
-### Model
+![将 json 转换为 c# 类](../Art/Convert.PNG)
 
-We will be downloading details about the monkey and will need a class to represent it.
+我们可以使用 [json2csharp.com](https://json2csharp.com) 轻松转换位于 [montemagno.com/monkeys.json](https://montemagno.com/monkeys.json) 的 json 文件，并粘贴将原始 json 转换为 quicktype 以生成我们的 C# 类。 确保将类的名字设置为“Monkey”，将生成的命名空间名字设置为“MonkeyFinder.Model”，然后选择 C#。
 
-![Converting json to c# classes](../Art/Convert.PNG)
-
-We can easily convert our json file located at [montemagno.com/monkeys.json](https://montemagno.com/monkeys.json) by using [json2csharp.com](https://json2csharp.com) and pasting the raw json into quicktype to generate our C# classes. Ensure that you set the Name to `Monkey` and the generated namespace to `MonkeyFinder.Model` and select C#. 
-
-1. Open `Model/Monkey.cs`
-2. In `Monkey.cs`, copy/paste the properties:
+1. 打开 `Model/Monkey.cs`
+2. 在 `Monkey.cs`, 复制黏贴一下代码:
 
 ```csharp
 public class Monkey
@@ -48,19 +46,20 @@ public class Monkey
 }
 ```
 
-### Displaying Data
+### 显示数据
 
-We can display hard coded data of any data type in a `CollectionView` in our `MainPage.xaml`. This will allow us to build out our user interface by setting the `ItemTemplate` with some simple images and labels. 
+我们可以在 `MainPage.xaml` 的 `CollectionView` 中显示任何数据类型的硬编码数据。 这将允许我们通过使用一些简单的图像和标签设置 `ItemTemplate` 来创建我们的用户界面。
 
-We first need to add a new namespace at the top of the `MainPage.xaml`:
+我们首先需要在 `MainPage.xaml` 的顶部添加一个新的命名空间：
 
 ```xml
 xmlns:model="clr-namespace:MonkeyFinder.Model"
 ```
 
-This will allow us to reference the Monkey class above for data binding purposes.
+这将允许我们引用上面的 Monkey 类来进行数据绑定。
 
-Add the following into the MainPage.xaml's `ContentPage`:
+将以下内容添加到 MainPage.xaml 的 `ContentPage` 中：
+
 
 ```xml
 <CollectionView>
@@ -102,10 +101,7 @@ Add the following into the MainPage.xaml's `ContentPage`:
 </CollectionView>
 ```
 
-
-
-If we wanted to display the  two strings vertically on top of each other, we could wrap two `Label` controls inside of a `VerticalStackLayout` and assign font sizes to stand out:
-
+如果我们想将两个字符串垂直叠加显示，我们可以将两个 `Label` 控件包装在 `Vertical StackLayout` 中，并指定字体大小以突出显示：
 
 ```xml
  <HorizontalStackLayout Padding="10">
@@ -121,25 +117,22 @@ If we wanted to display the  two strings vertically on top of each other, we cou
 </HorizontalStackLayout>
 ```
 
+### 运行应用程序
 
+确保您的机器设置可以部署和在不同平台中调试：
 
-### Run the App
+* [有关 Android 模拟器设置步骤](https://docs.microsoft.com/dotnet/maui/android/emulator/device-manager)
+* [在 Windows 下使用 .NET MAUI 开发的设置](https://docs.microsoft.com/dotnet/maui/windows/setup)
 
-Ensure that you have your machine setup to deploy and debug to the different platforms:
+1. 在 Visual Studio 中，通过选择调试菜单中的下拉菜单并更改 “Framework”，将 Android 或 Windows 应用程序设置为启动项目
 
-* [Android Emulator Setup](https://docs.microsoft.com/dotnet/maui/android/emulator/device-manager)
-* [Windows setup for development](https://docs.microsoft.com/dotnet/maui/windows/setup)
+![Visual Studio 调试下拉菜单显示多个 Framework ](../Art/SelectFramework.png)
 
-1. In Visual Studio, set the Android or Windows app as the startup project by selecting the drop down in the debug menu and changing the `Framework`
+2. 在 Visual Studio 中，单击“调试”按钮或工具 -> 开始调试
+     - 如果您遇到任何问题，请参阅运行时平台的设置指南
 
+运行该应用程序将生成三只猴子的列表：
 
-![Visual Studio debug dropdown showing multiple frameworks](../Art/SelectFramework.png)
+![在Android上运行的应用程序显示3只猴子的效果](../Art/CodedMonkeys.png)
 
-2. In Visual Studio, click the "Debug" button or Tools -> Start Debugging
-    - If you are having any trouble, see the Setup guides for your runtime platform
-
-Running the app will result in a list of three monkeys:
-
-![App running on Android showing 3 monkeys](../Art/CodedMonkeys.png)
-
-Let's continue and learn about using the MVVM pattern with data binding in [Part 2](../Part%202%20-%20MVVM/README.md)
+让我们继续学习在 [实验二 - MVVM 和数据绑定](../Part%202%20-%20MVVM/README.md) 中使用数据绑定的 MVVM 模式
