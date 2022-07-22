@@ -1,12 +1,12 @@
-## Accessing Platform Features
+## 实验四: 访问平台特性
 
-In Part 4, we will use .NET MAUI to find the closest monkey to us and also open a map with the Monkeys location.
+在实验四中，我们将使用 .NET MAUI 找到离我们最近的猴子，并打开一张包含猴子位置的地图。
 
-### Check for internet
+### 网络检查
 
-We can easily check to see if our user is connected to the internet with the built in `IConnectivity` of .NET MAUI
+我们可以使用 .NET MAUI 的内置 `IConnectivity` 轻松检查我们的用户是否连接到互联网
 
-1. First, let's get access to the `IConnectivity` found inside of .NET MAUI. Let's inject `IConnectivity` into our `MonkeysViewModel` constructor:
+1. 首先，让我们访问 .NET MAUI 中的“IConnectivity”。 让我们将 `IConnectivity` 注入到 `MonkeysViewModel` 构造函数中：
 
     ```csharp
     IConnectivity connectivity;
@@ -18,10 +18,9 @@ We can easily check to see if our user is connected to the internet with the bui
     }
     ```
 
-1. Register the `Connectivity.Current` in our `MauiProgram.cs`.
+2. 在我们的 `MauiProgram.cs` 中注册 `Connectivity.Current`。
 
-
-1. While we are here let's add both `IGeolocation` and `IMap`, add the code:
+3. 在这里，让我们同时添加 `IGeolocation` 和 `IMap`，添加代码：
 
     ```csharp
     builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
@@ -29,7 +28,8 @@ We can easily check to see if our user is connected to the internet with the bui
     builder.Services.AddSingleton<IMap>(Map.Default);
     ```
 
-1. Now, let's check for internet inside of the `GetMonkeysAsync` method and display an alert if offline.
+4. 现在，让我们在 `GetMonkeysAsync` 方法中检查互联网，如果离线则显示警报。
+
 
     ```csharp
     if (connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -40,14 +40,13 @@ We can easily check to see if our user is connected to the internet with the bui
     }
     ```
 
-    Run the app on your emulator and toggle on and off airplane mode to check your implementation.
+    在您的模拟器上运行应用程序并打开和关闭飞行模式进行测试。
 
+### 查找最近的猴子!
 
-### Find Closest Monkey!
+我们可以使用设备的 GPS 向此页面添加更多功能，因为每只猴子都有与之关联的纬度和经度。
 
-We can add more functionality to this page using the GPS of the device since each monkey has a latitude and longitude associated with it.
-
-1. First, let's get access to the `IGeolocator` found inside of .NET MAUI. Let's inject `IGeolocator` into our `MonkeysViewModel` constructor:
+1. 首先，让我们访问 .NET MAUI 中的“IGeolocator”。 让我们将 `IGeolocator` 注入到 `MonkeysViewModel` 构造函数中：
 
     ```csharp
     IConnectivity connectivity;
@@ -61,8 +60,7 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
-
-1. In our `MonkeysViewModel.cs`, let's create another method called `GetClosestMonkey`:
+2. 在我们的`MonkeysViewModel.cs`中，让我们创建另一个名为`GetClosestMonkey`的方法：
 
     ```csharp
     [RelayCommand]
@@ -72,7 +70,7 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
-1. We can then fill it in by using .NET MAUI  to query for our location and helpers that find the closest monkey to us:
+3. 然后，我们可以使用 .NET MAUI 来查询我们的位置以及找到离我们最近的猴子的助手：
 
     ```csharp
     [RelayCommand]
@@ -111,10 +109,9 @@ We can add more functionality to this page using the GPS of the device since eac
     }
     ```
 
+4. 回到我们的`MainPage.xaml`，我们可以添加另一个`Button`来调用这个新方法：
 
-1. Back in our `MainPage.xaml` we can add another `Button` that will call this new method:
-
-    Add the following XAML under the Search button.
+     在“搜索”按钮下添加以下 XAML。
 
     ```xml
     <Button Text="Find Closest" 
@@ -126,20 +123,23 @@ We can add more functionality to this page using the GPS of the device since eac
         Margin="8"/>
     ```
 
-Re-run the app to see geolocation in action after you load monkeys!
+加载猴子后，重新运行应用程序以查看地理位置的运行情况！
 
-This project is pre-configured with all required permissions and features needed for Geolocation. You can read the documentation to find out more about setup, but here is a quick overview.
+该项目预先配置了地理定位所需的所有必要权限和功能。 您可以阅读文档以了解有关设置的更多信息，但这里有一个快速概述。
 
-1. .NET MAUI is pre-configured in all .NET MAUI applications including handling permissions.
-1. Android manifest information was pre-configured in **MonkeyFinder -> Platforms -> Android -> AssemblyInfo.cs**
-1. iOS/macOS manifest information was configured in the **info.plist** file for each platform
-1. Windows manifest information was configured in the **Package.appxmanifest**
+1. .NET MAUI 已在所有 .NET MAUI 应用程序中进行预配置，包括处理权限。
+2. **MonkeyFinder -> Platforms -> Android -> AssemblyInfo.cs**中预先配置了Android manifest 信息
+3. **info.plist** 文件中为每个平台配置了 iOS/macOS 配置信息
+4. **Package.appxmanifest**中配置了 Windows 配置信息
 
-### Opening Maps
+
+### 打开地图
 
 .NET MAUI provides over 60 platform features from a single API and opening the default map application is built in!
 
-1. Inject `IMap` into our `MonkeyDetailsViewModel`:
+.NET MAUI 通过单个 API 提供 60 多个平台功能，并内置打开默认地图应用程序！
+
+1. 将 `IMap` 注入到我们的 `Monkey Details ViewModel` 中：
 
     ```csharp
     IMap map;
@@ -149,7 +149,7 @@ This project is pre-configured with all required permissions and features needed
     }
     ```
 
-1. Open the `MonkeyDetailsViewModel.cs` file and add a method called `OpenMap` that calls into the `Map` API passing it the monkey's location:
+2. 打开 `MonkeyDetailsViewModel.cs` 文件并添加一个名为 `OpenMap` 的方法，该方法调用 `Map` API，将猴子的位置传递给它：
 
     ```csharp
     [RelayCommand]
@@ -172,10 +172,9 @@ This project is pre-configured with all required permissions and features needed
 
     ```
 
-### Update DetailsPage.xaml UI
+### 更新 DetailsPage.xaml UI
 
-
-Above the monkey's name, let's add a button that calls the `OpenMapCommand`.
+在猴子的名字上方，让我们添加一个调用 `OpenMapCommand` 的按钮。
 
 ```xml
 <Button Text="Show on Map" 
@@ -188,25 +187,23 @@ Above the monkey's name, let's add a button that calls the `OpenMapCommand`.
 <Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
 ```
 
-Run the application, navigate to a monkey, and then press Show on Map to launch the map app on the specific platform.
+运行应用程序，导航到一只猴子，然后按在地图上显示以在特定平台上去启动地图应用程序。
 
+## iOS 安全区域布局
 
-## iOS Safe Area Layouts
+除了访问跨平台设备 API，.NET MAUI 还包括特定于平台的集成。 如果您一直在带有凹槽的 iOS 设备上运行 Monkey Finder 应用程序，您可能已经注意到底部的按钮与设备底部的栏重叠。 iOS 有安全区域的概念，您必须以编程方式设置它。 但是，由于平台的特殊性，您可以直接在 XAML 中设置它们。
 
-In addition to accessing cross-platform device APIs, .NET MAUI also includes platform specific integrations. If you have been running the Monkey Finder app on an iOS device with a notch, you may have noticed that the buttons on the bottom overlap the bar on the bottom of the device. iOS has the concept of Safe Areas and you must progmatically set this. However, thanks to platform specifics, you can set them directly in the XAML.
-
-1. Open `MainPage.xaml` and add a new namespace for iOS specifics:
+1. 打开 `MainPage.xaml` 并为 iOS 细节添加一个新的命名空间：
 
     ```xml
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     ```
 
-1. On the `ContentPage` node, you can now set the following property:
+2. 在 `ContentPage` 节点上，您现在可以设置以下属性：
 
     ```xml
     ios:Page.UseSafeArea="True"
     ```
+在 iOS 模拟器或设备上重新运行应用程序，你已经注意到按钮已自动上移。
 
-Re-run the application on an iOS simulator or device and notice the buttons have automatically been shifted up.
-
-Let's move forward to the next module and learn about the Collection View in [Part 5](../Part%205%20-%20CollectionView/README.md)
+让我们进入下一个模块，在 [实验五: 为 CollectionView 添加下拉刷新](../Part%205%20-%20CollectionView/README.zh-cn.md) 中了解 Collection View
