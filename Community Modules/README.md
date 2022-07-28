@@ -1,4 +1,4 @@
-## Community Workshop Modules
+# Community Workshop Modules
 
 Here you will find additional modules that build upon the completed workshop application that highlight different features and capabilities from the community. This may include how to implement new architecture, use a different testing framework, or integrate a third party control from the community or a control vendor. Each module is built to showcase a unique capability with .NET MAUI and the .NET ecosystem and can be completed standalone or when you finish the main workshop. These modules are maintained by the original author of the community module. If you run into an issue please open a new issue with the "Community Module Issue" on GitHub.
 
