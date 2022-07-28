@@ -2,6 +2,8 @@
 
 Let's start by getting a basic overview of .NET MAUI and how projects are structured.
 
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+
 ### Open Solution in Visual Studio
 
 1. Open **Part 1 - Displaying Data/MonkeyFinder.sln**
