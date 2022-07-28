@@ -2,6 +2,8 @@
 
 Up to this point, we have used a standard light theme on the application. .NET MAUI has the concept of reusable Application Resources and resources that can automatically adapt to the theme of the device. 
 
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+
 ## Reusable Resources
 
 Open the `App.xaml` file and notice that there are several `Color` entries and `Styles`. These were configured ahead of time for some basic colors and styles that we used throughout the application. For example, we have defined a light color for the main background color:
