@@ -3,6 +3,8 @@
 
 In Part 0 you got a basic understanding of what makes up a .NET MAUI project, now let's start coding and see how to display a list of data in a list.
 
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+
 ### Open Solution in Visual Studio
 
 1. Open **Part 1 - Displaying Data/MonkeyFinder.sln**
