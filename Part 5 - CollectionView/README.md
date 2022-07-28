@@ -1,5 +1,7 @@
 ## Adding Pull-to-Refresh
 
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+
 The .NET MAUI `ListView` has built in support for pull-to-refresh, however a `RefreshView` enables developers to add pull-to-refresh to other controls such as `ScrollView` & `CollectionView`. 
 
 Let's add the new `RefreshView` to add pull-to-refresh to our `CollectionView`.
