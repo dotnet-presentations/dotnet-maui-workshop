@@ -5,7 +5,7 @@ Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_i
 ## Languages
 This workshop is available in the following languages:
 * English - default README files
-* Chinese (Simplified) - README files ending with .zh-cn.md (Translated by [Kinfey Lo](https://github.com/kinfey))
+* [Chinese (Simplified)](README.zh-cn.md) - README files ending with .zh-cn.md (Translated by [Kinfey Lo](https://github.com/kinfey))
 
 ## Setup Guide
 Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC (Recommended) or Mac and all you will need to do is install Visual Studio 2022 or Visual Studio for Mac 2022 with the .NET MAUI workload.
