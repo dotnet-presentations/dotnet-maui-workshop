@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.400" />
+    <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.400" />
+    <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.403" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Adventures.Inventory\Adventures.Inventory.csproj" />
+    <ProjectReference Include="..\Adventures.Monkey\Adventures.Monkey.csproj" />
+    <ProjectReference Include="..\Adventures.Common\Adventures.Common.csproj" />
+    <ProjectReference Include="..\DataService\DataService.csproj" />
+    <ProjectReference Include="..\Adventures.Data\Adventures.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.Maui.Extensions" />
+    <None Remove="Microsoft.Maui.Dependencies" />
+    <None Remove="Microsoft.Maui.Graphics" />
+  </ItemGroup>
+</Project>
