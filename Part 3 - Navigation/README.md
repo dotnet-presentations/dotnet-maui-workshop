@@ -2,6 +2,8 @@
 
 In Part 3 we will add simple navigation to push a new page onto the stack to display details about the monkey.
 
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+
 We will use the built-in Shell navigation of .NET MAUI. This powerful navigation system is based on URIs. You can pass additional information while navigating query parameter such as a string, or a full object.
 
 For example, let's say we wanted to navigate to a details page and pass in an identifier. 
