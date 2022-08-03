@@ -1,12 +1,12 @@
-## 实验五: 为 CollectionView 添加下拉刷新
+## Adding Pull-to-Refresh
 
-.NET MAUI `ListView` 内置了对拉动刷新的支持，但是 `RefreshView` 使开发人员能够将拉动刷新添加到其他控件，例如 `ScrollView` 和`CollectionView`。
+This module is also available in [Chinese (Simplified)](README.zh-cn.md).
 
-让我们添加新的 `RefreshView` 以将 pull-to-refresh 添加到我们的 `CollectionView`。
+The .NET MAUI `ListView` has built in support for pull-to-refresh, however a `RefreshView` enables developers to add pull-to-refresh to other controls such as `ScrollView` & `CollectionView`. 
 
-通过使用 `RefreshView` 包装来更新 `CollectionView` 逻辑
+Let's add the new `RefreshView` to add pull-to-refresh to our `CollectionView`.
 
-从:
+Update the `CollectionView` logic by wrapping it with a `RefreshView` from:
 
 ```xml
 <CollectionView
@@ -17,7 +17,7 @@
 </CollectionView>
 ```
 
-修改为:
+to:
 
 ```xml
 <RefreshView
@@ -32,18 +32,18 @@
 </RefreshView>
 ```
 
-请注意，我们将 `Grid.ColumnSpan="2"` 移动到了 `RefreshView`，因为它是 `Grid` 中的新父视图。
+Notice that we moved the `Grid.ColumnSpan="2"` to the `RefreshView` since it is the new parent view in the `Grid`.
 
-由于用户可以启动刷新，我们将希望在后面的代码中创建一个新变量来绑定以在完成后停止刷新。
+Since the user can initiate a refresh, we will want to create a new variable in our code behind to bind to stop refreshing when we are done.
 
-1. 打开 `MonkeysViewModel.cs` 并添加一个新属性：
+1. Open `MonkeysViewModel.cs` and add a new property:
 
     ```csharp
     [ObservableProperty]
     bool isRefreshing;
     ```
 
-2. 在 `GetMonkeysAsync` 的 `finally` 中，将 `IsRefreshing` 设置为 `false`：
+1. In the `finally` of the `GetMonkeysAsync` set `IsRefreshing` to `false`:
 
     ```csharp
     finally
@@ -52,22 +52,22 @@
         IsRefreshing = false;
     }
     ```
-这将在 iOS、Android、macOS 和 Windows（在触摸屏上）上启用下拉刷新：
 
-![启用拉刷新的Android模拟器](../Art/PullToRefresh.PNG)
+This will enable pull-to-refresh on iOS, Android, macOS, and Windows (on touch screen):
 
-> 重要提示：如果您使用的是 iOS，则当前存在使 UI 看起来不正确的错误。 建议在实验的其余部分在 iOS 上进行测试时删除 RefreshView。
+![Android emulator with pull to refresh enabled](../Art/PullToRefresh.PNG)
 
-## 布局
+> Important Note: If you are on iOS there currently is a bug which makes the UI look incorrect. It is recommended to remove the RefreshView when testing on iOS for the rest of the workshop.
 
-`CollectionView` 将自动在垂直堆栈布局中布局项目。 有几个内置的 `ItemsLayout` 可以使用。 让我们探索一下。
+## Layout
 
-### 线性项目布局 - LinearItemsLayout
+`CollectionView` will automatically layout items in a vertical stack layout. There are several built in `ItemsLayout` that can be used. Let's explore.
 
-这是可以在垂直或水平方向显示项目的默认布局。 您可以将 `ItemsLayout` 属性设置为 `VerticalList` 或 `HorizontalList`。
+### LinearItemsLayout 
 
-要访问 `LinearItemsLayout` 的其他属性，我们需要设置一个子属性：
+This is the default layout that can display items in either vertical or horizontal orientations. You can set the `ItemsLayout` property to `VerticalList` or `HorizontalList`. 
 
+To access additional properties on the `LinearItemsLayout` we will need to set a sub-property:
 
 ```xml
 <CollectionView
@@ -81,11 +81,11 @@
 </CollectionView>
 ```
 
-### 网格项目布局 - GridItemsLayout
+### GridItemsLayout
 
-更有趣的是使用 `GridItemsLayout` 自动分隔具有不同跨度的项目的能力。
+More interesting is the ability to use `GridItemsLayout` that automatically spaces out items with different spans.  
 
-让我们使用 `GridItemsLayout` 并将跨度更改为 3
+Let's use the `GridItemsLayout` and change the span to 3 
 
 ```xml
 <CollectionView
@@ -99,9 +99,9 @@
 </CollectionView>
 ```
 
-![3 列网格项目布局中的显示](../Art/GridItemsLayoutVert.png)
+![Monkeys in a grid with 3 columns](../Art/GridItemsLayoutVert.png)
 
-我们可以将 `Orientation` 更改为 `Horizontal`，现在我们的 CollectionView 将从左到右滚动！
+We can change the `Orientation` to `Horizontal` and now our CollectionView will scroll left to right!
 
 ```xml
 <CollectionView.ItemsLayout>
@@ -109,9 +109,9 @@
 </CollectionView.ItemsLayout>
 ```
 
-![从左到右滚动的猴子列表](../Art/GridItemsLayoutHorizontal.png)
+![List of monkeys scrolling left to right](../Art/GridItemsLayoutHorizontal.png)
 
-让我们回到我们原来的单列`CollectionView`:
+Let's go back to our original single column `CollectionView`:
 
 ```xml
 <CollectionView.ItemsLayout>
@@ -119,13 +119,13 @@
 </CollectionView.ItemsLayout>
 ```
 
-## 空视图 - EmptyView
+## EmptyView
 
-> 重要提示：Android 上目前存在 EmptyView 不会消失的问题。 建议此时在Android上测试时将其移除。
+> Important Note: There is currently an issue on Android in which the EmptyView will not go away. It is recommended to remove it when testing on Android at this time.
 
-`CollectionView` 有许多简洁的功能，包括分组、页眉、页脚，以及设置在没有项目时显示的视图的能力。
+There are many neat features to `CollectionView` including grouping, header, footers, and the ability to set a view that is displayed when there are no items.
 
-让我们添加一个以 `EmptyView` 为中心的图像：
+Let's add an image centered in the `EmptyView`:
 
 ```xml
 <CollectionView
@@ -144,6 +144,7 @@
 </CollectionView>
 ```
 
-![模拟器中没有任何项目，中间显示图像](../Art/EmptyView.png)
 
-在我们的下一个实验中，我们将了解应用程序主题。 前往 [实验六: 应用程序主题设置](../Part%206%20-%20AppThemes/README.md)
+![Emulator without any items in it showing an image in the middle](../Art/EmptyView.png)
+
+In our next module, we'll learn about Application Themes.  Head over to [Part 6](../Part%206%20-%20AppThemes/README.md)

@@ -1,18 +1,16 @@
-## Navigation
+## 实验三: 添加导航页面
 
-In Part 3 we will add simple navigation to push a new page onto the stack to display details about the monkey.
+在实验三中，我们将添加简单的导航以将新页面推送到堆栈中以显示有关猴子的详细信息。
 
-This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+我们将使用 .NET MAUI 的内置 Shell 导航。 这个强大的导航系统基于 URI。 您可以在导航查询参数（例如字符串或完整对象）时传递其他信息。
 
-We will use the built-in Shell navigation of .NET MAUI. This powerful navigation system is based on URIs. You can pass additional information while navigating query parameter such as a string, or a full object.
-
-For example, let's say we wanted to navigate to a details page and pass in an identifier. 
+例如，假设我们想要导航到详细信息页面并传入一个标识符。
 
 ```csharp
 await Shell.Current.GoToAsync("DetailsPage?name=james");
 ```
 
-Then in our details page or view model we should define this property:
+然后在我们的详细信息页面或视图模型中，我们应该定义这个属性：
 
 ```csharp
 [QueryProperty(nameof(Name), "name")]
@@ -27,7 +25,7 @@ public partial class DetailsPage : ContentPage
 }
 ```
 
-When we navigate, the name "james" would be passed along automatically. We can also pass a full object as well using the same mechanism:
+当我们导航时，名称“james”会自动传递。 我们也可以使用相同的机制传递一个完整的对象：
 
 ```csharp
 var person = new Person { Name="James" };
@@ -37,7 +35,7 @@ await Shell.Current.GoToAsync("DetailsPage", new Dictionary<string, object>
 });
 ```
 
-Then on our page or view model we would create the property.
+然后在我们的页面或视图模型上，我们将创建该属性。
 
 ```csharp
 [QueryProperty(nameof(Person), "person")]
@@ -52,16 +50,15 @@ public partial class DetailsPage : ContentPage
 }
 ```
 
-Here, the `Person` is automatically serialized and deserialized for us when we navigate.
+在这里，当我们导航时，`Person` 会自动为我们序列化和反序列化。
 
-Now, let's add a click handler to the collection view and pass the monkey to the details page.
+现在，让我们向集合视图添加一个点击处理程序并将猴子传递到详细信息页面。
 
-### Add Selected Event
+### 添加选定的事件
 
-Now, let's add navigation to a second page that displays monkey details!
+现在，让我们将导航添加到显示猴子详细信息的第二个页面！
 
-1. In `MonkeysViewModel.cs`, create a method `async Task GoToDetailsAsync(Monkey monkey)` exposed as an `[RelayCommand]`:
-
+1. 在`MonkeysViewModel.cs`中，创建一个方法`async Task GoToDetailsAsync(Monkey monkey)`，暴露为`[RelayCommand]`：
 
     ```csharp
     [RelayCommand]
@@ -77,11 +74,11 @@ Now, let's add navigation to a second page that displays monkey details!
     }
     ```
 
-    - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 
+    - 此代码检查所选项目是否为非空，并使用内置的 Shell `Navigation` API 以猴子为参数推送新页面，然后取消选择该项目。
 
-1. In `MainPage.xaml` we can add an `TapGestureRecognizer` event to the `Frame` of our monkey inside of the `CollectionView.ItemTemplate`:
+2. 在 `MainPage.xaml` 中，我们可以在 `CollectionView.ItemTemplate` 内的猴子的 `Frame` 中添加 `TapGestureRecognizer` 事件：
 
-    Before:
+    之前:
 
     ```xml
     <CollectionView.ItemTemplate>
@@ -107,7 +104,7 @@ Now, let's add navigation to a second page that displays monkey details!
     </CollectionView.ItemTemplate>
     ```
 
-    After:
+    之后:
     ```xml
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
@@ -138,12 +135,11 @@ Now, let's add navigation to a second page that displays monkey details!
     </CollectionView.ItemTemplate>
     ```
 
-    This uses a `RelativeSource` binding, which means that it isn't binding to the `Monkey` anymore in the `DataTemplate`, but instead it is looking up the hierarchy specifically for an `AncestorType` of `MonkeysViewModel`. This allows for more advanced scenarios like this.
+    这使用了 `RelativeSource` 绑定，这意味着它不再绑定到 `DataTemplate` 中的 `Monkey`，而是专门为 `MonkeysViewModel` 的 `AncestorType` 查找层次结构。 这允许像这样的更高级的场景。
 
+### 为详细信息页面添加新的 ViewModel 
 
-### ViewModel for Details
-
-1. Inside of our `ViewModel/MonkeyDetailsViewModel.cs`, we will house our logic for assigning the monkey to the view model. Let's first create a bindable property for the `Monkey`:
+1. 在您的“ViewModel/Monkey Details ViewModel.cs”中，我们将包含将猴子分配给视图模型的逻辑。 让我们首先为“Monkey”创建一个可绑定属性：
 
     ```csharp
     public partial class MonkeyDetailsViewModel : BaseViewModel
@@ -155,9 +151,8 @@ Now, let's add navigation to a second page that displays monkey details!
         [ObservableProperty]
         Monkey monkey;    
     }
-    ```
 
-1. Next, we will add a `QueryProperty` to handle passing the monkey data:
+2. 接下来，我们将添加一个 `QueryProperty` 来处理传递猴子数据：
 
     ```csharp
     //Add QueryProperty
@@ -172,28 +167,26 @@ Now, let's add navigation to a second page that displays monkey details!
         Monkey monkey;
     }
     ```
-    
-    
-## Registering Routing
 
-Now that we have our details page in place, we need to register it for routing. This is done in both the Shell routing system and with the .NET MAUI dependency service.
+## 注册页面路由
 
-1. Open `AppShell.xaml.cs` code behind and add the following code into the constructor under the `InitializeComponent();` invoke:
+现在我们已经有了详细信息页面，我们需要注册它以进行路由。 这是在 Shell 路由系统和 .NET MAUI 依赖项服务中完成的。
+
+1、打开后面的`AppShell.xaml.cs`代码，在`InitializeComponent();`调用下的构造函数中加入如下代码：
 
     ```csharp
     Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
     ```
+    这将使用我们之前使用的“DetailsPage”路由注册详细信息页面。
 
-    This will register the details page with the route of "DetailsPage", which we used earlier.
-
-1. Open `MauiProgram.cs` and add both the view model and the page as `Transient` so a new page and view model is created each time it is navigated to:
+2. 打开“MauiProgram.cs”并将视图模型和页面都添加为“Transient”，这样每次导航到时都会创建一个新的页面和视图模型：
 
     ```csharp
     builder.Services.AddTransient<MonkeyDetailsViewModel>();
     builder.Services.AddTransient<DetailsPage>();
     ```
 
-1. Finally, we must inject the view model into our `DetailsPage`. Open the code behind for the page in `DetailsPage.xaml.cs` and change the constructor to the following:
+3. 最后，我们必须将视图模型注入到我们的 `DetailsPage` 中。 在 `DetailsPage.xaml.cs` 中打开页面背后的代码，并将构造函数更改为以下内容：
 
     ```csharp
 	public DetailsPage(MonkeyDetailsViewModel viewModel)
@@ -203,14 +196,13 @@ Now that we have our details page in place, we need to register it for routing. 
 	}
     ```
 
-### Create DetailsPage.xaml UI
+### 为 DetailsPage.xaml 创建 UI
 
-Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen like this:
+让我们将 UI 添加到 DetailsPage。 我们的最终目标是获得这样一个精美的详细资料展示的界面：
 
 ![](../Art/Details.PNG)
 
-
-1. Let's first start by defining our DataType by defining the view model namespace and also setting the title:
+1. 首先通过定义视图模型的命名空间并设置标题来定义我们的 DataType：
 
     ```xml
     <ContentPage
@@ -225,7 +217,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     </ContentPage>
     ```
 
-1. At the core is a `ScrollView`, `VerticalStackLayout`, and `Grid` to layout all of the controls nicely on the screen:
+2. 核心是 `ScrollView`、`VerticalStackLayout` 和 `Grid` 在屏幕上很好地布局所有控件：
 
     ```xml
     <ScrollView>
@@ -242,7 +234,9 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     </ScrollView>
     ```
 
-1. We can now fill in our `Grid` with the following code to place a box as the background color of yellow, and then our monkey image cut out in the shape of a circle:
+3. 我们现在可以用下面的代码填充我们的`Grid`，放置一个 box 作为黄色背景色，然后我们的猴子图像被剪成一个圆形：
+
+
 
     ```xml
     <BoxView
@@ -270,7 +264,8 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     </Frame>
     ```
 
-1. Finally, under the `Grid`, but inside of the `VerticalStackLayout` we will add details about the monkey.
+4. 最后，在 `Grid` 下，在 `VerticalStackLayout` 内部，我们将添加有关猴子的详细信息。
+   
 
 ```xml
 <VerticalStackLayout Padding="10" Spacing="10">
@@ -280,7 +275,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 </VerticalStackLayout>
 ```
 
+5. 在所需平台上运行应用程序并点击一只猴子进行导航跳转！
 
-1. Run the application on the desired platform and tap on a monkey to navigate!
-
-Platform features are the next topic for us to explore.  Navigate to [Part 4](../Part%204%20-%20Platform%20Features/README.md) to begin the next module.
+平台特性是我们接下来要探索的话题。 导航到 [实验四: 访问平台特性](../Part%204%20-%20Platform%20Features/README.zh-cn.md) 以开始下一个实验。
+   
