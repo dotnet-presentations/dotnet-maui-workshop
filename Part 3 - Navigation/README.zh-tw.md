@@ -279,5 +279,5 @@ public partial class DetailsPage : ContentPage
 
 5. 就如同前面的 Hands-on Lab 的 Part，在要測試的架構當中來選定執行目標後，來執行應用程式。並點選 CollectionView 當中的一個項目進行頁面的巡覽轉跳！
 
-平台特性是下一個 Hands-on Lab 的 Part 要進行的部分，前進到 [Hands-on Lab Part 4: 了解平台特性](../Part%204%20-%20Platform%20Features/README.md) 以開始下一個階段的 Hands-on Lab。
+平台特性是下一個 Hands-on Lab 的 Part 要進行的部分，前進到 [Hands-on Lab Part 4: 了解平台特性](../Part%204%20-%20Platform%20Features/README.zh-tw.md) 以開始下一個階段的 Hands-on Lab。
    
