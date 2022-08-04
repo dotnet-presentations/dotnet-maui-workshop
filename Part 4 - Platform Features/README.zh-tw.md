@@ -209,4 +209,4 @@
     
 在 iOS 模擬器或設備中重新執行此應用程式，這邊可以注意到原本版面設計，其中按鈕所在的位置已稍微自動上移錯開了與 **Home Indicator** 的重疊。
 
-緊接著在進入下一個 Hands-on Lab 的部分吧! 在 [Hands-on Lab Part 5: 幫 CollectionView 增加下拉更新](../Part%205%20-%20CollectionView/README.md) 中了解 CollectionView 的運用吧。
+緊接著在進入下一個 Hands-on Lab 的部分吧! 在 [Hands-on Lab Part 5: 幫 CollectionView 增加下拉更新](../Part%205%20-%20CollectionView/README.zh-tw.md) 中了解 CollectionView 的運用吧。
