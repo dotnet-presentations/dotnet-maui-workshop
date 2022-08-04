@@ -107,7 +107,7 @@
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
     ```
 
-4. 替先前的 Hands-on Lab Part 5 中所使用到的 `RefreshView` 控制項來增加 `Background` 的屬性值。
+4. 幫先前的 Hands-on Lab Part 5 中所設計的 `RefreshView` 控制項來增加 `Background` 的屬性值。
 
     ```xml
     <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
@@ -117,7 +117,7 @@
     </Style>
     ```
 
-5. 調整 `ButtonOutline` 上的 `Background` 設定值。
+5. 繼續調整 `ButtonOutline` 上的 `Background` 設定值。
 
     ```xml
     <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
