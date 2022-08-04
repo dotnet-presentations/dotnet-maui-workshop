@@ -13,13 +13,13 @@
 
 有關此 Hands-on Lab 的内容介紹：
 
-* [Hands-on Lab Part 0: 約 30 分鐘的環節](Part%200%20-%20Overview/README.md) - 有關 .NET MAUI 的基本知識與其開發環境的安裝介绍 
-* [Hands-on Lab Part 1: 呈現出資料](Part%201%20-%20Displaying%20Data/README.md) - 實作單頁資料呈現列表
-* [Hands-on Lab Part 2: MVVM 和資料繫結](Part%202%20-%20MVVM/README.md) - MVVM 框架設計和資料繫結
-* [Hands-on Lab Part 3: 增加導覽頁面](Part%203%20-%20Navigation/README.md) - 幫 App 增加頁面巡覽功能
-* [Hands-on Lab Part 4: 了解平台特性](Part%204%20-%20Platform%20Features/README.md) - 實現不同平台的特定功能
-* [Hands-on Lab Part 5: 幫 CollectionView 增加下拉更新](Part%205%20-%20CollectionView/README.md) - CollectionView 多資料呈現控制項的使用技巧
-* [Hands-on Lab Part 6: 設定 App 的佈景主題](Part%206%20-%20AppThemes/README.md) - 有關 App 的深淺色模式的佈景主題設置
+* [Hands-on Lab Part 0: 約 30 分鐘的環節](Part%200%20-%20Overview/README.zh-tw.md) - 有關 .NET MAUI 的基本知識與其開發環境的安裝介绍 
+* [Hands-on Lab Part 1: 呈現出資料](Part%201%20-%20Displaying%20Data/README.zh-tw.md) - 實作單頁資料呈現列表
+* [Hands-on Lab Part 2: MVVM 和資料繫結](Part%202%20-%20MVVM/README.zh-tw.md) - MVVM 框架設計和資料繫結
+* [Hands-on Lab Part 3: 增加導覽頁面](Part%203%20-%20Navigation/README.zh-tw.md) - 幫 App 增加頁面巡覽功能
+* [Hands-on Lab Part 4: 了解平台特性](Part%204%20-%20Platform%20Features/README.zh-tw.md) - 實現不同平台的特定功能
+* [Hands-on Lab Part 5: 幫 CollectionView 增加下拉更新](Part%205%20-%20CollectionView/README.zh-tw.md) - CollectionView 多資料呈現控制項的使用技巧
+* [Hands-on Lab Part 6: 設定 App 的佈景主題](Part%206%20-%20AppThemes/README.zh-tw.md) - 有關 App 的深淺色模式的佈景主題設置
 
 
 要開始進行此 Hands-on Lab，請開啟「Part 1 - Displaying Data」資料夾並開啟 「MonkeyFinder.sln」。您可以在整個 Hands-on Lab 進行的過程中持續的使用本專案。而每個 **Hands-on Lab 的 Part** 都有一個 **README** 文件，其中包含 Hands-on Lab 在進行此 Part 過程的說明。您也可以在任何一個 Part 的資料夾當中，找到對應該個 Part 的專案程式，您也可以直接開啟該專案來確認該 Part 完成後應有的結果。
