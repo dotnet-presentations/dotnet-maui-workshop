@@ -232,4 +232,4 @@ public static class MauiProgram
        FontFamily="OpenSansRegular" />
 ```
 
-到這邊的介紹就已經對 .NET MAUI 專案結構有了基本的了解了，就讓我們繼續來建立應用程式吧! 前往 [Hands-on Lab Part 1: 呈現出資料](../Part%201%20-%20Displaying%20Data/README.md)。
+到這邊的介紹就已經對 .NET MAUI 專案結構有了基本的了解了，就讓我們繼續來建立應用程式吧! 前往 [Hands-on Lab Part 1: 呈現出資料](../Part%201%20-%20Displaying%20Data/README.zh-tw.md)。
