@@ -726,4 +726,4 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
 
 2. 在 Visual Studio 中，點選 `開始偵錯`。而當應用程式啟動後將看到畫面上有一個 **Get Monkeys** 按鈕。點選該按鈕後，則會看到從網際網路當中讀取的猴子資料並呈現到畫面中！
 
-再繼續後面的 Hands-on Lab 的部分吧！前往 [Hands-on Lab Part 3: 增加巡覽功能](../Part%203%20-%20Navigation/README.md) 中了解巡覽 (Navigation) 的使用。
+再繼續後面的 Hands-on Lab 的部分吧！前往 [Hands-on Lab Part 3: 增加巡覽功能](../Part%203%20-%20Navigation/README.zh-tw.md) 中了解巡覽 (Navigation) 的使用。
