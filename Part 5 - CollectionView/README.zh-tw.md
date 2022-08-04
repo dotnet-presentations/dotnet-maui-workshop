@@ -146,4 +146,4 @@
 
 ![透過模擬器呈現空白檢視，並在其正中央呈現圖片](../Art/EmptyView.png)
 
-下一個要進行的 Hands-on Lab 的部分，是了解有關 App 的佈景主題設定，繼續前往 [Hands-on Lab Part 6: 設定 App 的佈景主題 ](../Part%206%20-%20AppThemes/README.md)
+下一個要進行的 Hands-on Lab 的部分，是了解有關 App 的佈景主題設定，繼續前往 [Hands-on Lab Part 6: 設定 App 的佈景主題 ](../Part%206%20-%20AppThemes/README.zh-tw.md)
