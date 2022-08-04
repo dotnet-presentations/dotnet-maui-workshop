@@ -140,4 +140,4 @@ xmlns:model="clr-namespace:MonkeyFinder.Model"
 
 ![在 Android 上執行的應用程式並顯示三隻猴子的結果](../Art/CodedMonkeys.png)
 
-接著，繼續到 [Hands-on Lab Part 2 : MVVM 和資料繫結](../Part%202%20-%20MVVM/README.md) 中，學習如何使用資料繫結與 MVVM 框架。
+接著，繼續到 [Hands-on Lab Part 2 : MVVM 和資料繫結](../Part%202%20-%20MVVM/README.zh-tw.md) 中，學習如何使用資料繫結與 MVVM 框架。
