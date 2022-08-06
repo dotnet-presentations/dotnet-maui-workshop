@@ -3,7 +3,7 @@
 
 In Part 0 you got a basic understanding of what makes up a .NET MAUI project, now let's start coding and see how to display a list of data in a list.
 
-This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+This module is also available in [Chinese (Simplified)](README.zh-cn.md) & [Chinese (Traditional)](README.zh-tw.md).
 
 ### Open Solution in Visual Studio
 
