@@ -2,7 +2,7 @@
 
 In Part 2 we will introduce full data binding with MVVM and retrieve the monkeys from an internet data source.
 
-This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+This module is also available in [Chinese (Simplified)](README.zh-cn.md) & [Chinese (Traditional)](README.zh-tw.md).
 
 ### Implementing INotifyPropertyChanged
 
