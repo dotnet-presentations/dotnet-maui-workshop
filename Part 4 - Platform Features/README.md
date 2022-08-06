@@ -2,7 +2,7 @@
 
 In Part 4, we will use .NET MAUI to find the closest monkey to us and also open a map with the Monkeys location.
 
-This module is also available in [Chinese (Simplified)](README.zh-cn.md).
+This module is also available in [Chinese (Simplified)](README.zh-cn.md) & [Chinese (Traditional)](README.zh-tw.md).
 
 ### Check for internet
 
