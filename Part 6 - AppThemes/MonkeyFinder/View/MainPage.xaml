@@ -48,6 +48,7 @@
                                         Source="{Binding Image}"
                                         WidthRequest="125" />
                                     <VerticalStackLayout
+                                        VerticalOptions="Center"
                                         Grid.Column="1"
                                         Padding="10">
                                         <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
