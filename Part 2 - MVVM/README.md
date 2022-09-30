@@ -272,11 +272,13 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
 
     ```csharp
     public ObservableCollection<Monkey> Monkeys { get; } = new();
-    MonkeyService monkeyService;
+    
+    MonkeyService monkeyService = new();
     public MonkeysViewModel(MonkeyService monkeyService)
     {
         Title = "Monkey Finder";
-        this.monkeyService = monkeyService;
+        this.monkeyService = monkeyService; // Compiler Warning CS1717 Assignment made to same variable; did you mean to assign something else?
+
     }
     ```
 
