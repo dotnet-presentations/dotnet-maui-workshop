@@ -491,8 +491,6 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
 
 ## 创建用户界面 
 
-It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Our end result is to build a page that looks like this:
-
 现在是时候在 `View/MainPage.xaml` 中构建 .NET MAUI 用户界面了。 我们的最终结果是构建一个如下所示的页面：
 
 ![](../Art/FinalUI.PNG)
