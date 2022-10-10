@@ -654,7 +654,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>

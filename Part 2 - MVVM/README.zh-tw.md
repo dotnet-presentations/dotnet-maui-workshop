@@ -645,7 +645,7 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
                                     Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>
