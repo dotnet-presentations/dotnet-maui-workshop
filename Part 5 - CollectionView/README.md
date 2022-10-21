@@ -24,11 +24,13 @@ to:
     Grid.ColumnSpan="2"
     Command="{Binding GetMonkeysCommand}"
     IsRefreshing="{Binding IsRefreshing}">
-    <CollectionView
-        ItemsSource="{Binding Monkeys}"
-        SelectionMode="None">
-        <!-- Template -->
-    </CollectionView>
+    <Grid>
+        <CollectionView
+            ItemsSource="{Binding Monkeys}"
+            SelectionMode="None">
+            <!-- Template -->
+        </CollectionView>
+    </Grid>
 </RefreshView>
 ```
 
