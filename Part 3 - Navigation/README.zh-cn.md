@@ -151,6 +151,7 @@ public partial class DetailsPage : ContentPage
         [ObservableProperty]
         Monkey monkey;    
     }
+    ```
 
 2. 接下来，我们将添加一个 `QueryProperty` 来处理传递猴子数据：
 
