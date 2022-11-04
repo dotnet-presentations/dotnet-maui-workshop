@@ -130,7 +130,7 @@ Raw assets 文件包括 HTML、JSON 和视频，可以通过将它们拖到项�
 <MauiAsset Include="Resources\Assets\index.html" />
 ```
 
-Raw assets can then be consumed by controls, as required:
+然后控件就可以根据需要使用Raw assets:
 
 ```xaml
 <WebView Source="index.html" />
