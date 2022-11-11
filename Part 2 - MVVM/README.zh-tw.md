@@ -143,7 +143,7 @@ public partial class BaseViewModel : ObservableObject
 
 在這邊，可以看到目前的程式碼已變成透過繼承 `ObservableObject` 類別為基底類別的設計，由於它已經完成實作 `INotifyPropertyChanged` 及其相關繫結屬性的設計，並提供了 AOP 的模式供以掛載到在 `BaseViewModel` 中所設計的欄位。
 
-所以可以注意到 isBusy 和 title 欄位都附掛了 `[ObservableProperty]` 的設計。所編譯後的程式碼看起來幾乎和先前設計撰寫的程式碼相同。另外，isBusy 欄位有額外掛上 `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`，當欄位值有改變時也會通知 `IsNotBusy` 屬性。要查看編譯後的程式碼，請到透過方案總管的專案當中，並展開 **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** 並開啟 `MonkeyFinder.ViewModel. BaseViewModel.cs`：
+所以可以注意到 isBusy 和 title 欄位都附掛了 `[ObservableProperty]` 的設計。所編譯後的程式碼看起來幾乎和先前設計撰寫的程式碼相同。另外，isBusy 欄位有額外掛上 `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`，當欄位值有改變時也會通知 `IsNotBusy` 屬性。要查看編譯後的程式碼，請到透過方案總管的專案當中，並展開 **Dependencies -> net7.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** 並開啟 `MonkeyFinder.ViewModel. BaseViewModel.cs`：
 
 以下是在編譯時期自動產生的 `IsBusy` 屬性:
 

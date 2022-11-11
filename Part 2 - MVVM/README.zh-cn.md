@@ -143,7 +143,7 @@ public partial class BaseViewModel : ObservableObject
 
 在这里，我们可以看到我们的代码已经大大简化成了一个 `ObservableObject` 基类，它实现了 `INotifyPropertyChanged` 以及绑定相关属性。
 
-请注意，isBusy 和 title 都附加了 `[ObservableProperty]` 属性。 生成的代码看起来几乎与我们手动编写的相同。 另外，isBusy 属性有 `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`，当值改变时也会通知 `IsNotBusy`。 要查看生成的代码，请转到项目，然后展开 **Dependencies -> net6.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** 并打开`MonkeyFinder.ViewModel。 BaseViewModel.cs`：
+请注意，isBusy 和 title 都附加了 `[ObservableProperty]` 属性。 生成的代码看起来几乎与我们手动编写的相同。 另外，isBusy 属性有 `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`，当值改变时也会通知 `IsNotBusy`。 要查看生成的代码，请转到项目，然后展开 **Dependencies -> net7.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** 并打开`MonkeyFinder.ViewModel。 BaseViewModel.cs`：
 
 这是我们的 `IsBusy` 属性:
 
