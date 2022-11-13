@@ -12,6 +12,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 2", "Part 2", "{0475860B-04BB-414B-975C-A1EEEB09599A}"
+	ProjectSection(SolutionItems) = preProject
+		..\Part 2 - MVVM\README.md = ..\Part 2 - MVVM\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 3", "Part 3", "{45CDEC19-D43F-4805-91CA-2AB4CCAB1798}"
+	ProjectSection(SolutionItems) = preProject
+		..\Part 3 - Navigation\README.md = ..\Part 3 - Navigation\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 4", "Part 4", "{ECA220DB-B859-41FB-B2E9-A595873EE71D}"
+	ProjectSection(SolutionItems) = preProject
+		..\Part 4 - Platform Features\README.md = ..\Part 4 - Platform Features\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 5", "Part 5", "{1674E53A-00DE-4546-AA19-61CF7F01F86A}"
+	ProjectSection(SolutionItems) = preProject
+		..\Part 5 - CollectionView\README.md = ..\Part 5 - CollectionView\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 6", "Part 6", "{A5F59622-2997-4C33-B51B-37BB7E074891}"
+	ProjectSection(SolutionItems) = preProject
+		..\Part 6 - AppThemes\README.md = ..\Part 6 - AppThemes\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +52,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0475860B-04BB-414B-975C-A1EEEB09599A} = {393B8F30-F402-46A9-B209-8C71897A3416}
+		{45CDEC19-D43F-4805-91CA-2AB4CCAB1798} = {393B8F30-F402-46A9-B209-8C71897A3416}
+		{ECA220DB-B859-41FB-B2E9-A595873EE71D} = {393B8F30-F402-46A9-B209-8C71897A3416}
+		{1674E53A-00DE-4546-AA19-61CF7F01F86A} = {393B8F30-F402-46A9-B209-8C71897A3416}
+		{A5F59622-2997-4C33-B51B-37BB7E074891} = {393B8F30-F402-46A9-B209-8C71897A3416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
