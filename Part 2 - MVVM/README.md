@@ -726,6 +726,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="CenterAndExpand"
+			   Color="{StaticResource Primary}"
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>
     </Grid>
