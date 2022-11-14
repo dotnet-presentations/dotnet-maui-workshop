@@ -728,6 +728,7 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="CenterAndExpand"
+			   Color="{StaticResource Primary}"
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>
     </Grid>
