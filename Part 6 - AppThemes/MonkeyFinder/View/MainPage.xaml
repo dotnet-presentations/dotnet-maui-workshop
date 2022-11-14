@@ -90,6 +90,7 @@
             HorizontalOptions="FillAndExpand"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
+            Color="{StaticResource Primary}"
             VerticalOptions="CenterAndExpand" />
     </Grid>
 </ContentPage>
