@@ -135,8 +135,6 @@
 
 ### 打开地图
 
-.NET MAUI provides over 60 platform features from a single API and opening the default map application is built in!
-
 .NET MAUI 通过单个 API 提供 60 多个平台功能，并内置打开默认地图应用程序！
 
 1. 将 `IMap` 注入到我们的 `Monkey Details ViewModel` 中：
