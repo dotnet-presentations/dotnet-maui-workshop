@@ -96,6 +96,7 @@ Now, let's add navigation to a second page that displays monkey details!
                             WidthRequest="125" />
                         <VerticalStackLayout
                             Grid.Column="1"
+                            VerticalOptions="Center"
                             Padding="10">
                             <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -127,6 +128,7 @@ Now, let's add navigation to a second page that displays monkey details!
                             WidthRequest="125" />
                         <VerticalStackLayout
                             Grid.Column="1"
+                            VerticalOptions="Center"
                             Padding="10">
                             <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -225,20 +227,17 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
     </ContentPage>
     ```
 
-1. At the core is a `ScrollView`, `VerticalStackLayout`, and `Grid` to layout all of the controls nicely on the screen:
+1. At the core is a `ScrollView` and `Grid` to layout all of the controls nicely on the screen:
 
     ```xml
     <ScrollView>
-        <VerticalStackLayout>
-            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160, Auto">
+        <Grid RowDefinitions="Auto,Auto,*">
 
-                <!-- Background and Image of Monkey -->
-           
-            </Grid>
+            <!-- Background, Image of Monkey, Name -->
         
             <!-- Details of Monkey -->
 
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
     ```
 
@@ -246,37 +245,43 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
 
     ```xml
     <BoxView
-        Grid.ColumnSpan="3"
-        Background="{StaticResource Primary}"
-        HeightRequest="160"
-        HorizontalOptions="FillAndExpand" />
-    <Frame
+        BackgroundColor="{StaticResource Primary}"
         Grid.RowSpan="2"
-        Grid.Column="1"
-        Margin="0,80,0,0"
-        HeightRequest="160"
-        WidthRequest="160"
-        HorizontalOptions="Center" 
-        Padding="0"
-        IsClippedToBounds="True"
-        CornerRadius="80">
-        <Image
-            Aspect="AspectFill"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"/>
+
+    <Border StrokeShape="RoundRectangle 80"
+            Stroke="White"
+            StrokeThickness="6"
             HeightRequest="160"
+            WidthRequest="160"
+            Margin="0,8,0,0"
             HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Source="{Binding Monkey.Image}"
-            WidthRequest="160"/>
-    </Frame>
+            VerticalOptions="Center">
+            <Image Aspect="AspectFill"
+                HeightRequest="160"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Source="{Binding Monkey.Image}"
+                WidthRequest="160"/>
+    </Border>
+
+    <Label Style="{StaticResource LargeLabel}" 
+            Grid.Row="1"
+            TextColor="White"
+            FontAttributes="Bold"
+            Text="{Binding Monkey.Name}" 
+            HorizontalOptions="Center"
+            Margin="0,0,0,8"/>
     ```
 
 1. Finally, under the `Grid`, but inside of the `VerticalStackLayout` we will add details about the monkey.
 
 ```xml
-<VerticalStackLayout Padding="10" Spacing="10">
+<VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
     <Label Style="{StaticResource MediumLabel}" Text="{Binding Monkey.Details}" />
-    <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
-    <Label Style="{StaticResource MicroLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
+    <Label Style="{StaticResource SmallLabel}" Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+    <Label Style="{StaticResource SmallLabel}" Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
 </VerticalStackLayout>
 ```
 
