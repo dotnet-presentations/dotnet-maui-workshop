@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Commands\" />
+	  <None Remove="Constants\" />
+	  <None Remove="Events\" />
+	  <None Remove="Extensions\" />
+	  <None Remove="Interfaces\" />
+	  <None Remove="Presenters\" />
+	  <None Remove="ViewModel\" />
+	  <None Remove="Results\" />
+	  <None Remove="Entities\" />
+	  <None Remove="Controls\" />
+	  <None Remove="Views\" />
+	  <None Remove="Utils\" />
+	  <None Remove="Converters\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Commands\" />
+	  <Folder Include="Constants\" />
+	  <Folder Include="Events\" />
+	  <Folder Include="Extensions\" />
+	  <Folder Include="Interfaces\" />
+	  <Folder Include="Presenters\" />
+	  <Folder Include="ViewModel\" />
+	  <Folder Include="Results\" />
+	  <Folder Include="Entities\" />
+	  <Folder Include="Controls\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="Utils\" />
+	  <Folder Include="Converters\" />
+	</ItemGroup>
+</Project>

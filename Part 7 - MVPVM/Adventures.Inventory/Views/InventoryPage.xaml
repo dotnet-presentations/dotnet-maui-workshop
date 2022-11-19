@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:ContentPageBase
+ xmlns:controls="clr-namespace:Adventures.Common.Controls;assembly=Adventures.Common"
+ x:Class="Adventures.Inventory.Views.InventoryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Adventures.Common.ViewModel;assembly=Adventures.Common"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:model="clr-namespace:Adventures.Common.Model;assembly=Adventures.Common"
+    ios:Page.UseSafeArea="True"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:ListViewModel">
+    <Grid
+        ColumnDefinitions="*,*,20"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <RefreshView
+            Grid.ColumnSpan="3"
+            Command="{Binding ButtonClickHandlerCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                ItemsSource="{Binding ListItems}"
+                SelectionMode="None">
+                 <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ListItem">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ListViewModel}}, Path=ButtonClickHandlerCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0" ColumnDefinitions="125,*">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="125"
+                                        Source="{Binding Image}"
+                                        WidthRequest="125" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10">
+                                        <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <HorizontalStackLayout
+            Margin="0"
+            Grid.Row="1"
+            Grid.ColumnSpan="3">
+
+            <Label x:Name="modeLabel"
+                Margin="6"
+                Padding="6"
+                Background="lightGray"
+                Style="{StaticResource SmallLabel}"
+                Text="CLICK ME!" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                          NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!-- Layout buttons based on registered IMvpCommands -->
+            <FlexLayout x:Name="flexLayout" Margin="5,0"/>
+
+            <Button Text="?"
+                    Margin="0,-10,0,0"
+                    Style="{StaticResource ButtonOutline}"/>
+
+        </HorizontalStackLayout>
+
+        <Switch
+            Margin="-40,10,0,0"
+            Grid.Row="1"
+            Grid.Column="3"
+            IsToggled="{Binding Mode,
+                Converter={StaticResource modeConverter},
+                Mode=TwoWay}"/>
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+</controls:ContentPageBase>
