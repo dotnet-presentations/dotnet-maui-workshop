@@ -605,6 +605,7 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
                                        HeightRequest="125"/>
                                 <VerticalStackLayout
                                     Grid.Column="1"
+                                    VerticalOptions="Center"
                                     Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -649,6 +650,7 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
                                        HeightRequest="125"/>
                                 <VerticalStackLayout
                                     Grid.Column="1"
+                                    VerticalOptions="Center"
                                     Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -704,6 +706,7 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
                                        HeightRequest="125"/>
                                 <VerticalStackLayout
                                     Grid.Column="1"
+                                    VerticalOptions="Center"
                                     Padding="10">
                                     <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -726,8 +729,8 @@ monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
         <!-- Add this -->
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
 			   Color="{StaticResource Primary}"
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>

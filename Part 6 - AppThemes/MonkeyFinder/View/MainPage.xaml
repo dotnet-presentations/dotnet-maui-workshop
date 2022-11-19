@@ -18,16 +18,18 @@
             Grid.ColumnSpan="2"
             Command="{Binding GetMonkeysCommand}"
             IsRefreshing="{Binding IsRefreshing}">
-            <Grid>
+            <ContentView>
                 <CollectionView
                     ItemsSource="{Binding Monkeys}"
                     SelectionMode="None">
                     <!--<CollectionView.EmptyView>
                         <StackLayout Padding="100">
                             <Image
-                                HorizontalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
                                 Source="nodata.png"
-                                VerticalOptions="CenterAndExpand" />
+                                HeightRequest="160"
+                                WidthRequest="160"
+                                VerticalOptions="Center" />
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemsLayout>
@@ -49,8 +51,8 @@
                                             Source="{Binding Image}"
                                             WidthRequest="125" />
                                         <VerticalStackLayout
-                                            VerticalOptions="Center"
                                             Grid.Column="1"
+                                            VerticalOptions="Center"
                                             Padding="10">
                                             <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
@@ -61,7 +63,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Grid>
+            </ContentView>
         </RefreshView>
 
         <Button
@@ -87,10 +89,10 @@
         <ActivityIndicator
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
-            HorizontalOptions="FillAndExpand"
+            HorizontalOptions="Fill"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
             Color="{StaticResource Primary}"
-            VerticalOptions="CenterAndExpand" />
+            VerticalOptions="Center" />
     </Grid>
 </ContentPage>
