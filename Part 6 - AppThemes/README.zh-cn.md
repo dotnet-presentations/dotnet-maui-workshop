@@ -10,12 +10,6 @@
 <Color x:Key="LightBackground">#FAF9F8</Color>
 ```
 
-打开 `App.xaml` 文件，注意有几个 `Color` 条目和 `Styles`。 这些是为我们在整个应用程序中使用的一些基本颜色和样式提前配置的。 例如，我们为主背景色定义了一种浅色：
-
-```xml
-<Color x:Key="LightBackground">#FAF9F8</Color>
-```
-
 以后任何 UI 元素或可重用的共享样式都可以引用它。 例如，我们的 `ButtonOutline` 样式应用于 `Button` 控件并为其赋予圆角，为文本、边框和背景设置颜色：
 
 
