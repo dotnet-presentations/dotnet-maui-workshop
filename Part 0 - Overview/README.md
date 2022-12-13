@@ -12,7 +12,7 @@ This MonkeyFinder contains 1 project:
 
 * MonkeyFinder - The main .NET MAUI project that targets Android, iOS, macOS, and Windows. It includes all scaffolding for the app including Models, Views, ViewModels, and Services.
 
-![Solution for the monkey finder app with multipel folders](../Art/Solution.PNG)
+![Solution for the monkey finder app with multiple folders](../Art/Solution.PNG)
 
 The **MonkeyFinder** project also has blank code files and XAML pages that we will use during the workshop. All of the code that we modify will be in this project for the workshop.
 
