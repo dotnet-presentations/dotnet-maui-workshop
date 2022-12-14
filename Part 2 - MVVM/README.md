@@ -268,7 +268,7 @@ We will use an `ObservableCollection<Monkey>` that will be cleared and then load
     using MonkeyFinder.Services;
     ```
 
-1. We also need access to our `MonkeyService`, which we will inject throught he constructor:
+1. We also need access to our `MonkeyService`, which we will inject through the constructor:
 
     ```csharp
     public ObservableCollection<Monkey> Monkeys { get; } = new();
@@ -494,7 +494,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
 
 ![](../Art/FinalUI.PNG)
 
-1. In `MainPage.xaml`, add a `x:DataType` at the top of the `ContentPage` tag, which will enable us to get binding intellisense:
+1. In `MainPage.xaml`, add a `xmlns:viewmodel` namespace and a `x:DataType` at the top of the `ContentPage` tag, which will enable us to get binding intellisense:
 
     ```xml
     <ContentPage
