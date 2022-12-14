@@ -275,7 +275,7 @@ Let's add UI to the DetailsPage. Our end goal is to get a fancy profile screen l
             Margin="0,0,0,8"/>
     ```
 
-1. Finally, under the `Grid`, but inside of the `VerticalStackLayout` we will add details about the monkey.
+1. Finally, under the `Label`, but still inside of the `Grid`, we'll add a `VerticalStackLayout` to provide details about the monkey.
 
 ```xml
 <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
