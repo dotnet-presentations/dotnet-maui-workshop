@@ -34,7 +34,7 @@ I have also put together an abstract of what you can expect for the day long wor
 To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
 
 ## Video Walkthrough
-James recorded a [full 4-hour walkthrough](https://www.youtube.com/DuNLR_NJv8U) end-to-end on [his YouTube](https://youtube.com/jamesmontemagno)!
+James recorded a [full 4-hour walkthrough](https://www.youtube.com/watch?v=DuNLR_NJv8U) end-to-end on [his YouTube](https://youtube.com/jamesmontemagno)!
 
 ## More links and resources:
 - [.NET MAUI Website](https://dot.net/maui)
