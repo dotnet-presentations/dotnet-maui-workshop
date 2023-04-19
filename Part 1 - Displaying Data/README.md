@@ -50,6 +50,16 @@ public class Monkey
 }
 ```
 
+Additionally, because we will be using `System.Text.Json` to deserialize the data, we will want to add a `MonkeyContext` that will dynamically generate code for better performance. The following code will enable this and we will use it in the future.
+
+```csharp
+[JsonSerializable(typeof(List<Monkey>))]
+internal partial class MonkeyContext : JsonSerializerContext
+{
+
+}
+```
+
 ### Displaying Data
 
 We can display hard coded data of any data type in a `CollectionView` in our `MainPage.xaml`. This will allow us to build out our user interface by setting the `ItemTemplate` with some simple images and labels. 

@@ -52,6 +52,16 @@ public class Monkey
 }
 ```
 
+Additionally, because we will be using `System.Text.Json` to deserialize the data, we will want to add a `MonkeyContext` that will dynamically generate code for better performance. The following code will enable this and we will use it in the future.
+
+```csharp
+[JsonSerializable(typeof(List<Monkey>))]
+internal partial class MonkeyContext : JsonSerializerContext
+{
+
+}
+```
+
 ### 顯示出資料
 
 接著將可以在 `MainPage.xaml` 的 `CollectionView` 當中顯示出經過特殊定義而對應類型的任何資料。所以只要透過設定 `ItemTemplate` 就能設置基本的控制項(如: Image、Label...等)，來建立使用者介面呈現資料。
