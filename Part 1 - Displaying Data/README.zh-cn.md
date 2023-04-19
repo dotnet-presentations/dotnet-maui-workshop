@@ -50,7 +50,7 @@ Additionally, because we will be using `System.Text.Json` to deserialize the dat
 
 ```csharp
 [JsonSerializable(typeof(List<Monkey>))]
-internal partial class MonkeyContext : JsonSerializerContext
+internal sealed partial class MonkeyContext : JsonSerializerContext
 {
 
 }
