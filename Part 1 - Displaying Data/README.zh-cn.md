@@ -46,6 +46,16 @@ public class Monkey
 }
 ```
 
+Additionally, because we will be using `System.Text.Json` to deserialize the data, we will want to add a `MonkeyContext` that will dynamically generate code for better performance. The following code will enable this and we will use it in the future.
+
+```csharp
+[JsonSerializable(typeof(List<Monkey>))]
+internal sealed partial class MonkeyContext : JsonSerializerContext
+{
+
+}
+```
+
 ### 显示数据
 
 我们可以在 `MainPage.xaml` 的 `CollectionView` 中显示任何数据类型的硬编码数据。 这将允许我们通过使用一些简单的图像和标签设置 `ItemTemplate` 来创建我们的用户界面。

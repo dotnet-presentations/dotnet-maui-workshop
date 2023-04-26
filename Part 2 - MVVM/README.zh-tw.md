@@ -215,7 +215,7 @@ public bool IsBusy
 
     if (response.IsSuccessStatusCode)
     {
-        monkeyList = await response.Content.ReadFromJsonAsync<List<Monkey>>();
+        monkeyList = await response.Content.ReadFromJsonAsync(MonkeyContext.Default.ListMonkey);
     }
     ```
 
@@ -233,7 +233,7 @@ public bool IsBusy
 using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
 using var reader = new StreamReader(stream);
 var contents = await reader.ReadToEndAsync();
-monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
+monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);
 ```
 
 ### 從 ViewModel 使用 MonkeyService
