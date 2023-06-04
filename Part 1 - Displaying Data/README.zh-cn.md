@@ -46,7 +46,7 @@ public class Monkey
 }
 ```
 
-Additionally, because we will be using `System.Text.Json` to deserialize the data, we will want to add a `MonkeyContext` that will dynamically generate code for better performance. The following code will enable this and we will use it in the future.
+此外，由于我们将使用 `System.Text.Json `对数据进行反序列化，因此我们希望添加一个 `MonkeyContext `，它将动态生成代码以获得更好的性能。下面的代码将启用它，以便我们在将来使用。
 
 ```csharp
 [JsonSerializable(typeof(List<Monkey>))]
