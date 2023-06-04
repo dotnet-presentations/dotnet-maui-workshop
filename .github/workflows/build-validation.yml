@@ -13,6 +13,8 @@ on:
     - '**.cs'
     - '**.csproj'
     - '**.xaml'
+    - '**.targets'
+    - '**.props'
 
 env:
   DOTNET_VERSION: '7.0.x' # The .NET SDK version to use
