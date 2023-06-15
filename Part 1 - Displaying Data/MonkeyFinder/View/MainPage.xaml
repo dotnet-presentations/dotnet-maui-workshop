@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:MonkeyFinder.Model"
              x:Class="MonkeyFinder.View.MainPage">
 
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Monkey}">
+                <model:Monkey
+                Name="Baboon"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
+                Location="Africa and Asia" />
+                <model:Monkey
+                Name="Capuchin Monkey"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
+                Location="Central and South America" />
+                <model:Monkey
+                Name="Red-shanked douc"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc2"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc3"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc2"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc2"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc2"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+                <model:Monkey
+                Name="Red-shanked douc2"
+                Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                Location="Vietnam" />
+
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Monkey">
+                <HorizontalStackLayout Padding="10">
+                    <Image Source="{Binding Image}" WidthRequest="100" HeightRequest="100" Aspect="AspectFill"/>
+                    <Label VerticalOptions="Center">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} | {1}">
+                                <Binding Path="Name" />
+                                <Binding Path="Location" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
     
 </ContentPage>
