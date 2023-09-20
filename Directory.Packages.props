@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	<MauiVersion>8.0.0-rc.1.9171</MauiVersion>
+  </PropertyGroup>
+  <ItemGroup>
+	<PackageVersion  Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+	<PackageVersion  Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.1.23419.4" />
+	  <PackageVersion Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+	  <PackageVersion Include="Microsoft.Maui.Controls.Core" Version="$(MauiVersion)" />
+	  <PackageVersion Include="Microsoft.Maui.Controls.Build.Tasks" Version="$(MauiVersion)" />
+	  <PackageVersion Include="Microsoft.Maui.Controls.Xaml" Version="$(MauiVersion)" />
+	  <PackageVersion Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
+	  <PackageVersion Include="Microsoft.Maui.Resizetizer" Version="$(MauiVersion)" />
+  </ItemGroup>
+</Project>
