@@ -19,52 +19,50 @@
             Grid.ColumnSpan="2"
             Command="{Binding GetMonkeysCommand}"
             IsRefreshing="{Binding IsRefreshing}">
-            <ContentView>
-                <CollectionView
+            <CollectionView
                         ItemsSource="{Binding Monkeys}"
                         SelectionMode="None">
-                    <CollectionView.EmptyView>
-                        <StackLayout Padding="100">
-                            <Image
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="100">
+                        <Image
                                     HorizontalOptions="Center"
                                     HeightRequest="160"
                                     WidthRequest="160"
                                     Source="nodata.png"
                                     VerticalOptions="Center" />
-                        </StackLayout>
-                    </CollectionView.EmptyView>
-                    <!--<CollectionView.ItemsLayout>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <!--<CollectionView.ItemsLayout>
                             <GridItemsLayout  Orientation="Horizontal" Span="3"/>
                         </CollectionView.ItemsLayout>-->
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Monkey">
-                            <Grid Padding="10" HorizontalOptions="Fill">
-                                <Frame HeightRequest="125" Style="{StaticResource CardView}">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Monkey">
+                        <Grid Padding="10" HorizontalOptions="Fill">
+                            <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"
                                                 CommandParameter="{Binding .}"/>
-                                    </Frame.GestureRecognizers>
-                                    <Grid Padding="0" ColumnDefinitions="125,*">
-                                        <Image
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0" ColumnDefinitions="125,*">
+                                    <Image
                                                 Aspect="AspectFill"
                                                 HeightRequest="125"
                                                 Source="{Binding Image}"
                                                 WidthRequest="125" />
-                                        <VerticalStackLayout
+                                    <VerticalStackLayout
                                                 VerticalOptions="Center"
                                                 Grid.Column="1"
                                                 Padding="10">
-                                            <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
-                                            <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
-                                        </VerticalStackLayout>
-                                    </Grid>
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ContentView>
+                                        <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </RefreshView>
 
         <Button
