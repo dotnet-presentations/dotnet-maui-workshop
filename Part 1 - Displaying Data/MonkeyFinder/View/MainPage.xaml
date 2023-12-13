@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:MonkeyFinder.Model"
              x:Class="MonkeyFinder.View.MainPage">
 
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Monkey}">
+                <model:Monkey Name="Baboon"/>
+                <model:Monkey Name="Gorilla Boy"/>
+                <model:Monkey Name="Orangutang"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+    </CollectionView>
     
 </ContentPage>
