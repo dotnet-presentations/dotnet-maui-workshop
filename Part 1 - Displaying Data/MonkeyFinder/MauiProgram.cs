@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MonkeyFinder.Services;
 using MonkeyFinder.View;
 
 namespace MonkeyFinder;
@@ -18,6 +19,9 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+		builder.Services.AddSingleton<MonkeyService>();
+
+		builder.Services.AddSingleton<MonkeysViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();
 

@@ -2,4 +2,5 @@
 
 public partial class MonkeyDetailsViewModel : BaseViewModel
 {
+
 }
