@@ -6,10 +6,10 @@ Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_i
 This workshop is available in the following languages:
 * English - default README files
 * [Chinese (Simplified)](README.zh-cn.md) - README files ending with .zh-cn.md (Translated by [Kinfey Lo](https://github.com/kinfey))
-* [Chinese (Traditional)](README.zh-tw.md) - README filed ending with .zh-tw.md (Translated by [James Tsai](https://github.com/JamestsaiTW)
+* [Chinese (Traditional)](README.zh-tw.md) - README filed ending with .zh-tw.md (Translated by [James Tsai](https://github.com/JamestsaiTW))
 
 ## Setup Guide
-Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC or Mac and all you will need to do is install Visual Studio 2022 or Visual Studio for Mac 2022 with the .NET MAUI workload. It is built on .NET 7, which means you will need version 17.4 of Visual Studo 2022 or newer.
+Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC or Mac and all you will need to do is install Visual Studio 2022 or Visual Studio for Mac 2022 with the .NET MAUI workload. It is built on .NET 7, which means you will need version 17.4 of Visual Studio 2022 or newer.
 
 Before starting the workshop, I recommend going through the quick 10 minute [.NET MAUI Tutorial](https://docs.microsoft.com/dotnet/maui/get-started/first-app?WT.mc_id=friends-mauiworkshop-jamont) that will guide you through installation and also ensuring everything is configured correct.
 
@@ -17,9 +17,7 @@ If you are new to mobile development, we recommend deploying to a physical Andro
 
 Beyond that you will be good to go for the workshop!
 
-
 ## Agenda
-
 I have also put together an abstract of what you can expect for the day long workshop:
 
 * [Part 0](Part%200%20-%20Overview/README.md) - 30 Min Session - Introduction to .NET MAUI Session & Setup Help
@@ -29,7 +27,6 @@ I have also put together an abstract of what you can expect for the day long wor
 * [Part 4](Part%204%20-%20Platform%20Features/README.md) - Implementing Platform Features
 * [Part 5](Part%205%20-%20CollectionView/README.md) - CollectionView & Beyond
 * [Part 6](Part%206%20-%20AppThemes/README.md) - Theming the app
-
 
 To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
 
@@ -42,6 +39,5 @@ James recorded a [full 4-hour walkthrough](https://www.youtube.com/watch?v=DuNLR
 - [.NET MAUI Documentation](https://docs.microsoft.com/dotnet/maui) 
 - [.NET MAUI on GitHub](https://github.com/dotnet/maui)
 - [.NET Beginner Series Videos](https://dot.net/videos)
-
 
 If you have any questions please reach out to me on Twitter [@JamesMontemagno](https://twitter.com/jamesmontemagno). 
