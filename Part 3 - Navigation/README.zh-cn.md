@@ -248,8 +248,8 @@ public partial class DetailsPage : ContentPage
     <Border StrokeShape="RoundRectangle 80"
             Stroke="White"
             StrokeThickness="6"
-            HeightRequest="160"
-            WidthRequest="160"
+            HeightRequest="172"
+            WidthRequest="172"
             Margin="0,8,0,0"
             HorizontalOptions="Center"
             VerticalOptions="Center">
