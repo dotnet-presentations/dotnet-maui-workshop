@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:MonkeyFinder.Model"
+             xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+             x:DataType="viewmodel:MonkeysViewModel"
+             Title="{Binding Title}"
              x:Class="MonkeyFinder.View.MainPage">
 
-    <HorizontalStackLayout Spacing="20" Padding="20">
-        <Button Text="suck mah balls" FontSize="10"></Button>
-        <Button Text="suck mah balls" FontSize="10"></Button>
-    </HorizontalStackLayout>
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto"
+          RowSpacing="0">
+        
+        <CollectionView BackgroundColor="Transparent"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Monkeys}"
+                        SelectionMode="Multiple">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Monkey">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"                               
+                               Padding="0"
+                               Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source ={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0"
+                                  ColumnDefinitions="125,*">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource LargeLabel}"/>
+                                    <Label Text ="{Binding Location}"
+                                           Style="{StaticResource MediumLabel}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+        <Button Text="Get Monkeys"
+                Style="{StaticResource ButtonOutline}"
+                Command="{Binding GetMonkeysCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1" 
+                Margin="8"/>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+
+    </Grid>
     
 </ContentPage>
