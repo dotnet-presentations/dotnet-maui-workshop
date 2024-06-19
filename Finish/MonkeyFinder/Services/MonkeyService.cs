@@ -24,10 +24,10 @@ public class MonkeyService
         }
 
         // Offline
-        using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
+        /*using var stream = await FileSystem.OpenAppPackageFileAsync("monkeydata.json");
         using var reader = new StreamReader(stream);
         var contents = await reader.ReadToEndAsync();
-        monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);
+        monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);*/
         
         return monkeyList;
     }
