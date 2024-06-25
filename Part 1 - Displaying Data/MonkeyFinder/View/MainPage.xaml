@@ -8,15 +8,28 @@
     <CollectionView>
         <CollectionView.ItemsSource>
             <x:Array Type="{x:Type model:Monkey}">
-                <model:Monkey Name="Baboon"/>
-                <model:Monkey Name="Capuchin Monkey"/>
-                <model:Monkey Name="Red-shanked douc"/>
+                <model:Monkey
+                    Name="Baboon"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
+                    Location="Africa and Asia" />
+                <model:Monkey
+                    Name="Capuchin Monkey"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
+                    Location="Central and South America" />
+                <model:Monkey
+                    Name="Red-shanked douc"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                    Location="Vietnam" />
             </x:Array>
         </CollectionView.ItemsSource>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:Monkey">
                 <HorizontalStackLayout Padding="10">
-                    <Label Text="{Binding Name}" FontSize="24"/>
+                    <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                    <VerticalStackLayout Padding="10" Spacing="4" VerticalOptions="Center">
+                        <Label Text="{Binding Name}" FontSize="24" />
+                        <Label Text="{Binding Location}" FontSize="12" />
+                    </VerticalStackLayout>
                 </HorizontalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
