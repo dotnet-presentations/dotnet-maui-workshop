@@ -17,6 +17,12 @@
                          HeightRequest="160"
                          HorizontalOptions="FillAndExpand"/>
                 
+                <Button Text="Go Back"
+                        Command="{Binding GoBackCommand}"
+                        Grid.ColumnSpan="1"
+                        HeightRequest="50"
+                        Style="{StaticResource ButtonOutline}"/>
+                
                 <Label Text="{Binding Monkey.Name}"
                        HorizontalOptions="Center"
                        Grid.ColumnSpan="3"

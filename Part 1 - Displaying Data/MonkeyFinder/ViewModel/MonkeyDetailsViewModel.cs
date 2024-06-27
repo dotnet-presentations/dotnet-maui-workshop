@@ -5,16 +5,14 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
 {
     public MonkeyDetailsViewModel()
     {
-        
     }
     
     [ObservableProperty]
     private Monkey _monkey;
     
-    //This is how to navigate back to the previous page
-    // [RelayCommand]
-    // private async Task GoBackAsync()
-    // {
-    //     await Shell.Current.GoToAsync("..");
-    // }
+    [RelayCommand]
+    private async Task GoBackAsync()
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }
