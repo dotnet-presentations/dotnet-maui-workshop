@@ -12,7 +12,8 @@ public partial class MonkeysViewModel : BaseViewModel
         Title = "Monkey Finder";
     }
 
-    async Task GetMonkeysAsync()
+    [RelayCommand]
+    private async Task GetMonkeysAsync()
     {
         if(IsBusy)
             return;
@@ -31,6 +32,8 @@ public partial class MonkeysViewModel : BaseViewModel
         catch (Exception e)
         {
             Debug.WriteLine($"Error: {e}");
+            await Shell.Current.DisplayAlert("Error!",
+                $"Unable to get monkeys {e.Message}", "OK");
         }
         finally
         {
