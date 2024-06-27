@@ -4,12 +4,25 @@ namespace MonkeyFinder.ViewModel;
 
 public partial class MonkeysViewModel : BaseViewModel
 {
-    MonkeyService _monkeyService;
-    public ObservableCollection<Monkey> Monkeys { get; } = new();
+    private readonly MonkeyService _monkeyService;
+    public ObservableCollection<Monkey> Monkeys { get; } = [];
     public MonkeysViewModel(MonkeyService monkeyService)
     {
         _monkeyService = monkeyService;
         Title = "Monkey Finder";
+    }
+
+    [RelayCommand]
+    private async Task GoToDetailsAsync(Monkey monkey)
+    {
+        if(monkey is null)
+            return;
+
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true,
+            new Dictionary<string, object>
+            {
+                {"Monkey", monkey}
+            });
     }
 
     [RelayCommand]
