@@ -9,6 +9,7 @@
              Title="{Binding Title}"
              ios:Page.UseSafeArea="True"
              x:Class="MonkeyFinder.View.MainPage">
+    
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
@@ -20,7 +21,8 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <CollectionView BackgroundColor="Transparent"
                             ItemsSource="{Binding Monkeys}"
-                            SelectionMode="None">
+                            SelectionMode="None"
+                            EmptyView="Empty">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Monkey">
                         <Grid Padding="10">
