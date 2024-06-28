@@ -3,8 +3,10 @@
 [QueryProperty("Monkey", "Monkey")]
 public partial class MonkeyDetailsViewModel : BaseViewModel
 {
-    public MonkeyDetailsViewModel()
+    private IMap _map;
+    public MonkeyDetailsViewModel(IMap map)
     {
+        _map = map;
     }
     
     [ObservableProperty]
@@ -14,5 +16,26 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
     private async Task GoBackAsync()
     {
         await Shell.Current.GoToAsync("..");
+    }
+    
+    [RelayCommand]
+    private async Task OpenMapAsync()
+    {
+        try
+        {
+            await _map.OpenAsync(Monkey.Latitude, Monkey.Longitude,
+            new MapLaunchOptions
+            {
+                Name = Monkey.Name,
+                NavigationMode = NavigationMode.None
+            });
+            
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine($"Error: {e}");
+            await Shell.Current.DisplayAlert("Error!",
+                $"Unable to open map {e.Message}", "OK");
+        }
     }
 }
