@@ -19,8 +19,10 @@
                 
                 <Button Text="Go Back"
                         Command="{Binding GoBackCommand}"
-                        Grid.ColumnSpan="1"
-                        HeightRequest="50"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Start"
+                        HeightRequest="40"
+                        Margin="10, 0, 0, 85"
                         Style="{StaticResource ButtonOutline}"/>
                 
                 <Label Text="{Binding Monkey.Name}"
