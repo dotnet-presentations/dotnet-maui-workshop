@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c:StandardPage
+	x:Class="MonkeyFinder.View.MainPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:c="clr-namespace:MonkeyFinder.Controls"
+	xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+	xmlns:model="clr-namespace:MonkeyFinder.Model"
+	xmlns:str="clr-namespace:MonkeyFinder.Resources.Strings"
+	xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+	Title="Monkeys"
+	ios:Page.UseSafeArea="True"
+	x:DataType="viewmodel:MonkeysViewModel">
+	<Grid RowDefinitions="*,Auto">
+		<RefreshView Command="{Binding GetMonkeysCommand}" IsRefreshing="{Binding IsRefreshing}">
+			<CollectionView ItemsSource="{Binding Monkeys}" SelectionMode="None">
+				<CollectionView.EmptyView>
+					<StackLayout Padding="100">
+						<Image
+							HeightRequest="{StaticResource LargeSquareImageSize}"
+							HorizontalOptions="Center"
+							Source="nodata.png"
+							VerticalOptions="Center"
+							WidthRequest="{StaticResource LargeSquareImageSize}" />
+					</StackLayout>
+				</CollectionView.EmptyView>
+				<CollectionView.ItemTemplate>
+					<DataTemplate x:DataType="model:Monkey">
+						<Grid Padding="{StaticResource StandardItemPadding}" HorizontalOptions="Fill">
+							<Frame HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
+								<Frame.GestureRecognizers>
+									<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+								</Frame.GestureRecognizers>
+								<Grid Padding="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="{StaticResource SmallSquareImageSize}" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Image
+										HeightRequest="{StaticResource SmallSquareImageSize}"
+										Source="{Binding Image}"
+										WidthRequest="{StaticResource SmallSquareImageSize}" />
+									<VerticalStackLayout
+										Grid.Column="1"
+										Padding="10"
+										VerticalOptions="Center">
+										<Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+										<Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+									</VerticalStackLayout>
+								</Grid>
+							</Frame>
+						</Grid>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</RefreshView>
+
+		<ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+		<HorizontalStackLayout
+			Grid.Row="1"
+			HorizontalOptions="Center"
+			Spacing="21">
+			<Button
+				Command="{Binding GetMonkeysCommand}"
+				IsEnabled="{Binding IsNotBusy}"
+				Style="{StaticResource ButtonOutline}"
+				Text="{x:Static str:UiText.GetMonkeysButtonContent}" />
+
+			<Button
+				Command="{Binding GetClosestMonkeyCommand}"
+				IsEnabled="{Binding IsNotBusy}"
+				Style="{StaticResource ButtonOutline}"
+				Text="{x:Static str:UiText.FindClosestButtonContent}" />
+		</HorizontalStackLayout>
+	</Grid>
+</c:StandardPage>

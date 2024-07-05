@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+	<x:Double x:Key="LargeSquareImageSize">160</x:Double>
+	<x:Double x:Key="SmallSquareImageSize">125</x:Double>
+	<Thickness x:Key="StandardItemPadding">10</Thickness>
+	<x:Double x:Key="InternalSpacing">10</x:Double>
+
+</ResourceDictionary>

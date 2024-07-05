@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c:VerticallyScrollingPage
+	x:Class="MonkeyFinder.DetailsPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:c="clr-namespace:MonkeyFinder.Controls"
+	xmlns:e="clr-namespace:MonkeyFinder.Extensions"
+	xmlns:s="clr-namespace:MonkeyFinder"
+	xmlns:str="clr-namespace:MonkeyFinder.Resources.Strings"
+	xmlns:viewmodel="clr-namespace:MonkeyFinder.ViewModel"
+	Title="{Binding Monkey.Name}"
+	x:DataType="viewmodel:MonkeyDetailsViewModel">
+
+	<c:DetailPageHeader Title="{Binding Monkey.Name}" ImageSource="{Binding Monkey.Image}" />
+
+	<VerticalStackLayout x:Name="BodyContent" Spacing="{StaticResource InternalSpacing}">
+		<s:StandardButton
+			Margin="8"
+			Command="{Binding OpenMapCommand}"
+			HorizontalOptions="Center"
+			Text="{x:Static str:UiText.ShowOnMapButtonContent}"
+			WidthRequest="200" />
+
+		<s:BodyText Text="{Binding Monkey.Details}" />
+		<s:AdditionalInformation Text="{Binding Monkey.Location, StringFormat='Location: {0}'}" />
+		<s:AdditionalInformation Text="{Binding Monkey.Population, StringFormat='Population: {0}'}" />
+	</VerticalStackLayout>
+</c:VerticallyScrollingPage>
