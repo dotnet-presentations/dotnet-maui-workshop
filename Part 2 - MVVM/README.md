@@ -115,7 +115,7 @@ public class BaseViewModel : INotifyPropertyChanged
         }
     } 
 
-    public bool IsNotBusy => !IsBusy;
+    public bool IsNotBusy => !isBusy;
     //...
 }
 ```
