@@ -4,7 +4,9 @@ Here you will find additional modules that build upon the completed workshop app
 
 ## Available Modules
 
-Coming soon!
+| Name | Description |
+|---|---|
+| Focus on XAML | In this module we will take the app you created in the .NET MAUI Workshop and focus on improving the XAML. By completing this module, you'll see that it is possible to create XAML that is easy to write, read, understand, and maintain. |
 
 ## Contributing Modules
 
