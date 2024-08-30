@@ -35,6 +35,11 @@ jobs:
         - Part 4 - Platform Features
         - Part 5 - CollectionView
         - Part 6 - AppThemes
+        - Community Modules/XAML/Part 1 - Fundamentals
+        - Community Modules/XAML/Part 2 - Responsibility
+        - Community Modules/XAML/Part 3 - Magic Values
+        - Community Modules/XAML/Part 4 - Naming
+        - Community Modules/XAML/Part 5 - Custom Types
         
     steps:
     - uses: actions/checkout@v3
