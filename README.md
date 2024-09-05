@@ -33,6 +33,12 @@ To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder
 ## Video Walkthrough
 James recorded a [full 4-hour walkthrough](https://www.youtube.com/watch?v=DuNLR_NJv8U) end-to-end on [his YouTube](https://youtube.com/jamesmontemagno)!
 
+## Blazor Hybrid Workshop
+
+If you want to learn more about Blazor Hybrid too, then we have got [another great workshop](https://aka.ms/blazor-hybrid-workshop) lined up for you!
+
+In this workshop you will build the same app as in this one, the Monkey Finder app, but now using Blazor Hybrid. By doing both workshops, you can really see the differences and similarities between the two approaches.
+
 ## More links and resources:
 - [.NET MAUI Website](https://dot.net/maui)
 - [.NET MAUI on Microsoft Learn](https://docs.microsoft.com/learn/paths/build-apps-with-dotnet-maui/)
