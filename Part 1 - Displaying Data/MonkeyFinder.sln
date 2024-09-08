@@ -7,8 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonkeyFinder", "MonkeyFinde
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{393B8F30-F402-46A9-B209-8C71897A3416}"
 	ProjectSection(SolutionItems) = preProject
-		..\Directory.build.props = ..\Directory.build.props
-		..\Directory.build.targets = ..\Directory.build.targets
+		..\Directory.Build.props = ..\Directory.Build.props
+		..\Directory.Build.targets = ..\Directory.Build.targets
 		README.md = README.md
 	EndProjectSection
 EndProject
