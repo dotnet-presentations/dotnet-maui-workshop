@@ -117,7 +117,7 @@ Now, let's add navigation to a second page that displays monkey details!
                     <!-- Add the Gesture Recognizer-->
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer 
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
                     </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="125,*">

@@ -253,7 +253,7 @@ We can now use this in `MainPage.xaml`:
 -       <Frame HeightRequest="125" Style="{StaticResource CardView}">
 +       <Frame HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
             </Frame.GestureRecognizers>
 -           <Grid Padding="0" ColumnDefinitions="125,*">
 +           <Grid Padding="0">

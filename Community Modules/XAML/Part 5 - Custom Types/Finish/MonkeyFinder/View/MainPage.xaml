@@ -30,7 +30,7 @@
 						<Grid Padding="{StaticResource StandardItemPadding}" HorizontalOptions="Fill">
 							<s:CardView HeightRequest="{StaticResource SmallSquareImageSize}">
 								<Frame.GestureRecognizers>
-									<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+									<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
 								</Frame.GestureRecognizers>
 								<Grid Padding="0">
 									<Grid.ColumnDefinitions>
