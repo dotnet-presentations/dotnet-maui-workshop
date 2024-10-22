@@ -61,7 +61,7 @@
                 <Setter Property="StrokeThickness" Value="1" />
                 <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
                 <Setter Property="Padding" Value="0" />
-                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
+                <Setter Property="Background" Value="{StaticResource LightBackground}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
