@@ -27,10 +27,10 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate x:DataType="model:Monkey">
 						<Grid Padding="{StaticResource StandardItemPadding}" HorizontalOptions="Fill">
-							<Frame HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
-								<Frame.GestureRecognizers>
+							<Border HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
+								<Border.GestureRecognizers>
 									<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
-								</Frame.GestureRecognizers>
+								</Border.GestureRecognizers>
 								<Grid Padding="0">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="{StaticResource SmallSquareImageSize}" />
@@ -48,7 +48,7 @@
 										<Label Style="{StaticResource ListDetails}" Text="{Binding Location}" />
 									</VerticalStackLayout>
 								</Grid>
-							</Frame>
+							</Border>
 						</Grid>
 					</DataTemplate>
 				</CollectionView.ItemTemplate>

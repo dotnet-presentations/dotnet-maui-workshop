@@ -79,7 +79,7 @@ Now, let's add navigation to a second page that displays monkey details!
 
     - This code checks to see if the selected item is non-null and then uses the built in Shell `Navigation` API to push a new page with the monkey as a parameter and then deselects the item. 
 
-1. In `MainPage.xaml` we can add an `TapGestureRecognizer` event to the `Frame` of our monkey inside of the `CollectionView.ItemTemplate`:
+1. In `MainPage.xaml` we can add an `TapGestureRecognizer` event to the `Border` of our monkey inside of the `CollectionView.ItemTemplate`:
 
     Before:
 
@@ -87,7 +87,7 @@ Now, let's add navigation to a second page that displays monkey details!
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -102,7 +102,7 @@ Now, let's add navigation to a second page that displays monkey details!
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>
@@ -113,13 +113,13 @@ Now, let's add navigation to a second page that displays monkey details!
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <!-- Add the Gesture Recognizer-->
-                    <Frame.GestureRecognizers>
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
-                    </Frame.GestureRecognizers>
+                    </Border.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -134,7 +134,7 @@ Now, let's add navigation to a second page that displays monkey details!
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>

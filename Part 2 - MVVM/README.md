@@ -597,7 +597,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -610,7 +610,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -642,7 +642,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -655,7 +655,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -697,7 +697,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -710,7 +710,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

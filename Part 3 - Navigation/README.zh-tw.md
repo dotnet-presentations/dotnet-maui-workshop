@@ -76,7 +76,7 @@ public partial class DetailsPage : ContentPage
 
     - 此方法中一開始先檢查參數所得到的資料是否為空值，若不是空值才透過 Shell 內建用以 `Navigation` 的 `GoToAsync()` 方法，並將帶入的猴子資料為呼叫方法的引數資料，來轉跳進入詳細頁面。
 
-2. 在 `MainPage.xaml` 當中，找到 `CollectionView.ItemTemplate` 有關設置 `Frame` 的部分，並增加中 `TapGestureRecognizer` 的事件：
+2. 在 `MainPage.xaml` 當中，找到 `CollectionView.ItemTemplate` 有關設置 `Border` 的部分，並增加中 `TapGestureRecognizer` 的事件：
 
     增加前:  
 
@@ -84,7 +84,7 @@ public partial class DetailsPage : ContentPage
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -99,7 +99,7 @@ public partial class DetailsPage : ContentPage
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>
@@ -111,13 +111,13 @@ public partial class DetailsPage : ContentPage
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <!-- Add the Gesture Recognizer-->
-                    <Frame.GestureRecognizers>
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
-                    </Frame.GestureRecognizers>
+                    </Border.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -132,7 +132,7 @@ public partial class DetailsPage : ContentPage
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>

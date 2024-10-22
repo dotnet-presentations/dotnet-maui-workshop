@@ -239,7 +239,7 @@ We've created a resource that we're only using in one place in this app, but it 
 > **Note**:  
 > Both `StandardItemPadding` and `InternalSpacing` use the same number "10". This duplication of a numeric value may be something you want to avoid. Sadly, XAML does not make it easy to remove this duplication. There are solutions but they are not currently covered in this workshop.
 
-`MainPage.xaml` also includes a smaller image within the `ItemTemplate`. The size of this is **125**, but you will notice that the same value is also used for the `Frame` and one of the `ColumnDefinitions`. Is it a coincidence that this value appears in multiple places?  It's not, but we can make it clearer to someone looking at this code in the future by creating a single resource and using that everywhere.
+`MainPage.xaml` also includes a smaller image within the `ItemTemplate`. The size of this is **125**, but you will notice that the same value is also used for the `Border` and one of the `ColumnDefinitions`. Is it a coincidence that this value appears in multiple places?  It's not, but we can make it clearer to someone looking at this code in the future by creating a single resource and using that everywhere.
 
 As this is for a smaller image than the other one, let's call this the "SmallSquareImageSize". You create it in `Sizes.xaml` like this:
 
@@ -250,11 +250,11 @@ As this is for a smaller image than the other one, let's call this the "SmallSqu
 We can now use this in `MainPage.xaml`:
 
 ```diff
--       <Frame HeightRequest="125" Style="{StaticResource CardView}">
-+       <Frame HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
-            <Frame.GestureRecognizers>
+-       <Border HeightRequest="125" Style="{StaticResource CardView}">
++       <Border HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
+            <Border.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
-            </Frame.GestureRecognizers>
+            </Border.GestureRecognizers>
 -           <Grid Padding="0" ColumnDefinitions="125,*">
 +           <Grid Padding="0">
 +               <Grid.ColumnDefinitions>

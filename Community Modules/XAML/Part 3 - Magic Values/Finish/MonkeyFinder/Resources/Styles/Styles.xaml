@@ -57,14 +57,13 @@
 		<Setter Property="HeightRequest" Value="40" />
 		<Setter Property="CornerRadius" Value="20" />
 	</Style>
-	<Style x:Key="CardView" TargetType="Frame">
-		<Setter Property="BorderColor" Value="#DDDDDD" />
-		<Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
-		<Setter Property="Padding" Value="0" />
-		<Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
-		<Setter Property="CornerRadius" Value="10" />
-		<Setter Property="IsClippedToBounds" Value="True" />
-	</Style>
+	<Style x:Key="CardView" TargetType="Border">
+        <Setter Property="Stroke" Value="#DDDDDD" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
+    </Style>
 
 	<Style TargetType="Image">
 		<Setter Property="Aspect" Value="AspectFill" />

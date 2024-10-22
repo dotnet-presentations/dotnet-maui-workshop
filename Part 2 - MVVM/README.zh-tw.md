@@ -591,7 +591,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -604,7 +604,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -636,7 +636,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -649,7 +649,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -690,7 +690,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -703,7 +703,7 @@ monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonk
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
