@@ -288,13 +288,12 @@ Now cut and paste the remaining `Resources` from `App.xaml` into `Styles.xaml`.
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="20" />
     </Style>
-    <Style x:Key="CardView" TargetType="Frame">
-        <Setter Property="BorderColor" Value="#DDDDDD" />
-        <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+    <Style x:Key="CardView" TargetType="Border">
+        <Setter Property="Stroke" Value="#DDDDDD" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
         <Setter Property="Padding" Value="0" />
         <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
-        <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="IsClippedToBounds" Value="True" />
     </Style>
 </ResourceDictionary>
 ```

@@ -106,7 +106,7 @@ Now we can use the new types in place of the old ones.
 Make these changes:
 
 ```diff
--   <Frame HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
+-   <Border HeightRequest="{StaticResource SmallSquareImageSize}" Style="{StaticResource CardView}">
 +   <s:CardView HeightRequest="{StaticResource SmallSquareImageSize}">
 
 ...
@@ -117,7 +117,7 @@ Make these changes:
 +             <s:ListDetails Text="{Binding Location}" />
             </VerticalStackLayout>
         </Grid>
--   </Frame>
+-   </Border>
 +   </s:CardView>
 
 ...
@@ -413,7 +413,7 @@ In `DetailsPage.xaml`, we can now add an instance of the new `DetailsPageHeader`
 
 We've now reduced the size of `DetailsPage.xaml` by 19 lines. This reduction in file size was done without making the Details page any harder to understand. We've simply moved the details of the complexity of the "header"  into a separate file.
 
-Look at `MainPage.xaml` with the above thoughts still fresh in your mind. It should hopefully be apparent that the `s:CardView` type is a strong candidate for being replaced with a single type that combines all the functionality and elements that are in the `Frame` it represents. I'll leave that as a separate exercise if you wish to try applying what you've learned above.
+Look at `MainPage.xaml` with the above thoughts still fresh in your mind. It should hopefully be apparent that the `s:CardView` type is a strong candidate for being replaced with a single type that combines all the functionality and elements that are in the `Border` it represents. I'll leave that as a separate exercise if you wish to try applying what you've learned above.
 
 We've now finished refactoring the app by adding custom types.  
 
