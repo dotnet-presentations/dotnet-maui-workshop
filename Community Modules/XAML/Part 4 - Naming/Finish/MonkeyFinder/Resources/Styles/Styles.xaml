@@ -57,7 +57,7 @@
 		<Setter Property="HeightRequest" Value="40" />
 		<Setter Property="CornerRadius" Value="20" />
 	</Style>
-	<Style x:Key="CardView" TargetType="Border">
+    <Style x:Key="CardView" TargetType="Border">
         <Setter Property="Stroke" Value="#DDDDDD" />
         <Setter Property="StrokeThickness" Value="1" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
