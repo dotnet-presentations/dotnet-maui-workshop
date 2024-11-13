@@ -145,13 +145,13 @@ public partial class BaseViewModel : ObservableObject
 
 Here, we can see that our code has been greatly simplified with an `ObservableObject` base class that implements `INotifyPropertyChanged` and also attributes to expose our properties.
 
-Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net8.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
+Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net9.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
 
 
 Here is what our `IsBusy` looks like:
 
 ```csharp
-[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.0.0.0")]
+[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.3.0.0")]
 [global::System.Diagnostics.DebuggerNonUserCode]
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public bool IsBusy
@@ -597,7 +597,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -610,7 +610,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -642,7 +642,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -655,7 +655,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -697,7 +697,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                        <Border HeightRequest="125" Style="{StaticResource CardView}">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
@@ -710,7 +710,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                 </VerticalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -76,7 +76,7 @@ public partial class DetailsPage : ContentPage
 
     - 此代码检查所选项目是否为非空，并使用内置的 Shell `Navigation` API 以猴子为参数推送新页面，然后取消选择该项目。
 
-2. 在 `MainPage.xaml` 中，我们可以在 `CollectionView.ItemTemplate` 内的猴子的 `Frame` 中添加 `TapGestureRecognizer` 事件：
+2. 在 `MainPage.xaml` 中，我们可以在 `CollectionView.ItemTemplate` 内的猴子的 `Border` 中添加 `TapGestureRecognizer` 事件：
 
     之前:
 
@@ -84,7 +84,7 @@ public partial class DetailsPage : ContentPage
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -99,7 +99,7 @@ public partial class DetailsPage : ContentPage
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>
@@ -110,13 +110,13 @@ public partial class DetailsPage : ContentPage
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="model:Monkey">
             <Grid Padding="10">
-                <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                <Border HeightRequest="125" Style="{StaticResource CardView}">
                     <!-- Add the Gesture Recognizer-->
-                    <Frame.GestureRecognizers>
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer 
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, x:DataType=viewmodel:MonkeysViewModel, Path=GoToDetailsCommand}"
                                 CommandParameter="{Binding .}"/>
-                    </Frame.GestureRecognizers>
+                    </Border.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="125,*">
                         <Image
                             Aspect="AspectFill"
@@ -131,7 +131,7 @@ public partial class DetailsPage : ContentPage
                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                         </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
             </Grid>
         </DataTemplate>
     </CollectionView.ItemTemplate>
