@@ -15,11 +15,13 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.monkeyfinder</ApplicationId>
-		<ApplicationIdGuid>ECD44DAE-B03E-4D8B-B427-71865961E696</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
 	</PropertyGroup>
 
 	<ItemGroup>
