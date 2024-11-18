@@ -29,7 +29,6 @@ public class BaseViewModel : INotifyPropertyChanged
 3. 在`BaseViewModel.cs`中，右键单击`INotifyPropertyChanged`
    
 4. 实现`INotifyPropertyChanged`接口
-    - (Visual Studio for Mac) 在右键菜单中，选择 Quick Fix -> Implement Interface
     - (Visual Studio PC) 在右键菜单中，选择 Quick Actions and Refactorings -> Implement Interface
   
 5. 在 `BaseViewModel.cs` 中，确保现在出现这行代码：

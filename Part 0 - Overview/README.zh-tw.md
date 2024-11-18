@@ -2,7 +2,7 @@
 
 讓我們首先了解 .NET MAUI 的基本概念以及整個專案的相關結構。
 
-### 在 Visual Studio 或 Visual Studio for Mac 當中開啟此專案
+### 在 Visual Studio 或 Visual Studio Code 當中開啟此專案
 
 1. 開啟 **Part 1 - Displaying Data/MonkeyFinder.sln**
 

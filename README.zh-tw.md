@@ -3,7 +3,7 @@
 今天我們將會透過 [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_id=EM-MVP-5001645) 技術建構出一個跨平台執行的應用程式，它將會透過列表的方式來展示來自世界各地的猴子資料。首先我們將從使用網際網路服務的應用邏輯開始，此服務會以 RESTful API 的方式來回應用 json 格式表示的猴子資料。接著，在此 [.NET MAUI](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=EM-MVP-5001645) 的應用程式中，透過 [.NET MAUI](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=EM-MVP-5001645) 所設計的 API 使用，來撰寫搜尋如何計算與搜尋到當前距離最近的猴子，並透過 API 從此應用程式轉跳到平台裝置內建的地圖應用來呈現來展示猴子所在的地點。當然也將會學到更多利用不同的方式來呈現資料，並在最後學習到讓應用程式如何自動適應系統佈景主題的深色或淺色模式的調整處理。
 
 ## Hands-on Lab 環境設定
-操作此 Hands-on Lab 是需要自己實際動手與設定相關設備的。您將可以在 PC（推薦）或 Mac 上進行開發，您需要做的就是先安裝好在 Visual Studio 2022 或 Visaul Studio for Mac 2022，並確認有設定 .NET MAUI 工作負載的安裝。
+操作此 Hands-on Lab 是需要自己實際動手與設定相關設備的。您將可以在 PC（推薦）或 Mac 上進行開發，您需要做的就是先安裝好在 Visual Studio 2022 或 Visaul Studio Code，並確認有設定 .NET MAUI 工作負載的安裝。
 
 在開始著手進行此 Hands-on Lab 前，會建議先用 10 分鐘左右的時間來閱讀一下 [.NET MAUI 教學](https://docs.microsoft.com/dotnet/maui/get-started/first-app?WT.mc_id=EM-MVP-5001645)，在此教學中會指導您安裝與正確地設置好，要進行此 Hands-on Lab 所需的開發環境。
 
