@@ -73,7 +73,7 @@ namespace MonkeyFinder
         }
     }
 
-    public class CardView : Frame
+    public class CardView : Border
     {
         public CardView()
         {
