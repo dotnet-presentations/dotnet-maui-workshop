@@ -66,12 +66,12 @@ public class BaseViewModel : INotifyPropertyChanged
     //...
     public bool IsBusy
     {
-        get => isBusy;
+        get => field;
         set
         {
             if (isBusy == value)
                 return;
-            isBusy = value;
+            field = value;
             OnPropertyChanged();
         }
     }
@@ -101,12 +101,12 @@ public class BaseViewModel : INotifyPropertyChanged
     //...
     public bool IsBusy
     {
-        get => isBusy;
+        get => field;
         set
         {
             if (isBusy == value)
                 return;
-            isBusy = value;
+            field = value;
             OnPropertyChanged();
             // Also raise the IsNotBusy property changed
             OnPropertyChanged(nameof(IsNotBusy));
@@ -131,10 +131,10 @@ public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-    bool isBusy;
+    public partial bool IsBusy { get; set; }
 
     [ObservableProperty]
-    string title;
+    public partial string Title { get; set; }
 
     public bool IsNotBusy => !IsBusy;
 }
@@ -147,18 +147,18 @@ public partial class BaseViewModel : ObservableObject
 以下是在編譯時期自動產生的 `IsBusy` 屬性:
 
 ```csharp
-[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.3.0.0")]
+[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.4.0.0")]
 [global::System.Diagnostics.DebuggerNonUserCode]
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public bool IsBusy
 {
-    get => isBusy;
+    get => field;
     set
     {
-        if (!global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(isBusy, value))
+        if (!global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(field, value))
         {
             OnPropertyChanging(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy);
-            isBusy = value;
+            field = value;
             OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy);
             OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNotBusy);
         }

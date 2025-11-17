@@ -17,7 +17,7 @@ public partial class MonkeysViewModel : BaseViewModel
     }
 
     [ObservableProperty]
-    bool isRefreshing;
+    public partial bool IsRefreshing { get; set; }
 
     [RelayCommand]
     async Task GetMonkeysAsync()

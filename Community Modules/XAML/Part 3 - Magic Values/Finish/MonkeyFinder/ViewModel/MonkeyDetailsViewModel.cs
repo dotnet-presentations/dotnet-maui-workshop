@@ -10,7 +10,7 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
     }
 
     [ObservableProperty]
-    Monkey monkey;
+    public partial Monkey Monkey { get; set; }
 
     [RelayCommand]
     async Task OpenMap()
