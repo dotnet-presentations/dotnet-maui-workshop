@@ -66,12 +66,12 @@ public class BaseViewModel : INotifyPropertyChanged
     //...
     public bool IsBusy
     {
-        get => field;
+        get => isBusy;
         set
         {
             if (isBusy == value)
                 return;
-            field = value;
+            isBusy = value;
             OnPropertyChanged();
         }
     }
@@ -101,12 +101,12 @@ public class BaseViewModel : INotifyPropertyChanged
     //...
     public bool IsBusy
     {
-        get => field;
+        get => isBusy;
         set
         {
             if (isBusy == value)
                 return;
-            field = value;
+            isBusy = value;
             OnPropertyChanged();
             // Also raise the IsNotBusy property changed
             OnPropertyChanged(nameof(IsNotBusy));
