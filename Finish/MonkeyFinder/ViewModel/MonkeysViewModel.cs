@@ -41,7 +41,7 @@ public partial class MonkeysViewModel : BaseViewModel
         {
             if (connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                await Shell.Current.DisplayAlert("No connectivity!",
+                await Shell.Current.DisplayAlertAsync("No connectivity!",
                     $"Please check internet and try again.", "OK");
                 return;
             }
@@ -59,7 +59,7 @@ public partial class MonkeysViewModel : BaseViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlertAsync("Error!", ex.Message, "OK");
         }
         finally
         {
@@ -93,14 +93,14 @@ public partial class MonkeysViewModel : BaseViewModel
                 new Location(m.Latitude, m.Longitude), DistanceUnits.Miles))
                 .FirstOrDefault();
 
-            await Shell.Current.DisplayAlert("", first.Name + " " +
+            await Shell.Current.DisplayAlertAsync("", first.Name + " " +
                 first.Location, "OK");
 
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to query location: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlertAsync("Error!", ex.Message, "OK");
         }
     }
 }

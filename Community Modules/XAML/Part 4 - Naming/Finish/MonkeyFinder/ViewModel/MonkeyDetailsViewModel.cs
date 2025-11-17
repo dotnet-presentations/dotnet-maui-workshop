@@ -26,7 +26,7 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to launch maps: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error, no Maps app!", ex.Message, "OK");
+            await Shell.Current.DisplayAlertAsync("Error, no Maps app!", ex.Message, "OK");
         }
     }
 }

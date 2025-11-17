@@ -9,7 +9,7 @@ This workshop is available in the following languages:
 * [Chinese (Traditional)](README.zh-tw.md) - README filed ending with .zh-tw.md (Translated by [James Tsai](https://github.com/JamestsaiTW))
 
 ## Setup Guide
-Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC,  Mac, or Linux and all you will need to do is install Visual Studio 2022 with the .NET MAUI Workshop or Visual Studio Code with the .NET MAUI extension. It is built on .NET 10, which means you will need version 17.13 of Visual Studio 2022 or newer. See [full installation guide for .NET MAUI](https://learn.microsoft.com/dotnet/maui/get-started/installation?view=net-maui-10.0) for more information.
+Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC, Mac, or Linux and all you will need to do is install Visual Studio 2026 or Visual Studio Code with the C# Dev Kit extension. It is built on .NET 10. See [full installation guide for .NET MAUI](https://learn.microsoft.com/dotnet/maui/get-started/installation?view=net-maui-10.0) for more information.
 
 Before starting the workshop, I recommend going through the quick 10 minute [.NET MAUI Tutorial](https://docs.microsoft.com/dotnet/maui/get-started/first-app?WT.mc_id=friends-mauiworkshop-jamont) that will guide you through installation and also ensuring everything is configured correct.
 

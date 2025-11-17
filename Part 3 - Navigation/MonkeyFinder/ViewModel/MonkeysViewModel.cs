@@ -33,7 +33,7 @@ public partial class MonkeysViewModel : BaseViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            await Shell.Current.DisplayAlertAsync("Error!", ex.Message, "OK");
         }
         finally
         {
