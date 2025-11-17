@@ -53,8 +53,8 @@ public void OnPropertyChanged([CallerMemberName] string name = null) =>
 ```csharp
 public class BaseViewModel : INotifyPropertyChanged
 {
-    public partial bool IsBusy { get; set; }
-    public partial string Title { get; set; }
+    bool isBusy;
+    string title;
     //...
 }
 ```
