@@ -134,10 +134,10 @@ public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-    bool isBusy;
+    public partial bool IsBusy { get; set; }
 
     [ObservableProperty]
-    string title;
+    public partial string Title { get; set; }
 
     public bool IsNotBusy => !IsBusy;
 }
@@ -145,24 +145,24 @@ public partial class BaseViewModel : ObservableObject
 
 Here, we can see that our code has been greatly simplified with an `ObservableObject` base class that implements `INotifyPropertyChanged` and also attributes to expose our properties.
 
-Note that both isBusy and title have the `[ObservableProperty]` attribute attached to it. The code that is generated looks nearly identical to what we manually wrote. Additionally, the isBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net10.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
+Note that both IsBusy and Title have the `[ObservableProperty]` attribute attached to them. With CommunityToolkit.Mvvm 8.4.0, we now use **partial properties** instead of fields. This provides better AOT (Ahead-of-Time) compilation support and is the recommended approach. The code generator will create the backing field and property implementation automatically. Additionally, the IsBusy property has `[NotifyPropertyChangedFor(nameof(IsNotBusy))]`, which will also notify `IsNotBusy` when the value changes. To see the generated code head to the project and then expand **Dependencies -> net10.0-android -> Analyzers -> CommunityToolkit.Mvvm.SourceGenerators -> CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator** and open `MonkeyFinder.ViewModel.BaseViewModel.cs`:
 
 
 Here is what our `IsBusy` looks like:
 
 ```csharp
-[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.3.0.0")]
+[global::System.CodeDom.Compiler.GeneratedCode("CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator", "8.4.0.0")]
 [global::System.Diagnostics.DebuggerNonUserCode]
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public bool IsBusy
 {
-    get => isBusy;
+    get => field;
     set
     {
-        if (!global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(isBusy, value))
+        if (!global::System.Collections.Generic.EqualityComparer<bool>.Default.Equals(field, value))
         {
             OnPropertyChanging(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy);
-            isBusy = value;
+            field = value;
             OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy);
             OnPropertyChanged(global::CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNotBusy);
         }
@@ -170,7 +170,7 @@ public bool IsBusy
 }
 ```
 
-This code may look a bit scary, but since it is auto-generated it adds additional attributes to avoid conflicts. It is also highly optimized with caching as well.
+This code may look a bit scary, but since it is auto-generated it adds additional attributes to avoid conflicts. It is also highly optimized with caching as well. Note the use of the `field` keyword, which is a C# 14 feature that provides direct access to the compiler-generated backing field.
 
 The same library will also help us handle click events aka `Commands` in the future.
 
