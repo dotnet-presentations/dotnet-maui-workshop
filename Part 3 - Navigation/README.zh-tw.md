@@ -188,7 +188,7 @@ public partial class DetailsPage : ContentPage
     builder.Services.AddTransient<MonkeyDetailsViewModel>();
     
     ```
-> Starting in .NET 9 you no longer need to register Pages with the dependency service for constructor injection to work. By default when we navigate to a new page it will be created an the `MonkeyDetailsViewModel` will be injected as well.
+> Starting in .NET 10 you no longer need to register Pages with the dependency service for constructor injection to work. By default when we navigate to a new page it will be created an the `MonkeyDetailsViewModel` will be injected as well.
 
 3. 最後，開啟 `DetailsPage.xaml.cs` 這個 DetailPage.xaml 所對應的後置程式碼檔案，並將 DetailPage 的建構方法改為如下內容：
 

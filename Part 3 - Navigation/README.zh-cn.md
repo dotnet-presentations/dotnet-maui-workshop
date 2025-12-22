@@ -189,7 +189,7 @@ public partial class DetailsPage : ContentPage
     
     ```
 
-> Starting in .NET 9 you no longer need to register Pages with the dependency service for constructor injection to work. By default when we navigate to a new page it will be created an the `MonkeyDetailsViewModel` will be injected as well.
+> Starting in .NET 10 you no longer need to register Pages with the dependency service for constructor injection to work. By default when we navigate to a new page it will be created an the `MonkeyDetailsViewModel` will be injected as well.
 
 3. 最后，我们必须将视图模型注入到我们的 `DetailsPage` 中。 在 `DetailsPage.xaml.cs` 中打开页面背后的代码，并将构造函数更改为以下内容：
 
