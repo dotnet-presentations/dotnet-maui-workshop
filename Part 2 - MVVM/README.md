@@ -125,6 +125,13 @@ public class BaseViewModel : INotifyPropertyChanged
 
 Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The .NET Community Toolkit seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. The `CommunityToolkit.Mvvm` library has been added to the project and we can start using it right away.
 
+> **Note for those not starting from the starter project:** If you're working on your own project or didn't start from Part 1, you'll need to install the CommunityToolkit.Mvvm NuGet package. You can do this via:
+> - **Visual Studio**: Right-click on the project → Manage NuGet Packages → Search for "CommunityToolkit.Mvvm" → Install
+> - **.NET CLI**: Run `dotnet add package CommunityToolkit.Mvvm`
+> - **Package Manager Console**: Run `Install-Package CommunityToolkit.Mvvm`
+> 
+> For more information, visit the [.NET Community Toolkit MVVM documentation](https://learn.microsoft.com/dotnet/communitytoolkit/mvvm/).
+
 Delete all contents in `BaseViewModel.cs` and replace it with the following:
 
 ```csharp

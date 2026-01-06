@@ -122,6 +122,13 @@ public class BaseViewModel : INotifyPropertyChanged
 
 现在您已经了解了 MVVM 的工作原理，让我们看看一种简化开发的方法。 随着应用程序变得越来越复杂，将添加更多属性和事件。 这会导致添加更多样板代码。 .NET Community Toolkit 旨在通过源生成器来简化 MVVM，以自动处理我们过去必须手动编写的代码。 `CommunityToolkit.Mvvm` 库已添加到项目中，我们可以即可使用它。
 
+> **注意：如果您没有从入门项目开始：** 如果您使用的是自己的项目或没有从第1部分开始，则需要安装 CommunityToolkit.Mvvm NuGet 包。您可以通过以下方式执行此操作：
+> - **Visual Studio**：右键单击项目 → 管理 NuGet 包 → 搜索 "CommunityToolkit.Mvvm" → 安装
+> - **.NET CLI**：运行 `dotnet add package CommunityToolkit.Mvvm`
+> - **包管理器控制台**：运行 `Install-Package CommunityToolkit.Mvvm`
+> 
+> 有关更多信息，请访问 [.NET Community Toolkit MVVM 文档](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/)。
+
 删除 `BaseViewModel.cs` 中的所有代码并添加如下代码:
 
 ```csharp
