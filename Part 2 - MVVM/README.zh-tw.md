@@ -122,6 +122,13 @@ public class BaseViewModel : INotifyPropertyChanged
 
 現在經過前面的介紹已經了解 MVVM 的工作原理，接著來看看一種簡化開發的方式。隨著應用程式的開發越來越複雜，將會增加更多的屬性與方法。這將會使得程式碼當中增加許多不同的數。 .NET Community Toolkit 主要是透過 AOP 的處理來簡化 MVVM 框架的設計，以自動完成前面需手動撰寫的程式碼。 `CommunityToolkit.Mvvm` 套件引用已經有增加到專案中，可以直接使用。
 
+> **注意：如果您沒有從入門專案開始：** 如果您使用的是自己的專案或沒有從第1部分開始，則需要安裝 CommunityToolkit.Mvvm NuGet 套件。您可以透過以下方式執行此操作：
+> - **Visual Studio**：右鍵點擊專案 → 管理 NuGet 套件 → 搜尋 "CommunityToolkit.Mvvm" → 安裝
+> - **.NET CLI**：執行 `dotnet add package CommunityToolkit.Mvvm`
+> - **套件管理器主控台**：執行 `Install-Package CommunityToolkit.Mvvm`
+> 
+> 有關更多資訊，請訪問 [.NET Community Toolkit MVVM 文件](https://learn.microsoft.com/zh-tw/dotnet/communitytoolkit/mvvm/)。
+
 刪除 `BaseViewModel.cs` 中所有的程式碼後，增加以下程式碼:
 
 ```csharp
