@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET MAUI Workshop | Monkey Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --maui-purple: #512BD4;
+            --maui-blue: #0078d4;
+            --neon-purple: #9B4DFF;
+            --neon-blue: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border-color: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(81,43,212,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(81,43,212,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            border-color: var(--maui-purple);
+            color: var(--neon-purple);
+            background: rgba(81,43,212,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(81,43,212,0.2);
+            border: 1px solid var(--maui-purple);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--neon-purple);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--maui-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--maui-purple), var(--maui-blue));
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(81,43,212,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-purple);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--maui-purple);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Workshop Parts */
+        .workshop {
+            padding: 4rem 0;
+        }
+
+        .parts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .part-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .part-card:hover {
+            border-color: var(--neon-blue);
+            background: rgba(0,212,255,0.05);
+        }
+
+        .part-number {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--maui-purple), var(--maui-blue));
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .part-content {
+            flex: 1;
+        }
+
+        .part-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .part-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .part-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(155,77,255,0.1);
+            border-radius: 50px;
+            color: var(--neon-purple);
+            white-space: nowrap;
+        }
+
+        /* Prerequisites */
+        .prereqs {
+            padding: 4rem 0;
+            background: var(--bg-card);
+        }
+
+        .prereqs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .prereq-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border-radius: 8px;
+        }
+
+        .prereq-check {
+            color: var(--neon-blue);
+            font-size: 1.25rem;
+        }
+
+        /* Resources */
+        .resources {
+            padding: 4rem 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--maui-blue);
+            transform: translateY(-2px);
+        }
+
+        .resource-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .resource-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+
+        .footer-credit {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            .stats {
+                gap: 2rem;
+            }
+
+            .part-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .part-badge {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐒</span>
+                <span>.NET MAUI Workshop</span>
+            </a>
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="zh-cn">简体中文</button>
+                <button class="lang-btn" data-lang="zh-tw">繁體中文</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <span class="hero-badge">🚀 .NET 10 + .NET MAUI + Visual Studio 2026</span>
+            <h1 data-i18n="hero-title">.NET MAUI Workshop</h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">
+                Build a Monkey Finder app while learning .NET MAUI fundamentals. 
+                Master data binding, MVVM, navigation, platform features, and theming.
+            </p>
+            <div class="hero-cta">
+                <a href="step.html?step=part0" class="btn btn-primary" data-i18n="start-workshop">
+                    🚀 Start Workshop
+                </a>
+                <a href="https://github.com/dotnet-presentations/dotnet-maui-workshop" class="btn btn-secondary">
+                    📦 GitHub Repo
+                </a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">~4hr</div>
+                    <div class="stat-label" data-i18n="duration">Duration</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label" data-i18n="parts">Parts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label" data-i18n="platforms">Platforms</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <h2 class="section-title" data-i18n="what-youll-learn">What You'll Learn</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 data-i18n="feature-crossplatform-title">Cross-Platform UI</h3>
+                    <p data-i18n="feature-crossplatform-desc">Build native apps for Android, iOS, macOS, and Windows from a single codebase using .NET MAUI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 data-i18n="feature-mvvm-title">MVVM Pattern</h3>
+                    <p data-i18n="feature-mvvm-desc">Learn the Model-View-ViewModel pattern with data binding and the .NET Community Toolkit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧭</div>
+                    <h3 data-i18n="feature-navigation-title">Shell Navigation</h3>
+                    <p data-i18n="feature-navigation-desc">Implement URI-based navigation with parameter passing between pages.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3 data-i18n="feature-platform-title">Platform Features</h3>
+                    <p data-i18n="feature-platform-desc">Access device capabilities like GPS, maps, and network connectivity with .NET MAUI APIs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workshop Parts -->
+        <section class="workshop">
+            <h2 class="section-title" data-i18n="workshop-parts">Workshop Parts</h2>
+            <div class="parts-list">
+                <a href="step.html?step=part0" class="part-card">
+                    <div class="part-number">0</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part0-title">Overview & Setup</h3>
+                        <p data-i18n="part0-desc">Introduction to .NET MAUI project structure and setup verification</p>
+                    </div>
+                    <span class="part-badge">30 min</span>
+                </a>
+                <a href="step.html?step=part1" class="part-card">
+                    <div class="part-number">1</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part1-title">Displaying Data</h3>
+                        <p data-i18n="part1-desc">Create a single page list of data with CollectionView and DataTemplates</p>
+                    </div>
+                    <span class="part-badge">Data</span>
+                </a>
+                <a href="step.html?step=part2" class="part-card">
+                    <div class="part-number">2</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part2-title">MVVM & Data Binding</h3>
+                        <p data-i18n="part2-desc">Implement MVVM pattern with data binding and the .NET Community Toolkit</p>
+                    </div>
+                    <span class="part-badge">MVVM</span>
+                </a>
+                <a href="step.html?step=part3" class="part-card">
+                    <div class="part-number">3</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part3-title">Navigation</h3>
+                        <p data-i18n="part3-desc">Add Shell navigation to push a details page with query parameters</p>
+                    </div>
+                    <span class="part-badge">Navigation</span>
+                </a>
+                <a href="step.html?step=part4" class="part-card">
+                    <div class="part-number">4</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part4-title">Platform Features</h3>
+                        <p data-i18n="part4-desc">Use geolocation, connectivity checking, and maps integration</p>
+                    </div>
+                    <span class="part-badge">Platform</span>
+                </a>
+                <a href="step.html?step=part5" class="part-card">
+                    <div class="part-number">5</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part5-title">CollectionView & Beyond</h3>
+                        <p data-i18n="part5-desc">Add pull-to-refresh, grid layouts, and empty views</p>
+                    </div>
+                    <span class="part-badge">CollectionView</span>
+                </a>
+                <a href="step.html?step=part6" class="part-card">
+                    <div class="part-number">6</div>
+                    <div class="part-content">
+                        <h3 data-i18n="part6-title">App Themes</h3>
+                        <p data-i18n="part6-desc">Implement light/dark theme support with AppThemeBinding</p>
+                    </div>
+                    <span class="part-badge">Theming</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Prerequisites -->
+        <section class="prereqs">
+            <div class="container">
+                <h2 class="section-title" data-i18n="prerequisites">Prerequisites</h2>
+                <div class="prereqs-grid">
+                    <div class="prereq-item">
+                        <span class="prereq-check">✓</span>
+                        <span>Visual Studio 2026 or VS Code</span>
+                    </div>
+                    <div class="prereq-item">
+                        <span class="prereq-check">✓</span>
+                        <span>.NET 10 SDK</span>
+                    </div>
+                    <div class="prereq-item">
+                        <span class="prereq-check">✓</span>
+                        <span>.NET MAUI Workload</span>
+                    </div>
+                    <div class="prereq-item">
+                        <span class="prereq-check">✓</span>
+                        <span data-i18n="prereq-device">Android/iOS Device or Emulator</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="resources">
+            <h2 class="section-title" data-i18n="resources">Resources</h2>
+            <div class="resources-grid">
+                <a href="https://dot.net/maui" class="resource-card" target="_blank">
+                    <h4>.NET MAUI Website</h4>
+                    <p data-i18n="resource-website">Official .NET MAUI product page</p>
+                </a>
+                <a href="https://docs.microsoft.com/dotnet/maui" class="resource-card" target="_blank">
+                    <h4 data-i18n="resource-docs-title">Documentation</h4>
+                    <p data-i18n="resource-docs-desc">Official .NET MAUI documentation</p>
+                </a>
+                <a href="https://docs.microsoft.com/learn/paths/build-apps-with-dotnet-maui/" class="resource-card" target="_blank">
+                    <h4>Microsoft Learn</h4>
+                    <p data-i18n="resource-learn-desc">Free learning path for .NET MAUI</p>
+                </a>
+                <a href="https://www.youtube.com/watch?v=DuNLR_NJv8U" class="resource-card" target="_blank">
+                    <h4 data-i18n="resource-video-title">Video Walkthrough</h4>
+                    <p data-i18n="resource-video-desc">4-hour complete workshop recording</p>
+                </a>
+                <a href="https://github.com/dotnet/maui" class="resource-card" target="_blank">
+                    <h4>GitHub Repository</h4>
+                    <p data-i18n="resource-github-desc">.NET MAUI source code on GitHub</p>
+                </a>
+                <a href="https://aka.ms/blazor-hybrid-workshop" class="resource-card" target="_blank">
+                    <h4>Blazor Hybrid Workshop</h4>
+                    <p data-i18n="resource-blazor-desc">Build the same app with Blazor Hybrid</p>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/dotnet-presentations/dotnet-maui-workshop">GitHub</a>
+                <a href="https://twitter.com/jamesmontemagno">@JamesMontemagno</a>
+                <a href="https://dot.net/maui">.NET MAUI</a>
+            </div>
+            <p class="footer-credit">
+                Made with 💜 by the .NET Community
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                'hero-title': '.NET MAUI Workshop',
+                'hero-subtitle': 'Build a Monkey Finder app while learning .NET MAUI fundamentals. Master data binding, MVVM, navigation, platform features, and theming.',
+                'start-workshop': '🚀 Start Workshop',
+                'duration': 'Duration',
+                'parts': 'Parts',
+                'platforms': 'Platforms',
+                'what-youll-learn': "What You'll Learn",
+                'feature-crossplatform-title': 'Cross-Platform UI',
+                'feature-crossplatform-desc': 'Build native apps for Android, iOS, macOS, and Windows from a single codebase using .NET MAUI.',
+                'feature-mvvm-title': 'MVVM Pattern',
+                'feature-mvvm-desc': 'Learn the Model-View-ViewModel pattern with data binding and the .NET Community Toolkit.',
+                'feature-navigation-title': 'Shell Navigation',
+                'feature-navigation-desc': 'Implement URI-based navigation with parameter passing between pages.',
+                'feature-platform-title': 'Platform Features',
+                'feature-platform-desc': 'Access device capabilities like GPS, maps, and network connectivity with .NET MAUI APIs.',
+                'workshop-parts': 'Workshop Parts',
+                'part0-title': 'Overview & Setup',
+                'part0-desc': 'Introduction to .NET MAUI project structure and setup verification',
+                'part1-title': 'Displaying Data',
+                'part1-desc': 'Create a single page list of data with CollectionView and DataTemplates',
+                'part2-title': 'MVVM & Data Binding',
+                'part2-desc': 'Implement MVVM pattern with data binding and the .NET Community Toolkit',
+                'part3-title': 'Navigation',
+                'part3-desc': 'Add Shell navigation to push a details page with query parameters',
+                'part4-title': 'Platform Features',
+                'part4-desc': 'Use geolocation, connectivity checking, and maps integration',
+                'part5-title': 'CollectionView & Beyond',
+                'part5-desc': 'Add pull-to-refresh, grid layouts, and empty views',
+                'part6-title': 'App Themes',
+                'part6-desc': 'Implement light/dark theme support with AppThemeBinding',
+                'prerequisites': 'Prerequisites',
+                'prereq-device': 'Android/iOS Device or Emulator',
+                'resources': 'Resources',
+                'resource-website': 'Official .NET MAUI product page',
+                'resource-docs-title': 'Documentation',
+                'resource-docs-desc': 'Official .NET MAUI documentation',
+                'resource-learn-desc': 'Free learning path for .NET MAUI',
+                'resource-video-title': 'Video Walkthrough',
+                'resource-video-desc': '4-hour complete workshop recording',
+                'resource-github-desc': '.NET MAUI source code on GitHub',
+                'resource-blazor-desc': 'Build the same app with Blazor Hybrid'
+            },
+            'zh-cn': {
+                'hero-title': '.NET MAUI 动手实验',
+                'hero-subtitle': '构建一个猴子查找器应用程序，同时学习 .NET MAUI 基础知识。掌握数据绑定、MVVM、导航、平台特性和主题设置。',
+                'start-workshop': '🚀 开始实验',
+                'duration': '时长',
+                'parts': '章节',
+                'platforms': '平台',
+                'what-youll-learn': '您将学到什么',
+                'feature-crossplatform-title': '跨平台 UI',
+                'feature-crossplatform-desc': '使用 .NET MAUI 从单一代码库构建适用于 Android、iOS、macOS 和 Windows 的原生应用。',
+                'feature-mvvm-title': 'MVVM 模式',
+                'feature-mvvm-desc': '学习使用数据绑定和 .NET Community Toolkit 的 Model-View-ViewModel 模式。',
+                'feature-navigation-title': 'Shell 导航',
+                'feature-navigation-desc': '实现基于 URI 的导航，在页面之间传递参数。',
+                'feature-platform-title': '平台特性',
+                'feature-platform-desc': '使用 .NET MAUI API 访问设备功能，如 GPS、地图和网络连接。',
+                'workshop-parts': '实验章节',
+                'part0-title': '概述和环境准备',
+                'part0-desc': '.NET MAUI 项目结构介绍和环境验证',
+                'part1-title': '显示数据',
+                'part1-desc': '使用 CollectionView 和 DataTemplates 创建单页数据列表',
+                'part2-title': 'MVVM 和数据绑定',
+                'part2-desc': '使用数据绑定和 .NET Community Toolkit 实现 MVVM 模式',
+                'part3-title': '导航',
+                'part3-desc': '添加 Shell 导航以推送带有查询参数的详情页面',
+                'part4-title': '平台特性',
+                'part4-desc': '使用地理定位、连接检查和地图集成',
+                'part5-title': 'CollectionView 进阶',
+                'part5-desc': '添加下拉刷新、网格布局和空视图',
+                'part6-title': '应用主题',
+                'part6-desc': '使用 AppThemeBinding 实现明/暗主题支持',
+                'prerequisites': '前提条件',
+                'prereq-device': 'Android/iOS 设备或模拟器',
+                'resources': '资源',
+                'resource-website': '官方 .NET MAUI 产品页面',
+                'resource-docs-title': '文档',
+                'resource-docs-desc': '官方 .NET MAUI 文档',
+                'resource-learn-desc': '.NET MAUI 免费学习路径',
+                'resource-video-title': '视频教程',
+                'resource-video-desc': '4小时完整实验录制',
+                'resource-github-desc': 'GitHub 上的 .NET MAUI 源代码',
+                'resource-blazor-desc': '使用 Blazor Hybrid 构建相同的应用'
+            },
+            'zh-tw': {
+                'hero-title': '.NET MAUI 動手實驗',
+                'hero-subtitle': '建構一個猴子查找器應用程式，同時學習 .NET MAUI 基礎知識。掌握資料繫結、MVVM、導航、平台特性和主題設定。',
+                'start-workshop': '🚀 開始實驗',
+                'duration': '時長',
+                'parts': '章節',
+                'platforms': '平台',
+                'what-youll-learn': '您將學到什麼',
+                'feature-crossplatform-title': '跨平台 UI',
+                'feature-crossplatform-desc': '使用 .NET MAUI 從單一程式碼庫建構適用於 Android、iOS、macOS 和 Windows 的原生應用。',
+                'feature-mvvm-title': 'MVVM 模式',
+                'feature-mvvm-desc': '學習使用資料繫結和 .NET Community Toolkit 的 Model-View-ViewModel 模式。',
+                'feature-navigation-title': 'Shell 導航',
+                'feature-navigation-desc': '實作基於 URI 的導航，在頁面之間傳遞參數。',
+                'feature-platform-title': '平台特性',
+                'feature-platform-desc': '使用 .NET MAUI API 存取裝置功能，如 GPS、地圖和網路連線。',
+                'workshop-parts': '實驗章節',
+                'part0-title': '概述和環境準備',
+                'part0-desc': '.NET MAUI 專案結構介紹和環境驗證',
+                'part1-title': '顯示資料',
+                'part1-desc': '使用 CollectionView 和 DataTemplates 建立單頁資料列表',
+                'part2-title': 'MVVM 和資料繫結',
+                'part2-desc': '使用資料繫結和 .NET Community Toolkit 實作 MVVM 模式',
+                'part3-title': '導航',
+                'part3-desc': '新增 Shell 導航以推送帶有查詢參數的詳情頁面',
+                'part4-title': '平台特性',
+                'part4-desc': '使用地理定位、連線檢查和地圖整合',
+                'part5-title': 'CollectionView 進階',
+                'part5-desc': '新增下拉刷新、網格佈局和空視圖',
+                'part6-title': '應用主題',
+                'part6-desc': '使用 AppThemeBinding 實作明/暗主題支援',
+                'prerequisites': '前提條件',
+                'prereq-device': 'Android/iOS 裝置或模擬器',
+                'resources': '資源',
+                'resource-website': '官方 .NET MAUI 產品頁面',
+                'resource-docs-title': '文件',
+                'resource-docs-desc': '官方 .NET MAUI 文件',
+                'resource-learn-desc': '.NET MAUI 免費學習路徑',
+                'resource-video-title': '視頻教程',
+                'resource-video-desc': '4小時完整實驗錄製',
+                'resource-github-desc': 'GitHub 上的 .NET MAUI 原始碼',
+                'resource-blazor-desc': '使用 Blazor Hybrid 建構相同的應用'
+            }
+        };
+
+        // Get language from URL or localStorage
+        function getLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && translations[urlLang]) {
+                return urlLang;
+            }
+            const storedLang = localStorage.getItem('workshop-lang');
+            if (storedLang && translations[storedLang]) {
+                return storedLang;
+            }
+            return 'en';
+        }
+
+        // Apply translations
+        function applyTranslations(lang) {
+            const trans = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (trans[key]) {
+                    el.textContent = trans[key];
+                }
+            });
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update links with language parameter
+            document.querySelectorAll('a[href^="step.html"]').forEach(a => {
+                const url = new URL(a.href, window.location.origin);
+                url.searchParams.set('lang', lang);
+                a.href = url.toString();
+            });
+
+            // Store preference
+            localStorage.setItem('workshop-lang', lang);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = getLanguage();
+            applyTranslations(lang);
+
+            // Language button handlers
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    applyTranslations(lang);
+                    
+                    // Update URL without reload
+                    const url = new URL(window.location);
+                    url.searchParams.set('lang', lang);
+                    window.history.pushState({}, '', url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

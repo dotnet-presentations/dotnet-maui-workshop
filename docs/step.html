@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET MAUI Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-sidebar: #0f0f14;
+            --maui-purple: #512BD4;
+            --maui-blue: #0078d4;
+            --neon-purple: #9B4DFF;
+            --neon-blue: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border-color: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-logo-icon {
+            font-size: 1.25rem;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.35rem 0.75rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            border-color: var(--maui-purple);
+            color: var(--neon-purple);
+            background: rgba(81,43,212,0.1);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(81,43,212,0.1);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: rgba(81,43,212,0.15);
+            color: var(--neon-purple);
+            border-left-color: var(--neon-purple);
+        }
+
+        .nav-number {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .nav-item.active .nav-number {
+            background: linear-gradient(135deg, var(--maui-purple), var(--maui-blue));
+            color: white;
+        }
+
+        .nav-title {
+            font-size: 0.9rem;
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            margin-left: 300px;
+            min-height: 100vh;
+        }
+
+        .content-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-sidebar);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .step-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(155,77,255,0.1);
+            border-radius: 50px;
+            color: var(--neon-purple);
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Markdown Content Styling */
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--maui-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content h2 {
+            font-size: 1.75rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content h3 {
+            font-size: 1.35rem;
+            margin: 2rem 0 0.75rem;
+            color: var(--neon-blue);
+        }
+
+        .content h4 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content a {
+            color: var(--neon-purple);
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .content pre {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .content code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .content :not(pre) > code {
+            background: var(--bg-card);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--maui-purple);
+            background: rgba(81,43,212,0.1);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .content blockquote p {
+            margin: 0;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .content th, .content td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .content th {
+            background: var(--bg-card);
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--neon-purple);
+            background: rgba(81,43,212,0.1);
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--maui-purple), var(--maui-blue));
+            border: none;
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(81,43,212,0.4);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--maui-purple), var(--maui-blue));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 4px 20px rgba(81,43,212,0.4);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 90;
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--neon-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.open {
+                display: block;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .content-wrapper {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <span class="sidebar-logo-icon">🐒</span>
+                    <span>.NET MAUI Workshop</span>
+                </a>
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="zh-cn">简中</button>
+                    <button class="lang-btn" data-lang="zh-tw">繁中</button>
+                </div>
+            </div>
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <!-- Navigation items will be populated by JS -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <header class="content-header">
+                <h1 class="step-title" id="step-title">Loading...</h1>
+                <span class="step-badge" id="step-badge"></span>
+            </header>
+            <div class="content-wrapper">
+                <div class="content" id="content">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="nav-buttons" id="nav-buttons">
+                    <!-- Navigation buttons will be populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+    <script>
+        // Configure marked
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        // Workshop steps configuration
+        const steps = [
+            { id: 'part0', title: 'Overview & Setup', badge: '30 min', folder: 'Part 0 - Overview' },
+            { id: 'part1', title: 'Displaying Data', badge: 'Data', folder: 'Part 1 - Displaying Data' },
+            { id: 'part2', title: 'MVVM & Data Binding', badge: 'MVVM', folder: 'Part 2 - MVVM' },
+            { id: 'part3', title: 'Navigation', badge: 'Navigation', folder: 'Part 3 - Navigation' },
+            { id: 'part4', title: 'Platform Features', badge: 'Platform', folder: 'Part 4 - Platform Features' },
+            { id: 'part5', title: 'CollectionView', badge: 'CollectionView', folder: 'Part 5 - CollectionView' },
+            { id: 'part6', title: 'App Themes', badge: 'Theming', folder: 'Part 6 - AppThemes' }
+        ];
+
+        // Translations for step titles
+        const stepTranslations = {
+            en: {
+                'part0': 'Overview & Setup',
+                'part1': 'Displaying Data',
+                'part2': 'MVVM & Data Binding',
+                'part3': 'Navigation',
+                'part4': 'Platform Features',
+                'part5': 'CollectionView & Beyond',
+                'part6': 'App Themes',
+                'prev': '← Previous',
+                'next': 'Next →',
+                'back-home': '← Back to Home',
+                'complete': '🎉 Workshop Complete!'
+            },
+            'zh-cn': {
+                'part0': '概述和环境准备',
+                'part1': '显示数据',
+                'part2': 'MVVM 和数据绑定',
+                'part3': '导航',
+                'part4': '平台特性',
+                'part5': 'CollectionView 进阶',
+                'part6': '应用主题',
+                'prev': '← 上一步',
+                'next': '下一步 →',
+                'back-home': '← 返回首页',
+                'complete': '🎉 实验完成！'
+            },
+            'zh-tw': {
+                'part0': '概述和環境準備',
+                'part1': '顯示資料',
+                'part2': 'MVVM 和資料繫結',
+                'part3': '導航',
+                'part4': '平台特性',
+                'part5': 'CollectionView 進階',
+                'part6': '應用主題',
+                'prev': '← 上一步',
+                'next': '下一步 →',
+                'back-home': '← 返回首頁',
+                'complete': '🎉 實驗完成！'
+            }
+        };
+
+        // Get language from URL or localStorage
+        function getLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && stepTranslations[urlLang]) {
+                return urlLang;
+            }
+            const storedLang = localStorage.getItem('workshop-lang');
+            if (storedLang && stepTranslations[storedLang]) {
+                return storedLang;
+            }
+            return 'en';
+        }
+
+        // Get current step from URL
+        function getCurrentStep() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('step') || 'part0';
+        }
+
+        // Build sidebar navigation
+        function buildNavigation(currentStep, lang) {
+            const nav = document.getElementById('sidebar-nav');
+            const trans = stepTranslations[lang];
+            
+            nav.innerHTML = steps.map((step, index) => `
+                <a href="step.html?step=${step.id}&lang=${lang}" 
+                   class="nav-item ${step.id === currentStep ? 'active' : ''}">
+                    <span class="nav-number">${index}</span>
+                    <span class="nav-title">${trans[step.id] || step.title}</span>
+                </a>
+            `).join('');
+        }
+
+        // Build navigation buttons
+        function buildNavButtons(currentStep, lang) {
+            const navButtons = document.getElementById('nav-buttons');
+            const currentIndex = steps.findIndex(s => s.id === currentStep);
+            const trans = stepTranslations[lang];
+            
+            let html = '';
+            
+            if (currentIndex > 0) {
+                const prevStep = steps[currentIndex - 1];
+                html += `<a href="step.html?step=${prevStep.id}&lang=${lang}" class="nav-btn">${trans['prev']}</a>`;
+            } else {
+                html += `<a href="index.html?lang=${lang}" class="nav-btn">${trans['back-home']}</a>`;
+            }
+            
+            if (currentIndex < steps.length - 1) {
+                const nextStep = steps[currentIndex + 1];
+                html += `<a href="step.html?step=${nextStep.id}&lang=${lang}" class="nav-btn primary">${trans['next']}</a>`;
+            } else {
+                html += `<span class="nav-btn">${trans['complete']}</span>`;
+            }
+            
+            navButtons.innerHTML = html;
+        }
+
+        // Load content from GitHub
+        async function loadContent(step, lang) {
+            const stepConfig = steps.find(s => s.id === step);
+            if (!stepConfig) {
+                document.getElementById('content').innerHTML = '<p>Step not found.</p>';
+                return;
+            }
+
+            // Update header
+            const trans = stepTranslations[lang];
+            document.getElementById('step-title').textContent = trans[step] || stepConfig.title;
+            document.getElementById('step-badge').textContent = stepConfig.badge;
+            document.title = `${trans[step] || stepConfig.title} | .NET MAUI Workshop`;
+
+            // Determine README file based on language
+            let readmeFile = 'README.md';
+            if (lang === 'zh-cn') readmeFile = 'README.zh-cn.md';
+            else if (lang === 'zh-tw') readmeFile = 'README.zh-tw.md';
+
+            // Try to load from GitHub raw content
+            const baseUrl = 'https://raw.githubusercontent.com/dotnet-presentations/dotnet-maui-workshop/main';
+            const folderEncoded = encodeURIComponent(stepConfig.folder);
+            const url = `${baseUrl}/${stepConfig.folder}/${readmeFile}`;
+            
+            try {
+                let response = await fetch(url);
+                
+                // Fallback to English if translation not found
+                if (!response.ok && lang !== 'en') {
+                    const fallbackUrl = `${baseUrl}/${stepConfig.folder}/README.md`;
+                    response = await fetch(fallbackUrl);
+                }
+                
+                if (!response.ok) {
+                    throw new Error('Content not found');
+                }
+                
+                let content = await response.text();
+                
+                // Fix image URLs to point to GitHub raw content
+                content = content.replace(/\(\.\.\/Art\//g, `(${baseUrl}/Art/`);
+                content = content.replace(/src="\.\.\/Art\//g, `src="${baseUrl}/Art/`);
+                
+                // Fix relative links to other parts
+                content = content.replace(/\(\.\.\/Part\s+(\d+)[^)]+\/README\.md\)/g, (match, partNum) => {
+                    return `(step.html?step=part${partNum}&lang=${lang})`;
+                });
+
+                // Render markdown
+                document.getElementById('content').innerHTML = marked.parse(content);
+                
+                // Re-highlight code blocks
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+                
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.getElementById('content').innerHTML = `
+                    <h1>Content Loading Error</h1>
+                    <p>Unable to load the content for this step. Please try again or view the content directly on GitHub.</p>
+                    <p><a href="https://github.com/dotnet-presentations/dotnet-maui-workshop/tree/main/${stepConfig.folder}" target="_blank">View on GitHub</a></p>
+                `;
+            }
+        }
+
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+            document.querySelector('.sidebar-overlay').classList.toggle('open');
+        }
+
+        // Update language
+        function updateLanguage(lang) {
+            localStorage.setItem('workshop-lang', lang);
+            
+            // Update URL
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            
+            // Reload content
+            const step = getCurrentStep();
+            buildNavigation(step, lang);
+            buildNavButtons(step, lang);
+            loadContent(step, lang);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = getLanguage();
+            const step = getCurrentStep();
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                btn.addEventListener('click', () => {
+                    updateLanguage(btn.getAttribute('data-lang'));
+                });
+            });
+            
+            // Update home link with language
+            document.querySelector('.sidebar-logo').href = `index.html?lang=${lang}`;
+            
+            buildNavigation(step, lang);
+            buildNavButtons(step, lang);
+            loadContent(step, lang);
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', () => {
+            const lang = getLanguage();
+            const step = getCurrentStep();
+            buildNavigation(step, lang);
+            buildNavButtons(step, lang);
+            loadContent(step, lang);
+        });
+    </script>
+</body>
+</html>
