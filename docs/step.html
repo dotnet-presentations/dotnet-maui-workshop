@@ -883,6 +883,163 @@
             document.querySelector('.sidebar-overlay').classList.toggle('open');
         }
 
+        // 🎮 KONAMI CODE EASTER EGG: ↑↑↓↓←→←→BA
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.toLowerCase() === e.key ? e.key : e.key;
+            if (key === konamiCode[konamiIndex] || key.toLowerCase() === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    konamiIndex = 0;
+                    triggerKonamiExplosion();
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Epic emoji explosion for Konami code
+        function triggerKonamiExplosion() {
+            const emojis = ['🐒', '🍌', '🎉', '🚀', '💜', '✨', '🔥', '⭐', '🌟', '💫', '🎊', '🏆', '📱', '💻', '🎯', '🦄', '🌈', '💎'];
+            
+            // Screen flash effect
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #512BD4, #00d4ff, #ff6b6b, #feca57);
+                z-index: 9999;
+                pointer-events: none;
+                animation: konamiFlash 0.5s ease-out forwards;
+            `;
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+
+            // Add flash animation
+            if (!document.getElementById('konami-styles')) {
+                const style = document.createElement('style');
+                style.id = 'konami-styles';
+                style.textContent = `
+                    @keyframes konamiFlash {
+                        0% { opacity: 0.8; }
+                        100% { opacity: 0; }
+                    }
+                    @keyframes emojiExplode {
+                        0% { 
+                            transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                            opacity: 1;
+                        }
+                        50% {
+                            opacity: 1;
+                        }
+                        100% { 
+                            transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot));
+                            opacity: 0;
+                        }
+                    }
+                    @keyframes emojiRain {
+                        0% { 
+                            transform: translateY(-100px) rotate(0deg);
+                            opacity: 1;
+                        }
+                        100% { 
+                            transform: translateY(100vh) rotate(720deg);
+                            opacity: 0;
+                        }
+                    }
+                    .emoji-particle {
+                        position: fixed;
+                        font-size: 2rem;
+                        pointer-events: none;
+                        z-index: 10000;
+                        animation: emojiExplode 1.5s ease-out forwards;
+                    }
+                    .emoji-rain {
+                        position: fixed;
+                        font-size: 2rem;
+                        pointer-events: none;
+                        z-index: 10000;
+                        animation: emojiRain 3s linear forwards;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Create explosion from center
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-particle';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = '50%';
+                    emoji.style.top = '50%';
+                    
+                    const angle = (Math.random() * 360) * (Math.PI / 180);
+                    const distance = 200 + Math.random() * 400;
+                    const tx = Math.cos(angle) * distance + 'px';
+                    const ty = Math.sin(angle) * distance + 'px';
+                    const rot = (Math.random() - 0.5) * 1080 + 'deg';
+                    
+                    emoji.style.setProperty('--tx', tx);
+                    emoji.style.setProperty('--ty', ty);
+                    emoji.style.setProperty('--rot', rot);
+                    emoji.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+                    
+                    document.body.appendChild(emoji);
+                    setTimeout(() => emoji.remove(), 1500);
+                }, i * 20);
+            }
+
+            // Emoji rain effect
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-rain';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + 'vw';
+                    emoji.style.top = '-50px';
+                    emoji.style.fontSize = (1 + Math.random() * 2) + 'rem';
+                    emoji.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    
+                    document.body.appendChild(emoji);
+                    setTimeout(() => emoji.remove(), 4000);
+                }, i * 100);
+            }
+
+            // Epic confetti burst
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#512BD4', '#0078d4', '#9B4DFF', '#00d4ff', '#ff6b6b', '#feca57', '#00ff00', '#ff00ff']
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#512BD4', '#0078d4', '#9B4DFF', '#00d4ff', '#ff6b6b', '#feca57', '#00ff00', '#ff00ff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Play a fun sound effect message
+            console.log('%c🎮 KONAMI CODE ACTIVATED! 🐒🍌🎉', 'font-size: 24px; color: #9B4DFF; font-weight: bold;');
+        }
+
         // Update language
         function updateLanguage(lang) {
             localStorage.setItem('workshop-lang', lang);
