@@ -8,9 +8,9 @@ Today we will build a [.NET MAUI](https://docs.microsoft.com/dotnet/maui?WT.mc_i
 
 ## Languages
 This workshop is available in the following languages:
-* English - default README files
-* [Chinese (Simplified)](README.zh-cn.md) - README files ending with .zh-cn.md (Translated by [Kinfey Lo](https://github.com/kinfey))
-* [Chinese (Traditional)](README.zh-tw.md) - README filed ending with .zh-tw.md (Translated by [James Tsai](https://github.com/JamestsaiTW))
+* [English](https://dotnet-presentations.github.io/dotnet-maui-workshop/) - default README files
+* [Chinese (Simplified) 简体中文](https://dotnet-presentations.github.io/dotnet-maui-workshop/?lang=zh-cn) - README files ending with .zh-cn.md (Translated by [Kinfey Lo](https://github.com/kinfey))
+* [Chinese (Traditional) 繁體中文](https://dotnet-presentations.github.io/dotnet-maui-workshop/?lang=zh-tw) - README files ending with .zh-tw.md (Translated by [James Tsai](https://github.com/JamestsaiTW))
 
 ## Setup Guide
 Hey there! This workshop will be a hands on and a bring your own device workshop. You can develop on PC, Mac, or Linux and all you will need to do is install Visual Studio 2026 or Visual Studio Code with the C# Dev Kit extension. It is built on .NET 10. See [full installation guide for .NET MAUI](https://learn.microsoft.com/dotnet/maui/get-started/installation?view=net-maui-10.0) for more information.
@@ -24,15 +24,19 @@ Beyond that you will be good to go for the workshop!
 ## Agenda
 I have also put together an abstract of what you can expect for the day long workshop:
 
-* [Part 0](Part%200%20-%20Overview/README.md) - 30 Min Session - Introduction to .NET MAUI Session & Setup Help
-* [Part 1](Part%201%20-%20Displaying%20Data/README.md) - Single Page List of Data
-* [Part 2](Part%202%20-%20MVVM/README.md) - MVVM & Data Binding
-* [Part 3](Part%203%20-%20Navigation/README.md) - Navigation
-* [Part 4](Part%204%20-%20Platform%20Features/README.md) - Implementing Platform Features
-* [Part 5](Part%205%20-%20CollectionView/README.md) - CollectionView & Beyond
-* [Part 6](Part%206%20-%20AppThemes/README.md) - Theming the app
+| Part | Topic | Description |
+|------|-------|-------------|
+| [Part 0](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part0) | Overview & Setup | 30 Min Session - Introduction to .NET MAUI Session & Setup Help |
+| [Part 1](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part1) | Displaying Data | Single Page List of Data |
+| [Part 2](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part2) | MVVM | MVVM & Data Binding |
+| [Part 3](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part3) | Navigation | Navigation with Shell |
+| [Part 4](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part4) | Platform Features | Implementing Platform Features |
+| [Part 5](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part5) | CollectionView | CollectionView & Beyond |
+| [Part 6](https://dotnet-presentations.github.io/dotnet-maui-workshop/step.html?step=part6) | App Themes | Theming the app |
 
-To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
+> 💡 **Prefer reading locally?** Each part folder contains a README.md file with the same content.
+
+To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and there is a starting project for that section.
 
 ## Video Walkthrough
 James recorded a [full 4-hour walkthrough](https://www.youtube.com/watch?v=DuNLR_NJv8U) end-to-end on [his YouTube](https://youtube.com/jamesmontemagno)!
@@ -44,6 +48,7 @@ If you want to learn more about Blazor Hybrid too, then we have got [another gre
 In this workshop you will build the same app as in this one, the Monkey Finder app, but now using Blazor Hybrid. By doing both workshops, you can really see the differences and similarities between the two approaches.
 
 ## More links and resources:
+- [Interactive Workshop Site](https://dotnet-presentations.github.io/dotnet-maui-workshop/)
 - [.NET MAUI Website](https://dot.net/maui)
 - [.NET MAUI on Microsoft Learn](https://docs.microsoft.com/learn/paths/build-apps-with-dotnet-maui/)
 - [.NET MAUI Documentation](https://docs.microsoft.com/dotnet/maui) 
