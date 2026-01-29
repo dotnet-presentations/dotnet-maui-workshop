@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --bg-dark: #0a0a0f;
@@ -410,6 +411,114 @@
                 padding: 2rem 1rem;
             }
         }
+
+        /* Completion page styles */
+        .completion-page {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .completion-page h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--maui-purple), var(--neon-blue), #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .completion-emoji {
+            font-size: 6rem;
+            margin: 2rem 0;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .completion-message {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .confetti-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, var(--neon-purple), var(--neon-blue));
+            background-size: 300% 300%;
+            animation: rainbow 3s ease infinite;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: inherit;
+            margin: 1rem;
+        }
+
+        .confetti-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(155,77,255,0.4);
+        }
+
+        .confetti-btn:active {
+            transform: scale(0.95);
+        }
+
+        .completion-links {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .completion-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .completion-link:hover {
+            border-color: var(--neon-purple);
+            background: rgba(81,43,212,0.1);
+            transform: translateY(-2px);
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            border-radius: 50px;
+            color: #1a1a2e;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -478,7 +587,8 @@
             { id: 'part3', title: 'Navigation', badge: 'Navigation', folder: 'Part 3 - Navigation' },
             { id: 'part4', title: 'Platform Features', badge: 'Platform', folder: 'Part 4 - Platform Features' },
             { id: 'part5', title: 'CollectionView', badge: 'CollectionView', folder: 'Part 5 - CollectionView' },
-            { id: 'part6', title: 'App Themes', badge: 'Theming', folder: 'Part 6 - AppThemes' }
+            { id: 'part6', title: 'App Themes', badge: 'Theming', folder: 'Part 6 - AppThemes' },
+            { id: 'complete', title: 'Workshop Complete!', badge: '🎉', folder: null }
         ];
 
         // Translations for step titles
@@ -491,10 +601,19 @@
                 'part4': 'Platform Features',
                 'part5': 'CollectionView & Beyond',
                 'part6': 'App Themes',
+                'complete': '🎉 Workshop Complete!',
                 'prev': '← Previous',
                 'next': 'Next →',
                 'back-home': '← Back to Home',
-                'complete': '🎉 Workshop Complete!'
+                'finish': 'Finish! 🎉',
+                'congrats-title': 'Congratulations!',
+                'congrats-message': 'You did it! You\'ve successfully completed the .NET MAUI Workshop and built your first cross-platform mobile application. You\'ve learned data binding, MVVM, navigation, platform features, and theming!',
+                'achievement': '🏆 .NET MAUI Developer Achievement Unlocked!',
+                'more-confetti': '🎊 More Confetti!',
+                'share-twitter': 'Share on Twitter',
+                'blazor-workshop': 'Try Blazor Hybrid Workshop',
+                'github-repo': 'Star on GitHub',
+                'maui-docs': '.NET MAUI Docs'
             },
             'zh-cn': {
                 'part0': '概述和环境准备',
@@ -504,10 +623,19 @@
                 'part4': '平台特性',
                 'part5': 'CollectionView 进阶',
                 'part6': '应用主题',
+                'complete': '🎉 实验完成！',
                 'prev': '← 上一步',
                 'next': '下一步 →',
                 'back-home': '← 返回首页',
-                'complete': '🎉 实验完成！'
+                'finish': '完成！🎉',
+                'congrats-title': '恭喜！',
+                'congrats-message': '你做到了！你已经成功完成了 .NET MAUI 动手实验，并构建了你的第一个跨平台移动应用程序。你已经学会了数据绑定、MVVM、导航、平台特性和主题设置！',
+                'achievement': '🏆 .NET MAUI 开发者成就已解锁！',
+                'more-confetti': '🎊 更多彩带！',
+                'share-twitter': '分享到 Twitter',
+                'blazor-workshop': '尝试 Blazor Hybrid 实验',
+                'github-repo': '在 GitHub 上点赞',
+                'maui-docs': '.NET MAUI 文档'
             },
             'zh-tw': {
                 'part0': '概述和環境準備',
@@ -517,10 +645,19 @@
                 'part4': '平台特性',
                 'part5': 'CollectionView 進階',
                 'part6': '應用主題',
+                'complete': '🎉 實驗完成！',
                 'prev': '← 上一步',
                 'next': '下一步 →',
                 'back-home': '← 返回首頁',
-                'complete': '🎉 實驗完成！'
+                'finish': '完成！🎉',
+                'congrats-title': '恭喜！',
+                'congrats-message': '你做到了！你已經成功完成了 .NET MAUI 動手實驗，並建構了你的第一個跨平台行動應用程式。你已經學會了資料繫結、MVVM、導航、平台特性和主題設定！',
+                'achievement': '🏆 .NET MAUI 開發者成就已解鎖！',
+                'more-confetti': '🎊 更多彩帶！',
+                'share-twitter': '分享到 Twitter',
+                'blazor-workshop': '嘗試 Blazor Hybrid 實驗',
+                'github-repo': '在 GitHub 上點讚',
+                'maui-docs': '.NET MAUI 文件'
             }
         };
 
@@ -549,13 +686,16 @@
             const nav = document.getElementById('sidebar-nav');
             const trans = stepTranslations[lang];
             
-            nav.innerHTML = steps.map((step, index) => `
+            nav.innerHTML = steps.map((step, index) => {
+                const isComplete = step.id === 'complete';
+                const displayNum = isComplete ? '🎉' : index;
+                return `
                 <a href="step.html?step=${step.id}&lang=${lang}" 
                    class="nav-item ${step.id === currentStep ? 'active' : ''}">
-                    <span class="nav-number">${index}</span>
+                    <span class="nav-number">${displayNum}</span>
                     <span class="nav-title">${trans[step.id] || step.title}</span>
                 </a>
-            `).join('');
+            `}).join('');
         }
 
         // Build navigation buttons
@@ -573,11 +713,16 @@
                 html += `<a href="index.html?lang=${lang}" class="nav-btn">${trans['back-home']}</a>`;
             }
             
-            if (currentIndex < steps.length - 1) {
+            if (currentStep === 'complete') {
+                // On completion page, no next button needed
+                html += `<a href="index.html?lang=${lang}" class="nav-btn primary">${trans['back-home']}</a>`;
+            } else if (currentIndex < steps.length - 2) {
+                // Not on the last content step
                 const nextStep = steps[currentIndex + 1];
                 html += `<a href="step.html?step=${nextStep.id}&lang=${lang}" class="nav-btn primary">${trans['next']}</a>`;
-            } else {
-                html += `<span class="nav-btn">${trans['complete']}</span>`;
+            } else if (currentIndex === steps.length - 2) {
+                // On part6, link to completion
+                html += `<a href="step.html?step=complete&lang=${lang}" class="nav-btn primary">${trans['finish']}</a>`;
             }
             
             navButtons.innerHTML = html;
@@ -588,6 +733,12 @@
             const stepConfig = steps.find(s => s.id === step);
             if (!stepConfig) {
                 document.getElementById('content').innerHTML = '<p>Step not found.</p>';
+                return;
+            }
+
+            // Handle completion page
+            if (step === 'complete') {
+                loadCompletionPage(lang);
                 return;
             }
 
@@ -647,6 +798,83 @@
                     <p><a href="https://github.com/dotnet-presentations/dotnet-maui-workshop/tree/main/${stepConfig.folder}" target="_blank">View on GitHub</a></p>
                 `;
             }
+        }
+
+        // Load completion page with confetti
+        function loadCompletionPage(lang) {
+            const trans = stepTranslations[lang];
+            
+            // Update header
+            document.getElementById('step-title').textContent = trans['complete'] || 'Workshop Complete!';
+            document.getElementById('step-badge').textContent = '🎉';
+            document.title = `${trans['complete'] || 'Workshop Complete!'} | .NET MAUI Workshop`;
+
+            const twitterText = encodeURIComponent('I just completed the .NET MAUI Workshop and built my first cross-platform mobile app! 🐒📱 #dotnetmaui #dotnet @jabortwitz');
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${twitterText}&url=https://dotnet-presentations.github.io/dotnet-maui-workshop/`;
+
+            document.getElementById('content').innerHTML = `
+                <div class="completion-page">
+                    <div class="achievement-badge">${trans['achievement']}</div>
+                    <div class="completion-emoji">🐒</div>
+                    <h1>${trans['congrats-title']}</h1>
+                    <p class="completion-message">${trans['congrats-message']}</p>
+                    
+                    <button class="confetti-btn" onclick="fireConfetti()">
+                        ${trans['more-confetti']}
+                    </button>
+                    
+                    <div class="completion-links">
+                        <a href="${twitterUrl}" target="_blank" class="completion-link">
+                            🐦 ${trans['share-twitter']}
+                        </a>
+                        <a href="https://aka.ms/blazor-hybrid-workshop" target="_blank" class="completion-link">
+                            🔥 ${trans['blazor-workshop']}
+                        </a>
+                        <a href="https://github.com/dotnet-presentations/dotnet-maui-workshop" target="_blank" class="completion-link">
+                            ⭐ ${trans['github-repo']}
+                        </a>
+                        <a href="https://docs.microsoft.com/dotnet/maui" target="_blank" class="completion-link">
+                            📚 ${trans['maui-docs']}
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            // Fire confetti on page load!
+            setTimeout(() => {
+                fireConfetti();
+                setTimeout(fireConfetti, 500);
+                setTimeout(fireConfetti, 1000);
+            }, 300);
+        }
+
+        // Confetti function
+        function fireConfetti() {
+            // Fire from left
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { x: 0.1, y: 0.6 },
+                colors: ['#512BD4', '#0078d4', '#9B4DFF', '#00d4ff', '#ff6b6b', '#feca57']
+            });
+            
+            // Fire from right
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { x: 0.9, y: 0.6 },
+                colors: ['#512BD4', '#0078d4', '#9B4DFF', '#00d4ff', '#ff6b6b', '#feca57']
+            });
+            
+            // Fire from center top
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    spread: 100,
+                    origin: { x: 0.5, y: 0.3 },
+                    colors: ['#512BD4', '#0078d4', '#9B4DFF', '#00d4ff', '#ff6b6b', '#feca57']
+                });
+            }, 200);
         }
 
         // Toggle sidebar on mobile
