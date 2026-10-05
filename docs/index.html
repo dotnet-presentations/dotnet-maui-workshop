@@ -839,6 +839,11 @@
                 });
             });
         });
+
+        // Keep rendered translations in sync with browser back/forward navigation.
+        window.addEventListener('popstate', () => {
+            applyTranslations(getLanguage());
+        });
     </script>
 </body>
 </html>
